@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OverAim Aimbot V2</title>
     <style>
+        /* Global Styles */
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
@@ -14,8 +15,10 @@
             text-align: center;
             overflow-x: hidden;
         }
+        
+        /* Header Styles */
         header {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             padding: 20px 0;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             position: sticky;
@@ -34,14 +37,17 @@
             font-size: 1.4rem;
             color: #ff80bf;
         }
+
+        /* Main Section Styles */
         main {
             padding: 60px 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 15px;
             display: inline-block;
             margin: 50px auto;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
             max-width: 90%;
+            animation: fadeIn 1.5s ease-in-out;
         }
         main h2 {
             font-size: 3.5rem;
@@ -56,6 +62,38 @@
             margin: 0 auto;
             color: #ffccff;
         }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: linear-gradient(145deg, rgba(255, 0, 127, 0.9), rgba(191, 0, 255, 0.9));
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #ffffff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 1.2rem;
+        }
+
+        /* Download Buttons */
         .download-buttons {
             margin-top: 40px;
             display: flex;
@@ -80,14 +118,15 @@
             background: linear-gradient(45deg, #bf00ff, #ff007f);
             transform: scale(1.1);
         }
+
+        /* Footer Styles */
         footer {
             margin-top: 50px;
             padding: 20px 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             font-size: 1rem;
             color: #ff80bf;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6);
-            position: relative;
         }
         footer a {
             color: #ff80bf;
@@ -103,33 +142,11 @@
             color: #ff80bf;
             text-shadow: 1px 1px 5px #000000;
         }
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .feature-card {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            padding: 20px;
-            width: 280px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            color: #ffccff;
-            transition: transform 0.2s;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        .feature-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #ff007f;
-        }
-        .feature-card p {
-            font-size: 1.2rem;
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>

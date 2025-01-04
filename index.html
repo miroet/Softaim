@@ -24,6 +24,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            animation: slideDown 1s ease-in-out;
         }
         header h1 {
             margin: 0;
@@ -54,6 +55,7 @@
             margin-bottom: 20px;
             color: #ff007f;
             text-shadow: 2px 2px 8px #000000;
+            animation: glow 2s infinite;
         }
         main p {
             font-size: 1.4rem;
@@ -80,6 +82,7 @@
             text-align: center;
             color: #ffffff;
             transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideIn 1.2s ease-out;
         }
         .feature-card:hover {
             transform: translateY(-10px);
@@ -113,6 +116,7 @@
             border-radius: 50px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
             transition: background 0.3s, transform 0.2s;
+            animation: pulse 1.5s infinite;
         }
         .download-buttons a:hover {
             background: linear-gradient(45deg, #bf00ff, #ff007f);
@@ -148,6 +152,23 @@
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 2px 2px 8px #000000; }
+            50% { text-shadow: 2px 2px 12px #ff007f; }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); }
+            50% { box-shadow: 0 6px 25px rgba(255, 0, 127, 0.7); }
+            100% { box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); }
+        }
     </style>
 </head>
 <body>
@@ -176,11 +197,4 @@
             <a href="#" id="windows-download">Download for Windows</a>
             <a href="#" id="mac-download">Download for macOS</a>
         </div>
-        <p class="owner-info">Owner Discord: Miro0x</p>
-        <p class="owner-info">Leevi on hakkeri</p>
-    </main>
-    <footer>
-        &copy; 2025 OverAim. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-    </footer>
-</body>
-</html>
+        <p class="owner-info">Owner Discord: Miro0x

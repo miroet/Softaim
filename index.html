@@ -36,6 +36,21 @@
             font-size: 1.4rem;
             color: #ff80bf;
         }
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .language-selector select {
+            background: #1f1f1f;
+            color: #ffffff;
+            border: 1px solid #ff007f;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 1rem;
+            outline: none;
+            cursor: pointer;
+        }
 
         /* Main Section Styles */
         main {
@@ -153,6 +168,13 @@
     <header>
         <h1>OverAim AI Object Detection Aimbot</h1>
         <p>Precision Meets Advanced AI Technology</p>
+        <div class="language-selector">
+            <label for="language">Language: </label>
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+            </select>
+        </div>
     </header>
     <main>
         <h2>The Future of Competitive Gaming</h2>
@@ -181,5 +203,10 @@
     <footer>
         &copy; 2025 OverAim. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
     </footer>
-</body>
-</html>
+    <script>
+        function changeLanguage(language) {
+            if (language === 'fi') {
+                document.querySelector('h1').textContent = 'OverAim AI Kohteen Tunnistus Tähtäysavustin';
+                document.querySelector('p').textContent = 'Tarkkuus Kohtaa Edistyneen Teknologian';
+                document.querySelector('main h2').textContent = 'Kilpapelaamisen Tulevaisuus';
+                document.querySelector('main p').textContent = 'OverAim AI Kohteen Tunnistus Tähtäysavustin hyödyntää huipputeknologiaa, joka mullistaa tähtäyskykysi. Paranna pelikokemustasi vertaansa vailla olevalla tarkkuud

@@ -210,3 +210,76 @@
                 document.querySelector('p').textContent = 'Tarkkuus Kohtaa Edistyneen Teknologian';
                 document.querySelector('main h2').textContent = 'Kilpapelaamisen Tulevaisuus';
                 document.querySelector('main p').textContent = 'OverAim AI Kohteen Tunnistus Tähtäysavustin hyödyntää huipputeknologiaa, joka mullistaa tähtäyskykysi. Paranna pelikokemustasi vertaansa vailla olevalla tarkkuud
+
+    <script>
+        const translations = {
+            en: {
+                title: "OverAim AI Object Detection Aimbot",
+                subtitle: "Precision Meets Advanced AI Technology",
+                mainHeading: "The Future of Competitive Gaming",
+                mainText: "OverAim AI Object Detection Aimbot utilizes cutting-edge artificial intelligence to revolutionize your aiming capabilities. Enhance your gameplay with unparalleled accuracy and responsiveness.",
+                feature1: "AI Precision",
+                feature1Text: "Leveraging AI for real-time object detection and precision targeting.",
+                feature2: "Seamless Integration",
+                feature2Text: "Effortlessly compatible with popular gaming platforms.",
+                feature3: "Full Customization",
+                feature3Text: "Adjust settings to perfectly match your gaming preferences.",
+                downloadWindows: "Download for Windows",
+                downloadMac: "Download for macOS",
+                ownerInfo: "Owner Discord: Miro0x",
+                leeviHakkeri: "Leevi on hakkeri",
+                footerText: "&copy; 2025 OverAim. All Rights Reserved.",
+                privacyPolicy: "Privacy Policy",
+                termsOfService: "Terms of Service"
+            },
+            fi: {
+                title: "OverAim AI Kohteen Tunnistus Tähtäysavustin",
+                subtitle: "Tarkkuus Kohtaa Edistyneen Teknologian",
+                mainHeading: "Kilpapelaamisen Tulevaisuus",
+                mainText: "OverAim AI Kohteen Tunnistus Tähtäysavustin hyödyntää huipputeknologiaa, joka mullistaa tähtäyskykysi. Paranna pelikokemustasi vertaansa vailla olevalla tarkkuudella ja reaktiivisuudella.",
+                feature1: "AI Tarkkuus",
+                feature1Text: "Hyödyntää tekoälyä reaaliaikaiseen kohteiden tunnistukseen ja tarkkuuteen.",
+                feature2: "Saumaton Integraatio",
+                feature2Text: "Helposti yhteensopiva suosittujen pelialustojen kanssa.",
+                feature3: "Täysi Mukautettavuus",
+                feature3Text: "Säädä asetuksia vastaamaan täydellisesti pelimieltymyksiäsi.",
+                downloadWindows: "Lataa Windowsille",
+                downloadMac: "Lataa macOS:lle",
+                ownerInfo: "Omistajan Discord: Miro0x",
+                leeviHakkeri: "Leevi on hakkeri",
+                footerText: "&copy; 2025 OverAim. Kaikki oikeudet pidätetään.",
+                privacyPolicy: "Tietosuojakäytäntö",
+                termsOfService: "Käyttöehdot"
+            }
+        };
+    
+        function changeLanguage(language) {
+            const content = translations[language];
+    
+            document.querySelector('header h1').textContent = content.title;
+            document.querySelector('header p').textContent = content.subtitle;
+            document.querySelector('main h2').textContent = content.mainHeading;
+            document.querySelector('main p').textContent = content.mainText;
+    
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards[0].querySelector('h3').textContent = content.feature1;
+            featureCards[0].querySelector('p').textContent = content.feature1Text;
+            featureCards[1].querySelector('h3').textContent = content.feature2;
+            featureCards[1].querySelector('p').textContent = content.feature2Text;
+            featureCards[2].querySelector('h3').textContent = content.feature3;
+            featureCards[2].querySelector('p').textContent = content.feature3Text;
+    
+            document.querySelector('#windows-download').textContent = content.downloadWindows;
+            document.querySelector('#mac-download').textContent = content.downloadMac;
+            document.querySelectorAll('.owner-info')[0].textContent = content.ownerInfo;
+            document.querySelectorAll('.owner-info')[1].textContent = content.leeviHakkeri;
+    
+            const footerLinks = document.querySelector('footer');
+            footerLinks.innerHTML = `
+                ${content.footerText} | 
+                <a href="#">${content.privacyPolicy}</a> | 
+                <a href="#">${content.termsOfService}</a>
+            `;
+        }
+    </script>
+                

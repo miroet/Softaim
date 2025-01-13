@@ -155,6 +155,35 @@
             transform: translateY(-3px);
         }
 
+        /* Payment Methods Section */
+        .payment-methods {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .payment-methods h2 {
+            color: #6C63FF;
+            margin-bottom: 20px;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .payment-icons img {
+            width: 70px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: brightness(0.9);
+        }
+
+        .payment-icons img:hover {
+            transform: scale(1.1);
+            filter: brightness(1);
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -212,30 +241,6 @@
                         <li>Box type selection (corner, filled, regular)</li>
                     </ul>
                 </div>
-                <div class="feature-card">
-                    <h3>🛠️ Extra</h3>
-                    <ul>
-                        <li>Tournament mode</li>
-                        <li>Triggerbot with keybind & FOV</li>
-                        <li>Anti-bloom & anti-recoil sliders</li>
-                        <li>Require ADS for enhanced aim</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3>📊 Profile</h3>
-                    <ul>
-                        <li>View key, purchase, and expiry details</li>
-                        <li>Last login & hotkey overview</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3>🔧 Model</h3>
-                    <ul>
-                        <li>Adjust blob size for range</li>
-                        <li>High/low-end PC models</li>
-                        <li>Max detection & FPS sliders</li>
-                    </ul>
-                </div>
             </div>
         </div>
 
@@ -264,15 +269,24 @@
             </div>
         </div>
 
+        <!-- Payment Methods Section -->
+        <div class="payment-methods">
+            <h2>💳 Accepted Payment Methods</h2>
+            <div class="payment-icons">
+                <img src="credit-card-logo.png" alt="Credit Card">
+                <img src="crypto-logo.png" alt="Cryptocurrency">
+                <img src="giftcard-logo.png" alt="Gift Card">
+                <img src="paypal-logo.png" alt="PayPal">
+                <img src="paysafe-logo.png" alt="Paysafe">
+            </div>
+        </div>
+
         <!-- Call-to-Action -->
-        <div class="button-container" style="text-align: center;">
+        <div style="text-align: center;">
             <a href="https://discord.gg/3f2gH7ZtFm" class="button">💸 Get OverAim Now</a>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
-    </footer>
-</body>
-</html>
+        <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm

@@ -6,8 +6,9 @@
     <meta name="description" content="OverAim AI Assistant - Unleash the power of AI-powered precision for the best aiming experience in Fortnite and beyond.">
     <title>OverAim AI Assistant</title>
     <style>
+        /* General Styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1E1E2F;
@@ -37,10 +38,16 @@
 
         .card {
             background-color: #2C2C3E;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 20px;
             margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
         .card h2 {
@@ -56,102 +63,12 @@
             margin: 10px 0;
         }
 
-        .pricing {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .pricing-plan {
-            background-color: #3A3A4E;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            width: 300px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .pricing-plan:hover {
-            transform: scale(1.05);
-        }
-
-        .pricing-plan h3 {
-            color: #6C63FF;
-        }
-
-        .pricing-plan p {
-            font-size: 1.2rem;
-            margin: 10px 0;
-        }
-
-        .pricing-plan .original-price {
-            text-decoration: line-through;
-            color: #A3A3D1;
-            font-size: 0.9rem;
-        }
-
-        .pricing-plan .discounted-price {
-            color: #6CFF6C;
-            font-size: 1.5rem;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 1rem;
-            color: #FFFFFF;
-            background-color: #6C63FF;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #5A54E0;
-        }
-
-        .payment-methods {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .payment-methods img {
-            width: 80px;
-            margin: 10px;
-            filter: brightness(0.9);
-            transition: filter 0.3s;
-        }
-
-        .payment-methods img:hover {
-            filter: brightness(1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #A3A3D1;
-            background-color: #1E1E2F;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #6C63FF;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Tabs */
         .tabs {
             display: flex;
             justify-content: center;
-            background-color: #2C2C3E;
-            border-radius: 10px;
+            background-color: #3A3A4E;
+            border-radius: 15px;
+            overflow: hidden;
             margin: 20px 0;
         }
 
@@ -172,9 +89,10 @@
         .tab-content {
             display: none;
             background-color: #2C2C3E;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 20px;
             margin-top: 20px;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
         .tab-content.active {
@@ -189,6 +107,34 @@
         ul li {
             margin: 10px 0;
         }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #A3A3D1;
+            background-color: #1E1E2F;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #6C63FF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -198,20 +144,6 @@
             <p>Unleash the Power of AI-Powered Precision</p>
         </div>
 
-        <!-- Existing Content -->
-        <div class="card">
-            <h2>📝 INFORMATION</h2>
-            <ul>
-                <li>✅ <strong>Supported Platforms:</strong> Windows 10/11</li>
-                <li>✅ <strong>100% UD:</strong> Undetected on EAC/BE</li>
-                <li>✅ <strong>Always Working:</strong> No interruptions</li>
-                <li>💡 <strong>Superior Aiming:</strong> Smooth pull & precise aiming</li>
-                <li>❌ <strong>No Lock-on Issues:</strong> Targets players only</li>
-                <li>🛡️ <strong>Undetectable Design:</strong> Python 3.10, no file injections</li>
-            </ul>
-        </div>
-
-        <!-- Tabs Section for Features -->
         <div class="card">
             <h2>🎮 FUNCTIONALITY PREVIEW</h2>
             <div class="tabs">
@@ -227,23 +159,78 @@
                 <h3>Aimbot Features</h3>
                 <ul>
                     <li>Enable Aimbot</li>
+                    <li>Controller Support</li>
                     <li>Keybinds</li>
                     <li>FOV Slider</li>
-                    <li>Aim Bone Selection</li>
+                    <li>ADS FOV Slider</li>
+                    <li>AI Confidence Slider</li>
+                    <li>AI Strength Slider</li>
+                    <li>Aimbone Selection</li>
+                    <li>Humanization Selection</li>
                 </ul>
             </div>
+
             <div id="slots" class="tab-content">
                 <h3>Slots</h3>
                 <ul>
-                    <li>Slot 1: Adjustable FOV</li>
+                    <li>Slot 1: Changeable FOV and Aim Enabled</li>
+                    <li>Slot 2: Changeable FOV and Aim Enabled</li>
+                    <li>Slot 3: Changeable FOV and Aim Enabled</li>
+                    <li>Slot 4: Changeable FOV and Aim Enabled</li>
+                    <li>Slot 5: Changeable FOV and Aim Enabled</li>
                 </ul>
             </div>
-            <!-- Other Tabs -->
+
+            <div id="visuals" class="tab-content">
+                <h3>Visuals</h3>
+                <ul>
+                    <li>Rainbow Visuals</li>
+                    <li>FOV</li>
+                    <li>Crosshair</li>
+                    <li>ESP</li>
+                    <li>Aimline</li>
+                    <li>Info Bar</li>
+                    <li>Debug</li>
+                    <li>Box Type Selection (Regular, Corner, Filled)</li>
+                </ul>
+            </div>
+
+            <div id="extra" class="tab-content">
+                <h3>Extra Features</h3>
+                <ul>
+                    <li>Tournament Mode</li>
+                    <li>Triggerbot</li>
+                    <li>Triggerbot Keybind</li>
+                    <li>Triggerbot FOV Size Slider</li>
+                    <li>Triggerbot Confidence Slider</li>
+                    <li>Reduce Bloom</li>
+                    <li>Anti-Recoil (Enable + Slider)</li>
+                    <li>Require ADS</li>
+                </ul>
+            </div>
+
+            <div id="profile" class="tab-content">
+                <h3>Profile</h3>
+                <ul>
+                    <li>User Info (Key, Purchase Date, Expiry Date, Last Login)</li>
+                    <li>Hotkey Settings</li>
+                </ul>
+            </div>
+
+            <div id="model" class="tab-content">
+                <h3>Model Settings</h3>
+                <ul>
+                    <li>Blob Size (Higher = Larger Range)</li>
+                    <li>Model Type (Low-End PCs vs High-End PCs)</li>
+                    <li>Max Detections Slider</li>
+                    <li>Max FPS Slider</li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2025 OverAim AI. All rights reserved.</p>
+        <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
     </footer>
 
     <script>

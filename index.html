@@ -12,11 +12,26 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1E1E2F, #121225);
+            background: #000; /* Fallback color */
             color: #EDEDED;
+            overflow-x: hidden;
         }
 
-        .container {
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        /* Content Wrapper */
+        .content {
+            position: relative;
+            z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
@@ -33,11 +48,13 @@
             color: #6C63FF;
             font-weight: 700;
             margin-bottom: 10px;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
         }
 
         .header p {
             font-size: 1.2rem;
             color: #A3A3D1;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
         }
 
         /* Features Section */
@@ -86,7 +103,7 @@
         }
 
         .pricing-card {
-            background-color: #3A3A4E;
+            background-color: rgba(58, 58, 78, 0.9);
             border-radius: 15px;
             padding: 20px;
             width: 300px;
@@ -163,7 +180,7 @@
             text-align: center;
             padding: 20px;
             color: #A3A3D1;
-            background-color: #121225;
+            background-color: rgba(0, 0, 0, 0.8);
             margin-top: 40px;
         }
 
@@ -174,17 +191,23 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Video Background -->
+    <video class="video-background" autoplay loop muted>
+        <source src="wallpaper.mov" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Main Content -->
+    <div class="content">
         <!-- Header -->
         <div class="header">
             <h1>🚀 OVERAIM AI ASSISTANT</h1>
             <p>Unleash the Power of AI-Powered Precision</p>
         </div>
 
-        <!-- Features Section with Video -->
+        <!-- Features Section -->
         <div class="features-section">
             <div class="features-grid">
-                <!-- Features Text -->
                 <div class="features-content">
                     <h2>🔍 Features Overview</h2>
                     <p>OverAim AI Assistant brings the ultimate precision to your gameplay. Explore customizable aimbots, advanced visuals, and exclusive features to gain a competitive edge.</p>
@@ -196,8 +219,6 @@
                     </ul>
                     <a href="https://discord.gg/3f2gH7ZtFm" class="button">💸 Get OverAim Now</a>
                 </div>
-
-                <!-- Features Video -->
                 <div class="features-video">
                     <video autoplay loop muted>
                         <source src="preview.mp4" type="video/mp4">

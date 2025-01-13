@@ -3,283 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OverAim AI Object Detection Aimbot</title>
+    <meta name="description" content="OverAim AI Assistant - Unleash the power of AI-powered precision for the best aiming experience in Fortnite and beyond.">
+    <title>OverAim AI Assistant</title>
     <style>
-        /* Global Styles */
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background: #0e0e0e;
-            color: #ffffff;
-            text-align: center;
-            overflow-x: hidden;
-        }
-        
-        /* Header Styles */
-        header {
-            background: #181818;
-            padding: 20px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 4rem;
-            font-weight: bold;
-            color: #ff007f;
-            text-shadow: 2px 2px 8px #000000;
-        }
-        header p {
-            margin: 10px 0 0;
-            font-size: 1.4rem;
-            color: #ff80bf;
-        }
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .language-selector select {
-            background: #1f1f1f;
-            color: #ffffff;
-            border: 1px solid #ff007f;
-            border-radius: 5px;
-            padding: 5px 10px;
-            font-size: 1rem;
-            outline: none;
-            cursor: pointer;
+            padding: 0;
+            background-color: #1E1E2F;
+            color: #EDEDED;
         }
 
-        /* Main Section Styles */
-        main {
-            padding: 60px 20px;
-            background: #121212;
-            border-radius: 15px;
-            display: inline-block;
-            margin: 50px auto;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-            max-width: 90%;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        main h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: #ff007f;
-            text-shadow: 2px 2px 8px #000000;
-        }
-        main p {
-            font-size: 1.4rem;
-            line-height: 2;
-            max-width: 800px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            color: #cccccc;
-        }
-
-        /* Features Section */
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .feature-card {
-            background: #1f1f1f;
-            border-radius: 15px;
             padding: 20px;
-            width: 280px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            color: #ffffff;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-        }
-        .feature-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        .feature-card p {
-            font-size: 1.2rem;
         }
 
-        /* Download Buttons */
-        .download-buttons {
-            margin-top: 40px;
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #6C63FF;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #A3A3D1;
+        }
+
+        .card {
+            background-color: #2C2C3E;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: #6C63FF;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            margin: 10px 0;
+        }
+
+        .pricing {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             flex-wrap: wrap;
             gap: 20px;
         }
-        .download-buttons a {
-            display: inline-block;
-            margin: 15px;
-            padding: 15px 40px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            background: linear-gradient(45deg, #ff007f, #bf00ff);
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-            transition: background 0.3s, transform 0.2s;
-        }
-        .download-buttons a:hover {
-            background: linear-gradient(45deg, #bf00ff, #ff007f);
-            transform: scale(1.1);
+
+        .pricing-plan {
+            background-color: #3A3A4E;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Footer Styles */
-        footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background: #181818;
+        .pricing-plan h3 {
+            color: #6C63FF;
+        }
+
+        .pricing-plan p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
             font-size: 1rem;
-            color: #ff80bf;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6);
-        }
-        footer a {
-            color: #ff80bf;
+            color: #FFFFFF;
+            background-color: #6C63FF;
             text-decoration: none;
-            font-weight: 500;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
+
+        .button:hover {
+            background-color: #5A54E0;
+        }
+
+        .payment-methods {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .payment-methods img {
+            width: 80px;
+            margin: 10px;
+            filter: brightness(0.9);
+            transition: filter 0.3s;
+        }
+
+        .payment-methods img:hover {
+            filter: brightness(1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #A3A3D1;
+            background-color: #1E1E2F;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #6C63FF;
+            text-decoration: none;
+        }
+
         footer a:hover {
             text-decoration: underline;
-        }
-        .owner-info {
-            margin-top: 30px;
-            font-size: 1.4rem;
-            color: #ff80bf;
-            text-shadow: 1px 1px 5px #000000;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>OverAim AI Object Detection Aimbot</h1>
-        <p>Precision Meets Advanced AI Technology</p>
-        <div class="language-selector">
-            <label for="language">Language: </label>
-            <select id="language" onchange="changeLanguage(this.value)">
-                <option value="en">English</option>
-                <option value="fi">Finnish</option>
-            </select>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 OVERAIM AI ASSISTANT</h1>
+            <p>Unleash the Power of AI-Powered Precision</p>
         </div>
-    </header>
-    <main>
-        <h2>The Future of Competitive Gaming</h2>
-        <p>OverAim AI Object Detection Aimbot utilizes cutting-edge artificial intelligence to revolutionize your aiming capabilities. Enhance your gameplay with unparalleled accuracy and responsiveness.</p>
-        <div class="features">
-            <div class="feature-card">
-                <h3>AI Precision</h3>
-                <p>Leveraging AI for real-time object detection and precision targeting.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Seamless Integration</h3>
-                <p>Effortlessly compatible with popular gaming platforms.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Full Customization</h3>
-                <p>Adjust settings to perfectly match your gaming preferences.</p>
-            </div>
-        </div>
-        <div class="download-buttons">
-            <a href="#" id="windows-download">Download for Windows</a>
-            <a href="#" id="mac-download">Download for macOS</a>
-        </div>
-        <p class="owner-info">Owner Discord: Miro0x</p>
-        <p class="owner-info">Leevi on hakkeri</p>
-    </main>
-    <footer>
-        &copy; 2025 OverAim. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-    </footer>
-    <script>
-        function changeLanguage(language) {
-            if (language === 'fi') {
-                document.querySelector('h1').textContent = 'OverAim AI Kohteen Tunnistus Tähtäysavustin';
-                document.querySelector('p').textContent = 'Tarkkuus Kohtaa Edistyneen Teknologian';
-                document.querySelector('main h2').textContent = 'Kilpapelaamisen Tulevaisuus';
-                document.querySelector('main p').textContent = 'OverAim AI Kohteen Tunnistus Tähtäysavustin hyödyntää huipputeknologiaa, joka mullistaa tähtäyskykysi. Paranna pelikokemustasi vertaansa vailla olevalla tarkkuud
 
-    <script>
-        const translations = {
-            en: {
-                title: "OverAim AI Object Detection Aimbot",
-                subtitle: "Precision Meets Advanced AI Technology",
-                mainHeading: "The Future of Competitive Gaming",
-                mainText: "OverAim AI Object Detection Aimbot utilizes cutting-edge artificial intelligence to revolutionize your aiming capabilities. Enhance your gameplay with unparalleled accuracy and responsiveness.",
-                feature1: "AI Precision",
-                feature1Text: "Leveraging AI for real-time object detection and precision targeting.",
-                feature2: "Seamless Integration",
-                feature2Text: "Effortlessly compatible with popular gaming platforms.",
-                feature3: "Full Customization",
-                feature3Text: "Adjust settings to perfectly match your gaming preferences.",
-                downloadWindows: "Download for Windows",
-                downloadMac: "Download for macOS",
-                ownerInfo: "Owner Discord: Miro0x",
-                leeviHakkeri: "Leevi on hakkeri",
-                footerText: "&copy; 2025 OverAim. All Rights Reserved.",
-                privacyPolicy: "Privacy Policy",
-                termsOfService: "Terms of Service"
-            },
-            fi: {
-                title: "OverAim AI Kohteen Tunnistus Tähtäysavustin",
-                subtitle: "Tarkkuus Kohtaa Edistyneen Teknologian",
-                mainHeading: "Kilpapelaamisen Tulevaisuus",
-                mainText: "OverAim AI Kohteen Tunnistus Tähtäysavustin hyödyntää huipputeknologiaa, joka mullistaa tähtäyskykysi. Paranna pelikokemustasi vertaansa vailla olevalla tarkkuudella ja reaktiivisuudella.",
-                feature1: "AI Tarkkuus",
-                feature1Text: "Hyödyntää tekoälyä reaaliaikaiseen kohteiden tunnistukseen ja tarkkuuteen.",
-                feature2: "Saumaton Integraatio",
-                feature2Text: "Helposti yhteensopiva suosittujen pelialustojen kanssa.",
-                feature3: "Täysi Mukautettavuus",
-                feature3Text: "Säädä asetuksia vastaamaan täydellisesti pelimieltymyksiäsi.",
-                downloadWindows: "Lataa Windowsille",
-                downloadMac: "Lataa macOS:lle",
-                ownerInfo: "Omistajan Discord: Miro0x",
-                leeviHakkeri: "Leevi on hakkeri",
-                footerText: "&copy; 2025 OverAim. Kaikki oikeudet pidätetään.",
-                privacyPolicy: "Tietosuojakäytäntö",
-                termsOfService: "Käyttöehdot"
-            }
-        };
-    
-        function changeLanguage(language) {
-            const content = translations[language];
-    
-            document.querySelector('header h1').textContent = content.title;
-            document.querySelector('header p').textContent = content.subtitle;
-            document.querySelector('main h2').textContent = content.mainHeading;
-            document.querySelector('main p').textContent = content.mainText;
-    
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards[0].querySelector('h3').textContent = content.feature1;
-            featureCards[0].querySelector('p').textContent = content.feature1Text;
-            featureCards[1].querySelector('h3').textContent = content.feature2;
-            featureCards[1].querySelector('p').textContent = content.feature2Text;
-            featureCards[2].querySelector('h3').textContent = content.feature3;
-            featureCards[2].querySelector('p').textContent = content.feature3Text;
-    
-            document.querySelector('#windows-download').textContent = content.downloadWindows;
-            document.querySelector('#mac-download').textContent = content.downloadMac;
-            document.querySelectorAll('.owner-info')[0].textContent = content.ownerInfo;
-            document.querySelectorAll('.owner-info')[1].textContent = content.leeviHakkeri;
-    
-            const footerLinks = document.querySelector('footer');
-            footerLinks.innerHTML = `
-                ${content.footerText} | 
-                <a href="#">${content.privacyPolicy}</a> | 
-                <a href="#">${content.termsOfService}</a>
-            `;
-        }
-    </script>
-                
+        <div class="card">
+            <h2>📝 INFORMATION</h2>
+            <ul>
+                <li>✅ <strong>Supported Platforms:</strong> Windows 10/11</li>
+                <li>✅ <strong>100% UD:</strong> Undetected on EAC/BE</li>
+                <li>✅ <strong>Always Working:</strong> No interruptions</li>
+                <li>💡 <strong>Superior Aiming:</strong> Smooth pull & precise aiming</li>
+                <li>❌ <strong>No Lock-on Issues:</strong> Targets players only</li>
+                <li>🛡️ <strong>Undetectable Design:</strong> Python 3.10, no file injections</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🎮 SUPPORTED GAMES</h2>
+            <p>Primarily optimized for <strong>Fortnite</strong>, ensuring peak performance and precision. Also compatible with other games depending on anti-cheat systems.</p>
+        </div>
+
+        <div class="card">
+            <h2>💰 PRICING PLANS</h2>
+            <div class="pricing">
+                <div class="pricing-plan">
+                    <h3>1 Week</h3>
+                    <p><strong>$10</strong></p>
+                    <p>Perfect for a quick boost and improved gameplay.</p>
+                </div>
+                <div class="pricing-plan">
+                    <h3>1 Month</h3>
+                    <p><strong>$20</strong></p>
+                    <p>Unlock a full month of superior aim and smooth control.</p>
+                </div>
+                <div class="pricing-plan">
+                    <h3>Lifetime</h3>
+                    <p><strong>$40</strong></p>
+                    <p>Pay once, get lifetime access to OverAim's unmatched performance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>✨ FEATURES AT A GLANCE</h2>
+            <ul>
+                <li>✅ 100% UD on EAC/BE</li>
+                <li>🎯 Superior Pull & Smoothing</li>
+                <li>🚫 No Lock-on to Non-Targets</li>
+                <li>🖥️ Works with Any Resolution</li>
+                <li>🔧 Powered by Python 3.10</li>
+                <li>🎮 Optimized for Fortnite</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🚀 WHY CHOOSE OVERAIM?</h2>
+            <p>Reliable performance, AI-driven precision, and seamless setup for immediate results. Get OverAim today and dominate the battlefield with effortless precision.</p>
+            <a href="https://discord.gg/3f2gH7ZtFm" class="button">Join Now</a>
+        </div>
+
+        <div class="payment-methods">
+            <h2>Supported Payment Methods</h2>
+            <img src="paypal-logo.png" alt="PayPal">
+            <img src="credit-card-logo.png" alt="Credit Card">
+            <img src="paysafe-logo.png" alt="Paysafe">
+            <img src="giftcard-logo.png" alt="Gift Cards">
+            <img src="crypto-logo.png" alt="Cryptocurrency">
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
+    </footer>
+</body>
+</html>

@@ -43,49 +43,28 @@
         /* Features Section */
         .features-section {
             margin: 40px 0;
-            text-align: center;
-        }
-
-        .features-section h2 {
-            color: #6C63FF;
-            margin-bottom: 20px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-top: 20px;
+            align-items: center;
         }
 
-        .feature-card {
-            background-color: #2C2C3E;
+        .features-content {
+            max-width: 500px;
+        }
+
+        .features-video {
+            text-align: center;
+        }
+
+        .features-video video {
+            width: 100%;
+            max-width: 500px;
             border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card h3 {
-            color: #FFFFFF;
-            margin-bottom: 15px;
-        }
-
-        .feature-card ul {
-            list-style: none;
-            padding: 0;
-            color: #B0B0DA;
-            font-size: 0.95rem;
-        }
-
-        .feature-card ul li::before {
-            content: "✔️";
-            margin-right: 10px;
-            color: #6CFF6C;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
         /* Pricing Section */
@@ -161,11 +140,6 @@
             margin: 40px 0;
         }
 
-        .payment-methods h2 {
-            color: #6C63FF;
-            margin-bottom: 20px;
-        }
-
         .payment-icons {
             display: flex;
             justify-content: center;
@@ -207,39 +181,28 @@
             <p>Unleash the Power of AI-Powered Precision</p>
         </div>
 
-        <!-- Features Section -->
+        <!-- Features Section with Video -->
         <div class="features-section">
-            <h2>🔍 Features Overview</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🎯 Aimbot</h3>
+                <!-- Features Text -->
+                <div class="features-content">
+                    <h2>🔍 Features Overview</h2>
+                    <p>OverAim AI Assistant brings the ultimate precision to your gameplay. Explore customizable aimbots, advanced visuals, and exclusive features to gain a competitive edge.</p>
                     <ul>
-                        <li>Enable aimbot</li>
-                        <li>Controller support</li>
-                        <li>Keybinds</li>
-                        <li>FOV slider</li>
-                        <li>ADS FOV slider</li>
-                        <li>AI confidence & strength sliders</li>
-                        <li>Aimbone selection</li>
-                        <li>Humanization options</li>
+                        <li>Customizable FOV & Slots</li>
+                        <li>Humanization Options</li>
+                        <li>ESP & Aimlines</li>
+                        <li>Triggerbot with Confidence Slider</li>
                     </ul>
+                    <a href="https://discord.gg/3f2gH7ZtFm" class="button">💸 Get OverAim Now</a>
                 </div>
-                <div class="feature-card">
-                    <h3>💾 Slots</h3>
-                    <ul>
-                        <li>Slot 1-5: Customizable FOV and settings</li>
-                        <li>Enable or disable aim per slot</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3>👀 Visuals</h3>
-                    <ul>
-                        <li>Rainbow visuals</li>
-                        <li>Custom crosshair</li>
-                        <li>ESP & aimlines</li>
-                        <li>Info bar & debug mode</li>
-                        <li>Box type selection (corner, filled, regular)</li>
-                    </ul>
+
+                <!-- Features Video -->
+                <div class="features-video">
+                    <video autoplay loop muted>
+                        <source src="preview.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
@@ -281,12 +244,10 @@
             </div>
         </div>
 
-        <!-- Call-to-Action -->
-        <div style="text-align: center;">
-            <a href="https://discord.gg/3f2gH7ZtFm" class="button">💸 Get OverAim Now</a>
-        </div>
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
+        </footer>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm
+</body>
+</html>

@@ -145,6 +145,50 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #2C2C3E;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px 20px;
+            cursor: pointer;
+            color: #A3A3D1;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .tab:hover, .tab.active {
+            background-color: #6C63FF;
+            color: #FFFFFF;
+        }
+
+        .tab-content {
+            display: none;
+            background-color: #2C2C3E;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -154,6 +198,7 @@
             <p>Unleash the Power of AI-Powered Precision</p>
         </div>
 
+        <!-- Existing Content -->
         <div class="card">
             <h2>📝 INFORMATION</h2>
             <ul>
@@ -166,65 +211,49 @@
             </ul>
         </div>
 
+        <!-- Tabs Section for Features -->
         <div class="card">
-            <h2>🎮 SUPPORTED GAMES</h2>
-            <p>Primarily optimized for <strong>Fortnite</strong>, ensuring peak performance and precision. Also compatible with other games depending on anti-cheat systems.</p>
-        </div>
-
-        <div class="card">
-            <h2>💰 PRICING PLANS</h2>
-            <div class="pricing">
-                <div class="pricing-plan">
-                    <h3>1 Week</h3>
-                    <p class="original-price">$10</p>
-                    <p class="discounted-price">$7</p>
-                    <p>Perfect for a quick boost and improved gameplay.</p>
-                </div>
-                <div class="pricing-plan">
-                    <h3>1 Month</h3>
-                    <p class="original-price">$20</p>
-                    <p class="discounted-price">$14</p>
-                    <p>Unlock a full month of superior aim and smooth control.</p>
-                </div>
-                <div class="pricing-plan">
-                    <h3>Lifetime</h3>
-                    <p class="original-price">$40</p>
-                    <p class="discounted-price">$28</p>
-                    <p>Pay once, get lifetime access to OverAim's unmatched performance.</p>
-                </div>
+            <h2>🎮 FUNCTIONALITY PREVIEW</h2>
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('aimbot')">Aimbot</div>
+                <div class="tab" onclick="showTab('slots')">Slots</div>
+                <div class="tab" onclick="showTab('visuals')">Visuals</div>
+                <div class="tab" onclick="showTab('extra')">Extra</div>
+                <div class="tab" onclick="showTab('profile')">Profile</div>
+                <div class="tab" onclick="showTab('model')">Model</div>
             </div>
-        </div>
 
-        <div class="card">
-            <h2>✨ FEATURES AT A GLANCE</h2>
-            <ul>
-                <li>✅ 100% UD on EAC/BE</li>
-                <li>🎯 Superior Pull & Smoothing</li>
-                <li>🚫 No Lock-on to Non-Targets</li>
-                <li>🖥️ Works with Any Resolution</li>
-                <li>🔧 Powered by Python 3.10</li>
-                <li>🎮 Optimized for Fortnite</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>🚀 WHY CHOOSE OVERAIM?</h2>
-            <p>Reliable performance, AI-driven precision, and seamless setup for immediate results. Get OverAim today and dominate the battlefield with effortless precision.</p>
-            <a href="https://discord.gg/3f2gH7ZtFm" class="button">Join Now</a>
-        </div>
-
-        <div class="payment-methods">
-            <h2>Supported Payment Methods</h2>
-            <img src="paypal-logo.png" alt="PayPal">
-            <img src="credit-card-logo.png" alt="Credit Card">
-            <img src="paysafe-logo.png" alt="Paysafe">
-            <img src="giftcard-logo.png" alt="Gift Cards">
-            <img src="crypto-logo.png" alt="Cryptocurrency">
+            <div id="aimbot" class="tab-content active">
+                <h3>Aimbot Features</h3>
+                <ul>
+                    <li>Enable Aimbot</li>
+                    <li>Keybinds</li>
+                    <li>FOV Slider</li>
+                    <li>Aim Bone Selection</li>
+                </ul>
+            </div>
+            <div id="slots" class="tab-content">
+                <h3>Slots</h3>
+                <ul>
+                    <li>Slot 1: Adjustable FOV</li>
+                </ul>
+            </div>
+            <!-- Other Tabs -->
         </div>
     </div>
 
     <footer>
-        <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
+        <p>© 2025 OverAim AI. All rights reserved.</p>
     </footer>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
 </body>
 </html>

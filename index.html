@@ -70,6 +70,11 @@
             text-align: center;
             width: 300px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .pricing-plan:hover {
+            transform: scale(1.05);
         }
 
         .pricing-plan h3 {
@@ -79,6 +84,17 @@
         .pricing-plan p {
             font-size: 1.2rem;
             margin: 10px 0;
+        }
+
+        .pricing-plan .original-price {
+            text-decoration: line-through;
+            color: #A3A3D1;
+            font-size: 0.9rem;
+        }
+
+        .pricing-plan .discounted-price {
+            color: #6CFF6C;
+            font-size: 1.5rem;
         }
 
         .button {
@@ -160,17 +176,20 @@
             <div class="pricing">
                 <div class="pricing-plan">
                     <h3>1 Week</h3>
-                    <p><strong>$10</strong></p>
+                    <p class="original-price">$10</p>
+                    <p class="discounted-price">$7</p>
                     <p>Perfect for a quick boost and improved gameplay.</p>
                 </div>
                 <div class="pricing-plan">
                     <h3>1 Month</h3>
-                    <p><strong>$20</strong></p>
+                    <p class="original-price">$20</p>
+                    <p class="discounted-price">$14</p>
                     <p>Unlock a full month of superior aim and smooth control.</p>
                 </div>
                 <div class="pricing-plan">
                     <h3>Lifetime</h3>
-                    <p><strong>$40</strong></p>
+                    <p class="original-price">$40</p>
+                    <p class="discounted-price">$28</p>
                     <p>Pay once, get lifetime access to OverAim's unmatched performance.</p>
                 </div>
             </div>

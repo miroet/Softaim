@@ -456,8 +456,8 @@
         </footer>
     </div>
 
+    <!-- Scroll-to-Top Button Functionality -->
     <script>
-        // Scroll-to-Top Button Functionality
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 200) {
@@ -469,9 +469,10 @@
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    </script>
     
+    <!-- Enemy Visuals Carousel Functionality -->
     <script>
-        // Enemy Visuals Carousel Functionality
         const enemyCarousel = document.getElementById('enemyVisualsCarousel');
         const enemyImages = enemyCarousel.querySelectorAll('img');
         let enemyIndex = 0;
@@ -487,11 +488,10 @@
         
         // Change every 2 seconds
         setInterval(changeEnemyVisuals, 2000);
-
     </script>
     
+    <!-- Aim Preview Carousel Functionality -->
     <script>
-        // Aim Preview Carousel Functionality
         const aimCarousel = document.getElementById('aimPreviewCarousel');
         const aimVideos = aimCarousel.querySelectorAll('video');
         let aimIndex = 0;
@@ -513,4 +513,3 @@
         // Rotate every 5 seconds
         setInterval(changeAimPreview, 5000);
     </script>
-

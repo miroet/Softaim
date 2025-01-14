@@ -264,6 +264,20 @@
             transition: transform 0.3s;
         }
 
+        .carousel-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        
+        .carousel-container {
+            flex: 1;
+            max-width: 500px;
+            text-align: center;
+        }
+
+
         .scroll-top:hover {
             transform: scale(1.1);
         }
@@ -363,37 +377,40 @@
                 </div>
             </div>
 
-            <!-- Enemy Visuals Carousel -->
-            <div class="carousel-container">
-                <h2>🎯 Enemy Visuals Preview</h2>
-                <p>Experience unparalleled clarity with advanced enemy visuals.</p>
-                <div class="carousel" id="enemyVisualsCarousel">
-                    <img src="filled.png" alt="Filled Enemy Visual" class="active">
-                    <img src="regular.png" alt="Regular Enemy Visual">
-                    <img src="corner.png" alt="Corner Enemy Visual">
-                </div>
-            </div>
-
-            <!-- Aim Preview Carousel -->
-            <div class="carousel-container">
-                <h2>🎯 Aim Preview</h2>
-                <p>See OverAim in action with smooth aiming capabilities.</p>
-                <div class="carousel" id="aimPreviewCarousel">
-                    <video autoplay loop muted class="active">
-                        <source src="aim1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <video muted>
-                        <source src="aim2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <video muted>
-                        <source src="aim3.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                <!-- Enemy Visuals Carousel -->
+    <div class="carousel-wrapper">
+        <!-- Enemy Visuals Carousel -->
+        <div class="carousel-container">
+            <h2>🎯 Enemy Visuals Preview</h2>
+            <p>Experience unparalleled clarity with advanced enemy visuals.</p>
+            <div class="carousel" id="enemyVisualsCarousel">
+                <img src="assets/filled.png" alt="Filled Enemy Visual" class="active">
+                <img src="assets/regular.png" alt="Regular Enemy Visual">
+                <img src="assets/corner.png" alt="Corner Enemy Visual">
             </div>
         </div>
+    
+        <!-- Aim Preview Carousel -->
+        <div class="carousel-container">
+            <h2>🎯 Aim Preview</h2>
+            <p>See OverAim in action with smooth aiming capabilities.</p>
+            <div class="carousel" id="aimPreviewCarousel">
+                <video autoplay loop muted class="active">
+                    <source src="assets/aim1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <video muted>
+                    <source src="assets/aim2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <video muted>
+                    <source src="assets/aim3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
 
 
         <!-- Pricing Section -->
@@ -467,18 +484,27 @@
         setInterval(changeEnemyVisuals, 2000);
     
         // Aim Preview Carousel Functionality
+        // Aim Preview Carousel Functionality
         const aimCarousel = document.getElementById('aimPreviewCarousel');
         const aimVideos = aimCarousel.querySelectorAll('video');
         let aimIndex = 0;
-    
+        
         function changeAimPreview() {
+            // Deactivate current video
             aimVideos[aimIndex].classList.remove('active');
             aimVideos[aimIndex].pause();
             aimVideos[aimIndex].currentTime = 0;
+        
+            // Move to the next video
             aimIndex = (aimIndex + 1) % aimVideos.length;
+        
+            // Activate the next video
             aimVideos[aimIndex].classList.add('active');
             aimVideos[aimIndex].play();
         }
+        
+        // Rotate every 5 seconds
         setInterval(changeAimPreview, 5000);
+
     </script>
 

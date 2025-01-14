@@ -100,24 +100,18 @@
             transform: scale(1.05);
         }
 
-        .features-images {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        .features-images img {
-            width: 150px;
+        .carousel img {
+            width: 100%;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .features-images img:hover {
-            transform: scale(1.1);
         }
 
         /* Pricing Section */
@@ -330,16 +324,14 @@
             <div class="features-grid">
                 <div class="features-content">
                     <h2>🎯 Enemy Visuals Preview</h2>
-                    <p>Experience unparalleled clarity with advanced enemy visuals. Stay one step ahead with enemy highlights</p>
+                    <p>Experience unparalleled clarity with advanced enemy visuals. </p>
                     <ul>
                         <li>Enhanced Enemy Highlighting</li>
                         <li>Customizable Color Palettes</li>
                     </ul>
                 </div>
-                <div class="features-images">
+                <div class="carousel" id="enemyVisualsCarousel">
                     <img src="filled.png" alt="Filled Enemy Visual">
-                    <img src="regular.png" alt="Regular Enemy Visual">
-                    <img src="corner.png" alt="Corner Enemy Visual">
                 </div>
             </div>
         </div>
@@ -401,6 +393,16 @@
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Enemy Visuals Carousel Functionality
+        const carousel = document.getElementById('enemyVisualsCarousel');
+        const images = ["filled.png", "regular.png", "corner.png"];
+        let currentIndex = 0;
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            carousel.innerHTML = `<img src="${images[currentIndex]}" alt="Enemy Visual">`;
+        }, 1000);
     </script>
 </body>
 </html>

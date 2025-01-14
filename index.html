@@ -12,9 +12,10 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: #000; /* Fallback color */
+            background: #000;
             color: #EDEDED;
             overflow-x: hidden;
+            scroll-behavior: smooth; /* Smooth scrolling */
         }
 
         /* Video Background */
@@ -26,6 +27,7 @@
             height: 100%;
             z-index: -1;
             object-fit: cover;
+            filter: brightness(0.5); /* Darken background for better contrast */
         }
 
         /* Content Wrapper */
@@ -41,6 +43,7 @@
         .header {
             text-align: center;
             padding: 60px 0;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .header h1 {
@@ -49,6 +52,11 @@
             font-weight: 700;
             margin-bottom: 10px;
             text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .header h1:hover {
+            transform: scale(1.05);
         }
 
         .header p {
@@ -67,14 +75,11 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             align-items: center;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .features-content {
             max-width: 500px;
-        }
-
-        .features-video {
-            text-align: center;
         }
 
         .features-video video {
@@ -82,6 +87,11 @@
             max-width: 500px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .features-video video:hover {
+            transform: scale(1.05);
         }
 
         /* Pricing Section */
@@ -100,6 +110,7 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .pricing-card {
@@ -108,11 +119,12 @@
             padding: 20px;
             width: 300px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .pricing-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
         }
 
         .pricing-card h3 {
@@ -144,11 +156,12 @@
             border-radius: 30px;
             font-weight: 600;
             text-decoration: none;
-            transition: transform 0.3s;
+            transition: transform 0.3s, background 0.3s ease;
         }
 
         .button:hover {
             transform: translateY(-3px);
+            background: linear-gradient(135deg, #5A54E0, #6C63FF);
         }
 
         /* Payment Methods Section */
@@ -187,6 +200,18 @@
         footer a {
             color: #6C63FF;
             font-weight: 600;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>

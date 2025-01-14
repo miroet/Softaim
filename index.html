@@ -20,7 +20,7 @@
 
         /* Custom Cursor */
         body {
-            cursor: url('https://example.com/cursor.png'), auto; /* Replace with your cursor image */
+            cursor: url('https://example.com/cursor.png'), auto;
         }
 
         /* Video Background with Parallax */
@@ -98,6 +98,26 @@
 
         .features-video video:hover {
             transform: scale(1.05);
+        }
+
+        .features-images {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .features-images img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .features-images img:hover {
+            transform: scale(1.1);
         }
 
         /* Pricing Section */
@@ -237,7 +257,7 @@
         }
 
         .payment-methods img {
-            max-width: 100px; /* Ensure all images are the same size */
+            max-width: 100px;
             height: auto;
             transition: transform 0.3s ease;
         }
@@ -305,6 +325,21 @@
                         <source src="preview.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                </div>
+            </div>
+            <div class="features-grid">
+                <div class="features-content">
+                    <h2>🎯 Enemy Visuals Preview</h2>
+                    <p>Experience unparalleled clarity with advanced enemy visuals. Stay one step ahead with enemy highlights</p>
+                    <ul>
+                        <li>Enhanced Enemy Highlighting</li>
+                        <li>Customizable Color Palettes</li>
+                    </ul>
+                </div>
+                <div class="features-images">
+                    <img src="filled.png" alt="Filled Enemy Visual">
+                    <img src="regular.png" alt="Regular Enemy Visual">
+                    <img src="corner.png" alt="Corner Enemy Visual">
                 </div>
             </div>
         </div>

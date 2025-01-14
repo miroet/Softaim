@@ -103,15 +103,26 @@
         .carousel {
             position: relative;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .carousel img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .carousel img.active {
+            opacity: 1;
+            position: static;
         }
 
         /* Pricing Section */
@@ -331,7 +342,9 @@
                     </ul>
                 </div>
                 <div class="carousel" id="enemyVisualsCarousel">
-                    <img src="filled.png" alt="Filled Enemy Visual">
+                    <img src="filled.png" alt="Filled Enemy Visual" class="active">
+                    <img src="regular.png" alt="Regular Enemy Visual">
+                    <img src="corner.png" alt="Corner Enemy Visual">
                 </div>
             </div>
         </div>
@@ -386,23 +399,4 @@
             if (window.scrollY > 200) {
                 scrollTopBtn.style.display = 'block';
             } else {
-                scrollTopBtn.style.display = 'none';
-            }
-        });
-
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Enemy Visuals Carousel Functionality
-        const carousel = document.getElementById('enemyVisualsCarousel');
-        const images = ["filled.png", "regular.png", "corner.png"];
-        let currentIndex = 0;
-
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            carousel.innerHTML = `<img src="${images[currentIndex]}" alt="Enemy Visual">`;
-        }, 1000);
-    </script>
-</body>
-</html>
+                scrollTopBtn.style.display = '

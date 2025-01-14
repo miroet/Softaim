@@ -15,10 +15,15 @@
             background: #000;
             color: #EDEDED;
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Smooth scrolling */
+            scroll-behavior: smooth;
         }
 
-        /* Video Background */
+        /* Custom Cursor */
+        body {
+            cursor: url('https://example.com/cursor.png'), auto; /* Replace with your cursor image */
+        }
+
+        /* Video Background with Parallax */
         .video-background {
             position: fixed;
             top: 0;
@@ -27,7 +32,8 @@
             height: 100%;
             z-index: -1;
             object-fit: cover;
-            filter: brightness(0.5); /* Darken background for better contrast */
+            filter: brightness(0.5);
+            will-change: transform;
         }
 
         /* Content Wrapper */
@@ -164,28 +170,47 @@
             background: linear-gradient(135deg, #5A54E0, #6C63FF);
         }
 
-        /* Payment Methods Section */
-        .payment-methods {
-            text-align: center;
-            margin: 40px 0;
+        /* Sticky Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            z-index: 100;
+            transition: background-color 0.3s;
         }
 
-        .payment-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        nav a {
+            color: #EDEDED;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
         }
 
-        .payment-icons img {
-            width: 70px;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            filter: brightness(0.9);
+        nav a:hover {
+            color: #6C63FF;
         }
 
-        .payment-icons img:hover {
+        /* Scroll-to-Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #6C63FF;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .scroll-top:hover {
             transform: scale(1.1);
-            filter: brightness(1);
         }
 
         /* Footer */
@@ -216,11 +241,23 @@
     </style>
 </head>
 <body>
-    <!-- Video Background -->
+    <!-- Sticky Navigation -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#payment">Payment</a>
+        <a href="#footer">Contact</a>
+    </nav>
+
+    <!-- Video Background with Parallax Effect -->
     <video class="video-background" autoplay loop muted>
         <source src="wallpaper.mov" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <!-- Scroll-to-Top Button -->
+    <div class="scroll-top" id="scrollTopBtn">↑</div>
 
     <!-- Main Content -->
     <div class="content">
@@ -231,7 +268,7 @@
         </div>
 
         <!-- Features Section -->
-        <div class="features-section">
+        <div class="features-section" id="features">
             <div class="features-grid">
                 <div class="features-content">
                     <h2>🔍 Features Overview</h2>
@@ -254,7 +291,7 @@
         </div>
 
         <!-- Pricing Section -->
-        <div class="pricing-section">
+        <div class="pricing-section" id="pricing">
             <h2>💰 Pricing</h2>
             <div class="pricing-plans">
                 <div class="pricing-card">
@@ -279,7 +316,7 @@
         </div>
 
         <!-- Payment Methods Section -->
-        <div class="payment-methods">
+        <div class="payment-methods" id="payment">
             <h2>💳 Accepted Payment Methods</h2>
             <div class="payment-icons">
                 <img src="credit-card-logo.png" alt="Credit Card">
@@ -291,9 +328,25 @@
         </div>
 
         <!-- Footer -->
-        <footer>
+        <footer id="footer">
             <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
         </footer>
     </div>
+
+    <script>
+        // Scroll-to-Top Button Functionality
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                scrollTopBtn.style.display = 'block';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>

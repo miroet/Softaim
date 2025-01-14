@@ -475,13 +475,19 @@
         const enemyCarousel = document.getElementById('enemyVisualsCarousel');
         const enemyImages = enemyCarousel.querySelectorAll('img');
         let enemyIndex = 0;
-    
+        
         function changeEnemyVisuals() {
+            // Remove active class from the current image
             enemyImages[enemyIndex].classList.remove('active');
+            // Move to the next image
             enemyIndex = (enemyIndex + 1) % enemyImages.length;
+            // Add active class to the next image
             enemyImages[enemyIndex].classList.add('active');
         }
+        
+        // Change every 2 seconds
         setInterval(changeEnemyVisuals, 2000);
+
     </script>
     
     <script>

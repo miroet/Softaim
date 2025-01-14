@@ -406,4 +406,21 @@
         });
 
         // Enemy Visuals Carousel Functionality
-        const carousel
+        const carousel = document.getElementById('enemyVisualsCarousel');
+        const images = carousel.querySelectorAll('img');
+        let currentIndex = 0;
+        
+        // Function to change the active image
+        function changeImage() {
+            // Remove 'active' class from the current image
+            images[currentIndex].classList.remove('active');
+            
+            // Increment the index and loop back to the start if necessary
+            currentIndex = (currentIndex + 1) % images.length;
+            
+            // Add 'active' class to the new image
+            images[currentIndex].classList.add('active');
+        }
+        
+        // Set an interval to automatically change the image every 3 seconds
+        setInterval(changeImage, 3000);

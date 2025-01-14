@@ -227,6 +227,25 @@
             font-weight: 600;
         }
 
+        /* Payment Method Images Styling */
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .payment-methods img {
+            max-width: 100px; /* Ensure all images are the same size */
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-methods img:hover {
+            transform: scale(1.1);
+        }
+
         /* Keyframe Animations */
         @keyframes fadeIn {
             0% {

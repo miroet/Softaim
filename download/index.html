@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Overaim Download Page">
-    <meta name="description" content="Download the Overaim file here.">
-    <meta name="keywords" content="Overaim, download, file">
-    <title>Overaim Download</title>
+    <meta name="title" content="OverAim Download Page">
+    <meta name="description" content="Download the OverAim AI.v2 file here.">
+    <meta name="keywords" content="OverAim, download, file, OverAim AI">
+    <title>OverAim AI.v2 Download</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="shortcut icon" href="/favicon.png">
 
@@ -21,60 +21,67 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: radial-gradient(circle at top, #1c1c1c, #111111);
+            background: radial-gradient(circle at top, #1e1e2f, #111112);
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            position: relative;
             overflow: hidden;
         }
 
-        /* Floating Particles Background */
+        /* Animated Background */
         body::before {
             content: '';
             position: absolute;
+            top: -50%;
+            left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0, 123, 255, 0.5) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.3), transparent 70%);
+            animation: moveParticles 12s infinite linear;
             filter: blur(100px);
-            animation: moveParticles 10s infinite;
-            z-index: -2;
+            z-index: -1;
         }
 
         @keyframes moveParticles {
-            0% {
+            0%, 100% {
                 transform: translate(0, 0);
             }
-
             50% {
-                transform: translate(-10px, -20px);
-            }
-
-            100% {
-                transform: translate(0, 0);
+                transform: translate(-10px, -10px);
             }
         }
 
         .container {
-            max-width: 500px;
+            max-width: 550px;
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px 30px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1.5s ease-in-out;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 1.2s ease-out;
         }
 
         .title {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: bold;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #00d4ff, #007bff);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #00d4ff, #007bff, #00d4ff);
+            background-size: 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0%;
+            }
+            100% {
+                background-position: 200%;
+            }
         }
 
         .description {
@@ -87,18 +94,23 @@
             display: inline-block;
             font-size: 20px;
             font-weight: bold;
-            text-transform: uppercase;
             padding: 15px 50px;
             background: linear-gradient(90deg, #00d4ff, #007bff);
             color: #fff;
             border: none;
             border-radius: 50px;
             text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.7);
         }
 
         .download-button::after {
@@ -106,20 +118,24 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 0%;
+            width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.2);
-            transition: width 0.3s ease-in-out;
-            z-index: 1;
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path 0.4s ease-in-out;
         }
 
         .download-button:hover::after {
-            width: 100%;
+            clip-path: circle(150% at 50% 50%);
         }
 
-        .download-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.8);
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(0, 123, 255, 0.8);
+            }
         }
 
         .info {
@@ -128,24 +144,30 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        .info p {
-            margin: 5px 0;
-        }
-
         footer {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.5);
             text-align: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Animation for Fade In */
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: scale(0.95);
             }
-
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -156,16 +178,16 @@
 
 <body>
     <div class="container">
-        <h1 class="title">Download Overaim</h1>
-        <p class="description">Precision and performance at your fingertips. Get Overaim now and take your skills to the next level!</p>
-        <a href="overaim.zip" class="download-button">Download Now</a>
+        <h1 class="title">OverAim AI.v2 Download</h1>
+        <p class="description">Level up your aim and dominate with OverAim AI.v2. Safe, powerful, and designed to give you the edge.</p>
+        <a href="overaim_v2.zip" class="download-button" aria-label="Download OverAim AI.v2">Download Now</a>
         <div class="info">
-            <p>Click the button to start your download.</p>
-            <p>Need help? Contact support for assistance.</p>
+            <p>For support, join the OverAim Discord and open a ticket.</p>
         </div>
     </div>
     <footer>
-        &copy; 2025 Overaim Team. All rights reserved.
+        &copy; 2025 OverAim Team. All rights reserved. <br>
+        Visit <a href="https://www.overaim.cc">www.overaim.cc</a> for updates.
     </footer>
 </body>
 

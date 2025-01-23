@@ -18,9 +18,29 @@
             scroll-behavior: smooth;
         }
 
-        /* Custom Cursor */
-        body {
-            cursor: url('https://example.com/cursor.png'), auto;
+        /* Sticky Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a {
+            color: #EDEDED;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #6C63FF;
         }
 
         /* Video Background */
@@ -35,49 +55,31 @@
             filter: brightness(0.5);
         }
 
-        /* Content Wrapper */
-        .content {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Section */
+        /* Header */
         .header {
             text-align: center;
-            padding: 60px 0;
-            animation: fadeIn 1.5s ease-in-out;
+            padding: 100px 20px 60px;
         }
 
         .header h1 {
             font-size: 3rem;
             color: #6C63FF;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
         }
 
         .header p {
             font-size: 1.2rem;
             color: #A3A3D1;
-        }
-
-        .header .gpu-requirement {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: rgba(108, 99, 255, 0.1);
-            border: 1px solid #6C63FF;
-            border-radius: 8px;
-            display: inline-block;
-            color: #6C63FF;
-            font-weight: 600;
+            margin-bottom: 20px;
         }
 
         /* Features Section */
         .features-section {
-            margin: 40px 0;
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
         }
 
         .features-grid {
@@ -85,69 +87,87 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             align-items: center;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .features-content {
-            max-width: 500px;
         }
 
         .features-content ul {
-            margin-top: 15px;
+            margin: 15px 0 0;
+            padding-left: 20px;
         }
 
-        .features-content li {
-            margin-bottom: 10px;
+        .features-content ul li {
+            margin: 10px 0;
+            list-style: disc;
         }
 
         .features-video video {
             width: 100%;
-            max-width: 500px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Carousel Section */
+        .carousel-container {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .carousel {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel img,
+        .carousel video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel img.active,
+        .carousel video.active {
+            opacity: 1;
         }
 
         /* Pricing Section */
         .pricing-section {
             text-align: center;
-            margin: 50px 0;
+            margin: 60px auto;
+            max-width: 800px;
+            padding: 0 20px;
         }
 
         .pricing-section h2 {
-            color: #6C63FF;
             margin-bottom: 20px;
+            color: #6C63FF;
         }
 
         .pricing-plans {
             display: flex;
             justify-content: center;
-            gap: 20px;
             flex-wrap: wrap;
-            animation: fadeIn 1.5s ease-in-out;
+            gap: 20px;
         }
 
         .pricing-card {
             background-color: rgba(58, 58, 78, 0.9);
             border-radius: 15px;
             padding: 20px;
-            width: 300px;
+            width: 280px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            text-align: center;
         }
 
         .pricing-card h3 {
-            color: #FFFFFF;
             margin-bottom: 10px;
-        }
-
-        .pricing-card .original-price {
-            text-decoration: line-through;
-            color: #A3A3D1;
+            color: #FFFFFF;
         }
 
         .pricing-card .discounted-price {
@@ -168,92 +188,96 @@
             color: #6C63FF;
             font-weight: 600;
         }
-
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Sticky Navigation -->
     <nav>
         <a href="#">Home</a>
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
-        <a href="#footer">Contact</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <!-- Video Background -->
     <video class="video-background" autoplay loop muted>
         <source src="wallpaper.mov" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Header -->
-        <div class="header">
-            <h1>🚀 OVERAIM AI ASSISTANT</h1>
-            <p>Unleash the Power of AI-Powered Precision</p>
-            <span class="gpu-requirement">Minimum GPU Requirement: GTX 1060</span>
-        </div>
-
-        <!-- Features Section -->
-        <div class="features-section" id="features">
-            <div class="features-grid">
-                <div class="features-content">
-                    <h2>🔍 Features Overview</h2>
-                    <p>OverAim AI Assistant brings the ultimate precision to your gameplay. Explore customizable aimbots, advanced visuals, and exclusive features to gain a competitive edge.</p>
-                    <ul>
-                        <li>Customizable FOV & Slots</li>
-                        <li>Humanization Options</li>
-                        <li>ESP & Aimlines</li>
-                        <li>Triggerbot with Confidence Slider</li>
-                    </ul>
-                </div>
-                <div class="features-video">
-                    <video autoplay loop muted>
-                        <source src="preview.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pricing Section -->
-        <div class="pricing-section" id="pricing">
-            <h2>💰 Pricing</h2>
-            <div class="pricing-plans">
-                <div class="pricing-card">
-                    <h3>1 Week</h3>
-                    <p class="original-price">€10</p>
-                    <p class="discounted-price">€7</p>
-                </div>
-                <div class="pricing-card">
-                    <h3>1 Month</h3>
-                    <p class="original-price">€20</p>
-                    <p class="discounted-price">€14</p>
-                </div>
-                <div class="pricing-card">
-                    <h3>Lifetime</h3>
-                    <p class="original-price">€30</p>
-                    <p class="discounted-price">€21</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
-        </footer>
+    <div class="header">
+        <h1>🚀 OVERAIM AI ASSISTANT</h1>
+        <p>Unleash the Power of AI-Powered Precision</p>
     </div>
+
+    <div class="features-section" id="features">
+        <div class="features-grid">
+            <div class="features-content">
+                <h2>🔍 Features Overview</h2>
+                <p>OverAim AI Assistant brings the ultimate precision to your gameplay. Explore customizable aimbots, advanced visuals, and exclusive features to gain a competitive edge.</p>
+                <ul>
+                    <li>Customizable FOV & Slots</li>
+                    <li>Humanization Options</li>
+                    <li>ESP & Aimlines</li>
+                    <li>Triggerbot with Confidence Slider</li>
+                </ul>
+                <a href="https://discord.gg/usdJF227HS" class="button">💸 Get OverAim Now</a>
+                <p>If link not working discord "miro0x." all low capital</p>
+            </div>
+            <div class="features-video">
+                <video autoplay loop muted>
+                    <source src="preview.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="carousel-container">
+        <h2>🎯 Enemy Visuals Preview</h2>
+        <p>Experience unparalleled clarity with advanced enemy visuals.</p>
+        <div class="carousel" id="enemyVisualsCarousel">
+            <img src="assets/filled.png" alt="Filled Enemy Visual" class="active">
+            <img src="assets/regular.png" alt="Regular Enemy Visual">
+            <img src="assets/corner.png" alt="Corner Enemy Visual">
+        </div>
+    </div>
+
+    <div class="pricing-section" id="pricing">
+        <h2>💰 Pricing</h2>
+        <div class="pricing-plans">
+            <div class="pricing-card">
+                <h3>1 Week</h3>
+                <p class="discounted-price">€7</p>
+                <p>Perfect for short-term use!</p>
+            </div>
+            <div class="pricing-card">
+                <h3>1 Month</h3>
+                <p class="discounted-price">€14</p>
+                <p>Best for regular players!</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Lifetime</h3>
+                <p class="discounted-price">€21</p>
+                <p>Pay once for lifetime access!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
+    </footer>
+
+    <script>
+        const enemyCarousel = document.getElementById('enemyVisualsCarousel');
+        const enemyImages = enemyCarousel.querySelectorAll('img');
+        let enemyIndex = 0;
+
+        function changeEnemyVisuals() {
+            enemyImages[enemyIndex].classList.remove('active');
+            enemyIndex = (enemyIndex + 1) % enemyImages.length;
+            enemyImages[enemyIndex].classList.add('active');
+        }
+
+        setInterval(changeEnemyVisuals, 2000);
+    </script>
 </body>
 </html>

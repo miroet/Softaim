@@ -71,9 +71,31 @@
       0% { background-position: 0%; }
       100% { background-position: 200%; }
     }
-    .status, .version {
+    
+    /* Status Styles */
+    .status {
       font-size: 18px;
       margin-bottom: 10px;
+    }
+    .status span {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .status .online {
+      background-color: #0f0;
+      color: #000;
+    }
+    .status .offline {
+      background-color: #f00;
+      color: #fff;
+    }
+    
+    /* Version & Update Date */
+    .version, .last-update {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #aaa;
     }
 
     /* Download Button */
@@ -113,6 +135,14 @@
       color: #00d4ff;
     }
 
+    /* Additional Info Section */
+    .additional-info {
+      margin-top: 30px;
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
     /* Footer */
     footer {
       text-align: center;
@@ -149,9 +179,23 @@
   <!-- Main Content -->
   <div class="container">
     <h1 class="title">OverAim Customer Panel</h1>
-    <p class="status">Status: <strong>Online</strong></p>
+    
+    <!-- Status with colored indicator -->
+    <p class="status">Status: <span class="online">Online</span></p>
+    
+    <!-- Version Information -->
     <p class="version">Current Version: <strong>AI.v2.5</strong></p>
+    
+    <!-- Last Updated Date -->
+    <p class="last-update">Last Updated: <strong>05/02/2025</strong></p>
+    
+    <!-- Download Button -->
     <a href="overaim.zip" class="download-button">Download Now</a>
+
+    <!-- Additional Information -->
+    <div class="additional-info">
+      <p>Thank you for using OverAim. Stay tuned for more updates and features to enhance your experience.</p>
+    </div>
 
     <!-- Social Media Links -->
     <div class="social-links">

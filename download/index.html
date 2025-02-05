@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="OverAim Download Page">
-    <meta name="description" content="Download the OverAim AI.v2 file here.">
-    <meta name="keywords" content="OverAim, download, file, OverAim AI">
-    <title>OverAim AI.v2 Download</title>
+    <meta name="title" content="OverAim Customer Panel">
+    <meta name="description" content="OverAim AI customer panel with download links, status, and support options.">
+    <meta name="keywords" content="OverAim, download, status, support">
+    <title>OverAim Customer Panel</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="shortcut icon" href="/favicon.png">
-
     <style>
-        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
@@ -27,167 +25,84 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 123, 255, 0.3), transparent 70%);
-            animation: moveParticles 12s infinite linear;
-            filter: blur(100px);
-            z-index: -1;
-        }
-
-        @keyframes moveParticles {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(-10px, -10px);
-            }
+            text-align: center;
         }
 
         .container {
-            max-width: 550px;
-            text-align: center;
-            padding: 40px 30px;
+            max-width: 600px;
+            padding: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-            animation: fadeIn 1.2s ease-out;
         }
 
         .title {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: bold;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #00d4ff, #007bff, #00d4ff);
-            background-size: 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientMove 3s linear infinite;
+            color: #00d4ff;
         }
 
-        @keyframes gradientMove {
-            0% {
-                background-position: 0%;
-            }
-            100% {
-                background-position: 200%;
-            }
-        }
-
-        .description {
+        .status {
             font-size: 18px;
-            margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            color: #0f0;
+        }
+
+        .version {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #aaa;
         }
 
         .download-button {
-            display: inline-block;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 15px 50px;
-            background: linear-gradient(90deg, #00d4ff, #007bff);
+            display: block;
+            font-size: 18px;
+            padding: 15px;
+            background: #007bff;
             color: #fff;
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
             text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
         .download-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.7);
+            background: #0056b3;
         }
 
-        .download-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            clip-path: circle(0% at 50% 50%);
-            transition: clip-path 0.4s ease-in-out;
-        }
-
-        .download-button:hover::after {
-            clip-path: circle(150% at 50% 50%);
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
-            }
-            50% {
-                box-shadow: 0 5px 30px rgba(0, 123, 255, 0.8);
-            }
-        }
-
-        .info {
-            margin-top: 20px;
+        .discord-link {
+            display: block;
+            margin-top: 15px;
             font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-            text-align: center;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        footer a {
-            color: #00d4ff;
+            color: #7289da;
             text-decoration: none;
             font-weight: bold;
         }
 
-        footer a:hover {
+        .discord-link:hover {
             text-decoration: underline;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="title">OverAim AI.v2 Download</h1>
-        <p class="description">Level up your aim and dominate with OverAim AI.v2. Safe, powerful, and designed to give you the edge.</p>
-        <a href="overaim.zip" class="download-button" aria-label="Download OverAim AI.v2">Download Now</a>
-        <div class="info">
-            <p>For support, join the OverAim Discord and open a ticket.</p>
-        </div>
+        <h1 class="title">OverAim Customer Panel</h1>
+        <p class="status">Status: <strong>Online</strong></p>
+        <p class="version">Current Version: <strong>AI.v2.5</strong></p>
+        <a href="overaim.zip" class="download-button">Download Now</a>
+        <a href="https://discord.gg/yourdiscord" class="discord-link" target="_blank">Join Our Discord</a>
     </div>
     <footer>
-        &copy; 2025 OverAim Team. All rights reserved. <br>
-        Visit <a href="https://www.overaim.cc">www.overaim.cc</a> for updates.
+        &copy; 2025 OverAim Team. All rights reserved.
     </footer>
 </body>
 

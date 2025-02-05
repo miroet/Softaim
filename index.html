@@ -1,517 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OverAim AI Assistant - Unleash the power of AI-powered precision for the best aiming experience in Fortnite and beyond.">
-    <title>OverAim AI Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* General Styling */
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #000;
-            color: #EDEDED;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        
-        #aimPreviewCarousel {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 300px;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-        
-        #aimPreviewCarousel video {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        
-        #aimPreviewCarousel video.active {
-            opacity: 1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OverAim AI Assistant - Unleash the power of AI-powered precision for the best aiming experience in Fortnite and beyond." />
+  <title>OverAim AI Assistant</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome (if needed for icons elsewhere) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Loader Styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    .spinner {
+      border: 8px solid #444;
+      border-top: 8px solid #6C63FF;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1.5s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-        /* Custom Cursor */
-        body {
-            cursor: url('https://example.com/cursor.png'), auto;
-        }
+    /* General Styling */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #EDEDED;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      /* Custom cursor - update URL as needed */
+      cursor: url('https://example.com/cursor.png'), auto;
+    }
+    
+    /* Video Background with Parallax Effect */
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      filter: brightness(0.5);
+      will-change: transform;
+    }
 
-        /* Video Background with Parallax */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            object-fit: cover;
-            filter: brightness(0.5);
-            will-change: transform;
-        }
+    /* Sticky Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px 30px;
+      z-index: 100;
+      transition: background-color 0.3s;
+    }
+    nav a {
+      color: #EDEDED;
+      font-size: 1.2rem;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #6C63FF;
+    }
+    
+    /* Scroll-to-Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6C63FF;
+      color: #fff;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      z-index: 110;
+    }
+    .scroll-top:hover {
+      transform: scale(1.1);
+    }
 
-        /* Content Wrapper */
-        .content {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    /* Content Wrapper */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px 20px;
+    }
+    
+    /* Header Section */
+    .header {
+      text-align: center;
+      padding: 60px 0;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .header h1 {
+      font-size: 3rem;
+      color: #6C63FF;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+      transition: transform 0.3s ease;
+    }
+    .header h1:hover {
+      transform: scale(1.05);
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: #A3A3D1;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
 
-        /* Header Section */
-        .header {
-            text-align: center;
-            padding: 60px 0;
-            animation: fadeIn 1.5s ease-in-out;
-        }
+    /* Features Section */
+    .features-section {
+      margin: 40px 0;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .features-content {
+      max-width: 500px;
+    }
+    .features-content h2 {
+      margin-bottom: 10px;
+      color: #6C63FF;
+    }
+    .features-content ul {
+      margin: 15px 0;
+      list-style: disc inside;
+    }
+    .features-video video {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .features-video video:hover {
+      transform: scale(1.05);
+    }
 
-        .header h1 {
-            font-size: 3rem;
-            color: #6C63FF;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s ease;
-        }
+    /* Carousel Styles */
+    .carousel-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .carousel-container {
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+    }
+    .carousel {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .carousel img,
+    .carousel video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1s ease;
+    }
+    .carousel .active {
+      opacity: 1;
+    }
 
-        .header h1:hover {
-            transform: scale(1.05);
-        }
+    /* Pricing Section */
+    .pricing-section {
+      text-align: center;
+      margin: 50px 0;
+    }
+    .pricing-section h2 {
+      color: #6C63FF;
+      margin-bottom: 20px;
+    }
+    .pricing-plans {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .pricing-card {
+      background-color: rgba(58, 58, 78, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    }
+    .pricing-card h3 {
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+    .pricing-card .original-price {
+      text-decoration: line-through;
+      color: #A3A3D1;
+    }
+    .pricing-card .discounted-price {
+      font-size: 1.5rem;
+      color: #6CFF6C;
+    }
+    .pricing-card p {
+      color: #B0B0DA;
+      margin-top: 10px;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 30px;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #6C63FF, #5A54E0);
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s, background 0.3s ease;
+    }
+    .button:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #5A54E0, #6C63FF);
+    }
 
-        .header p {
-            font-size: 1.2rem;
-            color: #A3A3D1;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-        }
+    /* Payment Methods Section */
+    .payment-methods {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .payment-methods h2 {
+      margin-bottom: 20px;
+      color: #6C63FF;
+    }
+    .payment-methods .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .payment-methods img {
+      max-width: 100px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    .payment-methods img:hover {
+      transform: scale(1.1);
+    }
 
-        /* Features Section */
-        .features-section {
-            margin: 40px 0;
-        }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #A3A3D1;
+      background-color: rgba(0, 0, 0, 0.8);
+      margin-top: 40px;
+    }
+    footer a {
+      color: #6C63FF;
+      font-weight: 600;
+    }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            align-items: center;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .features-content {
-            max-width: 500px;
-        }
-
-        .features-video video {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .features-video video:hover {
-            transform: scale(1.05);
-        }
-
-        .carousel-container {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .carousel {
-            position: relative;
-            display: inline-block;
-            width: 300px;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .carousel img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: opacity 1s ease;
-        }
-
-        .carousel img.active {
-            opacity: 1;
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            text-align: center;
-            margin: 50px 0;
-        }
-
-        .pricing-section h2 {
-            color: #6C63FF;
-            margin-bottom: 20px;
-        }
-
-        .pricing-plans {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .pricing-card {
-            background-color: rgba(58, 58, 78, 0.9);
-            border-radius: 15px;
-            padding: 20px;
-            width: 300px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-        }
-
-        .pricing-card h3 {
-            color: #FFFFFF;
-            margin-bottom: 10px;
-        }
-
-        .pricing-card .original-price {
-            text-decoration: line-through;
-            color: #A3A3D1;
-        }
-
-        .pricing-card .discounted-price {
-            font-size: 1.5rem;
-            color: #6CFF6C;
-        }
-
-        .pricing-card p {
-            color: #B0B0DA;
-            margin-top: 10px;
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 30px;
-            color: #FFFFFF;
-            background: linear-gradient(135deg, #6C63FF, #5A54E0);
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.3s, background 0.3s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #5A54E0, #6C63FF);
-        }
-
-        /* Sticky Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            z-index: 100;
-            transition: background-color 0.3s;
-        }
-
-        nav a {
-            color: #EDEDED;
-            font-size: 1.2rem;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-        }
-
-        nav a:hover {
-            color: #6C63FF;
-        }
-
-        /* Scroll-to-Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #6C63FF;
-            color: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .carousel-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .carousel-container {
-            flex: 1;
-            max-width: 500px;
-            text-align: center;
-        }
-
-
-        .scroll-top:hover {
-            transform: scale(1.1);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #A3A3D1;
-            background-color: rgba(0, 0, 0, 0.8);
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #6C63FF;
-            font-weight: 600;
-        }
-
-        /* Payment Method Images Styling */
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .payment-methods img {
-            max-width: 100px;
-            height: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .payment-methods img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Sticky Navigation -->
-    <nav>
-        <a href="#">Home</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#payment">Payment</a>
-        <a href="#footer">Contact</a>
-    </nav>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
 
-    <!-- Video Background with Parallax Effect -->
-    <video class="video-background" autoplay loop muted>
-        <source src="wallpaper.mov" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+  <!-- Sticky Navigation -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#payment">Payment</a>
+    <a href="#footer">Contact</a>
+  </nav>
 
-    <!-- Scroll-to-Top Button -->
-    <div class="scroll-top" id="scrollTopBtn">↑</div>
+  <!-- Video Background with Parallax Effect -->
+  <video class="video-background" autoplay loop muted>
+    <source src="wallpaper.mov" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Header -->
-        <div class="header">
-            <h1>🚀 OVERAIM AI ASSISTANT</h1>
-            <p>Unleash the Power of AI-Powered Precision</p>
+  <!-- Scroll-to-Top Button -->
+  <div class="scroll-top" id="scrollTopBtn">↑</div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Header Section -->
+    <div class="header">
+      <h1>🚀 OVERAIM AI ASSISTANT</h1>
+      <p>Unleash the Power of AI-Powered Precision</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section" id="features">
+      <div class="features-grid">
+        <div class="features-content">
+          <h2>🔍 Features Overview</h2>
+          <p>
+            OverAim AI Assistant brings the ultimate precision to your gameplay.
+            Explore customizable aimbots, advanced visuals, and exclusive features
+            to gain a competitive edge.
+          </p>
+          <ul>
+            <li>Customizable FOV & Slots</li>
+            <li>Humanization Options</li>
+            <li>ESP & Aimlines</li>
+            <li>Triggerbot with Confidence Slider</li>
+          </ul>
+          <a href="https://discord.gg/usdJF227HS" class="button">💸 Get OverAim Now</a>
+          <p>If link not working, Discord: <strong>miro0x.</strong> (all lower-case)</p>
         </div>
+        <div class="features-video">
+          <video autoplay loop muted>
+            <source src="preview.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
 
-        <!-- Features Section -->
-        <div class="features-section" id="features">
-            <div class="features-grid">
-                <div class="features-content">
-                    <h2>🔍 Features Overview</h2>
-                    <p>OverAim AI Assistant brings the ultimate precision to your gameplay. Explore customizable aimbots, advanced visuals, and exclusive features to gain a competitive edge.</p>
-                    <ul>
-                        <li>Customizable FOV & Slots</li>
-                        <li>Humanization Options</li>
-                        <li>ESP & Aimlines</li>
-                        <li>Triggerbot with Confidence Slider</li>
-                    </ul>
-                    <a
- href="https://discord.gg/usdJF227HS" class="button">💸 Get OverAim Now</a>
-<p>If link not working discord "miro0x." all low capital</p>
-                </div>
-                <div class="features-video">
-                    <video autoplay loop muted>
-                        <source src="preview.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-
-                <!-- Enemy Visuals Carousel -->
-    <div class="carousel-wrapper">
+      <!-- Carousel Section -->
+      <div class="carousel-wrapper">
         <!-- Enemy Visuals Carousel -->
         <div class="carousel-container">
-            <h2>🎯 Enemy Visuals Preview</h2>
-            <p>Experience unparalleled clarity with advanced enemy visuals.</p>
-            <div class="carousel" id="enemyVisualsCarousel">
-                <img src="assets/filled.png" alt="Filled Enemy Visual" class="active">
-                <img src="assets/regular.png" alt="Regular Enemy Visual">
-                <img src="assets/corner.png" alt="Corner Enemy Visual">
-            </div>
+          <h2>🎯 Enemy Visuals Preview</h2>
+          <p>Experience unparalleled clarity with advanced enemy visuals.</p>
+          <div class="carousel" id="enemyVisualsCarousel">
+            <img src="assets/filled.png" alt="Filled Enemy Visual" class="active" />
+            <img src="assets/regular.png" alt="Regular Enemy Visual" />
+            <img src="assets/corner.png" alt="Corner Enemy Visual" />
+          </div>
         </div>
-    
         <!-- Aim Preview Carousel -->
         <div class="carousel-container">
-            <h2>🎯 Aim Preview</h2>
-            <p>See OverAim in action with smooth aiming capabilities.</p>
-            <div class="carousel" id="aimPreviewCarousel">
-                <video autoplay loop muted class="active">
-                    <source src="assets/aim1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <video muted>
-                    <source src="assets/aim2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <video muted>
-                    <source src="assets/aim3.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+          <h2>🎯 Aim Preview</h2>
+          <p>See OverAim in action with smooth aiming capabilities.</p>
+          <div class="carousel" id="aimPreviewCarousel">
+            <video autoplay loop muted class="active">
+              <source src="assets/aim1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video muted>
+              <source src="assets/aim2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video muted>
+              <source src="assets/aim3.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
+      </div>
     </div>
 
-
-
-        <!-- Pricing Section -->
-        <div class="pricing-section" id="pricing">
-            <h2>💰 Pricing</h2>
-            <div class="pricing-plans">
-                <div class="pricing-card">
-                    <h3>1 Week</h3>
-                    <p class="original-price">€10</p>
-                    <p class="discounted-price">€7</p>
-                    <p>Perfect for short-term use!</p>
-                </div>
-                <div class="pricing-card">
-                    <h3>1 Month</h3>
-                    <p class="original-price">€20</p>
-                    <p class="discounted-price">€14</p>
-                    <p>Best for regular players!</p>
-                </div>
-                <div class="pricing-card">
-                    <h3>Lifetime</h3>
-                    <p class="original-price">€30</p>
-                    <p class="discounted-price">€21</p>
-                    <p>Pay once for lifetime access!</p>
-                </div>
-            </div>
+    <!-- Pricing Section -->
+    <div class="pricing-section" id="pricing">
+      <h2>💰 Pricing</h2>
+      <div class="pricing-plans">
+        <div class="pricing-card">
+          <h3>1 Week</h3>
+          <p class="original-price">€10</p>
+          <p class="discounted-price">€7</p>
+          <p>Perfect for short-term use!</p>
         </div>
-
-        <!-- Payment Methods Section -->
-        <div class="payment-methods" id="payment">
-            <h2>💳 Accepted Payment Methods</h2>
-            <div class="payment-icons">
-                <img src="credit-card-logo.png" alt="Credit Card">
-                <img src="crypto-logo.png" alt="Cryptocurrency">
-                <img src="giftcard-logo.png" alt="Gift Card">
-                <img src="paypal-logo.png" alt="PayPal">
-                <img src="paysafe-logo.png" alt="Paysafe">
-            </div>
+        <div class="pricing-card">
+          <h3>1 Month</h3>
+          <p class="original-price">€20</p>
+          <p class="discounted-price">€14</p>
+          <p>Best for regular players!</p>
         </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a></p>
-        </footer>
+        <div class="pricing-card">
+          <h3>Lifetime</h3>
+          <p class="original-price">€30</p>
+          <p class="discounted-price">€21</p>
+          <p>Pay once for lifetime access!</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Scroll-to-Top Button Functionality -->
-    <script>
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 200) {
-                scrollTopBtn.style.display = 'block';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
-        });
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
-    
-    <!-- Enemy Visuals Carousel Functionality -->
-    <script>
-        const enemyCarousel = document.getElementById('enemyVisualsCarousel');
-        const enemyImages = enemyCarousel.querySelectorAll('img');
-        let enemyIndex = 0;
-        
-        function changeEnemyVisuals() {
-            // Remove active class from the current image
-            enemyImages[enemyIndex].classList.remove('active');
-            // Move to the next image
-            enemyIndex = (enemyIndex + 1) % enemyImages.length;
-            // Add active class to the next image
-            enemyImages[enemyIndex].classList.add('active');
-        }
-        
-        // Change every 2 seconds
-        setInterval(changeEnemyVisuals, 2000);
-    </script>
-    
-    <!-- Aim Preview Carousel Functionality -->
-    <script>
-        const aimCarousel = document.getElementById('aimPreviewCarousel');
-        const aimVideos = aimCarousel.querySelectorAll('video');
-        let aimIndex = 0;
-        
-        function changeAimPreview() {
-            // Deactivate current video
-            aimVideos[aimIndex].classList.remove('active');
-            aimVideos[aimIndex].pause();
-            aimVideos[aimIndex].currentTime = 0;
-        
-            // Move to the next video
-            aimIndex = (aimIndex + 1) % aimVideos.length;
-        
-            // Activate the next video
-            aimVideos[aimIndex].classList.add('active');
-            aimVideos[aimIndex].play();
-        }
-        
-        // Rotate every 5 seconds
-        setInterval(changeAimPreview, 5000);
-    </script>
+    <!-- Payment Methods Section -->
+    <div class="payment-methods" id="payment">
+      <h2>💳 Accepted Payment Methods</h2>
+      <div class="payment-icons">
+        <img src="credit-card-logo.png" alt="Credit Card" />
+        <img src="crypto-logo.png" alt="Cryptocurrency" />
+        <img src="giftcard-logo.png" alt="Gift Card" />
+        <img src="paypal-logo.png" alt="PayPal" />
+        <img src="paysafe-logo.png" alt="Paysafe" />
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+      <p>
+        © 2025 OverAim AI. All rights reserved. | 
+        <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a>
+      </p>
+    </footer>
+  </div>
+
+  <!-- JavaScript Section -->
+  <script>
+    // Remove Loader When Page Loads
+    window.addEventListener('load', function () {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    });
+
+    // Scroll-to-Top Button Functionality
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        scrollTopBtn.style.display = 'block';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Enemy Visuals Carousel Functionality
+    const enemyCarousel = document.getElementById('enemyVisualsCarousel');
+    const enemyImages = enemyCarousel.querySelectorAll('img');
+    let enemyIndex = 0;
+    function changeEnemyVisuals() {
+      enemyImages[enemyIndex].classList.remove('active');
+      enemyIndex = (enemyIndex + 1) % enemyImages.length;
+      enemyImages[enemyIndex].classList.add('active');
+    }
+    setInterval(changeEnemyVisuals, 2000);
+
+    // Aim Preview Carousel Functionality
+    const aimCarousel = document.getElementById('aimPreviewCarousel');
+    const aimVideos = aimCarousel.querySelectorAll('video');
+    let aimIndex = 0;
+    function changeAimPreview() {
+      aimVideos[aimIndex].classList.remove('active');
+      aimVideos[aimIndex].pause();
+      aimVideos[aimIndex].currentTime = 0;
+      aimIndex = (aimIndex + 1) % aimVideos.length;
+      aimVideos[aimIndex].classList.add('active');
+      aimVideos[aimIndex].play();
+    }
+    setInterval(changeAimPreview, 5000);
+  </script>
+</body>
+</html>

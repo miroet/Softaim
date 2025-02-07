@@ -37,8 +37,8 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
-    /* Animated Gradient Background for Canvas */
+
+    /* Subtle Animated Gradient Background for Canvas */
     #interactiveCanvas {
       position: fixed;
       top: 0;
@@ -46,16 +46,16 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: linear-gradient(45deg, #6C63FF, #5A54E0, #ff6f61);
-      background-size: 600% 600%;
-      animation: gradientAnimation 20s ease infinite;
+      background: linear-gradient(45deg, #2c3e50, #34495e, #2c3e50);
+      background-size: 400% 400%;
+      animation: gradientAnimation 30s ease infinite;
     }
     @keyframes gradientAnimation {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    
+
     /* General Styles */
     body {
       font-family: 'Inter', sans-serif;
@@ -64,9 +64,9 @@
       color: #EDEDED;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      /* No background color here – the canvas provides an animated backdrop */
+      /* The canvas provides the background */
     }
-    
+
     /* Sticky Navigation */
     nav {
       position: fixed;
@@ -90,7 +90,7 @@
       color: #6C63FF;
       transform: translateY(-2px);
     }
-    
+
     /* Scroll-to-Top Button */
     .scroll-top {
       position: fixed;
@@ -109,7 +109,7 @@
     .scroll-top:hover {
       transform: scale(1.1);
     }
-    
+
     /* Content Wrapper */
     .content {
       position: relative;
@@ -123,7 +123,7 @@
     @keyframes contentFadeIn {
       to { opacity: 1; }
     }
-    
+
     /* Header Section */
     .header {
       text-align: center;
@@ -146,7 +146,7 @@
       color: #A3A3D1;
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
-    
+
     /* About Section */
     .about-section {
       margin: 40px 0;
@@ -166,7 +166,7 @@
       text-align: center;
       color: #EDEDED;
     }
-    
+
     /* Features Section */
     .features-section {
       margin: 40px 0;
@@ -200,45 +200,7 @@
     .features-video video:hover {
       transform: scale(1.05);
     }
-    
-    /* Carousel Styles */
-    .carousel-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-      animation: fadeInUp 1s ease-out both;
-    }
-    .carousel-container {
-      flex: 1;
-      max-width: 500px;
-      text-align: center;
-    }
-    .carousel {
-      position: relative;
-      display: inline-block;
-      width: 300px;
-      height: 300px;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    .carousel img,
-    .carousel video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: opacity 1.2s ease;
-    }
-    .carousel .active {
-      opacity: 1;
-    }
-    
+
     /* Reviews Section */
     .reviews-section {
       margin: 40px 0;
@@ -278,7 +240,7 @@
       color: #A3A3D1;
       text-align: right;
     }
-    
+
     /* Pricing Section */
     .pricing-section {
       text-align: center;
@@ -337,6 +299,74 @@
     .button:hover {
       transform: translateY(-4px);
       background: linear-gradient(135deg, #5A54E0, #6C63FF);
+    }
+    
+    /* FAQ Section */
+    .faq-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .faq-section h2 {
+      color: #6C63FF;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .faq-item {
+      margin-bottom: 15px;
+    }
+    .faq-item h3 {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 5px;
+    }
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #cccccc;
+      margin-left: 10px;
+    }
+    
+    /* Our Team Section */
+    .team-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .team-section h2 {
+      color: #6C63FF;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .team-member {
+      text-align: center;
+      color: #EDEDED;
+    }
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #6C63FF;
+    }
+    .team-member h3 {
+      margin: 5px 0;
+      font-size: 1.1rem;
+    }
+    .team-member p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #cccccc;
     }
     
     /* Payment Methods Section */
@@ -409,6 +439,8 @@
     <a href="#features">Features</a>
     <a href="#reviews">Reviews</a>
     <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#team">Team</a>
     <a href="#payment">Payment</a>
     <a href="#footer">Contact</a>
   </nav>
@@ -431,7 +463,7 @@
     <div class="about-section" id="about">
       <h2>About OverAim AI Assistant</h2>
       <p>
-        OverAim AI Assistant is engineered to elevate your gaming experience with cutting-edge aimbot functionalities and real-time analytics. Our advanced AI ensures you stay ahead in every match. Join our elite community and experience the future of gaming assistance.
+        OverAim AI Assistant harnesses advanced algorithms to optimize your gameplay. Whether you're in a competitive match or exploring new strategies, our assistant adapts to your style for a seamless experience. Join thousands of satisfied gamers who have elevated their performance and dominate the field with precision and ease.
       </p>
     </div>
     
@@ -562,6 +594,45 @@
           <p class="original-price">€30</p>
           <p class="discounted-price">€21</p>
           <p>Pay once for lifetime access!</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is OverAim AI Assistant?</h3>
+        <p>OverAim AI Assistant is an AI-powered tool designed to enhance your gaming precision with customizable features and real-time analytics.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I get started?</h3>
+        <p>Click the "Get OverAim Now" button to join our community and follow the installation instructions to activate the assistant.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is there a free trial available?</h3>
+        <p>Yes, we offer a one-week free trial so you can experience the full capabilities of OverAim AI Assistant.</p>
+      </div>
+    </div>
+    
+    <!-- Our Team Section -->
+    <div class="team-section" id="team">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="https://via.placeholder.com/100" alt="Alex Johnson" />
+          <h3>Alex Johnson</h3>
+          <p>Lead Developer</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/100" alt="Sara Williams" />
+          <h3>Sara Williams</h3>
+          <p>UI/UX Designer</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/100" alt="Michael Lee" />
+          <h3>Michael Lee</h3>
+          <p>Product Manager</p>
         </div>
       </div>
     </div>

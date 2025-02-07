@@ -27,21 +27,22 @@
       border: 8px solid rgba(255,255,255,0.2);
       border-top: 8px solid #6C63FF;
       border-radius: 50%;
-      width: 60px; height: 60px;
+      width: 60px;
+      height: 60px;
       animation: spin 1.5s linear infinite;
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
-    /* Interactive Canvas Wallpaper: Particles with Ripple Effect */
-    #interactiveCanvas {
+
+    /* Vanta.js Interactive Background Container */
+    #vanta-bg {
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2;
-      background: #000;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
     
     /* General Styles */
@@ -53,11 +54,10 @@
       color: #EDEDED;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      /* Custom cursor remains as provided */
       cursor: url('https://example.com/cursor.png'), auto;
     }
     
-    /* Sticky Navigation with subtle shrink effect */
+    /* Sticky Navigation with Shrink Effect */
     nav {
       position: fixed;
       top: 0; left: 0;
@@ -87,7 +87,8 @@
     /* Scroll-to-Top Button */
     .scroll-top {
       position: fixed;
-      bottom: 20px; right: 20px;
+      bottom: 20px;
+      right: 20px;
       background-color: #6C63FF;
       color: #fff;
       padding: 15px;
@@ -201,7 +202,7 @@
       text-align: justify;
     }
     
-    /* Reviews Section */
+    /* Reviews Section (Real Reviews) */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -300,7 +301,7 @@
       margin-left: 10px;
     }
     
-    /* Developer Section (Only miro0x) */
+    /* Developer Section (Only Developer: miro0x) */
     .developer-section {
       margin: 40px 0;
       padding: 20px;
@@ -385,8 +386,8 @@
     <a href="#footer">Contact</a>
   </nav>
   
-  <!-- Interactive Canvas Wallpaper with Particle & Ripple Effects -->
-  <canvas id="interactiveCanvas"></canvas>
+  <!-- Vanta.js Interactive Wallpaper -->
+  <div id="vanta-bg"></div>
   
   <!-- Scroll-to-Top Button -->
   <div class="scroll-top" id="scrollTopBtn">↑</div>
@@ -403,7 +404,7 @@
     <section id="about">
       <h2>About OverAim AI Assistant</h2>
       <p>
-        OverAim AI Assistant is engineered to give gamers a competitive edge through real-time analytics, customizable settings, and adaptive support. Designed to integrate seamlessly with your gaming setup, it helps improve precision and decision-making in every match.
+        OverAim AI Assistant is engineered to give gamers a competitive edge through real-time analytics, customizable settings, and adaptive support. Integrated seamlessly with your gaming setup, it helps improve precision and decision-making in every match.
       </p>
     </section>
     
@@ -438,7 +439,7 @@
       </p>
     </section>
     
-    <!-- Reviews Section with Real Reviews -->
+    <!-- Reviews Section -->
     <section id="reviews">
       <h2>Customer Reviews</h2>
       <div class="reviews-grid">
@@ -580,6 +581,23 @@
     </footer>
   </div>
   
+  <!-- Vanta.js Scripts for Interactive Wallpaper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
+  <script>
+    VANTA.FOG({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      highlightColor: 0x6c63ff,
+      midtoneColor: 0x2c3e50,
+      lowlightColor: 0x1a2734,
+      baseColor: 0x000000,
+      speed: 1.0
+    });
+  </script>
+  
   <!-- JavaScript Section -->
   <script>
     // Remove Loader When Page Loads
@@ -599,7 +617,7 @@
       }
     });
     
-    // Scroll-to-Top Button Functionality
+    // Scroll-to-Top Button
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
@@ -614,94 +632,30 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Particle Animation with Ripple Effect on Canvas
-    const canvas = document.getElementById('interactiveCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const numParticles = 100;
-    let ripples = [];
-    
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    // Enemy Visuals Carousel (Static Images)
+    const enemyCarousel = document.getElementById('enemyVisualsCarousel');
+    const enemyImages = enemyCarousel.querySelectorAll('img');
+    let enemyIndex = 0;
+    function changeEnemyVisuals() {
+      enemyImages[enemyIndex].classList.remove('active');
+      enemyIndex = (enemyIndex + 1) % enemyImages.length;
+      enemyImages[enemyIndex].classList.add('active');
     }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    setInterval(changeEnemyVisuals, 2000);
     
-    // Particle Object
-    class Particle {
-      constructor(x, y, dx, dy, size, color) {
-        this.x = x; this.y = y;
-        this.dx = dx; this.dy = dy;
-        this.size = size; this.color = color;
-      }
-      update() {
-        if(this.x + this.size > canvas.width || this.x - this.size < 0) this.dx = -this.dx;
-        if(this.y + this.size > canvas.height || this.y - this.size < 0) this.dy = -this.dy;
-        this.x += this.dx; this.y += this.dy;
-        this.draw();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
+    // Aim Preview Carousel (Videos/Images)
+    const aimCarousel = document.getElementById('aimPreviewCarousel');
+    const aimElements = aimCarousel.querySelectorAll('video, img');
+    let aimIndex = 0;
+    function changeAimPreview() {
+      aimElements[aimIndex].classList.remove('active');
+      aimIndex = (aimIndex + 1) % aimElements.length;
+      aimElements[aimIndex].classList.add('active');
+      if (aimElements[aimIndex].tagName.toLowerCase() === 'video') {
+        aimElements[aimIndex].play();
       }
     }
-    
-    // Ripple Object
-    class Ripple {
-      constructor(x, y) {
-        this.x = x; this.y = y;
-        this.radius = 0;
-        this.alpha = 1.0;
-      }
-      update() {
-        this.radius += 2;
-        this.alpha -= 0.02;
-        this.draw();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(255,255,255,${this.alpha})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      }
-    }
-    
-    function initParticles() {
-      particles = [];
-      for(let i = 0; i < numParticles; i++) {
-        let size = Math.random() * 3 + 1;
-        let x = Math.random() * (canvas.width - size * 2) + size;
-        let y = Math.random() * (canvas.height - size * 2) + size;
-        let dx = (Math.random() * 0.5) - 0.25;
-        let dy = (Math.random() * 0.5) - 0.25;
-        particles.push(new Particle(x, y, dx, dy, size, '#ffffff'));
-      }
-    }
-    initParticles();
-    
-    // Mouse Ripple Event
-    canvas.addEventListener('click', function(event) {
-      const rect = canvas.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      ripples.push(new Ripple(x, y));
-    });
-    
-    // Animation Loop
-    function animate() {
-      requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => p.update());
-      ripples.forEach((r, index) => {
-        r.update();
-        if(r.alpha <= 0) ripples.splice(index, 1);
-      });
-    }
-    animate();
+    setInterval(changeAimPreview, 5000);
   </script>
 </body>
 </html>

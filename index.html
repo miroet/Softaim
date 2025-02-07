@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and customizable features." />
+  <meta name="description" content="OverAim AI Assistant - Unleash the power of AI-powered precision for the best aiming experience in Fortnite and beyond." />
   <title>OverAim AI Assistant</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -37,42 +37,38 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    /* Subdued Animated Gradient Background for Canvas */
-    #interactiveCanvas {
+    
+    /* Video Background (Original) */
+    .video-background {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -2;
-      background: linear-gradient(45deg, #2c3e50, #34495e, #2c3e50);
-      background-size: 400% 400%;
-      animation: gradientAnimation 30s ease infinite;
+      z-index: -1;
+      object-fit: cover;
+      filter: brightness(0.5);
     }
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
+    
     /* General Styles */
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
+      background: #000;
       color: #EDEDED;
       overflow-x: hidden;
       scroll-behavior: smooth;
+      cursor: url('https://example.com/cursor.png'), auto;
     }
-
+    
     /* Sticky Navigation */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(0,0,0,0.75);
+      background-color: rgba(0, 0, 0, 0.75);
       padding: 15px 30px;
       z-index: 100;
       transition: background-color 0.5s ease;
@@ -89,7 +85,7 @@
       color: #6C63FF;
       transform: translateY(-2px);
     }
-
+    
     /* Scroll-to-Top Button */
     .scroll-top {
       position: fixed;
@@ -101,14 +97,14 @@
       border-radius: 50%;
       cursor: pointer;
       display: none;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease, opacity 0.3s ease;
       z-index: 110;
     }
     .scroll-top:hover {
       transform: scale(1.1);
     }
-
+    
     /* Content Wrapper */
     .content {
       position: relative;
@@ -122,7 +118,7 @@
     @keyframes contentFadeIn {
       to { opacity: 1; }
     }
-
+    
     /* Section Styles */
     section {
       margin: 40px 0;
@@ -142,7 +138,7 @@
       color: #EDEDED;
       text-align: center;
     }
-
+    
     /* Header Section */
     .header {
       text-align: center;
@@ -164,8 +160,8 @@
       color: #A3A3D1;
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
-
-    /* Features Section (using static image placeholder) */
+    
+    /* Features Section */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -186,6 +182,7 @@
       list-style: disc inside;
       padding-left: 20px;
     }
+    .features-video video, 
     .features-image {
       width: 100%;
       max-width: 500px;
@@ -193,33 +190,12 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       transition: transform 0.4s ease;
     }
+    .features-video video:hover, 
     .features-image:hover {
       transform: scale(1.05);
     }
-
-    /* Information Section */
-    .info-section {
-      margin: 40px 0;
-      padding: 20px;
-      background: rgba(20,20,30,0.75);
-      border-radius: 10px;
-      animation: fadeInUp 1s ease-out both;
-    }
-    .info-section h2 {
-      color: #6C63FF;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    .info-section p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #cccccc;
-      margin: 10px auto;
-      max-width: 800px;
-      text-align: justify;
-    }
-
-    /* Reviews Section */
+    
+    /* Reviews Section (Real Reviews) */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -246,7 +222,7 @@
       color: #A3A3D1;
       text-align: right;
     }
-
+    
     /* Pricing Section with Invite Rewards */
     .invite-rewards {
       background: rgba(255,255,255,0.1);
@@ -324,32 +300,21 @@
       margin-left: 10px;
     }
     
-    /* Developers Section */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-    .team-member {
+    /* Developers Section (Only One Developer: miro0x) */
+    .developer-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
       text-align: center;
-      color: #EDEDED;
     }
-    .team-member img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-      border: 2px solid #6C63FF;
+    .developer-section h2 {
+      color: #6C63FF;
+      margin-bottom: 15px;
     }
-    .team-member h3 {
-      margin: 5px 0;
-      font-size: 1.1rem;
-    }
-    .team-member p {
-      margin: 0;
-      font-size: 0.9rem;
+    .developer-section p {
+      font-size: 1rem;
       color: #cccccc;
     }
     
@@ -423,13 +388,16 @@
     <a href="#reviews">Reviews</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
-    <a href="#team">Developers</a>
+    <a href="#developer">Developer</a>
     <a href="#payment">Payment</a>
     <a href="#footer">Contact</a>
   </nav>
   
-  <!-- Animated Gradient Canvas Background -->
-  <canvas id="interactiveCanvas"></canvas>
+  <!-- Video Background -->
+  <video class="video-background" autoplay loop muted>
+    <source src="wallpaper.mov" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
   
   <!-- Scroll-to-Top Button -->
   <div class="scroll-top" id="scrollTopBtn">↑</div>
@@ -443,10 +411,10 @@
     </div>
     
     <!-- About Section -->
-    <section id="about" class="about-section">
+    <section id="about">
       <h2>About OverAim AI Assistant</h2>
       <p>
-        OverAim AI Assistant is built to give gamers a competitive edge by providing real-time analytics, customizable settings, and adaptive support. Trusted by thousands, our tool enhances precision and decision-making in high-pressure gaming environments.
+        OverAim AI Assistant is engineered to give gamers a competitive edge through real-time analytics, customizable settings, and adaptive support. Designed to integrate seamlessly with your gaming setup, it helps improve precision and decision-making in every match.
       </p>
     </section>
     
@@ -464,21 +432,25 @@
           <a href="https://discord.gg/yourcommunity" class="button">Join Our Community</a>
         </div>
         <div>
-          <img src="assets/feature-placeholder.png" alt="Feature Preview" class="features-image" />
+          <!-- Preserve your original video/image content -->
+          <video class="features-video" autoplay loop muted>
+            <source src="preview.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>
     
     <!-- Information Section -->
-    <section id="info" class="info-section">
+    <section id="info">
       <h2>Product Information</h2>
       <p>
-        OverAim AI Assistant integrates seamlessly with your gaming setup. Leveraging advanced algorithms and customizable parameters, it helps you dominate every match with detailed performance analytics, in-game visual enhancements, and continuous updates backed by a dedicated support team.
+        OverAim AI Assistant integrates advanced algorithms with customizable parameters to optimize your gameplay. Whether you’re a casual or competitive gamer, our tool delivers in‑depth performance analytics, in‑game visual enhancements, and continuous support—all designed to elevate your experience.
       </p>
     </section>
     
     <!-- Reviews Section -->
-    <section id="reviews" class="reviews-section">
+    <section id="reviews">
       <h2>Customer Reviews</h2>
       <div class="reviews-grid">
         <div class="review-card">
@@ -524,7 +496,7 @@
       </div>
     </section>
     
-    <!-- Pricing Section with Invite Rewards -->
+    <!-- Invite Rewards & Pricing Section -->
     <section id="pricing" class="pricing-section">
       <h2>Invite Rewards & Pricing</h2>
       <div class="invite-rewards">
@@ -576,39 +548,18 @@
       </div>
       <div class="faq-item">
         <h3>How do I get started?</h3>
-        <p>Join our community by clicking the invite button, then follow our simple setup guide and reach out for support if needed.</p>
+        <p>Join our community via the invite rewards section, then follow our simple setup guide.</p>
       </div>
       <div class="faq-item">
         <h3>How do the invite rewards work?</h3>
-        <p>Earn extra access days by inviting friends or boosting the server. Check your invite count with /invites and redeem via a moderator or ticket.</p>
+        <p>Earn extra access days by inviting friends or boosting the server. Check your count with /invites and redeem by contacting a moderator.</p>
       </div>
     </section>
     
-    <!-- Developers Section -->
-    <section id="team" class="team-section">
-      <h2>Our Developers & Team</h2>
-      <div class="team-grid">
-        <div class="team-member">
-          <img src="https://via.placeholder.com/100" alt="Alex Johnson" />
-          <h3>Alex Johnson</h3>
-          <p>Lead Developer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/100" alt="Sara Williams" />
-          <h3>Sara Williams</h3>
-          <p>UI/UX Designer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/100" alt="Michael Lee" />
-          <h3>Michael Lee</h3>
-          <p>Product Manager</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/100" alt="Ravi Patel" />
-          <h3>Ravi Patel</h3>
-          <p>Backend Engineer</p>
-        </div>
-      </div>
+    <!-- Developer Section (Only Developer: miro0x) -->
+    <section id="developer" class="developer-section">
+      <h2>Developer</h2>
+      <p>Developed by <strong>miro0x</strong></p>
     </section>
     
     <!-- Payment Methods Section -->
@@ -617,7 +568,7 @@
       <p>
         We support a variety of secure payment methods for your convenience:<br>
         🔹 <strong>PayPal:</strong> Trusted worldwide for secure transactions.<br>
-        🔹 <strong>Credit Cards:</strong> Visa, Mastercard, and more are accepted.<br>
+        🔹 <strong>Credit Cards:</strong> Visa, Mastercard, and more.<br>
         🔹 <strong>Cryptocurrency:</strong> Bitcoin, Ethereum, and other major cryptocurrencies.<br>
         🔹 <strong>Paysafe Cards:</strong> Prepaid cards for secure and anonymous payments.<br>
         🔹 <strong>Gift Cards:</strong> Select popular gift cards are accepted.
@@ -666,7 +617,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Enemy Visuals Carousel Functionality (Static Images)
+    // Enemy Visuals Carousel (Using Static Images)
     const enemyCarousel = document.getElementById('enemyVisualsCarousel');
     const enemyImages = enemyCarousel.querySelectorAll('img');
     let enemyIndex = 0;
@@ -677,7 +628,7 @@
     }
     setInterval(changeEnemyVisuals, 2000);
     
-    // Aim Preview Carousel Functionality (Static Images)
+    // Aim Preview Carousel (Using Videos/Images as in original)
     const aimCarousel = document.getElementById('aimPreviewCarousel');
     const aimElements = aimCarousel.querySelectorAll('video, img');
     let aimIndex = 0;
@@ -685,113 +636,12 @@
       aimElements[aimIndex].classList.remove('active');
       aimIndex = (aimIndex + 1) % aimElements.length;
       aimElements[aimIndex].classList.add('active');
+      // If the element is a video, play it
+      if (aimElements[aimIndex].tagName.toLowerCase() === 'video') {
+        aimElements[aimIndex].play();
+      }
     }
     setInterval(changeAimPreview, 5000);
-    
-    // Particle Animation for Interactive Canvas
-    const canvas = document.getElementById('interactiveCanvas');
-    const ctx = canvas.getContext('2d');
-    let particlesArray = [];
-    const numberOfParticles = 100;
-    let mouse = { x: null, y: null, radius: 100 };
-    
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', function(event) {
-      mouse.x = event.x;
-      mouse.y = event.y;
-    });
-    
-    class Particle {
-      constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-      update() {
-        if (this.x + this.size > canvas.width || this.x - this.size < 0) {
-          this.directionX = -this.directionX;
-        }
-        if (this.y + this.size > canvas.height || this.y - this.size < 0) {
-          this.directionY = -this.directionY;
-        }
-        this.x += this.directionX;
-        this.y += this.directionY;
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < mouse.radius + this.size) {
-          if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-            this.x += 3;
-          }
-          if (mouse.x > this.x && this.x > this.size * 10) {
-            this.x -= 3;
-          }
-          if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-            this.y += 3;
-          }
-          if (mouse.y > this.y && this.y > this.size * 10) {
-            this.y -= 3;
-          }
-        }
-        this.draw();
-      }
-    }
-    
-    function initParticles() {
-      particlesArray = [];
-      for (let i = 0; i < numberOfParticles; i++) {
-        let size = Math.random() * 3 + 1;
-        let x = Math.random() * (canvas.width - size * 2) + size;
-        let y = Math.random() * (canvas.height - size * 2) + size;
-        let directionX = (Math.random() * 0.5) - 0.25;
-        let directionY = (Math.random() * 0.5) - 0.25;
-        let color = '#ffffff';
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-      }
-    }
-    initParticles();
-    
-    function connectParticles() {
-      for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-          let dx = particlesArray[a].x - particlesArray[b].x;
-          let dy = particlesArray[a].y - particlesArray[b].y;
-          let distance = dx * dx + dy * dy;
-          if (distance < (canvas.width/7) * (canvas.height/7)) {
-            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-    
-    function animateParticles() {
-      requestAnimationFrame(animateParticles);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-      }
-      connectParticles();
-    }
-    animateParticles();
   </script>
 </body>
 </html>

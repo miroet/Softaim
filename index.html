@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OverAim AI Assistant - Unleash the power of AI-powered precision for the best aiming experience in Fortnite and beyond." />
+  <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and customizable features." />
   <title>OverAim AI Assistant</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -38,7 +38,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Subtle Animated Gradient Background for Canvas */
+    /* Subdued Animated Gradient Background for Canvas */
     #interactiveCanvas {
       position: fixed;
       top: 0;
@@ -64,7 +64,6 @@
       color: #EDEDED;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      /* The canvas provides the background */
     }
 
     /* Sticky Navigation */
@@ -80,9 +79,9 @@
     }
     nav a {
       color: #EDEDED;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 10px;
       font-weight: 600;
       transition: color 0.3s ease, transform 0.3s ease;
     }
@@ -124,11 +123,30 @@
       to { opacity: 1; }
     }
 
+    /* Section Styles */
+    section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    section h2 {
+      color: #6C63FF;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #EDEDED;
+      text-align: center;
+    }
+
     /* Header Section */
     .header {
       text-align: center;
       padding: 60px 0;
-      animation: fadeInUp 1s ease-out both;
     }
     .header h1 {
       font-size: 3rem;
@@ -147,31 +165,7 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
-    /* About Section */
-    .about-section {
-      margin: 40px 0;
-      padding: 20px;
-      background: rgba(20,20,30,0.7);
-      border-radius: 10px;
-      animation: fadeInUp 1s ease-out both;
-    }
-    .about-section h2 {
-      color: #6C63FF;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    .about-section p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      text-align: center;
-      color: #EDEDED;
-    }
-
-    /* Features Section */
-    .features-section {
-      margin: 40px 0;
-      animation: fadeInUp 1s ease-out both;
-    }
+    /* Features Section (using static image placeholder) */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -181,6 +175,7 @@
     .features-content {
       max-width: 500px;
       line-height: 1.6;
+      text-align: left;
     }
     .features-content h2 {
       margin-bottom: 10px;
@@ -189,31 +184,42 @@
     .features-content ul {
       margin: 15px 0;
       list-style: disc inside;
+      padding-left: 20px;
     }
-    .features-video video {
+    .features-image {
       width: 100%;
       max-width: 500px;
       border-radius: 15px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       transition: transform 0.4s ease;
     }
-    .features-video video:hover {
+    .features-image:hover {
       transform: scale(1.05);
     }
 
-    /* Reviews Section */
-    .reviews-section {
+    /* Information Section */
+    .info-section {
       margin: 40px 0;
       padding: 20px;
-      background: rgba(20,20,30,0.7);
+      background: rgba(20,20,30,0.75);
       border-radius: 10px;
       animation: fadeInUp 1s ease-out both;
     }
-    .reviews-section h2 {
+    .info-section h2 {
       color: #6C63FF;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
+    .info-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      margin: 10px auto;
+      max-width: 800px;
+      text-align: justify;
+    }
+
+    /* Reviews Section */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -241,15 +247,16 @@
       text-align: right;
     }
 
-    /* Pricing Section */
-    .pricing-section {
-      text-align: center;
-      margin: 50px 0;
-      animation: fadeInUp 1s ease-out both;
-    }
-    .pricing-section h2 {
-      color: #6C63FF;
+    /* Pricing Section with Invite Rewards */
+    .invite-rewards {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 15px;
+      border-radius: 8px;
       margin-bottom: 20px;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.4;
     }
     .pricing-plans {
       display: flex;
@@ -302,20 +309,9 @@
     }
     
     /* FAQ Section */
-    .faq-section {
-      margin: 40px 0;
-      padding: 20px;
-      background: rgba(20,20,30,0.7);
-      border-radius: 10px;
-      animation: fadeInUp 1s ease-out both;
-    }
-    .faq-section h2 {
-      color: #6C63FF;
-      text-align: center;
-      margin-bottom: 20px;
-    }
     .faq-item {
       margin-bottom: 15px;
+      text-align: left;
     }
     .faq-item h3 {
       font-size: 1.1rem;
@@ -328,19 +324,7 @@
       margin-left: 10px;
     }
     
-    /* Our Team Section */
-    .team-section {
-      margin: 40px 0;
-      padding: 20px;
-      background: rgba(20,20,30,0.7);
-      border-radius: 10px;
-      animation: fadeInUp 1s ease-out both;
-    }
-    .team-section h2 {
-      color: #6C63FF;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    /* Developers Section */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -370,14 +354,13 @@
     }
     
     /* Payment Methods Section */
-    .payment-methods {
+    .payment-methods p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #cccccc;
+      max-width: 800px;
+      margin: 0 auto 15px;
       text-align: center;
-      margin-top: 40px;
-      animation: fadeInUp 1s ease-out both;
-    }
-    .payment-methods h2 {
-      margin-bottom: 20px;
-      color: #6C63FF;
     }
     .payment-methods .payment-icons {
       display: flex;
@@ -401,7 +384,6 @@
       color: #A3A3D1;
       background-color: rgba(0,0,0,0.85);
       margin-top: 40px;
-      animation: fadeInUp 1s ease-out both;
     }
     footer a {
       color: #6C63FF;
@@ -437,10 +419,11 @@
     <a href="#">Home</a>
     <a href="#about">About</a>
     <a href="#features">Features</a>
+    <a href="#info">Info</a>
     <a href="#reviews">Reviews</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
-    <a href="#team">Team</a>
+    <a href="#team">Developers</a>
     <a href="#payment">Payment</a>
     <a href="#footer">Contact</a>
   </nav>
@@ -456,78 +439,46 @@
     <!-- Header Section -->
     <div class="header">
       <h1>🚀 OVERAIM AI ASSISTANT</h1>
-      <p>Unleash the Power of AI-Powered Precision</p>
+      <p>Elevate your gaming precision with AI-driven insights.</p>
     </div>
     
     <!-- About Section -->
-    <div class="about-section" id="about">
+    <section id="about" class="about-section">
       <h2>About OverAim AI Assistant</h2>
       <p>
-        OverAim AI Assistant harnesses advanced algorithms to optimize your gameplay. Whether you're in a competitive match or exploring new strategies, our assistant adapts to your style for a seamless experience. Join thousands of satisfied gamers who have elevated their performance and dominate the field with precision and ease.
+        OverAim AI Assistant is built to give gamers a competitive edge by providing real-time analytics, customizable settings, and adaptive support. Trusted by thousands, our tool enhances precision and decision-making in high-pressure gaming environments.
       </p>
-    </div>
+    </section>
     
     <!-- Features Section -->
-    <div class="features-section" id="features">
+    <section id="features">
       <div class="features-grid">
         <div class="features-content">
-          <h2>🔍 Features Overview</h2>
-          <p>
-            OverAim AI Assistant delivers ultimate precision to your gameplay. Customize your settings for aimbots, advanced visuals, and exclusive features that give you a competitive edge.
-          </p>
+          <h2>Key Features</h2>
           <ul>
-            <li>Customizable FOV & Slots</li>
-            <li>Humanization Options</li>
-            <li>ESP & Aimlines</li>
-            <li>Triggerbot with Confidence Slider</li>
+            <li>Customizable Field of View & Slots</li>
+            <li>Adaptive Humanization Options</li>
+            <li>Enhanced Visuals with ESP & Aimlines</li>
+            <li>Triggerbot with Adjustable Confidence Slider</li>
           </ul>
-          <a href="https://discord.gg/usdJF227HS" class="button">💸 Get OverAim Now</a>
-          <p>If link not working, Discord: <strong>miro0x.</strong></p>
+          <a href="https://discord.gg/yourcommunity" class="button">Join Our Community</a>
         </div>
-        <div class="features-video">
-          <video autoplay loop muted>
-            <source src="preview.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        <div>
+          <img src="assets/feature-placeholder.png" alt="Feature Preview" class="features-image" />
         </div>
       </div>
-      
-      <!-- Carousel Section -->
-      <div class="carousel-wrapper">
-        <!-- Enemy Visuals Carousel -->
-        <div class="carousel-container">
-          <h2>🎯 Enemy Visuals Preview</h2>
-          <p>Experience unparalleled clarity with advanced enemy visuals.</p>
-          <div class="carousel" id="enemyVisualsCarousel">
-            <img src="assets/filled.png" alt="Filled Enemy Visual" class="active" />
-            <img src="assets/regular.png" alt="Regular Enemy Visual" />
-            <img src="assets/corner.png" alt="Corner Enemy Visual" />
-          </div>
-        </div>
-        <!-- Aim Preview Carousel -->
-        <div class="carousel-container">
-          <h2>🎯 Aim Preview</h2>
-          <p>See OverAim in action with smooth aiming capabilities.</p>
-          <div class="carousel" id="aimPreviewCarousel">
-            <video autoplay loop muted class="active">
-              <source src="assets/aim1.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <video muted>
-              <source src="assets/aim2.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <video muted>
-              <source src="assets/aim3.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
+    
+    <!-- Information Section -->
+    <section id="info" class="info-section">
+      <h2>Product Information</h2>
+      <p>
+        OverAim AI Assistant integrates seamlessly with your gaming setup. Leveraging advanced algorithms and customizable parameters, it helps you dominate every match with detailed performance analytics, in-game visual enhancements, and continuous updates backed by a dedicated support team.
+      </p>
+    </section>
     
     <!-- Reviews Section -->
-    <div class="reviews-section" id="reviews">
+    <section id="reviews" class="reviews-section">
       <h2>Customer Reviews</h2>
       <div class="reviews-grid">
         <div class="review-card">
@@ -551,7 +502,7 @@
           <p class="review-author">0X504 Sxtpa — 18.1.2025 3.04</p>
         </div>
         <div class="review-card">
-          <p class="review-text">+rep W ai cheats its crazy asf and ud<br>best support here</p>
+          <p class="review-text">+rep W ai cheats its crazy asf and ud best support here</p>
           <p class="review-author">LaDos. — 19.1.2025 17.09</p>
         </div>
         <div class="review-card">
@@ -571,53 +522,71 @@
           <p class="review-author">Kubazap. (aka. Magik) — 25.1.2025 12.54</p>
         </div>
       </div>
-    </div>
+    </section>
     
-    <!-- Pricing Section -->
-    <div class="pricing-section" id="pricing">
-      <h2>💰 Pricing</h2>
+    <!-- Pricing Section with Invite Rewards -->
+    <section id="pricing" class="pricing-section">
+      <h2>Invite Rewards & Pricing</h2>
+      <div class="invite-rewards">
+        <p><strong>📢 | REWARDS CHANNEL</strong></p>
+        <p>
+          🎁 <strong>Invite Rewards:</strong><br>
+          🔗 4 Invites = 🎮 3 Days Access
+        </p>
+        <p>
+          🚀 <strong>Boost Rewards:</strong><br>
+          ⭐ 1 Server Boost = 🎮 3 Days Access
+        </p>
+        <p>
+          💡 <strong>How to Claim:</strong><br>
+          1️⃣ Check your invite count using /invites.<br>
+          2️⃣ Boost the server and share proof with the team.<br>
+          3️⃣ DM a moderator or open a ticket to redeem your reward!
+        </p>
+        <p>🎉 Start inviting or boosting now to unlock your exclusive access!</p>
+      </div>
       <div class="pricing-plans">
         <div class="pricing-card">
           <h3>1 Week</h3>
           <p class="original-price">€10</p>
           <p class="discounted-price">€7</p>
-          <p>Perfect for short-term use!</p>
+          <p>Perfect for a short-term boost!</p>
         </div>
         <div class="pricing-card">
           <h3>1 Month</h3>
           <p class="original-price">€20</p>
           <p class="discounted-price">€14</p>
-          <p>Best for regular players!</p>
+          <p>Best for consistent improvement!</p>
         </div>
         <div class="pricing-card">
           <h3>Lifetime</h3>
           <p class="original-price">€30</p>
           <p class="discounted-price">€21</p>
-          <p>Pay once for lifetime access!</p>
+          <p>Pay once, enjoy forever!</p>
         </div>
       </div>
-    </div>
+    </section>
     
     <!-- FAQ Section -->
-    <div class="faq-section" id="faq">
+    <section id="faq" class="faq-section">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
         <h3>What is OverAim AI Assistant?</h3>
-        <p>OverAim AI Assistant is an AI-powered tool designed to enhance your gaming precision with customizable features and real-time analytics.</p>
+        <p>It is an AI-powered tool that optimizes your gaming precision through customizable settings and real-time analytics.</p>
       </div>
       <div class="faq-item">
         <h3>How do I get started?</h3>
-        <p>Click the "Get OverAim Now" button to join our community and follow the installation instructions to activate the assistant.</p>
+        <p>Join our community by clicking the invite button, then follow our simple setup guide and reach out for support if needed.</p>
       </div>
       <div class="faq-item">
-        <h3>Is there a free trial available?</h3>
-        <p>Yes, we offer a one-week free trial so you can experience the full capabilities of OverAim AI Assistant.</p>
+        <h3>How do the invite rewards work?</h3>
+        <p>Earn extra access days by inviting friends or boosting the server. Check your invite count with /invites and redeem via a moderator or ticket.</p>
       </div>
-    </div>
+    </section>
     
-    <!-- Our Team Section -->
-    <div class="team-section" id="team">
-      <h2>Meet Our Team</h2>
+    <!-- Developers Section -->
+    <section id="team" class="team-section">
+      <h2>Our Developers & Team</h2>
       <div class="team-grid">
         <div class="team-member">
           <img src="https://via.placeholder.com/100" alt="Alex Johnson" />
@@ -634,12 +603,25 @@
           <h3>Michael Lee</h3>
           <p>Product Manager</p>
         </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/100" alt="Ravi Patel" />
+          <h3>Ravi Patel</h3>
+          <p>Backend Engineer</p>
+        </div>
       </div>
-    </div>
+    </section>
     
     <!-- Payment Methods Section -->
-    <div class="payment-methods" id="payment">
-      <h2>💳 Accepted Payment Methods</h2>
+    <section id="payment" class="payment-methods">
+      <h2>💳 Payment Methods</h2>
+      <p>
+        We support a variety of secure payment methods for your convenience:<br>
+        🔹 <strong>PayPal:</strong> Trusted worldwide for secure transactions.<br>
+        🔹 <strong>Credit Cards:</strong> Visa, Mastercard, and more are accepted.<br>
+        🔹 <strong>Cryptocurrency:</strong> Bitcoin, Ethereum, and other major cryptocurrencies.<br>
+        🔹 <strong>Paysafe Cards:</strong> Prepaid cards for secure and anonymous payments.<br>
+        🔹 <strong>Gift Cards:</strong> Select popular gift cards are accepted.
+      </p>
       <div class="payment-icons">
         <img src="credit-card-logo.png" alt="Credit Card" />
         <img src="crypto-logo.png" alt="Cryptocurrency" />
@@ -647,13 +629,13 @@
         <img src="paypal-logo.png" alt="PayPal" />
         <img src="paysafe-logo.png" alt="Paysafe" />
       </div>
-    </div>
+    </section>
     
     <!-- Footer Section -->
     <footer id="footer">
       <p>
         © 2025 OverAim AI. All rights reserved. | 
-        <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a>
+        <a href="https://discord.gg/yourcommunity">Join Our Discord</a>
       </p>
     </footer>
   </div>
@@ -684,7 +666,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Enemy Visuals Carousel Functionality
+    // Enemy Visuals Carousel Functionality (Static Images)
     const enemyCarousel = document.getElementById('enemyVisualsCarousel');
     const enemyImages = enemyCarousel.querySelectorAll('img');
     let enemyIndex = 0;
@@ -695,17 +677,14 @@
     }
     setInterval(changeEnemyVisuals, 2000);
     
-    // Aim Preview Carousel Functionality
+    // Aim Preview Carousel Functionality (Static Images)
     const aimCarousel = document.getElementById('aimPreviewCarousel');
-    const aimVideos = aimCarousel.querySelectorAll('video');
+    const aimElements = aimCarousel.querySelectorAll('video, img');
     let aimIndex = 0;
     function changeAimPreview() {
-      aimVideos[aimIndex].classList.remove('active');
-      aimVideos[aimIndex].pause();
-      aimVideos[aimIndex].currentTime = 0;
-      aimIndex = (aimIndex + 1) % aimVideos.length;
-      aimVideos[aimIndex].classList.add('active');
-      aimVideos[aimIndex].play();
+      aimElements[aimIndex].classList.remove('active');
+      aimIndex = (aimIndex + 1) % aimElements.length;
+      aimElements[aimIndex].classList.add('active');
     }
     setInterval(changeAimPreview, 5000);
     
@@ -743,7 +722,6 @@
         ctx.fill();
       }
       update() {
-        // Reverse direction if hitting canvas borders
         if (this.x + this.size > canvas.width || this.x - this.size < 0) {
           this.directionX = -this.directionX;
         }
@@ -752,8 +730,6 @@
         }
         this.x += this.directionX;
         this.y += this.directionY;
-        
-        // Interaction with mouse
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);

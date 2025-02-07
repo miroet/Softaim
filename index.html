@@ -3,18 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and customizable features." />
+  <meta name="description" content="OverAim AI Assistant - Unleash the power of AI-powered precision for the best aiming experience in Fortnite and beyond." />
   <title>OverAim AI Assistant</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* Loader Styles */
+    /* Global Settings */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #EDEDED;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      cursor: url('https://example.com/cursor.png'), auto; /* Custom cursor from original code */
+    }
+    
+    /* Loader */
     #loader {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: #000;
       display: flex;
       align-items: center;
@@ -35,47 +51,41 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    /* Vanta.js Interactive Background Container */
-    #vanta-bg {
+    
+    /* Animated Background: Subtle gradient + particles */
+    #interactiveCanvas {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      z-index: -2;
+      background: linear-gradient(45deg, #2c3e50, #34495e, #2c3e50);
+      background-size: 400% 400%;
+      animation: gradientAnimation 30s ease infinite;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     
-    /* General Styles */
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #EDEDED;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      cursor: url('https://example.com/cursor.png'), auto;
-    }
-    
-    /* Sticky Navigation with Shrink Effect */
+    /* Sticky Navigation */
     nav {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
-      background-color: rgba(0,0,0,0.85);
+      background-color: rgba(0,0,0,0.75);
       padding: 15px 30px;
       z-index: 100;
-      transition: all 0.3s ease;
-    }
-    nav.shrink {
-      padding: 8px 30px;
-      background-color: rgba(0,0,0,0.95);
+      transition: background-color 0.5s ease;
     }
     nav a {
       color: #EDEDED;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       text-decoration: none;
-      margin: 0 10px;
+      margin: 0 15px;
       font-weight: 600;
       transition: color 0.3s ease, transform 0.3s ease;
     }
@@ -99,7 +109,9 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
       z-index: 110;
     }
-    .scroll-top:hover { transform: scale(1.1); }
+    .scroll-top:hover {
+      transform: scale(1.1);
+    }
     
     /* Content Wrapper */
     .content {
@@ -115,30 +127,11 @@
       to { opacity: 1; }
     }
     
-    /* Section Styles */
-    section {
-      margin: 40px 0;
-      padding: 20px;
-      background: rgba(20,20,30,0.7);
-      border-radius: 10px;
-      animation: fadeInUp 1s ease-out both;
-    }
-    section h2 {
-      color: #6C63FF;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    section p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #EDEDED;
-      text-align: center;
-    }
-    
     /* Header Section */
     .header {
       text-align: center;
       padding: 60px 0;
+      animation: fadeInUp 1s ease-out both;
     }
     .header h1 {
       font-size: 3rem;
@@ -148,14 +141,40 @@
       text-shadow: 0 3px 8px rgba(0,0,0,0.7);
       transition: transform 0.3s ease;
     }
-    .header h1:hover { transform: scale(1.05); }
+    .header h1:hover {
+      transform: scale(1.05);
+    }
     .header p {
       font-size: 1.2rem;
       color: #A3A3D1;
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
     
-    /* Features Section */
+    /* About Section (same as old, with refined text) */
+    .about-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .about-section h2 {
+      color: #6C63FF;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .about-section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      color: #EDEDED;
+    }
+    
+    /* Features Section with Carousels */
+    .features-section {
+      margin: 40px 0;
+      animation: fadeInUp 1s ease-out both;
+    }
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -165,44 +184,76 @@
     .features-content {
       max-width: 500px;
       line-height: 1.6;
-      text-align: left;
     }
-    .features-content h2 { margin-bottom: 10px; color: #6C63FF; }
+    .features-content h2 {
+      margin-bottom: 10px;
+      color: #6C63FF;
+    }
     .features-content ul {
       margin: 15px 0;
       list-style: disc inside;
-      padding-left: 20px;
     }
-    .features-video video,
-    .features-image {
+    .features-video video {
       width: 100%;
       max-width: 500px;
       border-radius: 15px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       transition: transform 0.4s ease;
     }
-    .features-video video:hover,
-    .features-image:hover { transform: scale(1.05); }
+    .features-video video:hover {
+      transform: scale(1.05);
+    }
+    /* Carousel styles (enemy visuals and aim preview) */
+    .carousel-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .carousel-container {
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+    }
+    .carousel {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .carousel img,
+    .carousel video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1.2s ease;
+    }
+    .carousel .active {
+      opacity: 1;
+    }
     
-    /* Information Section */
-    .info-section {
+    /* Reviews Section (as before) */
+    .reviews-section {
       margin: 40px 0;
       padding: 20px;
-      background: rgba(20,20,30,0.75);
+      background: rgba(20,20,30,0.7);
       border-radius: 10px;
       animation: fadeInUp 1s ease-out both;
     }
-    .info-section h2 { color: #6C63FF; text-align: center; margin-bottom: 15px; }
-    .info-section p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #cccccc;
-      max-width: 800px;
-      margin: 10px auto;
-      text-align: justify;
+    .reviews-section h2 {
+      color: #6C63FF;
+      text-align: center;
+      margin-bottom: 20px;
     }
-    
-    /* Reviews Section (Real Reviews) */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -230,16 +281,15 @@
       text-align: right;
     }
     
-    /* Invite Rewards & Pricing Section */
-    .invite-rewards {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 15px;
-      border-radius: 8px;
+    /* Pricing Section */
+    .pricing-section {
+      text-align: center;
+      margin: 50px 0;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .pricing-section h2 {
+      color: #6C63FF;
       margin-bottom: 20px;
-      text-align: left;
-      font-size: 0.95rem;
-      line-height: 1.4;
     }
     .pricing-plans {
       display: flex;
@@ -259,7 +309,10 @@
       transform: translateY(-8px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.6);
     }
-    .pricing-card h3 { color: #FFFFFF; margin-bottom: 10px; }
+    .pricing-card h3 {
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
     .pricing-card .original-price {
       text-decoration: line-through;
       color: #A3A3D1;
@@ -268,7 +321,10 @@
       font-size: 1.5rem;
       color: #6CFF6C;
     }
-    .pricing-card p { color: #B0B0DA; margin-top: 10px; }
+    .pricing-card p {
+      color: #B0B0DA;
+      margin-top: 10px;
+    }
     .button {
       display: inline-block;
       margin-top: 15px;
@@ -286,9 +342,20 @@
     }
     
     /* FAQ Section */
+    .faq-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .faq-section h2 {
+      color: #6C63FF;
+      text-align: center;
+      margin-bottom: 20px;
+    }
     .faq-item {
       margin-bottom: 15px;
-      text-align: left;
     }
     .faq-item h3 {
       font-size: 1.1rem;
@@ -301,32 +368,94 @@
       margin-left: 10px;
     }
     
-    /* Developer Section (Only Developer: miro0x) */
-    .developer-section {
+    /* Our Team Section */
+    .team-section {
       margin: 40px 0;
       padding: 20px;
       background: rgba(20,20,30,0.7);
       border-radius: 10px;
-      text-align: center;
       animation: fadeInUp 1s ease-out both;
     }
-    .developer-section h2 {
+    .team-section h2 {
       color: #6C63FF;
-      margin-bottom: 15px;
+      text-align: center;
+      margin-bottom: 20px;
     }
-    .developer-section p {
-      font-size: 1rem;
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .team-member {
+      text-align: center;
+      color: #EDEDED;
+    }
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #6C63FF;
+    }
+    .team-member h3 {
+      margin: 5px 0;
+      font-size: 1.1rem;
+    }
+    .team-member p {
+      margin: 0;
+      font-size: 0.9rem;
       color: #cccccc;
     }
     
-    /* Payment Methods Section */
-    .payment-methods p {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: #cccccc;
-      max-width: 800px;
-      margin: 0 auto 15px;
+    /* Contact Section */
+    .contact-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .contact-section h2 {
+      color: #6C63FF;
       text-align: center;
+      margin-bottom: 20px;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    .contact-form button {
+      padding: 10px 20px;
+      border: none;
+      background: #6C63FF;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: #5A54E0;
+    }
+    
+    /* Payment Methods Section */
+    .payment-methods {
+      text-align: center;
+      margin-top: 40px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .payment-methods h2 {
+      margin-bottom: 20px;
+      color: #6C63FF;
     }
     .payment-methods .payment-icons {
       display: flex;
@@ -350,6 +479,7 @@
       color: #A3A3D1;
       background-color: rgba(0,0,0,0.85);
       margin-top: 40px;
+      animation: fadeInUp 1s ease-out both;
     }
     footer a {
       color: #6C63FF;
@@ -357,12 +487,20 @@
       text-decoration: none;
       transition: color 0.3s ease;
     }
-    footer a:hover { color: #A3A3D1; }
+    footer a:hover {
+      color: #A3A3D1;
+    }
     
     /* Keyframe Animation */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -373,21 +511,21 @@
   </div>
   
   <!-- Sticky Navigation -->
-  <nav id="navbar">
+  <nav>
     <a href="#">Home</a>
     <a href="#about">About</a>
     <a href="#features">Features</a>
-    <a href="#info">Info</a>
     <a href="#reviews">Reviews</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
-    <a href="#developer">Developer</a>
+    <a href="#team">Team</a>
     <a href="#payment">Payment</a>
-    <a href="#footer">Contact</a>
+    <a href="#contact">Contact</a>
+    <a href="#footer">Footer</a>
   </nav>
   
-  <!-- Vanta.js Interactive Wallpaper -->
-  <div id="vanta-bg"></div>
+  <!-- Animated Background Canvas -->
+  <canvas id="interactiveCanvas"></canvas>
   
   <!-- Scroll-to-Top Button -->
   <div class="scroll-top" id="scrollTopBtn">↑</div>
@@ -397,50 +535,78 @@
     <!-- Header Section -->
     <div class="header">
       <h1>🚀 OVERAIM AI ASSISTANT</h1>
-      <p>Elevate your gaming precision with AI-driven insights.</p>
+      <p>Unleash the Power of AI-Powered Precision</p>
     </div>
     
     <!-- About Section -->
-    <section id="about">
+    <div class="about-section" id="about">
       <h2>About OverAim AI Assistant</h2>
       <p>
-        OverAim AI Assistant is engineered to give gamers a competitive edge through real-time analytics, customizable settings, and adaptive support. Integrated seamlessly with your gaming setup, it helps improve precision and decision-making in every match.
+        OverAim AI Assistant harnesses advanced algorithms to optimize your gameplay. Whether you're in a competitive match or exploring new strategies, our assistant adapts to your style for a seamless experience. Join thousands of satisfied gamers who have elevated their performance and dominate the field with precision and ease.
       </p>
-    </section>
+    </div>
     
     <!-- Features Section -->
-    <section id="features">
+    <div class="features-section" id="features">
       <div class="features-grid">
         <div class="features-content">
-          <h2>Key Features</h2>
+          <h2>🔍 Features Overview</h2>
+          <p>
+            OverAim AI Assistant delivers ultimate precision to your gameplay. Customize your settings for aimbots, advanced visuals, and exclusive features that give you a competitive edge.
+          </p>
           <ul>
-            <li>Customizable Field of View & Slots</li>
-            <li>Adaptive Humanization Options</li>
-            <li>Enhanced Visuals with ESP & Aimlines</li>
-            <li>Triggerbot with Adjustable Confidence Slider</li>
+            <li>Customizable FOV & Slots</li>
+            <li>Humanization Options</li>
+            <li>ESP & Aimlines</li>
+            <li>Triggerbot with Confidence Slider</li>
           </ul>
-          <a href="https://discord.gg/yourcommunity" class="button">Join Our Community</a>
+          <a href="https://discord.gg/usdJF227HS" class="button">💸 Get OverAim Now</a>
+          <p>If link not working, Discord: <strong>miro0x.</strong></p>
         </div>
-        <div>
-          <!-- Preserving original video asset -->
-          <video class="features-video" autoplay loop muted>
+        <div class="features-video">
+          <video autoplay loop muted>
             <source src="preview.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
       </div>
-    </section>
-    
-    <!-- Information Section -->
-    <section id="info" class="info-section">
-      <h2>Product Information</h2>
-      <p>
-        OverAim AI Assistant leverages advanced algorithms and customizable parameters to optimize your gameplay. Enjoy in-depth performance analytics, enhanced in-game visuals, and continuous support—all designed to help you dominate the competition.
-      </p>
-    </section>
+      
+      <!-- Carousel Section -->
+      <div class="carousel-wrapper">
+        <!-- Enemy Visuals Carousel -->
+        <div class="carousel-container">
+          <h2>🎯 Enemy Visuals Preview</h2>
+          <p>Experience unparalleled clarity with advanced enemy visuals.</p>
+          <div class="carousel" id="enemyVisualsCarousel">
+            <img src="assets/filled.png" alt="Filled Enemy Visual" class="active" />
+            <img src="assets/regular.png" alt="Regular Enemy Visual" />
+            <img src="assets/corner.png" alt="Corner Enemy Visual" />
+          </div>
+        </div>
+        <!-- Aim Preview Carousel -->
+        <div class="carousel-container">
+          <h2>🎯 Aim Preview</h2>
+          <p>See OverAim in action with smooth aiming capabilities.</p>
+          <div class="carousel" id="aimPreviewCarousel">
+            <video autoplay loop muted class="active">
+              <source src="assets/aim1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video muted>
+              <source src="assets/aim2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video muted>
+              <source src="assets/aim3.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <!-- Reviews Section -->
-    <section id="reviews">
+    <div class="reviews-section" id="reviews">
       <h2>Customer Reviews</h2>
       <div class="reviews-grid">
         <div class="review-card">
@@ -464,7 +630,7 @@
           <p class="review-author">0X504 Sxtpa — 18.1.2025 3.04</p>
         </div>
         <div class="review-card">
-          <p class="review-text">+rep W ai cheats its crazy asf and ud best support here</p>
+          <p class="review-text">+rep W ai cheats its crazy asf and ud<br>best support here</p>
           <p class="review-author">LaDos. — 19.1.2025 17.09</p>
         </div>
         <div class="review-card">
@@ -484,85 +650,86 @@
           <p class="review-author">Kubazap. (aka. Magik) — 25.1.2025 12.54</p>
         </div>
       </div>
-    </section>
+    </div>
     
-    <!-- Invite Rewards & Pricing Section -->
-    <section id="pricing" class="pricing-section">
-      <h2>Invite Rewards & Pricing</h2>
-      <div class="invite-rewards">
-        <p><strong>📢 | REWARDS CHANNEL</strong></p>
-        <p>
-          🎁 <strong>Invite Rewards:</strong><br>
-          🔗 4 Invites = 🎮 3 Days Access
-        </p>
-        <p>
-          🚀 <strong>Boost Rewards:</strong><br>
-          ⭐ 1 Server Boost = 🎮 3 Days Access
-        </p>
-        <p>
-          💡 <strong>How to Claim:</strong><br>
-          1️⃣ Check your invite count using /invites.<br>
-          2️⃣ Boost the server and share proof with the team.<br>
-          3️⃣ DM a moderator or open a ticket to redeem your reward!
-        </p>
-        <p>🎉 Start inviting or boosting now to unlock your exclusive access!</p>
-      </div>
+    <!-- Pricing Section -->
+    <div class="pricing-section" id="pricing">
+      <h2>💰 Pricing</h2>
       <div class="pricing-plans">
         <div class="pricing-card">
           <h3>1 Week</h3>
           <p class="original-price">€10</p>
           <p class="discounted-price">€7</p>
-          <p>Perfect for a short-term boost!</p>
+          <p>Perfect for short-term use!</p>
         </div>
         <div class="pricing-card">
           <h3>1 Month</h3>
           <p class="original-price">€20</p>
           <p class="discounted-price">€14</p>
-          <p>Best for consistent improvement!</p>
+          <p>Best for regular players!</p>
         </div>
         <div class="pricing-card">
           <h3>Lifetime</h3>
           <p class="original-price">€30</p>
           <p class="discounted-price">€21</p>
-          <p>Pay once, enjoy forever!</p>
+          <p>Pay once for lifetime access!</p>
         </div>
       </div>
-    </section>
+    </div>
     
     <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
+    <div class="faq-section" id="faq">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item">
         <h3>What is OverAim AI Assistant?</h3>
-        <p>It is an AI-powered tool that optimizes your gaming precision through customizable settings and real-time analytics.</p>
+        <p>It is an AI-powered tool designed to enhance your gaming precision with customizable settings and real-time analytics.</p>
       </div>
       <div class="faq-item">
         <h3>How do I get started?</h3>
-        <p>Join our community via the invite rewards section, then follow our simple setup guide.</p>
+        <p>Click the "Get OverAim Now" button and follow the instructions to join our community.</p>
       </div>
       <div class="faq-item">
-        <h3>How do the invite rewards work?</h3>
-        <p>Earn extra access days by inviting friends or boosting the server. Check your count with /invites and redeem by contacting a moderator.</p>
+        <h3>Is there a free trial available?</h3>
+        <p>Yes, we offer a one-week free trial so you can fully experience OverAim AI Assistant's features.</p>
       </div>
-    </section>
+    </div>
     
-    <!-- Developer Section (Only Developer: miro0x) -->
-    <section id="developer" class="developer-section">
-      <h2>Developer</h2>
-      <p>Developed by <strong>miro0x</strong></p>
-    </section>
+    <!-- Our Team Section -->
+    <div class="team-section" id="team">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="https://via.placeholder.com/100" alt="Alex Johnson" />
+          <h3>Alex Johnson</h3>
+          <p>Lead Developer</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/100" alt="Sara Williams" />
+          <h3>Sara Williams</h3>
+          <p>UI/UX Designer</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/100" alt="Michael Lee" />
+          <h3>Michael Lee</h3>
+          <p>Product Manager</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Section -->
+    <div class="contact-section" id="contact">
+      <h2>Contact Us</h2>
+      <div class="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </div>
+    </div>
     
     <!-- Payment Methods Section -->
-    <section id="payment" class="payment-methods">
-      <h2>💳 Payment Methods</h2>
-      <p>
-        We support a variety of secure payment methods for your convenience:<br>
-        🔹 <strong>PayPal:</strong> Trusted worldwide for secure transactions.<br>
-        🔹 <strong>Credit Cards:</strong> Visa, Mastercard, and more.<br>
-        🔹 <strong>Cryptocurrency:</strong> Bitcoin, Ethereum, and other major cryptocurrencies.<br>
-        🔹 <strong>Paysafe Cards:</strong> Prepaid cards for secure and anonymous payments.<br>
-        🔹 <strong>Gift Cards:</strong> Select popular gift cards are accepted.
-      </p>
+    <div class="payment-methods" id="payment">
+      <h2>💳 Accepted Payment Methods</h2>
       <div class="payment-icons">
         <img src="credit-card-logo.png" alt="Credit Card" />
         <img src="crypto-logo.png" alt="Cryptocurrency" />
@@ -570,33 +737,16 @@
         <img src="paypal-logo.png" alt="PayPal" />
         <img src="paysafe-logo.png" alt="Paysafe" />
       </div>
-    </section>
+    </div>
     
     <!-- Footer Section -->
     <footer id="footer">
       <p>
         © 2025 OverAim AI. All rights reserved. | 
-        <a href="https://discord.gg/yourcommunity">Join Our Discord</a>
+        <a href="https://discord.gg/3f2gH7ZtFm">Join Our Discord</a>
       </p>
     </footer>
   </div>
-  
-  <!-- Vanta.js Scripts for Interactive Wallpaper -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
-  <script>
-    VANTA.FOG({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      highlightColor: 0x6c63ff,
-      midtoneColor: 0x2c3e50,
-      lowlightColor: 0x1a2734,
-      baseColor: 0x000000,
-      speed: 1.0
-    });
-  </script>
   
   <!-- JavaScript Section -->
   <script>
@@ -607,17 +757,7 @@
       setTimeout(() => { loader.style.display = 'none'; }, 800);
     });
     
-    // Shrink Navigation on Scroll
-    window.addEventListener('scroll', function() {
-      const nav = document.getElementById('navbar');
-      if (window.scrollY > 100) {
-        nav.classList.add('shrink');
-      } else {
-        nav.classList.remove('shrink');
-      }
-    });
-    
-    // Scroll-to-Top Button
+    // Scroll-to-Top Button Functionality
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
@@ -632,7 +772,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Enemy Visuals Carousel (Static Images)
+    // Enemy Visuals Carousel Functionality
     const enemyCarousel = document.getElementById('enemyVisualsCarousel');
     const enemyImages = enemyCarousel.querySelectorAll('img');
     let enemyIndex = 0;
@@ -643,19 +783,125 @@
     }
     setInterval(changeEnemyVisuals, 2000);
     
-    // Aim Preview Carousel (Videos/Images)
+    // Aim Preview Carousel Functionality
     const aimCarousel = document.getElementById('aimPreviewCarousel');
-    const aimElements = aimCarousel.querySelectorAll('video, img');
+    const aimVideos = aimCarousel.querySelectorAll('video');
     let aimIndex = 0;
     function changeAimPreview() {
-      aimElements[aimIndex].classList.remove('active');
-      aimIndex = (aimIndex + 1) % aimElements.length;
-      aimElements[aimIndex].classList.add('active');
-      if (aimElements[aimIndex].tagName.toLowerCase() === 'video') {
-        aimElements[aimIndex].play();
-      }
+      aimVideos[aimIndex].classList.remove('active');
+      aimVideos[aimIndex].pause();
+      aimVideos[aimIndex].currentTime = 0;
+      aimIndex = (aimIndex + 1) % aimVideos.length;
+      aimVideos[aimIndex].classList.add('active');
+      aimVideos[aimIndex].play();
     }
     setInterval(changeAimPreview, 5000);
+    
+    // Particle Animation for Interactive Canvas
+    const canvas = document.getElementById('interactiveCanvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+    const numberOfParticles = 100;
+    let mouse = { x: null, y: null, radius: 100 };
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', function(event) {
+      mouse.x = event.x;
+      mouse.y = event.y;
+    });
+    
+    class Particle {
+      constructor(x, y, directionX, directionY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.directionX = directionX;
+        this.directionY = directionY;
+        this.size = size;
+        this.color = color;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      update() {
+        if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+          this.directionX = -this.directionX;
+        }
+        if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+          this.directionY = -this.directionY;
+        }
+        this.x += this.directionX;
+        this.y += this.directionY;
+        
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < mouse.radius + this.size) {
+          if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+            this.x += 3;
+          }
+          if (mouse.x > this.x && this.x > this.size * 10) {
+            this.x -= 3;
+          }
+          if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+            this.y += 3;
+          }
+          if (mouse.y > this.y && this.y > this.size * 10) {
+            this.y -= 3;
+          }
+        }
+        this.draw();
+      }
+    }
+    
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = Math.random() * 3 + 1;
+        let x = Math.random() * (canvas.width - size * 2) + size;
+        let y = Math.random() * (canvas.height - size * 2) + size;
+        let directionX = (Math.random() * 0.5) - 0.25;
+        let directionY = (Math.random() * 0.5) - 0.25;
+        let color = '#ffffff';
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+      }
+    }
+    initParticles();
+    
+    function connectParticles() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let dx = particlesArray[a].x - particlesArray[b].x;
+          let dy = particlesArray[a].y - particlesArray[b].y;
+          let distance = dx * dx + dy * dy;
+          if (distance < (canvas.width/7) * (canvas.height/7)) {
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    
+    function animateParticles() {
+      requestAnimationFrame(animateParticles);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+      connectParticles();
+    }
+    animateParticles();
   </script>
 </body>
 </html>

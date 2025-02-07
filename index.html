@@ -21,7 +21,7 @@
       color: #EDEDED;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      cursor: url('https://example.com/cursor.png'), auto; /* Custom cursor from original code */
+      cursor: url('https://example.com/cursor.png'), auto; /* Custom cursor */
     }
     
     /* Loader */
@@ -52,7 +52,7 @@
       100% { transform: rotate(360deg); }
     }
     
-    /* Animated Background: Subtle gradient + particles */
+    /* Animated Background: Subtle gradient with particles */
     #interactiveCanvas {
       position: fixed;
       top: 0;
@@ -150,7 +150,7 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
     
-    /* About Section (same as old, with refined text) */
+    /* About Section */
     .about-section {
       margin: 40px 0;
       padding: 20px;
@@ -170,7 +170,7 @@
       color: #EDEDED;
     }
     
-    /* Features Section with Carousels */
+    /* Features Section (with carousels) */
     .features-section {
       margin: 40px 0;
       animation: fadeInUp 1s ease-out both;
@@ -203,7 +203,6 @@
     .features-video video:hover {
       transform: scale(1.05);
     }
-    /* Carousel styles (enemy visuals and aim preview) */
     .carousel-wrapper {
       display: flex;
       justify-content: center;
@@ -241,7 +240,7 @@
       opacity: 1;
     }
     
-    /* Reviews Section (as before) */
+    /* Reviews Section */
     .reviews-section {
       margin: 40px 0;
       padding: 20px;
@@ -341,6 +340,26 @@
       background: linear-gradient(135deg, #5A54E0, #6C63FF);
     }
     
+    /* Rewards Section */
+    .rewards-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+      text-align: center;
+    }
+    .rewards-section h2 {
+      color: #6C63FF;
+      margin-bottom: 15px;
+    }
+    .rewards-section p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      color: #EDEDED;
+    }
+    
     /* FAQ Section */
     .faq-section {
       margin: 40px 0;
@@ -368,32 +387,32 @@
       margin-left: 10px;
     }
     
-    /* Our Team Section */
+    /* Our Team Section: Only "Miro" now */
     .team-section {
       margin: 40px 0;
       padding: 20px;
       background: rgba(20,20,30,0.7);
       border-radius: 10px;
       animation: fadeInUp 1s ease-out both;
+      text-align: center;
     }
     .team-section h2 {
       color: #6C63FF;
-      text-align: center;
       margin-bottom: 20px;
     }
     .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      justify-content: center;
       gap: 20px;
-      justify-items: center;
+      flex-wrap: wrap;
     }
     .team-member {
       text-align: center;
       color: #EDEDED;
     }
     .team-member img {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 10px;
@@ -401,50 +420,31 @@
     }
     .team-member h3 {
       margin: 5px 0;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
     .team-member p {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #cccccc;
     }
     
-    /* Contact Section */
+    /* Contact Section: Updated instructions instead of a form */
     .contact-section {
       margin: 40px 0;
       padding: 20px;
       background: rgba(20,20,30,0.7);
       border-radius: 10px;
       animation: fadeInUp 1s ease-out both;
+      text-align: center;
     }
     .contact-section h2 {
       color: #6C63FF;
-      text-align: center;
       margin-bottom: 20px;
     }
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 5px;
-    }
-    .contact-form button {
-      padding: 10px 20px;
-      border: none;
-      background: #6C63FF;
-      color: #fff;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .contact-form button:hover {
-      background: #5A54E0;
+    .contact-section p {
+      font-size: 1rem;
+      color: #EDEDED;
+      line-height: 1.5;
     }
     
     /* Payment Methods Section */
@@ -517,6 +517,7 @@
     <a href="#features">Features</a>
     <a href="#reviews">Reviews</a>
     <a href="#pricing">Pricing</a>
+    <a href="#rewards">Rewards</a>
     <a href="#faq">FAQ</a>
     <a href="#team">Team</a>
     <a href="#payment">Payment</a>
@@ -542,7 +543,7 @@
     <div class="about-section" id="about">
       <h2>About OverAim AI Assistant</h2>
       <p>
-        OverAim AI Assistant harnesses advanced algorithms to optimize your gameplay. Whether you're in a competitive match or exploring new strategies, our assistant adapts to your style for a seamless experience. Join thousands of satisfied gamers who have elevated their performance and dominate the field with precision and ease.
+        OverAim AI Assistant harnesses advanced algorithms to optimize your gameplay. Whether you're in a competitive match or exploring new strategies, our assistant adapts to your style for a seamless experience. Join thousands of satisfied gamers who have elevated their performance with precision and ease.
       </p>
     </div>
     
@@ -561,7 +562,7 @@
             <li>Triggerbot with Confidence Slider</li>
           </ul>
           <a href="https://discord.gg/usdJF227HS" class="button">💸 Get OverAim Now</a>
-          <p>If link not working, Discord: <strong>miro0x.</strong></p>
+          <p>If the link doesn't work, please join our Discord: <strong>miro0x.</strong></p>
         </div>
         <div class="features-video">
           <video autoplay loop muted>
@@ -677,41 +678,52 @@
       </div>
     </div>
     
+    <!-- Rewards Section -->
+    <div class="rewards-section" id="rewards">
+      <h2>📢 Rewards Channel</h2>
+      <p>🎁 Invite Rewards: 4 Invites = 3 Days Access</p>
+      <p>🚀 Boost Rewards: 1 Server Boost = 3 Days Access</p>
+      <p><strong>How to Claim:</strong> Check your invite count using <code>/invites</code>, boost the server and share proof with the team, then DM a moderator to redeem your reward!</p>
+      <p>🎉 Start inviting or boosting now to unlock your exclusive access!</p>
+    </div>
+    
     <!-- FAQ Section -->
     <div class="faq-section" id="faq">
-      <h2>Frequently Asked Questions</h2>
+      <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is OverAim AI Assistant?</h3>
-        <p>It is an AI-powered tool designed to enhance your gaming precision with customizable settings and real-time analytics.</p>
+        <h3>Is the software undetectable?</h3>
+        <p>Yes, it is 100% undetectable with state-of-the-art protection against anti-cheat systems.</p>
       </div>
       <div class="faq-item">
-        <h3>How do I get started?</h3>
-        <p>Click the "Get OverAim Now" button and follow the instructions to join our community.</p>
+        <h3>What games are supported?</h3>
+        <p>Our software is primarily optimized for Fortnite, with compatibility for other games.</p>
       </div>
       <div class="faq-item">
-        <h3>Is there a free trial available?</h3>
-        <p>Yes, we offer a one-week free trial so you can fully experience OverAim AI Assistant's features.</p>
+        <h3>How do I install the software?</h3>
+        <p>You’ll receive detailed setup instructions after purchase.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I get a refund?</h3>
+        <p>Unfortunately, all sales are final. Please ensure compatibility before purchasing.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I need help?</h3>
+        <p>Our support team is available in the 🎟️ Open a Ticket channel on our Discord server.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Still have questions?</h3>
+        <p>Create a ticket for assistance.</p>
       </div>
     </div>
     
-    <!-- Our Team Section -->
+    <!-- Our Team Section: Only Miro -->
     <div class="team-section" id="team">
       <h2>Meet Our Team</h2>
       <div class="team-grid">
         <div class="team-member">
-          <img src="https://via.placeholder.com/100" alt="Alex Johnson" />
-          <h3>Alex Johnson</h3>
-          <p>Lead Developer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/100" alt="Sara Williams" />
-          <h3>Sara Williams</h3>
-          <p>UI/UX Designer</p>
-        </div>
-        <div class="team-member">
-          <img src="https://via.placeholder.com/100" alt="Michael Lee" />
-          <h3>Michael Lee</h3>
-          <p>Product Manager</p>
+          <img src="https://via.placeholder.com/120" alt="Miro" />
+          <h3>Miro</h3>
+          <p>Founder & Developer</p>
         </div>
       </div>
     </div>
@@ -719,12 +731,8 @@
     <!-- Contact Section -->
     <div class="contact-section" id="contact">
       <h2>Contact Us</h2>
-      <div class="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea rows="4" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </div>
+      <p>For inquiries or support, please DM a moderator in the 🎟️ Open a Ticket channel on our Discord server.</p>
+      <p>No contact form available—your fastest route is via Discord!</p>
     </div>
     
     <!-- Payment Methods Section -->

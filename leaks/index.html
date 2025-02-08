@@ -19,7 +19,7 @@
     }
     a { color: #1e90ff; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    
+
     /* Loader Styles */
     #loader {
       position: fixed;
@@ -42,29 +42,54 @@
       animation: spin 1s linear infinite;
     }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    
+
     /* Header styling */
     header {
       background: #1f1f1f;
       padding: 20px 0;
       text-align: center;
       border-bottom: 1px solid #333;
-      margin-bottom: 20px;
+      margin-bottom: 0;
       position: relative;
-      z-index: 2;
+      z-index: 3;
       animation: fadeInDown 1s ease forwards;
     }
     header h1 { font-size: 2.5rem; letter-spacing: 1px; }
-    
-    /* Container styling */
-    .container {
+
+    /* Tabs Navigation */
+    .tabs {
+      background: #1f1f1f;
+      border-bottom: 1px solid #333;
+      z-index: 3;
+      position: relative;
+    }
+    .tabs ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    .tabs ul li {
+      padding: 10px 20px;
+      cursor: pointer;
+      color: #e0e0e0;
+      transition: background 0.3s;
+    }
+    .tabs ul li.active {
+      background: #1e90ff;
+      border-radius: 4px;
+    }
+
+    /* Container styling for tab contents */
+    .container { 
       width: 90%;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 20px auto;
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
-    
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
     /* Warning message styling */
     .warning {
       background: orange;
@@ -76,7 +101,7 @@
       text-align: center;
       animation: fadeInUp 1s ease forwards;
     }
-    
+
     /* Section styling */
     .section {
       background: #1f1f1f;
@@ -87,15 +112,14 @@
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
     }
-    /* Staggered delay for sections */
+    /* Staggered delay for sections within a tab */
     .section:nth-of-type(1) { animation-delay: 0.2s; }
     .section:nth-of-type(2) { animation-delay: 0.4s; }
     .section:nth-of-type(3) { animation-delay: 0.6s; }
     .section:nth-of-type(4) { animation-delay: 0.8s; }
     .section:nth-of-type(5) { animation-delay: 1s; }
     .section:nth-of-type(6) { animation-delay: 1.2s; }
-    .section:nth-of-type(7) { animation-delay: 1.4s; } /* For Public Leaks */
-    
+
     .section h2 {
       font-size: 2rem;
       margin-bottom: 10px;
@@ -105,7 +129,7 @@
     .meta { font-size: 0.9rem; color: #bbb; margin-bottom: 20px; }
     .meta span { margin-right: 15px; }
     .content p { margin-bottom: 15px; }
-    
+
     /* Form & Button styling */
     input[type="text"],
     input[type="url"],
@@ -136,7 +160,7 @@
       background: #0d74d1;
       transform: scale(1.05);
     }
-    
+
     /* Footer styling */
     footer {
       text-align: center;
@@ -145,11 +169,11 @@
       color: #bbb;
       border-top: 1px solid #333;
       position: relative;
-      z-index: 2;
+      z-index: 3;
       animation: fadeInUp 1s ease forwards;
     }
-    
-    /* Canvas Background styling */
+
+    /* Interactive Canvas Background styling */
     #background {
       position: fixed;
       top: 0;
@@ -159,7 +183,7 @@
       z-index: 1;
       background: #121212;
     }
-    
+
     /* Keyframe Animations */
     @keyframes fadeInUp {
       0% { opacity: 0; transform: translateY(20px); }
@@ -184,35 +208,117 @@
     <h1>OverAIM Source/Game Leaks</h1>
   </header>
 
-  <div class="container">
-    <!-- Orange Warning Message -->
-    <div class="warning">
-      ⚠️ WARNING: Use these at your own risk. I am not responsible if something happens.
-    </div>
+  <!-- Tabs Navigation -->
+  <nav class="tabs">
+    <ul>
+      <li data-tab="leaks-tab" class="active">Leaks</li>
+      <li data-tab="public-leaks-tab">Public Leaks</li>
+    </ul>
+  </nav>
 
-    <!-- Existing Leak Sections (Vanityspooferleaks, Clarity, etc.) -->
-    <!-- (Your other leak sections would go here, similar to the previous examples.) -->
+  <!-- Tab Contents Container -->
+  <div class="container" id="tabs-content">
+    <!-- LEAKS TAB: Existing Leak Sections -->
+    <div id="leaks-tab" class="tab-content active">
+      <!-- Vanityspooferleaks Section -->
+      <section class="section" id="vanityspooferleaks">
+        <h2>💻 Vanityspooferleaks</h2>
+        <div class="meta">
+          <span>📅 Date: 22.01 / 08/02/2025</span>
+          <span>👤 Leaker: Miro0x</span>
+        </div>
+        <div class="content">
+          <p>💻 All vanitys spoofer drivers, and stuff – use at your own risk.</p>
+          <a href="https://example.com/vanityspooferspoof.zip" class="download-btn" download>⬇️ Download Vanity Spoofer Leaks</a>
+        </div>
+      </section>
 
-    <!-- Public Leaks Section -->
-    <section class="section" id="public-leaks">
-      <h2>🗣 Public Leaks</h2>
-      <div class="meta">
-        <span>📅 Date: 22.01 / 08/02/2025</span>
-        <span>👤 Leaker: Public</span>
+      <!-- Clarity Src Leak Section -->
+      <section class="section" id="clarity-srcleak">
+        <h2>🤖 Clarity Src Leak!</h2>
+        <div class="meta">
+          <span>📅 Date: 22.01 / 08/02/2025</span>
+          <span>👤 Leaker: Miro0x</span>
+        </div>
+        <div class="content">
+          <p>🤖 Claritys ai aimbot source code – use at your own risk, may need some fixing.</p>
+          <a href="https://example.com/clarityaisrc.zip" class="download-btn" download>⬇️ Download Clarity Ai src</a>
+        </div>
+      </section>
+
+      <!-- aqua_tweaks_paid leak Section -->
+      <section class="section" id="aqua-tweaks-paid">
+        <h2>💧 aqua_tweaks_paid leak</h2>
+        <div class="meta">
+          <span>📅 Date: 22.01 / 08/02/2025</span>
+          <span>👤 Leaker: Miro0x</span>
+        </div>
+        <div class="content">
+          <p>💧 Exclusive aqua_tweaks_paid leak – use at your own risk.</p>
+          <a href="https://example.com/aqua_tweaks_paid.zip" class="download-btn" download>⬇️ Download aqua_tweaks_paid leak</a>
+        </div>
+      </section>
+
+      <!-- CARD CLONING SOFTWARE PACK Section -->
+      <section class="section" id="card-cloning">
+        <h2>💳 CARD CLONING SOFTWARE PACK</h2>
+        <div class="meta">
+          <span>📅 Date: 22.01 / 08/02/2025</span>
+          <span>👤 Leaker: Miro0x</span>
+        </div>
+        <div class="content">
+          <p>💳 Get the CARD CLONING SOFTWARE PACK – use at your own risk.</p>
+          <a href="https://example.com/cardcloning.zip" class="download-btn" download>⬇️ Download CARD CLONING SOFTWARE PACK</a>
+        </div>
+      </section>
+
+      <!-- ProxyChecker Cracked & Filter_List Section -->
+      <section class="section" id="proxychecker">
+        <h2>🌐 ProxyChecker Cracked &amp; Filter_List</h2>
+        <div class="meta">
+          <span>📅 Date: 22.01 / 08/02/2025</span>
+          <span>👤 Leaker: Miro0x</span>
+        </div>
+        <div class="content">
+          <p>🌐 Exclusive leak of ProxyChecker Cracked &amp; Filter_List – use at your own risk.</p>
+          <a href="https://example.com/proxychecker.zip" class="download-btn" download>⬇️ Download ProxyChecker Cracked &amp; Filter_List</a>
+        </div>
+      </section>
+
+      <!-- CHATGPT UNCENSORED FREE Section -->
+      <section class="section" id="chatgpt-uncensored">
+        <h2>💬 CHATGPT UNCENSORED FREE</h2>
+        <div class="meta">
+          <span>📅 Date: 22.01 / 08/02/2025</span>
+          <span>👤 Leaker: Miro0x</span>
+        </div>
+        <div class="content">
+          <p>💬 Download CHATGPT UNCENSORED FREE – use at your own risk.</p>
+          <a href="https://example.com/chatgptuncensored.zip" class="download-btn" download>⬇️ Download CHATGPT UNCENSORED FREE</a>
+        </div>
+      </section>
+    </div> <!-- End of LEAKS TAB -->
+
+    <!-- PUBLIC LEAKS TAB -->
+    <div id="public-leaks-tab" class="tab-content">
+      <!-- Warning: Not Fully Implemented -->
+      <div class="warning">
+        ⚠️ Note: The Public Leaks section is not fully implemented yet.
       </div>
-      <div class="content">
-        <!-- Submission Form -->
-        <form id="publicLeakForm">
-          <input type="text" name="title" placeholder="Leak Title" required />
-          <textarea name="description" placeholder="Leak Description" required></textarea>
-          <input type="url" name="downloadLink" placeholder="Download Link" required />
-          <button type="submit" class="action-btn">Post Your Leak</button>
-        </form>
-        <!-- Container for displaying submitted leaks -->
-        <div id="publicLeakList"></div>
-      </div>
-    </section>
-  </div>
+      <section class="section" id="public-leaks">
+        <h2>🗣 Public Leaks</h2>
+        <div class="meta">
+          <span>📅 Date: 22.01 / 08/02/2025</span>
+          <span>👤 Leaker: Public</span>
+        </div>
+        <div class="content">
+          <p>🗣 This section is under development. In a future update, users will be able to submit their own leaks here.</p>
+          <!-- (Optional: You could later add a form and dynamic content here.) -->
+          <a href="https://example.com/publicleaks" class="action-btn">➡️ Visit Public Leaks Page</a>
+        </div>
+      </section>
+    </div> <!-- End of PUBLIC LEAKS TAB -->
+  </div> <!-- End of Tabs Content Container -->
 
   <footer>
     <p>&copy; 2025 OverAIM Source/Game Leaks. All rights reserved.</p>
@@ -332,55 +438,21 @@
     });
   </script>
   
-  <!-- Public Leaks Submission & Retrieval Script -->
+  <!-- Simple Tab Switching Script -->
   <script>
-    // When the public leak form is submitted…
-    document.getElementById('publicLeakForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      const data = {
-        title: formData.get('title'),
-        description: formData.get('description'),
-        downloadLink: formData.get('downloadLink')
-      };
-      
-      // Send data to your back‑end API (replace the URL with your actual endpoint)
-      fetch('https://example.com/api/leaks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(result => {
-        alert('Leak submitted successfully!');
-        this.reset();
-        loadPublicLeaks(); // Refresh the leak list after submission
-      })
-      .catch(error => console.error('Error:', error));
+    const tabs = document.querySelectorAll('.tabs ul li');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Remove active class from all tabs and hide all contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        // Add active class to the clicked tab and show its content
+        this.classList.add('active');
+        const target = this.getAttribute('data-tab');
+        document.getElementById(target).classList.add('active');
+      });
     });
-    
-    // Function to fetch and display public leaks
-    function loadPublicLeaks() {
-      fetch('https://example.com/api/leaks')
-      .then(response => response.json())
-      .then(leaks => {
-        const leakList = document.getElementById('publicLeakList');
-        leakList.innerHTML = '';
-        leaks.forEach(leak => {
-          leakList.innerHTML += `
-            <div class="leak-item" style="margin-bottom: 20px; padding: 10px; border: 1px solid #333; border-radius: 4px;">
-              <h3>${leak.title}</h3>
-              <p>${leak.description}</p>
-              <a href="${leak.downloadLink}" class="download-btn" download>⬇️ Download</a>
-            </div>
-          `;
-        });
-      })
-      .catch(error => console.error('Error fetching leaks:', error));
-    }
-    
-    // Load the public leaks when the page loads
-    loadPublicLeaks();
   </script>
   
   <!-- Additional External Script -->

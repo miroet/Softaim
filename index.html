@@ -24,7 +24,7 @@
       position: relative;
     }
 
-    /* Loading screen */
+    /* Loading Screen */
     #loading-screen {
       position: fixed;
       width: 100%;
@@ -50,7 +50,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Snowflake background */
+    /* Snowflake Background */
     .snowflakes {
       position: fixed;
       top: 0;
@@ -84,10 +84,20 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .section {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
     .buttons-container {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
       max-width: 400px;
       text-align: center;
       margin-top: 20px;
@@ -140,32 +150,57 @@
 
   <h1>Welcome to OverAim</h1>
 
-  <div class="buttons-container">
-    <a class="btn" href="https://overaim.cc/premiumai">
-      Premium AI
-      <span class="btn-description">Advanced AI tools with exclusive features.</span>
-    </a>
-    <a class="btn" href="https://overaim.cc/freeai">
-      Free AI
-      <span class="btn-description">Get access to basic AI functionalities for free.</span>
-    </a>
-    <a class="btn" href="https://overaim.cc/leaks">
-      Leaks
-      <span class="btn-description">Check out the latest leaks and insights.</span>
-    </a>
-    <a class="btn" href="https://overaim.cc/freespoofer">
-      Free Spoofer
-      <span class="btn-description">Bypass detection with our free spoofer.</span>
-    </a>
-    <a class="btn" href="https://overaim.cc/paidspoofer">
-      Paid Spoofer
-      <span class="btn-description">Premium spoofing with better security.</span>
-    </a>
+  <!-- Free AI Aimbots Section -->
+  <div class="section">
+    <h2>Free AI Aimbots</h2>
+    <div class="buttons-container">
+      <a class="btn" href="https://overaim.cc/freeai">
+        OverAim Free AI Aimbot
+        <span class="btn-description">Get access to basic AI aiming for free.</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Paid AI Aimbots Section -->
+  <div class="section">
+    <h2>Premium AI Aimbots</h2>
+    <div class="buttons-container">
+      <a class="btn" href="https://overaim.cc/premiumai">
+        OverAim AI Aimbot
+        <span class="btn-description">Advanced AI aiming tools with premium features.</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Leaks & Cracks Section -->
+  <div class="section">
+    <h2>Leaks & Cracks</h2>
+    <div class="buttons-container">
+      <a class="btn" href="https://overaim.cc/leaks">
+        Leaks/Cracks
+        <span class="btn-description">Check out the latest leaks and cracked tools.</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Spoofers Section -->
+  <div class="section">
+    <h2>Spoofers</h2>
+    <div class="buttons-container">
+      <a class="btn" href="https://overaim.cc/freespoofer">
+        Free Spoofer
+        <span class="btn-description">Bypass detection with our free spoofer.</span>
+      </a>
+      <a class="btn" href="https://overaim.cc/paidspoofer">
+        Paid Spoofer
+        <span class="btn-description">Premium spoofing with better security.</span>
+      </a>
+    </div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
-    &copy; 2025 OverAim. All rights reserved.
+    &copy; 2025 OverAim. All rights reserved. Unauthorized distribution is prohibited.
   </div>
 
   <script>

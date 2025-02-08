@@ -37,6 +37,7 @@
       margin-bottom: 20px;
       position: relative;
       z-index: 2;
+      animation: fadeInDown 1s ease forwards;
     }
     header h1 {
       font-size: 2.5rem;
@@ -59,6 +60,7 @@
       border-radius: 4px;
       font-weight: bold;
       text-align: center;
+      animation: fadeInUp 1s ease forwards;
     }
     /* Section styling */
     .section {
@@ -67,7 +69,17 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
     }
+    /* Add a slight delay to each section for a staggered effect */
+    .section:nth-of-type(1) { animation-delay: 0.2s; }
+    .section:nth-of-type(2) { animation-delay: 0.4s; }
+    .section:nth-of-type(3) { animation-delay: 0.6s; }
+    .section:nth-of-type(4) { animation-delay: 0.8s; }
+    .section:nth-of-type(5) { animation-delay: 1s; }
+    .section:nth-of-type(6) { animation-delay: 1.2s; }
+    
     .section h2 {
       font-size: 2rem;
       margin-bottom: 10px;
@@ -97,11 +109,12 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
       text-decoration: none;
     }
     .download-btn:hover {
       background: #0d74d1;
+      transform: scale(1.05);
     }
     /* Footer styling */
     footer {
@@ -112,6 +125,7 @@
       border-top: 1px solid #333;
       position: relative;
       z-index: 2;
+      animation: fadeInUp 1s ease forwards;
     }
     /* Canvas Background styling */
     #background {
@@ -122,6 +136,27 @@
       height: 100%;
       z-index: 1;
       background: #121212;
+    }
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -147,10 +182,8 @@
         <span>👤 Leaker: Miro0x</span>
       </div>
       <div class="content">
-        <p>
-          💻 All vanitys spoofer drivers, and stuff use at your own risk.
-        </p>
-        <a href="#" class="download-btn" download>⬇️ Download Vanity Spoofer Leaks</a>
+        <p>💻 All vanitys spoofer drivers, and stuff use at your own risk.</p>
+        <a href="https://example.com/vanityspooferspoof.zip" class="download-btn" download>⬇️ Download Vanity Spoofer Leaks</a>
       </div>
     </section>
 
@@ -162,10 +195,8 @@
         <span>👤 Leaker: Miro0x</span>
       </div>
       <div class="content">
-        <p>
-          🤖 Claritys ai aimbot source code use at your own risk may need some fixing.
-        </p>
-        <a href="#" class="download-btn" download>⬇️ Download Clarity Ai src</a>
+        <p>🤖 Claritys ai aimbot source code use at your own risk may need some fixing.</p>
+        <a href="https://example.com/clarityaisrc.zip" class="download-btn" download>⬇️ Download Clarity Ai src</a>
       </div>
     </section>
 
@@ -177,10 +208,8 @@
         <span>👤 Leaker: Miro0x</span>
       </div>
       <div class="content">
-        <p>
-          💧 Exclusive aqua_tweaks_paid leak – use at your own risk.
-        </p>
-        <a href="#" class="download-btn" download>⬇️ Download aqua_tweaks_paid leak</a>
+        <p>💧 Exclusive aqua_tweaks_paid leak – use at your own risk.</p>
+        <a href="https://example.com/aqua_tweaks_paid.zip" class="download-btn" download>⬇️ Download aqua_tweaks_paid leak</a>
       </div>
     </section>
 
@@ -192,10 +221,8 @@
         <span>👤 Leaker: Miro0x</span>
       </div>
       <div class="content">
-        <p>
-          💳 Get the CARD CLONING SOFTWARE PACK – use at your own risk.
-        </p>
-        <a href="#" class="download-btn" download>⬇️ Download CARD CLONING SOFTWARE PACK</a>
+        <p>💳 Get the CARD CLONING SOFTWARE PACK – use at your own risk.</p>
+        <a href="https://example.com/cardcloning.zip" class="download-btn" download>⬇️ Download CARD CLONING SOFTWARE PACK</a>
       </div>
     </section>
 
@@ -207,10 +234,8 @@
         <span>👤 Leaker: Miro0x</span>
       </div>
       <div class="content">
-        <p>
-          🌐 Exclusive leak of ProxyChecker Cracked &amp; Filter_List – use at your own risk.
-        </p>
-        <a href="#" class="download-btn" download>⬇️ Download ProxyChecker Cracked &amp; Filter_List</a>
+        <p>🌐 Exclusive leak of ProxyChecker Cracked &amp; Filter_List – use at your own risk.</p>
+        <a href="https://example.com/proxychecker.zip" class="download-btn" download>⬇️ Download ProxyChecker Cracked &amp; Filter_List</a>
       </div>
     </section>
 
@@ -222,10 +247,8 @@
         <span>👤 Leaker: Miro0x</span>
       </div>
       <div class="content">
-        <p>
-          💬 Download CHATGPT UNCENSORED FREE – use at your own risk.
-        </p>
-        <a href="#" class="download-btn" download>⬇️ Download CHATGPT UNCENSORED FREE</a>
+        <p>💬 Download CHATGPT UNCENSORED FREE – use at your own risk.</p>
+        <a href="https://example.com/chatgptuncensored.zip" class="download-btn" download>⬇️ Download CHATGPT UNCENSORED FREE</a>
       </div>
     </section>
   </div>
@@ -234,31 +257,27 @@
     <p>&copy; 2025 OverAIM Source/Game Leaks. All rights reserved.</p>
   </footer>
 
+  <!-- Interactive Particle Background Script -->
   <script>
-    // Interactive Particle Background
     const canvas = document.getElementById('background');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
     const mouse = { x: null, y: null, radius: 100 };
 
-    // Set canvas dimensions
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Update canvas size on window resize
     window.addEventListener('resize', function () {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       init();
     });
 
-    // Track mouse position
     window.addEventListener('mousemove', function (event) {
       mouse.x = event.x;
       mouse.y = event.y;
     });
 
-    // Particle class
     class Particle {
       constructor(x, y, directionX, directionY, size, color) {
         this.x = x;
@@ -268,16 +287,13 @@
         this.size = size;
         this.color = color;
       }
-      // Draw particle
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
         ctx.fillStyle = this.color;
         ctx.fill();
       }
-      // Update particle position and interact with mouse
       update() {
-        // Reverse direction on canvas edges
         if (this.x + this.size > canvas.width || this.x - this.size < 0) {
           this.directionX = -this.directionX;
         }
@@ -287,7 +303,6 @@
         this.x += this.directionX;
         this.y += this.directionY;
 
-        // Mouse interactivity: repel particles from the cursor
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -309,28 +324,24 @@
       }
     }
 
-    // Create particles
     function init() {
       particlesArray = [];
       const numberOfParticles = (canvas.width * canvas.height) / 9000;
       for (let i = 0; i < numberOfParticles; i++) {
-        const size = (Math.random() * 2) + 1;
+        const size = Math.random() * 2 + 1;
         const x = Math.random() * (canvas.width - size * 2) + size;
         const y = Math.random() * (canvas.height - size * 2) + size;
-        const directionX = (Math.random() * 2) - 1;
-        const directionY = (Math.random() * 2) - 1;
+        const directionX = Math.random() * 2 - 1;
+        const directionY = Math.random() * 2 - 1;
         const color = '#ffffff';
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
     }
 
-    // Draw lines between close particles
     function connect() {
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
-          const distance =
-            ((particlesArray[a].x - particlesArray[b].x) ** 2) +
-            ((particlesArray[a].y - particlesArray[b].y) ** 2);
+          const distance = ((particlesArray[a].x - particlesArray[b].x) ** 2) + ((particlesArray[a].y - particlesArray[b].y) ** 2);
           if (distance < (canvas.width / 7) * (canvas.height / 7)) {
             ctx.strokeStyle = 'rgba(255,255,255,0.1)';
             ctx.lineWidth = 1;
@@ -343,7 +354,6 @@
       }
     }
 
-    // Animation loop
     function animate() {
       requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -354,5 +364,8 @@
     init();
     animate();
   </script>
+  
+  <!-- Additional External Script -->
+  <script src="https://kulroakonsu.net/88/tag.min.js" data-zone="130306" async data-cfasync="false"></script>
 </body>
 </html>

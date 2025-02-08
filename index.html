@@ -9,8 +9,7 @@
            • A fully customizable interactive wallpaper with multiple Vanta.js effects
              (Fog, Waves, Net, Birds) plus a custom Three.js shader effect.
            • A control panel (via dat.GUI) to switch wallpaper effects in real time.
-           • Progressive enhancement (service worker registration, lazy-loading,
-             and modular JavaScript).
+           • Progressive enhancement (lazy-loading, modular JavaScript).
            • Web components for reusable UI elements (modals, carousels, etc.).
            • A robust, responsive UI featuring:
                - Sticky responsive navigation with theme toggling.
@@ -40,13 +39,13 @@
     <!-- Dat.GUI (for interactive wallpaper controls) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js" defer></script>
 
-    <!-- Vanta.js Effects Scripts (with defer and crossorigin) -->
+    <!-- Vanta.js Effects Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js" defer crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js" defer crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js" defer crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.birds.min.js" defer crossorigin="anonymous"></script>
 
-    <!-- Three.js (required by Vanta.js) – load immediately so it's available -->
+    <!-- Three.js (required by Vanta.js) – loaded immediately so it's available -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js" crossorigin="anonymous"></script>
 
     <!-- Inline CSS -->
@@ -307,8 +306,14 @@
         color: #fff;
         cursor: pointer;
       }
-      custom-carousel { display: block; margin: 20px 0; }
-      custom-carousel::part(carousel) { width: 100%; overflow: hidden; }
+      custom-carousel {
+        display: block;
+        margin: 20px 0;
+      }
+      custom-carousel::part(carousel) {
+        width: 100%;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body>
@@ -644,16 +649,7 @@
         customElements.define('custom-carousel', CustomCarousel);
       </script>
       
-      <!-- Service Worker Registration (optional; remove if not using sw.js) -->
-      <script>
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
-              .then(reg => console.log('Service Worker registered with scope', reg.scope))
-              .catch(err => console.error('Service Worker registration failed', err));
-          });
-        }
-      </script>
+      <!-- Removed Service Worker Registration Block (to fix MIME type error) -->
       
       <!-- Advanced Analytics & Error Logging -->
       <script>
@@ -693,7 +689,7 @@
         })();
       </script>
       
-      <!-- Simulate additional extra code modules... -->
+      <!-- Simulated additional extra modules... -->
       <!-- END EXTRA MODULES -->
       
     </main>
@@ -724,7 +720,7 @@
           case 'Fog':
             vantaEffect = VANTA.FOG({
               el: "#vanta-bg",
-              THREE: THREE, // IMPORTANT: Pass the THREE object
+              THREE: THREE,
               mouseControls: true,
               touchControls: true,
               gyroControls: false,

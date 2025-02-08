@@ -40,14 +40,14 @@
     <!-- Dat.GUI (for interactive wallpaper controls) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js" defer></script>
 
-    <!-- Vanta.js Effects Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.birds.min.js" defer></script>
+    <!-- Vanta.js Effects Scripts (with defer and crossorigin) -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.birds.min.js" defer crossorigin="anonymous"></script>
 
-    <!-- Three.js (required by Vanta.js) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer crossorigin="anonymous"></script>
+    <!-- Three.js (required by Vanta.js) – load immediately so it's available -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js" crossorigin="anonymous"></script>
 
     <!-- Inline CSS -->
     <style>
@@ -154,9 +154,7 @@
         z-index: 110;
         transition: padding var(--transition-speed);
       }
-      nav.shrink {
-        padding: 8px 30px;
-      }
+      nav.shrink { padding: 8px 30px; }
       nav .logo {
         font-size: 1.5rem;
         font-weight: bold;
@@ -205,9 +203,7 @@
         from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
       }
-      section {
-        margin-bottom: 40px;
-      }
+      section { margin-bottom: 40px; }
       section h2 {
         font-size: 2rem;
         margin-bottom: 20px;
@@ -218,13 +214,8 @@
         font-size: 1rem;
         margin-bottom: 10px;
       }
-      .faq-item {
-        margin-bottom: 20px;
-      }
-      .faq-item h3 {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-      }
+      .faq-item { margin-bottom: 20px; }
+      .faq-item h3 { font-size: 1.2rem; margin-bottom: 5px; }
       
       /* Pricing Plans, Steps, Reviews, and Buttons */
       .pricing-plan {
@@ -236,24 +227,11 @@
         border: 2px solid var(--primary-color);
         border-radius: 10px;
       }
-      .pricing-plan h3 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-      }
-      .steps {
-        list-style: decimal;
-        margin-left: 20px;
-      }
-      .reviews {
-        margin-top: 20px;
-      }
-      .review {
-        border-bottom: 1px solid var(--primary-color);
-        padding: 10px 0;
-      }
-      .review:last-child {
-        border-bottom: none;
-      }
+      .pricing-plan h3 { font-size: 1.5rem; margin-bottom: 10px; }
+      .steps { list-style: decimal; margin-left: 20px; }
+      .reviews { margin-top: 20px; }
+      .review { border-bottom: 1px solid var(--primary-color); padding: 10px 0; }
+      .review:last-child { border-bottom: none; }
       .button {
         display: inline-block;
         background: var(--primary-color);
@@ -263,9 +241,7 @@
         transition: background var(--transition-speed);
         margin-top: 10px;
       }
-      .button:hover {
-        background: var(--secondary-color);
-      }
+      .button:hover { background: var(--secondary-color); }
       
       /* Footer */
       footer {
@@ -275,9 +251,7 @@
         color: var(--light-text);
         margin-top: 40px;
       }
-      footer a {
-        color: var(--primary-color);
-      }
+      footer a { color: var(--primary-color); }
       
       /* Dat.GUI Container */
       #gui-container {
@@ -289,23 +263,14 @@
       
       /* Responsive Adjustments */
       @media (max-width: 768px) {
-        nav ul {
-          display: none;
-        }
-        nav {
-          justify-content: space-between;
-        }
-        main.content {
-          margin: 120px 10px 40px;
-        }
-        #gui-container {
-          top: 60px;
-          right: 10px;
-        }
+        nav ul { display: none; }
+        nav { justify-content: space-between; }
+        main.content { margin: 120px 10px 40px; }
+        #gui-container { top: 60px; right: 10px; }
       }
       
       /* Extra Styling for Modal and Carousel (Simulated Extra CSS) */
-      .modal-overlay {
+      .modal-overlay { 
         position: fixed;
         top: 0;
         left: 0;
@@ -342,14 +307,8 @@
         color: #fff;
         cursor: pointer;
       }
-      custom-carousel {
-        display: block;
-        margin: 20px 0;
-      }
-      custom-carousel::part(carousel) {
-        width: 100%;
-        overflow: hidden;
-      }
+      custom-carousel { display: block; margin: 20px 0; }
+      custom-carousel::part(carousel) { width: 100%; overflow: hidden; }
     </style>
   </head>
   <body>
@@ -685,7 +644,7 @@
         customElements.define('custom-carousel', CustomCarousel);
       </script>
       
-      <!-- Service Worker Registration -->
+      <!-- Service Worker Registration (optional; remove if not using sw.js) -->
       <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
@@ -765,6 +724,7 @@
           case 'Fog':
             vantaEffect = VANTA.FOG({
               el: "#vanta-bg",
+              THREE: THREE, // IMPORTANT: Pass the THREE object
               mouseControls: true,
               touchControls: true,
               gyroControls: false,
@@ -778,6 +738,7 @@
           case 'Waves':
             vantaEffect = VANTA.WAVES({
               el: "#vanta-bg",
+              THREE: THREE,
               mouseControls: true,
               touchControls: true,
               gyroControls: false,
@@ -791,6 +752,7 @@
           case 'Net':
             vantaEffect = VANTA.NET({
               el: "#vanta-bg",
+              THREE: THREE,
               mouseControls: true,
               touchControls: true,
               gyroControls: false,
@@ -804,6 +766,7 @@
           case 'Birds':
             vantaEffect = VANTA.BIRDS({
               el: "#vanta-bg",
+              THREE: THREE,
               mouseControls: true,
               touchControls: true,
               gyroControls: false,
@@ -833,13 +796,12 @@
         console.error('Global error captured', e);
       });
       
-      // Simulate extra modules representing thousands of lines
+      // Simulated extra modules representing thousands of lines
       (function simulateExtraModules() {
         for (let i = 0; i < 100; i++) {
           console.log(`Simulated extra module ${i + 1} loaded.`);
         }
       })();
-      
     </script>
   </body>
 </html>

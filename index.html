@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overaim - Main Page</title>
+  <title>OverAim - Main Page</title>
   <style>
     /* Reset and base styles */
     * {
@@ -12,7 +12,6 @@
       box-sizing: border-box;
     }
     body {
-      background: #121212;
       font-family: 'Arial', sans-serif;
       color: #fff;
       display: flex;
@@ -20,20 +19,72 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 20px;
+      background: #121212;
+      overflow: hidden;
+      position: relative;
     }
+
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #fff;
+      border-top-color: #1e90ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Background animation */
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(30,144,255,0.2) 0%, rgba(18,18,18,1) 50%);
+      animation: moveBackground 10s infinite alternate ease-in-out;
+    }
+    @keyframes moveBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Main Content */
     h1 {
       margin-bottom: 30px;
       font-size: 2.5rem;
       text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s forwards 1.2s;
     }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .buttons-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      max-width: 800px;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      text-align: center;
     }
+
     .btn {
       background: #1e90ff;
       color: #fff;
@@ -42,22 +93,81 @@
       border-radius: 8px;
       font-size: 1.2rem;
       text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       transition: background 0.3s, transform 0.3s;
     }
+
     .btn:hover {
       background: #0d74d1;
       transform: scale(1.05);
     }
+
+    .btn-description {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 5px;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
-  <h1>Welcome to Overaim</h1>
-  <div class="buttons-container">
-    <a class="btn" href="https://overaim.cc/premiumai">Premium AI</a>
-    <a class="btn" href="https://overaim.cc/freeai">Free AI</a>
-    <a class="btn" href="https://overaim.cc/leaks">Leaks</a>
-    <a class="btn" href="https://overaim.cc/freespoofer">Free Spoofer</a>
-    <a class="btn" href="https://overaim.cc/paidspoofer">Paid Spoofer</a>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader"></div>
   </div>
+
+  <!-- Background Animation -->
+  <div class="background"></div>
+
+  <h1>Welcome to OverAim</h1>
+
+  <div class="buttons-container">
+    <a class="btn" href="https://overaim.cc/premiumai">
+      Premium AI
+      <span class="btn-description">Advanced AI tools with exclusive features.</span>
+    </a>
+    <a class="btn" href="https://overaim.cc/freeai">
+      Free AI
+      <span class="btn-description">Get access to basic AI functionalities for free.</span>
+    </a>
+    <a class="btn" href="https://overaim.cc/leaks">
+      Leaks
+      <span class="btn-description">Check out the latest leaks and insights.</span>
+    </a>
+    <a class="btn" href="https://overaim.cc/freespoofer">
+      Free Spoofer
+      <span class="btn-description">Bypass detection with our free spoofer.</span>
+    </a>
+    <a class="btn" href="https://overaim.cc/paidspoofer">
+      Paid Spoofer
+      <span class="btn-description">Premium spoofing with better security.</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 OverAim. All rights reserved.
+  </div>
+
+  <script>
+    // Hide loading screen after page loads
+    window.addEventListener("load", function() {
+      document.getElementById("loading-screen").style.opacity = "0";
+      setTimeout(() => document.getElementById("loading-screen").style.display = "none", 500);
+    });
+  </script>
+
 </body>
 </html>

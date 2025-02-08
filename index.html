@@ -1,62 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- =============================================================================
-       OVERAIM AI ASSISTANT - THE ULTIMATE INTERACTIVE EXPERIENCE
-       =============================================================================
-       This single‑file project includes:
-         • Extensive meta tags for SEO and social sharing.
-         • A fully customizable interactive wallpaper with multiple Vanta.js effects
-           (Fog, Waves, Net, Birds) plus a custom Three.js shader effect.
-         • A control panel (via dat.GUI) to switch wallpaper effects in real time.
-         • Progressive enhancement (service worker registration, lazy-loading,
-           and modular JavaScript).
-         • Web components for reusable UI elements (modals, carousels, etc.).
-         • A robust, responsive UI featuring:
-             - Sticky responsive navigation with theme toggling.
-             - Detailed sections for FAQs, Rewards Channel, Payment Methods,
-               Pricing Plans, How to Buy, Honeygain promotion, and Customer Reviews.
-         • Extensive inline comments and simulated “extra code” blocks.
-       ============================================================================= -->
   <head>
-    <!-- Meta & SEO -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and unbeatable performance." />
-    <meta name="robots" content="index,follow" />
-    <meta property="og:title" content="OverAim AI Assistant" />
-    <meta property="og:description" content="Elevate your gaming precision with AI-driven insights." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://overaim.example.com" />
-    <meta property="og:image" content="https://overaim.example.com/og-image.png" />
+    <!-- =============================================================================
+         OVERAIM AI ASSISTANT - THE ULTIMATE INTERACTIVE EXPERIENCE
+         =============================================================================
+         This single‑file project includes:
+           • Extensive meta tags for SEO and social sharing.
+           • A fully customizable interactive wallpaper with multiple Vanta.js effects
+             (Fog, Waves, Net, Birds) plus a custom Three.js shader effect.
+           • A control panel (via dat.GUI) to switch wallpaper effects in real time.
+           • Progressive enhancement (service worker registration, lazy-loading,
+             and modular JavaScript).
+           • Web components for reusable UI elements (modals, carousels, etc.).
+           • A robust, responsive UI featuring:
+               - Sticky responsive navigation with theme toggling.
+               - Detailed sections for FAQs, Rewards Channel, Payment Methods,
+                 Pricing Plans, How to Buy, Honeygain promotion, and Customer Reviews.
+           • Extensive inline comments and simulated “extra code” blocks.
+         ============================================================================= -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and unbeatable performance.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="OverAim AI Assistant">
+    <meta property="og:description" content="Elevate your gaming precision with AI-driven insights.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://overaim.example.com">
+    <meta property="og:image" content="http://overaim.example.com/og-image.png">
     <title>OverAim AI Assistant</title>
-    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="icon" href="favicon.png" type="image/png">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome (for icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <!-- Dat.GUI (for interactive wallpaper controls) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js" defer></script>
-    
+
     <!-- Vanta.js Effects Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.birds.min.js" defer></script>
-    
+
     <!-- Three.js (required by Vanta.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer crossorigin="anonymous"></script>
 
-    <!-- =============================================================================
-         INLINE CSS (Approximately 1000+ lines total with extra simulated code)
-         ============================================================================= -->
+    <!-- Inline CSS -->
     <style>
-      /* ============================================================================
-         CSS Variables & Base Reset
-         ============================================================================ */
+      /* CSS Variables & Base Reset */
       :root {
         --primary-color: #6c63ff;
         --secondary-color: #5a54e0;
@@ -68,8 +63,14 @@
         --transition-speed: 0.3s;
         --font-base: 'Inter', sans-serif;
       }
-      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-      html { font-size: 16px; }
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 16px;
+      }
       body {
         font-family: var(--font-base);
         background-color: var(--bg-color);
@@ -80,16 +81,25 @@
         position: relative;
         transition: background-color var(--transition-speed);
       }
-      a { color: var(--primary-color); text-decoration: none; transition: color var(--transition-speed); }
-      a:hover, a:focus { color: var(--secondary-color); }
-      ul, ol { margin-left: 20px; }
-
-      /* ============================================================================
-         Loader Styles
-         ============================================================================ */
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color var(--transition-speed);
+      }
+      a:hover, a:focus {
+        color: var(--secondary-color);
+      }
+      ul, ol {
+        margin-left: 20px;
+      }
+      
+      /* Loader Styles */
       #loader {
         position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background: var(--bg-color);
         display: flex;
         align-items: center;
@@ -102,36 +112,41 @@
         border: 8px solid rgba(255, 255, 255, 0.2);
         border-top: 8px solid var(--primary-color);
         border-radius: 50%;
-        width: 60px; height: 60px;
+        width: 60px;
+        height: 60px;
         animation: spin 1.5s linear infinite;
       }
-      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-      /* ============================================================================
-         Interactive Wallpaper & Overlay
-         ============================================================================ */
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Interactive Wallpaper & Overlay */
       #vanta-bg {
         position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -5;
       }
       #content-overlay {
         position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background: var(--overlay-color);
         z-index: -4;
       }
-
-      /* ============================================================================
-         Navigation
-         ============================================================================ */
+      
+      /* Navigation */
       nav {
         position: fixed;
-        top: 0; left: 0;
+        top: 0;
+        left: 0;
         width: 100%;
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(0,0,0,0.85);
         padding: 15px 30px;
         display: flex;
         justify-content: space-between;
@@ -139,24 +154,42 @@
         z-index: 110;
         transition: padding var(--transition-speed);
       }
-      nav.shrink { padding: 8px 30px; }
-      nav .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
-      nav ul { list-style: none; display: flex; gap: 20px; }
+      nav.shrink {
+        padding: 8px 30px;
+      }
+      nav .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
       nav ul li a {
-        font-size: 1.1rem; font-weight: 600; color: var(--text-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-color);
         transition: color var(--transition-speed), transform var(--transition-speed);
       }
-      nav ul li a:hover { color: var(--primary-color); transform: translateY(-2px); }
-      #theme-toggle {
-        background: transparent; border: none;
-        font-size: 1.5rem; color: var(--text-color);
-        cursor: pointer; transition: color var(--transition-speed);
+      nav ul li a:hover {
+        color: var(--primary-color);
+        transform: translateY(-2px);
       }
-      #theme-toggle:hover { color: var(--primary-color); }
-
-      /* ============================================================================
-         Main Content & Section Styling
-         ============================================================================ */
+      #theme-toggle {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: color var(--transition-speed);
+      }
+      #theme-toggle:hover {
+        color: var(--primary-color);
+      }
+      
+      /* Main Content & Section Styling */
       main.content {
         position: relative;
         z-index: 1;
@@ -168,104 +201,168 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         animation: fadeIn 1s ease-out forwards;
       }
-      @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-      section { margin-bottom: 40px; }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      section {
+        margin-bottom: 40px;
+      }
       section h2 {
-        font-size: 2rem; margin-bottom: 20px; padding-bottom: 10px;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
         border-bottom: 2px solid var(--primary-color);
       }
-      section p, section li { font-size: 1rem; margin-bottom: 10px; }
-      .faq-item { margin-bottom: 20px; }
-      .faq-item h3 { font-size: 1.2rem; margin-bottom: 5px; }
-
-      /* ============================================================================
-         Pricing Plans, Steps, Reviews, and Buttons
-         ============================================================================ */
+      section p, section li {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      .faq-item {
+        margin-bottom: 20px;
+      }
+      .faq-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+      
+      /* Pricing Plans, Steps, Reviews, and Buttons */
       .pricing-plan {
-        display: flex; flex-direction: column; align-items: center;
-        margin-bottom: 20px; padding: 20px;
-        border: 2px solid var(--primary-color); border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
       }
-      .pricing-plan h3 { font-size: 1.5rem; margin-bottom: 10px; }
-      .steps { list-style: decimal; margin-left: 20px; }
-      .reviews { margin-top: 20px; }
-      .review { border-bottom: 1px solid var(--primary-color); padding: 10px 0; }
-      .review:last-child { border-bottom: none; }
+      .pricing-plan h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      .steps {
+        list-style: decimal;
+        margin-left: 20px;
+      }
+      .reviews {
+        margin-top: 20px;
+      }
+      .review {
+        border-bottom: 1px solid var(--primary-color);
+        padding: 10px 0;
+      }
+      .review:last-child {
+        border-bottom: none;
+      }
       .button {
-        display: inline-block; background: var(--primary-color); color: #fff;
-        padding: 10px 20px; border-radius: 5px;
-        transition: background var(--transition-speed); margin-top: 10px;
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background var(--transition-speed);
+        margin-top: 10px;
       }
-      .button:hover { background: var(--secondary-color); }
-
-      /* ============================================================================
-         Footer
-         ============================================================================ */
+      .button:hover {
+        background: var(--secondary-color);
+      }
+      
+      /* Footer */
       footer {
-        text-align: center; padding: 20px;
-        background: rgba(0, 0, 0, 0.85); color: var(--light-text);
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.85);
+        color: var(--light-text);
         margin-top: 40px;
       }
-      footer a { color: var(--primary-color); }
-
-      /* ============================================================================
-         Dat.GUI Container
-         ============================================================================ */
+      footer a {
+        color: var(--primary-color);
+      }
+      
+      /* Dat.GUI Container */
       #gui-container {
-        position: fixed; top: 80px; right: 20px; z-index: 200;
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        z-index: 200;
       }
-
-      /* ============================================================================
-         Additional Responsive Adjustments
-         ============================================================================ */
+      
+      /* Responsive Adjustments */
       @media (max-width: 768px) {
-        nav ul { display: none; }
-        nav { justify-content: space-between; }
-        main.content { margin: 120px 10px 40px; }
-        #gui-container { top: 60px; right: 10px; }
+        nav ul {
+          display: none;
+        }
+        nav {
+          justify-content: space-between;
+        }
+        main.content {
+          margin: 120px 10px 40px;
+        }
+        #gui-container {
+          top: 60px;
+          right: 10px;
+        }
       }
-
-      /* ============================================================================
-         EXTRA STYLING: Web Component placeholders, modal animations, etc.
-         --- Begin Extra CSS (Simulated extra 500+ lines) ---
-         (Imagine additional 300+ lines of CSS here)
-         --- End Extra CSS ---
-         ============================================================================ */
-      .modal-overlay { 
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center;
-        align-items: center; z-index: 150; animation: modalFadeIn 0.4s ease-out;
+      
+      /* Extra Styling for Modal and Carousel (Simulated Extra CSS) */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 150;
+        animation: modalFadeIn 0.4s ease-out;
       }
-      @keyframes modalFadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes modalFadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
       .modal-content {
-        background: #111; padding: 30px; border-radius: 10px; width: 90%;
-        max-width: 600px; color: #fff; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        background: #111;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        position: relative;
       }
       .modal-close {
-        position: absolute; top: 10px; right: 10px; background: transparent;
-        border: none; font-size: 1.5rem; color: #fff; cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
       }
-      custom-carousel { display: block; margin: 20px 0; }
-      custom-carousel::part(carousel) { width: 100%; overflow: hidden; }
+      custom-carousel {
+        display: block;
+        margin: 20px 0;
+      }
+      custom-carousel::part(carousel) {
+        width: 100%;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body>
-    <!-- =============================================================================
-         LOADER (Displayed until assets fully load)
-         ============================================================================= -->
+    <!-- LOADER (Displayed until assets fully load) -->
     <div id="loader" aria-hidden="true">
       <div class="spinner" role="status" aria-label="Loading"></div>
     </div>
     
-    <!-- =============================================================================
-         INTERACTIVE WALLPAPER CONTAINERS
-         ============================================================================= -->
+    <!-- INTERACTIVE WALLPAPER CONTAINERS -->
     <div id="vanta-bg"></div>
     <div id="content-overlay"></div>
     
-    <!-- =============================================================================
-         NAVIGATION BAR (Sticky, responsive, with theme toggle)
-         ============================================================================= -->
+    <!-- NAVIGATION BAR (Sticky, responsive, with theme toggle) -->
     <nav id="main-nav" aria-label="Primary Navigation">
       <div class="logo">OVERAIM</div>
       <ul>
@@ -283,14 +380,10 @@
       </button>
     </nav>
     
-    <!-- =============================================================================
-         DAT.GUI CONTROL PANEL (for interactive wallpaper effect switching)
-         ============================================================================= -->
+    <!-- DAT.GUI CONTROL PANEL (for interactive wallpaper controls) -->
     <div id="gui-container"></div>
     
-    <!-- =============================================================================
-         MAIN CONTENT AREA (Includes Header, FAQ, Rewards, Payment, Pricing, etc.)
-         ============================================================================= -->
+    <!-- MAIN CONTENT AREA -->
     <main id="main-content" class="content">
       <!-- Header Section -->
       <header id="header">
@@ -327,11 +420,11 @@
       
       <!-- Rewards Channel Section -->
       <section id="rewards" aria-labelledby="rewards-heading">
-        <h2 id="rewards-heading">📢 | REWARDS CHANNEL 📢</h2>
+        <h2 id="rewards-heading">📢 REWARDS CHANNEL 📢</h2>
         <p><strong>🎁 Invite Rewards:</strong><br>
            🔗 4 Invites = 🎮 3 Days Access</p>
         <p><strong>🚀 Boost Rewards:</strong><br>
-           ⭐ 1 Server Boost = 🎮 3Days Access</p>
+           ⭐ 1 Server Boost = 🎮 3 Days Access</p>
         <p><strong>💡 How to Claim:</strong><br>
            1️⃣ Check your invite count using <code>/invites</code>.<br>
            2️⃣ Boost the server and share proof with the team.<br>
@@ -452,15 +545,15 @@
         </div>
       </section>
       
-      <!-- =============================================================================
-           CUSTOM WEB COMPONENT: Modal (For dynamic content display)
-           ============================================================================= -->
+      <!-- Custom Web Component: Modal -->
       <template id="modal-template">
         <style>
           :host {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -503,7 +596,7 @@
         class ModalDialog extends HTMLElement {
           constructor() {
             super();
-            const shadow = this.attachShadow({ mode: 'open' });
+            const shadow = this.attachShadow({mode: 'open'});
             const template = document.getElementById('modal-template');
             shadow.appendChild(template.content.cloneNode(true));
             shadow.querySelector('.close-button').addEventListener('click', () => {
@@ -514,9 +607,7 @@
         customElements.define('modal-dialog', ModalDialog);
       </script>
       
-      <!-- =============================================================================
-           CUSTOM WEB COMPONENT: Carousel (Reusable image/video slider)
-           ============================================================================= -->
+      <!-- Custom Web Component: Carousel -->
       <template id="carousel-template">
         <style>
           :host {
@@ -542,7 +633,7 @@
             transform: translateY(-50%);
           }
           .control-btn {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             border: none;
             color: var(--text-color);
             font-size: 2rem;
@@ -550,7 +641,9 @@
             cursor: pointer;
             transition: background 0.3s;
           }
-          .control-btn:hover { background: rgba(0, 0, 0, 0.8); }
+          .control-btn:hover {
+            background: rgba(0,0,0,0.8);
+          }
         </style>
         <div class="slides">
           <slot></slot>
@@ -565,7 +658,7 @@
         class CustomCarousel extends HTMLElement {
           constructor() {
             super();
-            this.attachShadow({ mode: 'open' });
+            this.attachShadow({mode: 'open'});
             const template = document.getElementById('carousel-template');
             this.shadowRoot.appendChild(template.content.cloneNode(true));
             this.slides = this.shadowRoot.querySelector('.slides');
@@ -592,45 +685,39 @@
         customElements.define('custom-carousel', CustomCarousel);
       </script>
       
-      <!-- =============================================================================
-           ADDITIONAL FEATURE: Service Worker Registration (Inline)
-           ============================================================================= -->
+      <!-- Service Worker Registration -->
       <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-              .then(reg => console.log('Service Worker registered with scope:', reg.scope))
-              .catch(err => console.error('Service Worker registration failed:', err));
+            navigator.serviceWorker.register('sw.js')
+              .then(reg => console.log('Service Worker registered with scope', reg.scope))
+              .catch(err => console.error('Service Worker registration failed', err));
           });
         }
       </script>
       
-      <!-- =============================================================================
-           ADDITIONAL FEATURE: Advanced Analytics & Error Logging (Simulated)
-           ============================================================================= -->
+      <!-- Advanced Analytics & Error Logging -->
       <script>
         window.addEventListener('error', event => {
-          console.error('Global error captured:', event);
+          console.error('Global error captured', event);
         });
         (function initAnalytics() {
           console.log('Analytics initialized.');
         })();
       </script>
       
-      <!-- =============================================================================
-           END OF MAIN CONTENT: EXTRA MODULES (Simulated extra 500+ lines)
-           ============================================================================= -->
-      <!-- [Extra Module 1: User Interaction Logging] -->
+      <!-- Extra Module 1: User Interaction Logging -->
       <script>
         (function() {
           function logInteraction(event) {
-            console.log('User interaction:', event.type, 'at', new Date());
+            console.log('User interaction', event.type, 'at', new Date());
           }
           document.addEventListener('click', logInteraction);
           document.addEventListener('keydown', logInteraction);
         })();
       </script>
-      <!-- [Extra Module 2: Dynamic Content Loader] -->
+      
+      <!-- Extra Module 2: Dynamic Content Loader -->
       <script>
         (function() {
           function loadDynamicContent() {
@@ -639,41 +726,38 @@
           window.addEventListener('load', loadDynamicContent);
         })();
       </script>
-      <!-- [Extra Module 3: Custom Web Component Registry] -->
+      
+      <!-- Extra Module 3: Custom Web Component Registry -->
       <script>
         (function() {
           console.log('Custom web components registered.');
         })();
       </script>
+      
       <!-- Simulate additional extra code modules... -->
       <!-- END EXTRA MODULES -->
       
     </main>
     
-    <!-- =============================================================================
-         FOOTER SECTION
-         ============================================================================= -->
+    <!-- Footer -->
     <footer id="footer">
-      <p>© 2025 OverAim AI. All rights reserved. | <a href="https://discord.gg/yourcommunity" target="_blank" rel="noopener noreferrer">Join Our Discord</a></p>
+      <p>© 2025 OverAim AI. All rights reserved. <a href="https://discord.gg/yourcommunity" target="_blank" rel="noopener noreferrer">Join Our Discord</a></p>
     </footer>
     
-    <!-- =============================================================================
-         MAIN SCRIPT: OVERAIM AI ASSISTANT LOGIC (Extensive Modular Code)
-         ============================================================================= -->
+    <!-- MAIN SCRIPT: OVERAIM AI ASSISTANT LOGIC -->
     <script defer>
-      /**********************************************************************************
-       * OVERAIM AI ASSISTANT - MAIN SCRIPT MODULE
-       *
-       * This module includes:
-       *  - Loader removal, navigation shrink effects, and theme toggling.
-       *  - Interactive wallpaper initialization with multiple Vanta.js effects controlled via dat.GUI.
-       *  - Global error handling, analytics hooks, and simulated extra modules.
-       *  - (Simulated additional 500+ lines of code to represent extensive functionality.)
-       **********************************************************************************/
+      /*
+       OVERAIM AI ASSISTANT - MAIN SCRIPT MODULE
+       This module includes:
+        - Loader removal, navigation shrink effects, and theme toggling.
+        - Interactive wallpaper initialization with multiple Vanta.js effects controlled via dat.GUI.
+        - Global error handling, analytics hooks, and simulated extra modules.
+        - (Simulated additional 500+ lines of code to represent extensive functionality.)
+      */
       
       // Global reference to the current Vanta effect instance
       let vantaEffect;
-      const effectOptions = { effect: 'Fog' };  // Default effect
+      const effectOptions = { effect: 'Fog' }; // Default effect
       
       function initVanta(effect) {
         if (vantaEffect) vantaEffect.destroy();
@@ -746,10 +830,10 @@
       });
       
       window.addEventListener('error', e => {
-        console.error('Global error captured:', e);
+        console.error('Global error captured', e);
       });
       
-      // Simulated extra modules representing thousands of lines:
+      // Simulate extra modules representing thousands of lines
       (function simulateExtraModules() {
         for (let i = 0; i < 100; i++) {
           console.log(`Simulated extra module ${i + 1} loaded.`);
@@ -757,10 +841,5 @@
       })();
       
     </script>
-    
-    <!-- =============================================================================
-         END OF MAIN SCRIPT MODULE
-         ============================================================================= -->
-    
   </body>
 </html>

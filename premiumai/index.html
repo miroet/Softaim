@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- =============================================================================
+         OVERAIM AI ASSISTANT - THE ULTIMATE INTERACTIVE EXPERIENCE
+         =============================================================================
+         This single‑file project includes:
+           • Extensive meta tags for SEO and social sharing.
+           • A fully customizable interactive wallpaper with multiple Vanta.js effects
+             (Fog, Waves, Net, Birds) plus a custom Three.js shader effect.
+           • A control panel (via dat.GUI) to switch wallpaper effects in real time.
+           • Progressive enhancement (lazy-loading, modular JavaScript).
+           • Web components for reusable UI elements (modals, carousels, etc.).
+           • A robust, responsive UI featuring:
+               - Sticky responsive navigation with theme toggling.
+               - Detailed sections for FAQs, Rewards Channel, Payment Methods,
+                 Pricing Plans, How to Buy, Honeygain promotion, and Customer Reviews.
+           • Extensive inline comments and simulated “extra code” blocks.
+         ============================================================================= -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and unbeatable performance.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="OverAim AI Assistant">
+    <meta property="og:description" content="Elevate your gaming precision with AI-driven insights.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://overaim.example.com">
+    <meta property="og:image" content="http://overaim.example.com/og-image.png">
+    <title>OverAim AI Assistant</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Dat.GUI (for interactive wallpaper controls) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js" defer></script>
+
+    <!-- Vanta.js Effects Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js" defer crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.birds.min.js" defer crossorigin="anonymous"></script>
+
+    <!-- Three.js (required by Vanta.js) – loaded immediately so it's available -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js" crossorigin="anonymous"></script>
+
+    <!-- Inline CSS -->
+    <style>
+      /* CSS Variables & Base Reset */
+      :root {
+        --primary-color: #6c63ff;
+        --secondary-color: #5a54e0;
+        --accent-color: #6cff6c;
+        --bg-color: #000;
+        --overlay-color: rgba(0, 0, 0, 0.8);
+        --text-color: #ededed;
+        --light-text: #a3a3d1;
+        --transition-speed: 0.3s;
+        --font-base: 'Inter', sans-serif;
+      }
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 16px;
+      }
+      body {
+        font-family: var(--font-base);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        position: relative;
+        transition: background-color var(--transition-speed);
+      }
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color var(--transition-speed);
+      }
+      a:hover, a:focus {
+        color: var(--secondary-color);
+      }
+      ul, ol {
+        margin-left: 20px;
+      }
+      
+      /* Loader Styles */
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.8s ease;
+      }
+      .spinner {
+        border: 8px solid rgba(255, 255, 255, 0.2);
+        border-top: 8px solid var(--primary-color);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1.5s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Interactive Wallpaper & Overlay */
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -5;
+      }
+      #content-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--overlay-color);
+        z-index: -4;
+      }
+      
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.85);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 110;
+        transition: padding var(--transition-speed);
+      }
+      nav.shrink { padding: 8px 30px; }
+      nav .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+      nav ul li a {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-color);
+        transition: color var(--transition-speed), transform var(--transition-speed);
+      }
+      nav ul li a:hover {
+        color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+      #theme-toggle {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: color var(--transition-speed);
+      }
+      #theme-toggle:hover {
+        color: var(--primary-color);
+      }
+      
+      /* Main Content & Section Styling */
+      main.content {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 100px auto 40px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.85);
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 1s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      section { margin-bottom: 40px; }
+      section h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary-color);
+      }
+      section p, section li {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      .faq-item { margin-bottom: 20px; }
+      .faq-item h3 { font-size: 1.2rem; margin-bottom: 5px; }
+      
+      /* Pricing Plans, Steps, Reviews, and Buttons */
+      .pricing-plan {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+      }
+      .pricing-plan h3 { font-size: 1.5rem; margin-bottom: 10px; }
+      .steps { list-style: decimal; margin-left: 20px; }
+      .reviews { margin-top: 20px; }
+      .review { border-bottom: 1px solid var(--primary-color); padding: 10px 0; }
+      .review:last-child { border-bottom: none; }
+      .button {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background var(--transition-speed);
+        margin-top: 10px;
+      }
+      .button:hover { background: var(--secondary-color); }
+      
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.85);
+        color: var(--light-text);
+        margin-top: 40px;
+      }
+      footer a { color: var(--primary-color); }
+      
+      /* Dat.GUI Container */
+      #gui-container {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        z-index: 200;
+      }
+      
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+        nav ul { display: none; }
+        nav { justify-content: space-between; }
+        main.content { margin: 120px 10px 40px; }
+        #gui-container { top: 60px; right: 10px; }
+      }
+      
+      /* Extra Styling for Modal and Carousel (Simulated Extra CSS) */
+      .modal-overlay { 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 150;
+        animation: modalFadeIn 0.4s ease-out;
+      }
+      @keyframes modalFadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .modal-content {
+        background: #111;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        position: relative;
+      }
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
+      }
+      custom-carousel {
+        display: block;
+        margin: 20px 0;
+      }
+      custom-carousel::part(carousel) {
+        width: 100%;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- LOADER (Displayed until assets fully load) -->
+    <div id="loader" aria-hidden="true">
+      <div class="spinner" role="status" aria-label="Loading"></div>
+    </div>
+    
+    <!-- INTERACTIVE WALLPAPER CONTAINERS -->
+    <div id="vanta-bg"></div>
+    <div id="content-overlay"></div>
+    
+    <!-- NAVIGATION BAR (Sticky, responsive, with theme toggle) -->
+    <nav id="main-nav" aria-label="Primary Navigation">
+      <div class="logo">OVERAIM</div>
+      <ul>
+        <li><a href="#main-content">Home</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#rewards">Rewards</a></li>
+        <li><a href="#payment">Payment</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#how-to-buy">How to Buy</a></li>
+        <li><a href="#honeygain">Honeygain</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle Theme">
+        <i class="fas fa-adjust"></i>
+      </button>
+    </nav>
+    
+    <!-- DAT.GUI CONTROL PANEL (for interactive wallpaper controls) -->
+    <div id="gui-container"></div>
+    
+    <!-- MAIN CONTENT AREA -->
+    <main id="main-content" class="content">
+      <!-- Header Section -->
+      <header id="header">
+        <h1>🚀 OverAim AI Assistant</h1>
+        <p>Elevate your gaming precision with AI-driven insights and unbeatable performance.</p>
+      </header>
+      
+      <!-- FAQ Section -->
+      <section id="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">❓ Frequently Asked Questions</h2>
+        <p>Have a question? Check out the answers to common queries below:</p>
+        <div class="faq-item">
+          <h3>🔹 Is the software undetectable?</h3>
+          <p>Yes, it is 100% undetectable with state-of-the-art protection against anti-cheat systems.</p>
+        </div>
+        <div class="faq-item">
+          <h3>🔹 What games are supported?</h3>
+          <p>Our software is primarily optimized for Fortnite, with compatibility for other games.</p>
+        </div>
+        <div class="faq-item">
+          <h3>🔹 How do I install the software?</h3>
+          <p>You’ll receive detailed setup instructions after purchase.</p>
+        </div>
+        <div class="faq-item">
+          <h3>🔹 Can I get a refund?</h3>
+          <p>Unfortunately, all sales are final. Ensure compatibility before purchasing.</p>
+        </div>
+        <div class="faq-item">
+          <h3>🔹 What if I need help?</h3>
+          <p>Our support team is available in the <strong>🎟️ Open a Ticket</strong> channel.</p>
+        </div>
+        <p>Still have questions? Create a ticket for assistance.</p>
+      </section>
+      
+      <!-- Rewards Channel Section -->
+      <section id="rewards" aria-labelledby="rewards-heading">
+        <h2 id="rewards-heading">📢 REWARDS CHANNEL 📢</h2>
+        <p><strong>🎁 Invite Rewards:</strong><br>
+           🔗 4 Invites = 🎮 3 Days Access</p>
+        <p><strong>🚀 Boost Rewards:</strong><br>
+           ⭐ 1 Server Boost = 🎮 3 Days Access</p>
+        <p><strong>💡 How to Claim:</strong><br>
+           1️⃣ Check your invite count using <code>/invites</code>.<br>
+           2️⃣ Boost the server and share proof with the team.<br>
+           3️⃣ DM a moderator to redeem your reward!</p>
+        <p>🎉 Start inviting or boosting now to unlock your exclusive access</p>
+      </section>
+      
+      <!-- Payment Methods Section -->
+      <section id="payment" aria-labelledby="payment-heading">
+        <h2 id="payment-heading">💳 Payment Methods</h2>
+        <p>We support a variety of secure payment methods for your convenience:</p>
+        <ul>
+          <li><strong>PayPal:</strong> Trusted worldwide for secure transactions.</li>
+          <li><strong>Credit Cards:</strong> Visa, Mastercard, and more are accepted.</li>
+          <li><strong>Cryptocurrency:</strong> Bitcoin, Ethereum, and other major cryptocurrencies.</li>
+          <li><strong>Paysafe Cards:</strong> Prepaid cards for secure and anonymous payments.</li>
+          <li><strong>Gift Cards:</strong> Select popular gift cards are accepted.</li>
+        </ul>
+      </section>
+      
+      <!-- Pricing Plans Section -->
+      <section id="pricing" aria-labelledby="pricing-heading">
+        <h2 id="pricing-heading">💸 Pricing Plans</h2>
+        <p>Choose the plan that fits your needs! All plans are 30% off for a limited time.</p>
+        <div class="pricing-plan">
+          <h3>📅 1 Week</h3>
+          <p>Original: €10</p>
+          <p>Now: €7</p>
+          <p>Perfect for a short-term boost!</p>
+        </div>
+        <div class="pricing-plan">
+          <h3>📆 1 Month</h3>
+          <p>Original: €20</p>
+          <p>Now: €14</p>
+          <p>Best for consistent improvement!</p>
+        </div>
+        <div class="pricing-plan">
+          <h3>♾️ Lifetime</h3>
+          <p>Original: €30</p>
+          <p>Now: €21</p>
+          <p>Pay once, enjoy forever!</p>
+        </div>
+      </section>
+      
+      <!-- How to Buy Section -->
+      <section id="how-to-buy" aria-labelledby="buy-heading">
+        <h2 id="buy-heading">🛒 How to Buy</h2>
+        <p>Purchasing access to our software is simple and secure. Follow the steps below to get started:</p>
+        <ol class="steps">
+          <li><strong>💳 1. Open a Ticket</strong><br>
+              Head over to the <strong>🎟️ Open a Ticket</strong> channel and click the button to create your ticket.</li>
+          <li><strong>💬 2. Discuss with Staff</strong><br>
+              Our team will assist you in selecting the best plan and answering any questions you may have.</li>
+          <li><strong>💰 3. Make a Payment</strong><br>
+              Payment methods include: PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, Gift Cards.</li>
+          <li><strong>✅ 4. Receive Your Key</strong><br>
+              After payment, you’ll receive your license key and setup instructions.</li>
+        </ol>
+      </section>
+      
+      <!-- Honeygain Promotion Section -->
+      <section id="honeygain" aria-labelledby="honeygain-heading">
+        <h2 id="honeygain-heading">💸 Earn Money for OverAim AI with Honeygain! 💸</h2>
+        <p>Looking for an easy way to earn extra cash? I’ve already cashed out $20 to my PayPal, and it works like a charm! 🤑</p>
+        <p>Here’s how it works:</p>
+        <ul>
+          <li>🔹 Share your unused internet with Honeygain’s secure network.</li>
+          <li>🔹 Get paid for the data you share—completely passive!</li>
+          <li>🔹 Use the earnings to fund OverAim AI or anything you like.</li>
+        </ul>
+        <p>Why choose Honeygain?</p>
+        <ul>
+          <li>✅ Works on Windows and phones.</li>
+          <li>✅ Safe and secure—your data is never accessed.</li>
+          <li>✅ Earn more by connecting multiple devices.</li>
+          <li>✅ No effort required—just set it and forget it!</li>
+        </ul>
+        <p>🎁 Instant $5 Bonus—sign up now and start earning cash right away!</p>
+        <p><a class="button" href="https://r.honeygain.me/GTAV528D1F" target="_blank" rel="noopener noreferrer">Sign Up for Honeygain</a></p>
+      </section>
+      
+      <!-- Customer Reviews Section -->
+      <section id="reviews" aria-labelledby="reviews-heading">
+        <h2 id="reviews-heading">Customer Reviews</h2>
+        <div class="reviews">
+          <div class="review">
+            <p><strong>o... — 15.1.2025 20.00</strong></p>
+            <p>+Rep its insane im dominating everyone on zero build loll</p>
+          </div>
+          <div class="review">
+            <p><strong>利格马ｂａｌｌｅｒ — 15.1.2025 20.38</strong></p>
+            <p>+rep been using for a week, very well made and works almost perfectly</p>
+          </div>
+          <div class="review">
+            <p><strong>✞ — 16.1.2025 10.06</strong></p>
+            <p>+rep works very well fast delivery, very good for price. amazing support ❤️</p>
+          </div>
+          <div class="review">
+            <p><strong>0x504 OFF WHITE — 18.1.2025 2.11</strong></p>
+            <p>+rep good best ai</p>
+          </div>
+          <div class="review">
+            <p><strong>0X504 Sxtpa — 18.1.2025 3.04</strong></p>
+            <p>+rep fast support, best ai</p>
+          </div>
+          <div class="review">
+            <p><strong>LaDos. — 19.1.2025 17.09</strong></p>
+            <p>+rep W ai cheats its crazy asf and ud best support here</p>
+          </div>
+          <div class="review">
+            <p><strong>d... — 19.1.2025 22.49</strong></p>
+            <p>+rep ai aimbot holy shit this is so op and ud (support is really fast)</p>
+          </div>
+          <div class="review">
+            <p><strong>LaDos. — 20.1.2025 21.04</strong></p>
+            <p>+rep i am gonna say smth about this ai cheats, this is the only cheats that is rly 100% ud and u cant get banned thats what insane about them.</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Custom Web Component: Modal -->
+      <template id="modal-templa

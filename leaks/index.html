@@ -41,7 +41,10 @@
       height: 120px;
       animation: spin 1s linear infinite;
     }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes spin { 
+      0% { transform: rotate(0deg); } 
+      100% { transform: rotate(360deg); } 
+    }
 
     /* Header styling */
     header {
@@ -193,6 +196,46 @@
       0% { opacity: 0; transform: translateY(-20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
+    /* REDIRECT OVERLAY ANIMATION */
+    #redirect-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .redirect-circle {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: #1e90ff;
+      border-radius: 50%;
+      animation: circleExpand 1s forwards;
+    }
+    .redirect-text {
+      position: relative;
+      font-size: 24px;
+      color: #fff;
+      opacity: 0;
+      animation: textFadeIn 1s forwards;
+      animation-delay: 0.5s;
+    }
+    @keyframes circleExpand {
+      0% { transform: scale(0); opacity: 1; }
+      100% { transform: scale(50); opacity: 0; }
+    }
+    @keyframes textFadeIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -313,7 +356,6 @@
         </div>
         <div class="content">
           <p>🗣 This section is under development. In a future update, users will be able to submit their own leaks here.</p>
-          <!-- (Optional: You could later add a form and dynamic content here.) -->
           <a href="https://example.com/publicleaks" class="action-btn">➡️ Visit Public Leaks Page</a>
         </div>
       </section>
@@ -323,6 +365,12 @@
   <footer>
     <p>&copy; 2025 OverAIM Source/Game Leaks. All rights reserved.</p>
   </footer>
+
+  <!-- REDIRECT ANIMATION OVERLAY -->
+  <div id="redirect-overlay">
+    <div class="redirect-circle"></div>
+    <div class="redirect-text">Redirecting...</div>
+  </div>
 
   <!-- Interactive Particle Background Script -->
   <script>
@@ -451,6 +499,27 @@
         this.classList.add('active');
         const target = this.getAttribute('data-tab');
         document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
+  
+  <!-- Redirect Button Animation Script -->
+  <script>
+    // For every button that should animate on click before redirecting:
+    document.querySelectorAll('.download-btn, .action-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetUrl = this.getAttribute('href');
+        const overlay = document.getElementById('redirect-overlay');
+        // Show the overlay with fade-in effect
+        overlay.style.display = 'flex';
+        setTimeout(() => {
+          overlay.style.opacity = '1';
+        }, 10);
+        // After the animation delay, redirect to the target URL
+        setTimeout(function() {
+          window.location.href = targetUrl;
+        }, 1500); // Adjust delay as desired (1.5 seconds here)
       });
     });
   </script>

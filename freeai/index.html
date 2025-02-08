@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overaim Ai Free Version - 100% Free, Great Accuracy, Optimized</title>
+  <!-- Google Fonts for modern typography -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    a { color: #1e90ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    header {
+      background: #1f1f1f;
+      padding: 20px 0;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; color: #bbb; }
+
+    /* Hero Section */
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .hero h2 { font-size: 2.5rem; margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; margin-bottom: 40px; }
+    .download-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #1e90ff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .download-btn:hover {
+      background: #0d74d1;
+      transform: scale(1.05);
+    }
+
+    /* Features Section */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .feature {
+      background: #1f1f1f;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 8px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    .feature h3 { font-size: 1.5rem; margin-bottom: 10px; }
+    .feature p { font-size: 1rem; color: #bbb; }
+
+    /* Footer */
+    footer {
+      background: #1f1f1f;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    footer p { color: #bbb; }
+
+    /* Particle Background Canvas */
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: #121212;
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Background -->
+  <canvas id="background"></canvas>
+
+  <!-- Header -->
+  <header>
+    <h1>Overaim Ai Free Version</h1>
+    <p>100% Free | Great Accuracy | Very Well Optimized</p>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Revolutionize Your Aim with Overaim Ai!</h2>
+    <p>Experience the ultimate free AI-driven aiming solution. Designed for precision, speed, and efficiency.</p>
+    <a href="https://example.com/download" class="download-btn">Download Now</a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature">
+      <h3>100% Free</h3>
+      <p>No hidden costs, no trial periods. Enjoy the full potential of Overaim Ai without paying a dime.</p>
+    </div>
+    <div class="feature">
+      <h3>Great Accuracy</h3>
+      <p>Hit your target every time with state-of-the-art AI algorithms optimized for precision.</p>
+    </div>
+    <div class="feature">
+      <h3>Optimized Performance</h3>
+      <p>Lightweight and efficient—overclock your gameplay without slowing down your system.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Overaim Ai. All rights reserved.</p>
+  </footer>
+
+  <!-- Particle Background Script -->
+  <script>
+    const canvas = document.getElementById('background');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particlesArray = [];
+    const numberOfParticles = (canvas.width * canvas.height) / 9000;
+
+    class Particle {
+      constructor(x, y, size, color, weight) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.weight = weight;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      update() {
+        if (this.y > canvas.height) {
+          this.y = 0 - this.size;
+          this.x = Math.random() * canvas.width;
+          this.weight = Math.random() * 2 + 1;
+        }
+        this.y += this.weight;
+        this.draw();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let size = Math.random() * 2;
+        let color = "#ffffff";
+        let weight = Math.random() * 2 + 1;
+        particlesArray.push(new Particle(x, y, size, color, weight));
+      }
+    }
+
+    function animateParticles() {
+      requestAnimationFrame(animateParticles);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+    }
+    initParticles();
+    animateParticles();
+
+    // Resize canvas on window resize
+    window.addEventListener('resize', function () {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    });
+  </script>
+</body>
+</html>

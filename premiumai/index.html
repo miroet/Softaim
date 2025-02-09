@@ -1,513 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- =============================================================================
-         OVERAIM AI ASSISTANT - THE ULTIMATE INTERACTIVE EXPERIENCE
-         =============================================================================
-         This single‑file project includes:
-           • Extensive meta tags for SEO and social sharing.
-           • A fully customizable interactive wallpaper with multiple Vanta.js effects
-             (Fog, Waves, Net, Birds) plus a custom Three.js shader effect.
-           • A control panel (via dat.GUI) to switch wallpaper effects in real time.
-           • Progressive enhancement (lazy-loading, modular JavaScript).
-           • Web components for reusable UI elements (modals, carousels, etc.).
-           • A robust, responsive UI featuring:
-               - Sticky responsive navigation with theme toggling.
-               - Detailed sections for FAQs, Rewards Channel, Payment Methods,
-                 Pricing Plans, How to Buy, Honeygain promotion, and Customer Reviews.
-           • Extensive inline comments and simulated “extra code” blocks.
-         ============================================================================= -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and unbeatable performance.">
-    <meta name="robots" content="index,follow">
-    <meta property="og:title" content="OverAim AI Assistant">
-    <meta property="og:description" content="Elevate your gaming precision with AI-driven insights.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://overaim.example.com">
-    <meta property="og:image" content="http://overaim.example.com/og-image.png">
-    <title>OverAim AI Assistant</title>
-    <link rel="icon" href="favicon.png" type="image/png">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OverAim AI Assistant - Elevate your gaming precision with AI-driven insights and customizable features." />
+  <title>OverAim AI Assistant</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Loader Styles */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+    .spinner {
+      border: 8px solid rgba(255,255,255,0.2);
+      border-top: 8px solid #6C63FF;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1.5s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome (for icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer">
-
-    <!-- Dat.GUI (for interactive wallpaper controls) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js" defer></script>
-
-    <!-- Vanta.js Effects Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js" defer crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js" defer crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js" defer crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.birds.min.js" defer crossorigin="anonymous"></script>
-
-    <!-- Three.js (required by Vanta.js) – loaded immediately so it's available -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js" crossorigin="anonymous"></script>
-
-    <!-- Inline CSS -->
-    <style>
-      /* CSS Variables & Base Reset */
-      :root {
-        --primary-color: #6c63ff;
-        --secondary-color: #5a54e0;
-        --accent-color: #6cff6c;
-        --bg-color: #000;
-        --overlay-color: rgba(0, 0, 0, 0.8);
-        --text-color: #ededed;
-        --light-text: #a3a3d1;
-        --transition-speed: 0.3s;
-        --font-base: 'Inter', sans-serif;
-      }
-      *, *::before, *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        font-size: 16px;
-      }
-      body {
-        font-family: var(--font-base);
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.6;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        position: relative;
-        transition: background-color var(--transition-speed);
-      }
-      a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: color var(--transition-speed);
-      }
-      a:hover, a:focus {
-        color: var(--secondary-color);
-      }
-      ul, ol {
-        margin-left: 20px;
-      }
-      
-      /* Loader Styles */
-      #loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--bg-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        opacity: 1;
-        transition: opacity 0.8s ease;
-      }
-      .spinner {
-        border: 8px solid rgba(255, 255, 255, 0.2);
-        border-top: 8px solid var(--primary-color);
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        animation: spin 1.5s linear infinite;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      /* Interactive Wallpaper & Overlay */
-      #vanta-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -5;
-      }
-      #content-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--overlay-color);
-        z-index: -4;
-      }
-      
-      /* Navigation */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(0,0,0,0.85);
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 110;
-        transition: padding var(--transition-speed);
-      }
-      nav.shrink { padding: 8px 30px; }
-      nav .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--primary-color);
-      }
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-      }
-      nav ul li a {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-color);
-        transition: color var(--transition-speed), transform var(--transition-speed);
-      }
-      nav ul li a:hover {
-        color: var(--primary-color);
-        transform: translateY(-2px);
-      }
-      #theme-toggle {
-        background: transparent;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--text-color);
-        cursor: pointer;
-        transition: color var(--transition-speed);
-      }
-      #theme-toggle:hover {
-        color: var(--primary-color);
-      }
-      
-      /* Main Content & Section Styling */
-      main.content {
-        position: relative;
-        z-index: 1;
-        max-width: 1200px;
-        margin: 100px auto 40px;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.85);
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        animation: fadeIn 1s ease-out forwards;
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      section { margin-bottom: 40px; }
-      section h2 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid var(--primary-color);
-      }
-      section p, section li {
-        font-size: 1rem;
-        margin-bottom: 10px;
-      }
-      .faq-item { margin-bottom: 20px; }
-      .faq-item h3 { font-size: 1.2rem; margin-bottom: 5px; }
-      
-      /* Pricing Plans, Steps, Reviews, and Buttons */
-      .pricing-plan {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-        padding: 20px;
-        border: 2px solid var(--primary-color);
-        border-radius: 10px;
-      }
-      .pricing-plan h3 { font-size: 1.5rem; margin-bottom: 10px; }
-      .steps { list-style: decimal; margin-left: 20px; }
-      .reviews { margin-top: 20px; }
-      .review { border-bottom: 1px solid var(--primary-color); padding: 10px 0; }
-      .review:last-child { border-bottom: none; }
-      .button {
-        display: inline-block;
-        background: var(--primary-color);
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        transition: background var(--transition-speed);
-        margin-top: 10px;
-      }
-      .button:hover { background: var(--secondary-color); }
-      
-      /* Footer */
-      footer {
-        text-align: center;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.85);
-        color: var(--light-text);
-        margin-top: 40px;
-      }
-      footer a { color: var(--primary-color); }
-      
-      /* Dat.GUI Container */
-      #gui-container {
-        position: fixed;
-        top: 80px;
-        right: 20px;
-        z-index: 200;
-      }
-      
-      /* Responsive Adjustments */
-      @media (max-width: 768px) {
-        nav ul { display: none; }
-        nav { justify-content: space-between; }
-        main.content { margin: 120px 10px 40px; }
-        #gui-container { top: 60px; right: 10px; }
-      }
-      
-      /* Extra Styling for Modal and Carousel (Simulated Extra CSS) */
-      .modal-overlay { 
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 150;
-        animation: modalFadeIn 0.4s ease-out;
-      }
-      @keyframes modalFadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      .modal-content {
-        background: #111;
-        padding: 30px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 600px;
-        color: #fff;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-        position: relative;
-      }
-      .modal-close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: transparent;
-        border: none;
-        font-size: 1.5rem;
-        color: #fff;
-        cursor: pointer;
-      }
-      custom-carousel {
-        display: block;
-        margin: 20px 0;
-      }
-      custom-carousel::part(carousel) {
-        width: 100%;
-        overflow: hidden;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- LOADER (Displayed until assets fully load) -->
-    <div id="loader" aria-hidden="true">
-      <div class="spinner" role="status" aria-label="Loading"></div>
+    /* Vanta.js Interactive Background Container */
+    #vanta-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    /* General Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #EDEDED;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      cursor: url('https://example.com/cursor.png'), auto;
+    }
+    
+    /* Sticky Navigation with Shrink Effect */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.85);
+      padding: 15px 30px;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    nav.shrink {
+      padding: 8px 30px;
+      background-color: rgba(0,0,0,0.95);
+    }
+    nav a {
+      color: #EDEDED;
+      font-size: 1.1rem;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    nav a:hover {
+      color: #6C63FF;
+      transform: translateY(-2px);
+    }
+    
+    /* Scroll-to-Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6C63FF;
+      color: #fff;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 110;
+    }
+    .scroll-top:hover { transform: scale(1.1); }
+    
+    /* Content Wrapper */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px 20px;
+      opacity: 0;
+      animation: contentFadeIn 1s forwards 0.8s;
+    }
+    @keyframes contentFadeIn {
+      to { opacity: 1; }
+    }
+    
+    /* Section Styles */
+    section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    section h2 {
+      color: #6C63FF;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #EDEDED;
+      text-align: center;
+    }
+    
+    /* Header Section */
+    .header {
+      text-align: center;
+      padding: 60px 0;
+    }
+    .header h1 {
+      font-size: 3rem;
+      color: #6C63FF;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease;
+    }
+    .header h1:hover { transform: scale(1.05); }
+    .header p {
+      font-size: 1.2rem;
+      color: #A3A3D1;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+    
+    /* Features Section */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    .features-content {
+      max-width: 500px;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .features-content h2 { margin-bottom: 10px; color: #6C63FF; }
+    .features-content ul {
+      margin: 15px 0;
+      list-style: disc inside;
+      padding-left: 20px;
+    }
+    .features-video video,
+    .features-image {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      transition: transform 0.4s ease;
+    }
+    .features-video video:hover,
+    .features-image:hover { transform: scale(1.05); }
+    
+    /* Information Section */
+    .info-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.75);
+      border-radius: 10px;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .info-section h2 { color: #6C63FF; text-align: center; margin-bottom: 15px; }
+    .info-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cccccc;
+      max-width: 800px;
+      margin: 10px auto;
+      text-align: justify;
+    }
+    
+    /* Reviews Section (Real Reviews) */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+    .review-text {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .review-author {
+      font-size: 0.9rem;
+      color: #A3A3D1;
+      text-align: right;
+    }
+    
+    /* Invite Rewards & Pricing Section */
+    .invite-rewards {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .pricing-plans {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .pricing-card {
+      background-color: rgba(58,58,78,0.9);
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    }
+    .pricing-card h3 { color: #FFFFFF; margin-bottom: 10px; }
+    .pricing-card .original-price {
+      text-decoration: line-through;
+      color: #A3A3D1;
+    }
+    .pricing-card .discounted-price {
+      font-size: 1.5rem;
+      color: #6CFF6C;
+    }
+    .pricing-card p { color: #B0B0DA; margin-top: 10px; }
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 30px;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #6C63FF, #5A54E0);
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.4s ease, background 0.4s ease;
+    }
+    .button:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, #5A54E0, #6C63FF);
+    }
+    
+    /* FAQ Section */
+    .faq-item {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .faq-item h3 {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 5px;
+    }
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #cccccc;
+      margin-left: 10px;
+    }
+    
+    /* Developer Section (Only Developer: miro0x) */
+    .developer-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(20,20,30,0.7);
+      border-radius: 10px;
+      text-align: center;
+      animation: fadeInUp 1s ease-out both;
+    }
+    .developer-section h2 {
+      color: #6C63FF;
+      margin-bottom: 15px;
+    }
+    .developer-section p {
+      font-size: 1rem;
+      color: #cccccc;
+    }
+    
+    /* Payment Methods Section */
+    .payment-methods p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #cccccc;
+      max-width: 800px;
+      margin: 0 auto 15px;
+      text-align: center;
+    }
+    .payment-methods .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .payment-methods img {
+      max-width: 100px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    .payment-methods img:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #A3A3D1;
+      background-color: rgba(0,0,0,0.85);
+      margin-top: 40px;
+    }
+    footer a {
+      color: #6C63FF;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover { color: #A3A3D1; }
+    
+    /* Keyframe Animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+  
+  <!-- Sticky Navigation -->
+  <nav id="navbar">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#info">Info</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#developer">Developer</a>
+    <a href="#payment">Payment</a>
+    <a href="#footer">Contact</a>
+  </nav>
+  
+  <!-- Vanta.js Interactive Wallpaper -->
+  <div id="vanta-bg"></div>
+  
+  <!-- Scroll-to-Top Button -->
+  <div class="scroll-top" id="scrollTopBtn">↑</div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Header Section -->
+    <div class="header">
+      <h1>🚀 OVERAIM AI ASSISTANT</h1>
+      <p>Elevate your gaming precision with AI-driven insights.</p>
     </div>
     
-    <!-- INTERACTIVE WALLPAPER CONTAINERS -->
-    <div id="vanta-bg"></div>
-    <div id="content-overlay"></div>
+    <!-- About Section -->
+    <section id="about">
+      <h2>About OverAim AI Assistant</h2>
+      <p>
+        OverAim AI Assistant is engineered to give gamers a competitive edge through real-time analytics, customizable settings, and adaptive support. Integrated seamlessly with your gaming setup, it helps improve precision and decision-making in every match.
+      </p>
+    </section>
     
-    <!-- NAVIGATION BAR (Sticky, responsive, with theme toggle) -->
-    <nav id="main-nav" aria-label="Primary Navigation">
-      <div class="logo">OVERAIM</div>
-      <ul>
-        <li><a href="#main-content">Home</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#rewards">Rewards</a></li>
-        <li><a href="#payment">Payment</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#how-to-buy">How to Buy</a></li>
-        <li><a href="#honeygain">Honeygain</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle Theme">
-        <i class="fas fa-adjust"></i>
-      </button>
-    </nav>
+    <!-- Features Section -->
+    <section id="features">
+      <div class="features-grid">
+        <div class="features-content">
+          <h2>Key Features</h2>
+          <ul>
+            <li>Customizable Field of View & Slots</li>
+            <li>Adaptive Humanization Options</li>
+            <li>Enhanced Visuals with ESP & Aimlines</li>
+            <li>Triggerbot with Adjustable Confidence Slider</li>
+          </ul>
+          <a href="https://discord.gg/yourcommunity" class="button">Join Our Community</a>
+        </div>
+        <div>
+          <!-- Preserving original video asset -->
+          <video class="features-video" autoplay loop muted>
+            <source src="preview.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
     
-    <!-- DAT.GUI CONTROL PANEL (for interactive wallpaper controls) -->
-    <div id="gui-container"></div>
+    <!-- Information Section -->
+    <section id="info" class="info-section">
+      <h2>Product Information</h2>
+      <p>
+        OverAim AI Assistant leverages advanced algorithms and customizable parameters to optimize your gameplay. Enjoy in-depth performance analytics, enhanced in-game visuals, and continuous support—all designed to help you dominate the competition.
+      </p>
+    </section>
     
-    <!-- MAIN CONTENT AREA -->
-    <main id="main-content" class="content">
-      <!-- Header Section -->
-      <header id="header">
-        <h1>🚀 OverAim AI Assistant</h1>
-        <p>Elevate your gaming precision with AI-driven insights and unbeatable performance.</p>
-      </header>
-      
-      <!-- FAQ Section -->
-      <section id="faq" aria-labelledby="faq-heading">
-        <h2 id="faq-heading">❓ Frequently Asked Questions</h2>
-        <p>Have a question? Check out the answers to common queries below:</p>
-        <div class="faq-item">
-          <h3>🔹 Is the software undetectable?</h3>
-          <p>Yes, it is 100% undetectable with state-of-the-art protection against anti-cheat systems.</p>
+    <!-- Reviews Section -->
+    <section id="reviews">
+      <h2>Customer Reviews</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <p class="review-text">+Rep its insane im dominating everyone on zero build loll</p>
+          <p class="review-author">o... — 15.1.2025 20.00</p>
         </div>
-        <div class="faq-item">
-          <h3>🔹 What games are supported?</h3>
-          <p>Our software is primarily optimized for Fortnite, with compatibility for other games.</p>
+        <div class="review-card">
+          <p class="review-text">+rep been using for a week, very well made and works almost perfectly</p>
+          <p class="review-author">利格马ｂａｌｌｅｒ — 15.1.2025 20.38</p>
         </div>
-        <div class="faq-item">
-          <h3>🔹 How do I install the software?</h3>
-          <p>You’ll receive detailed setup instructions after purchase.</p>
+        <div class="review-card">
+          <p class="review-text">+rep works very well fast delivery, very good for price. amazing support ❤️</p>
+          <p class="review-author">✞ — 16.1.2025 10.06</p>
         </div>
-        <div class="faq-item">
-          <h3>🔹 Can I get a refund?</h3>
-          <p>Unfortunately, all sales are final. Ensure compatibility before purchasing.</p>
+        <div class="review-card">
+          <p class="review-text">+rep good best ai</p>
+          <p class="review-author">0x504 OFF WHITE — 18.1.2025 2.11</p>
         </div>
-        <div class="faq-item">
-          <h3>🔹 What if I need help?</h3>
-          <p>Our support team is available in the <strong>🎟️ Open a Ticket</strong> channel.</p>
+        <div class="review-card">
+          <p class="review-text">+rep fast support, best ai</p>
+          <p class="review-author">0X504 Sxtpa — 18.1.2025 3.04</p>
         </div>
-        <p>Still have questions? Create a ticket for assistance.</p>
-      </section>
-      
-      <!-- Rewards Channel Section -->
-      <section id="rewards" aria-labelledby="rewards-heading">
-        <h2 id="rewards-heading">📢 REWARDS CHANNEL 📢</h2>
-        <p><strong>🎁 Invite Rewards:</strong><br>
-           🔗 4 Invites = 🎮 3 Days Access</p>
-        <p><strong>🚀 Boost Rewards:</strong><br>
-           ⭐ 1 Server Boost = 🎮 3 Days Access</p>
-        <p><strong>💡 How to Claim:</strong><br>
-           1️⃣ Check your invite count using <code>/invites</code>.<br>
-           2️⃣ Boost the server and share proof with the team.<br>
-           3️⃣ DM a moderator to redeem your reward!</p>
-        <p>🎉 Start inviting or boosting now to unlock your exclusive access</p>
-      </section>
-      
-      <!-- Payment Methods Section -->
-      <section id="payment" aria-labelledby="payment-heading">
-        <h2 id="payment-heading">💳 Payment Methods</h2>
-        <p>We support a variety of secure payment methods for your convenience:</p>
-        <ul>
-          <li><strong>PayPal:</strong> Trusted worldwide for secure transactions.</li>
-          <li><strong>Credit Cards:</strong> Visa, Mastercard, and more are accepted.</li>
-          <li><strong>Cryptocurrency:</strong> Bitcoin, Ethereum, and other major cryptocurrencies.</li>
-          <li><strong>Paysafe Cards:</strong> Prepaid cards for secure and anonymous payments.</li>
-          <li><strong>Gift Cards:</strong> Select popular gift cards are accepted.</li>
-        </ul>
-      </section>
-      
-      <!-- Pricing Plans Section -->
-      <section id="pricing" aria-labelledby="pricing-heading">
-        <h2 id="pricing-heading">💸 Pricing Plans</h2>
-        <p>Choose the plan that fits your needs! All plans are 30% off for a limited time.</p>
-        <div class="pricing-plan">
-          <h3>📅 1 Week</h3>
-          <p>Original: €10</p>
-          <p>Now: €7</p>
+        <div class="review-card">
+          <p class="review-text">+rep W ai cheats its crazy asf and ud best support here</p>
+          <p class="review-author">LaDos. — 19.1.2025 17.09</p>
+        </div>
+        <div class="review-card">
+          <p class="review-text">+rep ai aimbot holy shit this is so op and ud (support is really fast)</p>
+          <p class="review-author">d... — 19.1.2025 22.49</p>
+        </div>
+        <div class="review-card">
+          <p class="review-text">+rep i am gonna say smth about this ai cheats, this is the only cheats that is rly 100% ud and u cant get banned thats what insane about them.</p>
+          <p class="review-author">LaDos. — 20.1.2025 21.04</p>
+        </div>
+        <div class="review-card">
+          <p class="review-text">+Rep its insane im dominating everyone on zero build loll</p>
+          <p class="review-author">Drux — 20.1.2025 22.09</p>
+        </div>
+        <div class="review-card">
+          <p class="review-text">+Rep the only real ud cheat</p>
+          <p class="review-author">Kubazap. (aka. Magik) — 25.1.2025 12.54</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Invite Rewards & Pricing Section -->
+    <section id="pricing" class="pricing-section">
+      <h2>Invite Rewards & Pricing</h2>
+      <div class="invite-rewards">
+        <p><strong>📢 | REWARDS CHANNEL</strong></p>
+        <p>
+          🎁 <strong>Invite Rewards:</strong><br>
+          🔗 4 Invites = 🎮 3 Days Access
+        </p>
+        <p>
+          🚀 <strong>Boost Rewards:</strong><br>
+          ⭐ 1 Server Boost = 🎮 3 Days Access
+        </p>
+        <p>
+          💡 <strong>How to Claim:</strong><br>
+          1️⃣ Check your invite count using /invites.<br>
+          2️⃣ Boost the server and share proof with the team.<br>
+          3️⃣ DM a moderator or open a ticket to redeem your reward!
+        </p>
+        <p>🎉 Start inviting or boosting now to unlock your exclusive access!</p>
+      </div>
+      <div class="pricing-plans">
+        <div class="pricing-card">
+          <h3>1 Week</h3>
+          <p class="original-price">€10</p>
+          <p class="discounted-price">€7</p>
           <p>Perfect for a short-term boost!</p>
         </div>
-        <div class="pricing-plan">
-          <h3>📆 1 Month</h3>
-          <p>Original: €20</p>
-          <p>Now: €14</p>
+        <div class="pricing-card">
+          <h3>1 Month</h3>
+          <p class="original-price">€20</p>
+          <p class="discounted-price">€14</p>
           <p>Best for consistent improvement!</p>
         </div>
-        <div class="pricing-plan">
-          <h3>♾️ Lifetime</h3>
-          <p>Original: €30</p>
-          <p>Now: €21</p>
+        <div class="pricing-card">
+          <h3>Lifetime</h3>
+          <p class="original-price">€30</p>
+          <p class="discounted-price">€21</p>
           <p>Pay once, enjoy forever!</p>
         </div>
-      </section>
-      
-      <!-- How to Buy Section -->
-      <section id="how-to-buy" aria-labelledby="buy-heading">
-        <h2 id="buy-heading">🛒 How to Buy</h2>
-        <p>Purchasing access to our software is simple and secure. Follow the steps below to get started:</p>
-        <ol class="steps">
-          <li><strong>💳 1. Open a Ticket</strong><br>
-              Head over to the <strong>🎟️ Open a Ticket</strong> channel and click the button to create your ticket.</li>
-          <li><strong>💬 2. Discuss with Staff</strong><br>
-              Our team will assist you in selecting the best plan and answering any questions you may have.</li>
-          <li><strong>💰 3. Make a Payment</strong><br>
-              Payment methods include: PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, Gift Cards.</li>
-          <li><strong>✅ 4. Receive Your Key</strong><br>
-              After payment, you’ll receive your license key and setup instructions.</li>
-        </ol>
-      </section>
-      
-      <!-- Honeygain Promotion Section -->
-      <section id="honeygain" aria-labelledby="honeygain-heading">
-        <h2 id="honeygain-heading">💸 Earn Money for OverAim AI with Honeygain! 💸</h2>
-        <p>Looking for an easy way to earn extra cash? I’ve already cashed out $20 to my PayPal, and it works like a charm! 🤑</p>
-        <p>Here’s how it works:</p>
-        <ul>
-          <li>🔹 Share your unused internet with Honeygain’s secure network.</li>
-          <li>🔹 Get paid for the data you share—completely passive!</li>
-          <li>🔹 Use the earnings to fund OverAim AI or anything you like.</li>
-        </ul>
-        <p>Why choose Honeygain?</p>
-        <ul>
-          <li>✅ Works on Windows and phones.</li>
-          <li>✅ Safe and secure—your data is never accessed.</li>
-          <li>✅ Earn more by connecting multiple devices.</li>
-          <li>✅ No effort required—just set it and forget it!</li>
-        </ul>
-        <p>🎁 Instant $5 Bonus—sign up now and start earning cash right away!</p>
-        <p><a class="button" href="https://r.honeygain.me/GTAV528D1F" target="_blank" rel="noopener noreferrer">Sign Up for Honeygain</a></p>
-      </section>
-      
-      <!-- Customer Reviews Section -->
-      <section id="reviews" aria-labelledby="reviews-heading">
-        <h2 id="reviews-heading">Customer Reviews</h2>
-        <div class="reviews">
-          <div class="review">
-            <p><strong>o... — 15.1.2025 20.00</strong></p>
-            <p>+Rep its insane im dominating everyone on zero build loll</p>
-          </div>
-          <div class="review">
-            <p><strong>利格马ｂａｌｌｅｒ — 15.1.2025 20.38</strong></p>
-            <p>+rep been using for a week, very well made and works almost perfectly</p>
-          </div>
-          <div class="review">
-            <p><strong>✞ — 16.1.2025 10.06</strong></p>
-            <p>+rep works very well fast delivery, very good for price. amazing support ❤️</p>
-          </div>
-          <div class="review">
-            <p><strong>0x504 OFF WHITE — 18.1.2025 2.11</strong></p>
-            <p>+rep good best ai</p>
-          </div>
-          <div class="review">
-            <p><strong>0X504 Sxtpa — 18.1.2025 3.04</strong></p>
-            <p>+rep fast support, best ai</p>
-          </div>
-          <div class="review">
-            <p><strong>LaDos. — 19.1.2025 17.09</strong></p>
-            <p>+rep W ai cheats its crazy asf and ud best support here</p>
-          </div>
-          <div class="review">
-            <p><strong>d... — 19.1.2025 22.49</strong></p>
-            <p>+rep ai aimbot holy shit this is so op and ud (support is really fast)</p>
-          </div>
-          <div class="review">
-            <p><strong>LaDos. — 20.1.2025 21.04</strong></p>
-            <p>+rep i am gonna say smth about this ai cheats, this is the only cheats that is rly 100% ud and u cant get banned thats what insane about them.</p>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Custom Web Component: Modal -->
-      <template id="modal-templa
+      </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What is OverAim AI Assistant?</h3>
+        <p>It is an AI-powered tool that optimizes your gaming precision through customizable settings and real-time analytics.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I get started?</h3>
+        <p>Join our community via the invite rewards section, then follow our simple setup guide.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do the invite rewards work?</h3>
+        <p>Earn extra access days by inviting friends or boosting the server. Check your count with /invites and redeem by contacting a moderator.</p>
+      </div>
+    </section>
+    
+    <!-- Developer Section (Only Developer: miro0x) -->
+    <section id="developer" class="developer-section">
+      <h2>Developer</h2>
+      <p>Developed by <strong>miro0x</strong></p>
+    </section>
+    
+    <!-- Payment Methods Section -->
+    <section id="payment" class="payment-methods">
+      <h2>💳 Payment Methods</h2>
+      <p>
+        We support a variety of secure payment methods for your convenience:<br>
+        🔹 <strong>PayPal:</strong> Trusted worldwide for secure transactions.<br>
+        🔹 <strong>Credit Cards:</strong> Visa, Mastercard, and more.<br>
+        🔹 <strong>Cryptocurrency:</strong> Bitcoin, Ethereum, and other major cryptocurrencies.<br>
+        🔹 <strong>Paysafe Cards:</strong> Prepaid cards for secure and anonymous payments.<br>
+        🔹 <strong>Gift Cards:</strong> Select popular gift cards are accepted.
+      </p>
+      <div class="payment-icons">
+        <img src="credit-card-logo.png" alt="Credit Card" />
+        <img src="crypto-logo.png" alt="Cryptocurrency" />
+        <img src="giftcard-logo.png" alt="Gift Card" />
+        <img src="paypal-logo.png" alt="PayPal" />
+        <img src="paysafe-logo.png" alt="Paysafe" />
+      </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer id="footer">
+      <p>
+        © 2025 OverAim AI. All rights reserved. | 
+        <a href="https://discord.gg/yourcommunity">Join Our Discord</a>
+      </p>
+    </footer>
+  </div>
+  
+  <!-- Vanta.js Scripts for Interactive Wallpaper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
+  <script>
+    VANTA.FOG({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      highlightColor: 0x6c63ff,
+      midtoneColor: 0x2c3e50,
+      lowlightColor: 0x1a2734,
+      baseColor: 0x000000,
+      speed: 1.0
+    });
+  </script>
+  
+  <!-- JavaScript Section -->
+  <script>
+    // Remove Loader When Page Loads
+    window.addEventListener('load', function () {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => { loader.style.display = 'none'; }, 800);
+    });
+    
+    // Shrink Navigation on Scroll
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        nav.classList.add('shrink');
+      } else {
+        nav.classList.remove('shrink');
+      }
+    });
+    
+    // Scroll-to-Top Button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        scrollTopBtn.style.display = 'block';
+        scrollTopBtn.style.opacity = '1';
+      } else {
+        scrollTopBtn.style.opacity = '0';
+        setTimeout(() => { scrollTopBtn.style.display = 'none'; }, 300);
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Enemy Visuals Carousel (Static Images)
+    const enemyCarousel = document.getElementById('enemyVisualsCarousel');
+    const enemyImages = enemyCarousel.querySelectorAll('img');
+    let enemyIndex = 0;
+    function changeEnemyVisuals() {
+      enemyImages[enemyIndex].classList.remove('active');
+      enemyIndex = (enemyIndex + 1) % enemyImages.length;
+      enemyImages[enemyIndex].classList.add('active');
+    }
+    setInterval(changeEnemyVisuals, 2000);
+    
+    // Aim Preview Carousel (Videos/Images)
+    const aimCarousel = document.getElementById('aimPreviewCarousel');
+    const aimElements = aimCarousel.querySelectorAll('video, img');
+    let aimIndex = 0;
+    function changeAimPreview() {
+      aimElements[aimIndex].classList.remove('active');
+      aimIndex = (aimIndex + 1) % aimElements.length;
+      aimElements[aimIndex].classList.add('active');
+      if (aimElements[aimIndex].tagName.toLowerCase() === 'video') {
+        aimElements[aimIndex].play();
+      }
+    }
+    setInterval(changeAimPreview, 5000);
+  </script>
+</body>
+</html>

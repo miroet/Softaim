@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OverAim - Offering free and premium AI Aimbots, Leaks & Cracks, and Spoofers for an enhanced gaming experience." />
+  <meta name="description" content="OverAim - Offering free and premium AI Aimbots, Leaks & Cracks, and a Free Permanent Spoofer for an enhanced gaming experience." />
   <meta name="author" content="OverAim" />
   <title>OverAim - Main Page</title>
   <!-- Google Fonts -->
@@ -123,8 +123,18 @@
       z-index: 2;
     }
 
+    /* Grid layout for sections */
+    .section-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      padding: 10px;
+    }
+
     section {
-      margin: 40px 0;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
       text-align: center;
     }
 
@@ -132,6 +142,12 @@
       font-size: clamp(1.5rem, 4vw, 2rem);
       margin-bottom: 15px;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .section p {
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      opacity: 0.9;
     }
 
     .buttons-container {
@@ -150,7 +166,6 @@
       border-radius: 12px;
       font-size: 1.1rem;
       text-decoration: none;
-      display: inline-block;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
       width: 100%;
@@ -186,8 +201,8 @@
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      .buttons-container {
-        width: 90%;
+      .section-container {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -216,53 +231,55 @@
   </header>
 
   <main>
-    <!-- Free AI Aimbots Section -->
-    <section id="free-ai-aimbots">
-      <h2>Free AI Aimbots</h2>
-      <div class="buttons-container">
-        <a class="btn" href="https://overaim.cc/freeai" role="button" aria-label="OverAim Free AI Aimbot: Get access to basic AI aiming for free">
-          OverAim Free AI Aimbot
-          <span class="btn-description">Get access to basic AI aiming for free.</span>
-        </a>
-      </div>
-    </section>
+    <div class="section-container">
+      <!-- Free AI Aimbots Section -->
+      <section id="free-ai-aimbots">
+        <h2>Free AI Aimbots</h2>
+        <p>Experience our free AI-powered aimbot, offering essential targeting assistance for casual gameplay.</p>
+        <div class="buttons-container">
+          <a class="btn" href="https://overaim.cc/freeai" role="button" aria-label="OverAim Free AI Aimbot: Get access to basic AI aiming for free">
+            OverAim Free AI Aimbot
+            <span class="btn-description">Basic AI aiming assistance for all players.</span>
+          </a>
+        </div>
+      </section>
 
-    <!-- Premium AI Aimbots Section -->
-    <section id="premium-ai-aimbots">
-      <h2>Premium AI Aimbots</h2>
-      <div class="buttons-container">
-        <a class="btn" href="https://overaim.cc/premiumai" role="button" aria-label="OverAim AI Aimbot: Advanced AI aiming tools with premium features">
-          OverAim AI Aimbot
-          <span class="btn-description">Advanced AI aiming tools with premium features.</span>
-        </a>
-      </div>
-    </section>
+      <!-- Premium AI Aimbots Section -->
+      <section id="premium-ai-aimbots">
+        <h2>Premium AI Aimbots</h2>
+        <p>Unlock advanced targeting capabilities with our premium AI aimbot featuring customizable settings and enhanced performance.</p>
+        <div class="buttons-container">
+          <a class="btn" href="https://overaim.cc/premiumai" role="button" aria-label="OverAim AI Aimbot: Advanced AI aiming tools with premium features">
+            OverAim AI Aimbot
+            <span class="btn-description">Advanced features for competitive play.</span>
+          </a>
+        </div>
+      </section>
 
-    <!-- Leaks & Cracks Section -->
-    <section id="leaks-cracks">
-      <h2>Leaks & Cracks</h2>
-      <div class="buttons-container">
-        <a class="btn" href="https://overaim.cc/leaks" role="button" aria-label="Leaks/Cracks: Check out the latest leaks and cracked tools">
-          Leaks/Cracks
-          <span class="btn-description">Check out the latest leaks and cracked tools.</span>
-        </a>
-      </div>
-    </section>
+      <!-- Leaks & Cracks Section -->
+      <section id="leaks-cracks">
+        <h2>Leaks & Cracks</h2>
+        <p>Stay updated with the latest software leaks and cracked tools, curated for the dedicated user.</p>
+        <div class="buttons-container">
+          <a class="btn" href="https://overaim.cc/leaks" role="button" aria-label="Leaks/Cracks: Check out the latest leaks and cracked tools">
+            Leaks/Cracks
+            <span class="btn-description">Discover new and updated cracked tools.</span>
+          </a>
+        </div>
+      </section>
 
-    <!-- Spoofers Section -->
-    <section id="spoofers">
-      <h2>Spoofers</h2>
-      <div class="buttons-container">
-        <a class="btn" href="https://overaim.cc/freespoofer" role="button" aria-label="Free Spoofer: Bypass detection with our free spoofer">
-          Free Spoofer
-          <span class="btn-description">Bypass detection with our free spoofer.</span>
-        </a>
-        <a class="btn" href="https://overaim.cc/paidspoofer" role="button" aria-label="Paid Spoofer: Premium spoofing with better security">
-          Paid Spoofer
-          <span class="btn-description">Premium spoofing with better security.</span>
-        </a>
-      </div>
-    </section>
+      <!-- Spoofers Section -->
+      <section id="spoofers">
+        <h2>Spoofers</h2>
+        <p>Avoid detection with our reliable and free permanent spoofer, designed to protect your privacy with no recurring fees.</p>
+        <div class="buttons-container">
+          <a class="btn" href="https://overaim.cc/freespoofer" role="button" aria-label="Free Permanent Spoofer: Enjoy lifetime spoofing with no fees">
+            Free Permanent Spoofer
+            <span class="btn-description">Lifetime spoofing with zero cost.</span>
+          </a>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer>

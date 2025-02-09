@@ -4,48 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Public Leaks - Overaim</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
-    /* Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Base Reset and Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
+      font-family: 'Roboto', sans-serif;
       background: #121212;
       color: #fff;
-      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      position: relative;
       line-height: 1.6;
     }
+    a { color: #1e90ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Particle Background Canvas */
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: #121212;
+    }
+
+    /* Header */
     header {
       background: #1f1f1f;
       padding: 20px;
       text-align: center;
+      border-bottom: 1px solid #333;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 5px;
     }
-    .warning {
-      background: orange;
+    header p {
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    /* Warning Labels */
+    .global-warning {
+      background: #ffcc00;
       color: #000;
       padding: 10px;
       text-align: center;
-      margin: 20px;
+      margin: 20px auto;
       border-radius: 4px;
       font-weight: bold;
+      max-width: 800px;
     }
+
+    /* Container */
     .container {
       max-width: 800px;
-      margin: 0 auto;
+      margin: 40px auto;
       padding: 20px;
+      background: rgba(31,31,31,0.9);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
+
     h2 {
-      margin-top: 20px;
-      margin-bottom: 10px;
       font-size: 1.8rem;
+      margin-bottom: 15px;
       border-bottom: 2px solid #333;
       padding-bottom: 5px;
     }
+
     /* Form Styles */
     form {
       margin-bottom: 30px;
@@ -56,7 +86,7 @@
     .form-group input,
     .form-group textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: none;
       border-radius: 4px;
       background: #222;
@@ -65,7 +95,7 @@
     }
     .submit-btn {
       display: inline-block;
-      padding: 10px 20px;
+      padding: 12px 25px;
       background: #1e90ff;
       color: #fff;
       border: none;
@@ -78,41 +108,55 @@
       background: #0d74d1;
       transform: scale(1.05);
     }
-    /* Leak Item Styles */
+
+    /* Leak List Styles */
     .leak-item {
       background: #1f1f1f;
       padding: 15px;
       margin-bottom: 15px;
       border-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
     }
     .leak-item h3 {
       margin-bottom: 10px;
       font-size: 1.4rem;
     }
     .leak-item p {
-      margin-bottom: 5px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #bbb;
+      margin-bottom: 5px;
     }
     .leak-item a {
       color: #1e90ff;
-      text-decoration: none;
     }
-    .leak-item a:hover {
-      text-decoration: underline;
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container, header, .global-warning {
+      animation: fadeIn 1s ease forwards;
     }
   </style>
 </head>
 <body>
+  <!-- Particle Background Canvas -->
+  <canvas id="background"></canvas>
+
+  <!-- Header -->
   <header>
     <h1>Public Leaks</h1>
+    <p>Submit and view community leaks</p>
   </header>
+
+  <!-- Global Warning -->
+  <div class="global-warning">
+    We, overaim.cc, are not responsible for any damage to your system if you download other people's cracks/leaks. Use at your own risk.
+  </div>
+
+  <!-- Main Container -->
   <div class="container">
-    <!-- Warning Message -->
-    <div class="warning">
-      ⚠️ Note: The Public Leaks section is not fully implemented yet.
-    </div>
-    
     <!-- Submission Form -->
     <h2>Submit Your Leak</h2>
     <form id="leakForm">
@@ -127,21 +171,82 @@
       </div>
       <button type="submit" class="submit-btn">Submit Leak</button>
     </form>
-    
-    <!-- Display Submitted Leaks -->
+
+    <!-- Submitted Leaks List -->
     <h2>Submitted Leaks</h2>
     <div id="leakList">
-      <!-- Submitted leaks will appear here -->
+      <!-- Dynamically submitted leaks will appear here -->
     </div>
   </div>
-  
+
+  <!-- JavaScript for Particles, Form Submission, and Leak Rendering -->
   <script>
-    // In-memory storage for submitted leaks
-    const leakListDiv = document.getElementById('leakList');
+    // PARTICLE BACKGROUND SETUP
+    const canvas = document.getElementById('background');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particlesArray = [];
+
+    class Particle {
+      constructor(x, y, size, color, velocityX, velocityY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      update() {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+
+        // Wrap particles around the edges
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+        this.draw();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      const numberOfParticles = (canvas.width * canvas.height) / 9000;
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = Math.random() * 2 + 1;
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let velocityX = (Math.random() * 2) - 1;
+        let velocityY = (Math.random() * 2) - 1;
+        particlesArray.push(new Particle(x, y, size, "#ffffff", velocityX, velocityY));
+      }
+    }
+
+    function animateParticles() {
+      requestAnimationFrame(animateParticles);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => particle.update());
+    }
+    initParticles();
+    animateParticles();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    });
+
+    // FORM SUBMISSION AND IN-MEMORY STORAGE (for demonstration)
     const leakForm = document.getElementById('leakForm');
+    const leakListDiv = document.getElementById('leakList');
     let leaks = [];
 
-    // Listen for form submission
     leakForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const formData = new FormData(leakForm);
@@ -156,7 +261,6 @@
       leakForm.reset();
     });
 
-    // Function to render the leaks in the leakList container
     function displayLeaks() {
       leakListDiv.innerHTML = '';
       leaks.forEach(leak => {

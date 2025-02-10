@@ -34,7 +34,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      background: rgba(31, 31, 31, 0.95);
+      background: rgba(31,31,31,0.95);
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
@@ -88,13 +88,13 @@
     }
     .discord-btn:hover { background: #5b6ea8; transform: scale(1.05); }
     
-    /* =========== IMAGE SLIDER (Top Section) =========== */
+    /* =========== IMAGE SLIDER =========== */
     .slider {
       position: relative;
       width: 100%;
-      max-width: 800px;
-      height: 300px;
-      margin: 90px auto 40px; /* Fixed space for navbar */
+      max-width: 700px;
+      height: 500px;
+      margin: 100px auto 40px; /* ensure enough top margin for navbar */
       overflow: hidden;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.7);
@@ -104,15 +104,12 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Crop uniformly */
+      object-fit: cover; /* crop uniformly */
       object-position: center;
       opacity: 0;
-      animation: fadeIn 1s forwards;
+      transition: opacity 0.5s ease;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    .slider img.show { opacity: 1; }
     .slider .badge {
       position: absolute;
       top: 15px;
@@ -174,7 +171,7 @@
     }
     .hero .hero-ctas a:hover { transform: scale(1.05); }
     
-    /* =========== FEATURES SECTION (Cards) =========== */
+    /* =========== FEATURES CARDS =========== */
     .features {
       max-width: 900px;
       margin: 60px auto;
@@ -192,15 +189,12 @@
       transition: transform 0.3s, opacity 0.3s;
       opacity: 0;
     }
-    .feature-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .feature-card.visible { opacity: 1; transform: translateY(0); }
     .feature-card:hover { transform: translateY(-5px); }
     .feature-card h3 { margin-bottom: 10px; font-size: 1.4rem; }
     .feature-card p { font-size: 0.95rem; color: #bbb; }
     
-    /* =========== ACCORDION SECTION (Detailed Features) =========== */
+    /* =========== ACCORDION SECTION =========== */
     .accordion-section {
       max-width: 900px;
       margin: 60px auto;
@@ -229,9 +223,7 @@
       transition: background 0.3s;
     }
     .accordion-header:hover { background: #333; }
-    .accordion-header .icon {
-      transition: transform 0.3s;
-    }
+    .accordion-header .icon { transition: transform 0.3s; }
     .accordion-content {
       max-height: 0;
       overflow: hidden;
@@ -283,7 +275,7 @@
     
     /* =========== RESPONSIVE MEDIA QUERIES =========== */
     @media (max-width: 768px) {
-      .slider { height: 250px; }
+      .slider { height: 400px; }
       .hero h1 { font-size: 2.2rem; }
       .hero p { font-size: 1rem; }
       .accordion-header { font-size: 1rem; }
@@ -314,7 +306,7 @@
   <!-- Image Slider -->
   <section id="slider" class="slider">
     <div class="badge">100% FREE</div>
-    <img id="slide-img" src="assets/1.png" alt="Slide Image">
+    <img id="slide-img" src="assets/1.png" alt="Slide Image" class="show">
     <div class="arrow left" id="prev">&#10094;</div>
     <div class="arrow right" id="next">&#10095;</div>
   </section>
@@ -329,7 +321,7 @@
     </div>
   </section>
   
-  <!-- Features Section (Cards) -->
+  <!-- Features Cards Section -->
   <section class="features">
     <div class="feature-card">
       <h3>100% Free</h3>
@@ -345,7 +337,7 @@
     </div>
   </section>
   
-  <!-- Accordion: Detailed Features -->
+  <!-- Accordion: Detailed Features Section -->
   <section id="features" class="accordion-section">
     <h2>Detailed Features</h2>
     <!-- AIMING -->
@@ -465,7 +457,7 @@
   
   <!-- =========== JAVASCRIPT =========== -->
   <script>
-    /* ----- SLIDER AUTO-CYCLE & ARROW NAVIGATION ----- */
+    /* SLIDER AUTO-CYCLE & ARROW NAVIGATION */
     const sliderImages = [
       'assets/1.png',
       'assets/2.png',
@@ -486,11 +478,11 @@
       currentSlide = index;
       if (currentSlide < 0) currentSlide = sliderImages.length - 1;
       if (currentSlide >= sliderImages.length) currentSlide = 0;
-      // Trigger fade-out then fade-in
-      slideImg.style.opacity = 0;
+      // Fade-out then fade-in transition
+      slideImg.classList.remove('show');
       setTimeout(() => {
         slideImg.src = sliderImages[currentSlide];
-        slideImg.style.opacity = 1;
+        slideImg.classList.add('show');
       }, 300);
     }
     function nextSlide() { showSlide(currentSlide + 1); }
@@ -498,34 +490,33 @@
     
     nextArrow.addEventListener('click', nextSlide);
     prevArrow.addEventListener('click', prevSlide);
-    setInterval(nextSlide, 4000);
+    setInterval(nextSlide, 5000);
     
-    /* ----- HERO FADE-IN ON SCROLL USING INTERSECTION OBSERVER ----- */
+    /* HERO FADE-IN USING INTERSECTION OBSERVER */
     const heroSection = document.getElementById('hero');
-    const observerOptions = { threshold: 0.5 };
     const heroObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
+        if(entry.isIntersecting) {
           heroSection.classList.add('visible');
           heroObserver.unobserve(heroSection);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.5 });
     heroObserver.observe(heroSection);
     
-    /* ----- FEATURE CARDS FADE-IN ----- */
+    /* FEATURE CARDS FADE-IN USING INTERSECTION OBSERVER */
     const featureCards = document.querySelectorAll('.feature-card');
     const cardObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
+        if(entry.isIntersecting) {
           entry.target.classList.add('visible');
           cardObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.5 });
-    featureCards.forEach(card => { cardObserver.observe(card); });
+    featureCards.forEach(card => cardObserver.observe(card));
     
-    /* ----- ACCORDION FUNCTIONALITY ----- */
+    /* ACCORDION FUNCTIONALITY */
     const accHeaders = document.querySelectorAll('.accordion-header');
     accHeaders.forEach(header => {
       header.addEventListener('click', function() {
@@ -541,14 +532,15 @@
             c.classList.remove('open');
             c.previousElementSibling.querySelector('.icon').style.transform = 'rotate(0deg)';
           });
-          content.style.maxHeight = content.scrollHeight + "px";
+          // Add extra 20px to ensure all content is visible.
+          content.style.maxHeight = (content.scrollHeight + 20) + "px";
           content.classList.add('open');
           icon.style.transform = 'rotate(180deg)';
         }
       });
     });
     
-    /* ----- INTERACTIVE PARTICLE WALLPAPER ----- */
+    /* INTERACTIVE PARTICLE WALLPAPER */
     const canvas = document.getElementById('wallpaper');
     const ctx = canvas.getContext('2d');
     let particles = [];

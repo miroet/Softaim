@@ -3,47 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overaim Ai Free Version - 100% Free, Great Accuracy, Optimized</title>
+  <title>Overaim AI Free Version - 100% Free, Great Accuracy, Optimized</title>
   <!-- Google Fonts for modern typography -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset and Base Styles */
+    /* Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background: #121212;
       color: #e0e0e0;
-      line-height: 1.6;
       overflow-x: hidden;
       position: relative;
+      line-height: 1.6;
     }
-    a { color: inherit; text-decoration: none; }
-    a:hover { opacity: 0.9; }
+    a { text-decoration: none; color: inherit; }
+    a:hover { opacity: 0.85; }
 
-    /* Header */
-    header {
-      background: #1f1f1f;
-      padding: 20px 0;
-      text-align: center;
-      position: relative;
-      z-index: 2;
+    /* Navigation Bar */
+    .navbar {
+      width: 100%;
+      background: rgba(31, 31, 31, 0.95);
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 1px solid #333;
     }
-    header h1 { font-size: 3rem; margin-bottom: 10px; }
-    header p { font-size: 1.2rem; color: #bbb; }
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .navbar nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .navbar nav ul li {
+      font-size: 1rem;
+    }
+    .navbar nav ul li a {
+      color: #bbb;
+      transition: color 0.3s;
+    }
+    .navbar nav ul li a:hover { color: #fff; }
 
     /* Hero Section */
     .hero {
-      padding: 60px 20px;
+      padding: 140px 20px 60px; /* extra top padding to account for fixed nav */
       text-align: center;
       animation: fadeIn 1.5s ease forwards;
       opacity: 0;
       position: relative;
       z-index: 2;
     }
-    .hero h2 { font-size: 2.5rem; margin-bottom: 20px; }
-    .hero p { font-size: 1.2rem; margin-bottom: 40px; color: #ccc; }
-    .btn-container {
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #ccc;
+    }
+    .hero .btn-container {
       display: inline-flex;
       gap: 20px;
       flex-wrap: wrap;
@@ -56,82 +86,127 @@
       font-size: 1.1rem;
       font-weight: 700;
       transition: background 0.3s, transform 0.3s;
+      border: none;
+      cursor: pointer;
     }
     .download-btn {
-      background: #1e90ff;
+      background: linear-gradient(45deg, #1e90ff, #0d74d1);
       color: #fff;
-      border: none;
     }
-    .download-btn:hover {
-      background: #0d74d1;
-      transform: scale(1.03);
-    }
+    .download-btn:hover { transform: scale(1.03); }
     .discord-btn {
       background: #7289DA;
       color: #fff;
-      border: none;
     }
-    .discord-btn:hover {
-      background: #5b6eae;
-      transform: scale(1.03);
-    }
+    .discord-btn:hover { transform: scale(1.03); }
 
-    /* Features Section */
+    /* Basic Features Section */
     .features {
+      padding: 60px 20px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 40px 20px;
+      gap: 20px;
       position: relative;
       z-index: 2;
-      gap: 20px;
     }
     .feature {
       background: #1f1f1f;
-      padding: 20px;
+      padding: 25px 20px;
       border-radius: 8px;
-      width: 280px;
+      width: 300px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      transition: transform 0.3s;
     }
-    .feature h3 { font-size: 1.5rem; margin-bottom: 10px; }
+    .feature:hover { transform: translateY(-5px); }
+    .feature h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
     .feature p { font-size: 1rem; color: #bbb; }
+
+    /* Detailed Features Accordion Section */
+    .detailed-features {
+      padding: 60px 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .detailed-features h2 {
+      text-align: center;
+      font-size: 2.6rem;
+      margin-bottom: 40px;
+    }
+    .accordion {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .accordion-item {
+      background: #1f1f1f;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+    .accordion-header {
+      background: #272727;
+      color: #fff;
+      padding: 15px 20px;
+      width: 100%;
+      text-align: left;
+      font-size: 1.2rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .accordion-header:hover { background: #333; }
+    .accordion-content {
+      background: #1f1f1f;
+      padding: 0 20px 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .accordion-content ul {
+      list-style: disc inside;
+      margin-top: 15px;
+    }
+    .accordion-content li { margin-bottom: 8px; }
 
     /* Preview Gallery Section */
     .gallery {
-      padding: 40px 20px;
+      padding: 60px 20px;
       text-align: center;
       position: relative;
       z-index: 2;
     }
     .gallery h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 2.4rem;
+      margin-bottom: 30px;
     }
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      gap: 20px;
+      padding: 0 20px;
     }
     .gallery-grid img {
       width: 100%;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
       transition: transform 0.3s ease;
     }
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-    }
+    .gallery-grid img:hover { transform: scale(1.05); }
 
     /* Footer */
     footer {
       background: #1f1f1f;
       text-align: center;
       padding: 20px;
-      margin-top: 40px;
+      border-top: 1px solid #333;
       position: relative;
       z-index: 2;
-      border-top: 1px solid #333;
     }
     footer p { color: #bbb; font-size: 0.9rem; }
 
@@ -147,49 +222,186 @@
     }
 
     /* Fade-in Animation */
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.6rem; }
+      .navbar nav ul { gap: 15px; }
     }
   </style>
 </head>
 <body>
   <!-- Particle Background -->
   <canvas id="background"></canvas>
-
-  <!-- Header -->
-  <header>
-    <h1>Overaim Ai Free Version</h1>
-    <p>100% Free | Great Accuracy | Very Well Optimized</p>
+  
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">Overaim AI</div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Overview</a></li>
+        <li><a href="#detailed-features">Features</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://overaim.cc/discord" target="_blank">Discord</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <h2>Revolutionize Your Aim with Overaim Ai!</h2>
-    <p>Experience the ultimate free AI-driven aiming solution. Designed for precision, speed, and efficiency.</p>
+  <section id="hero" class="hero">
+    <h1>The Future of Aiming is Here</h1>
+    <p>Experience Overaim AI – 100% Free, Unmatched Accuracy, and Optimized Performance for every game.</p>
     <div class="btn-container">
       <a href="freeai.zip" download class="btn download-btn">Download FreeAI</a>
       <a href="https://overaim.cc/discord" target="_blank" class="btn discord-btn">Join Discord</a>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features">
+  <!-- Overview Features Section -->
+  <section id="features" class="features">
     <div class="feature">
       <h3>100% Free</h3>
-      <p>No hidden costs, no trial periods. Enjoy the full potential of Overaim Ai without paying a dime.</p>
+      <p>Unlock full potential with Overaim AI at zero cost.</p>
     </div>
     <div class="feature">
       <h3>Great Accuracy</h3>
-      <p>Hit your target every time with state-of-the-art AI algorithms optimized for precision.</p>
+      <p>State-of-the-art AI ensures you hit every target.</p>
     </div>
     <div class="feature">
       <h3>Optimized Performance</h3>
-      <p>Lightweight and efficient—overclock your gameplay without slowing down your system.</p>
+      <p>Seamless integration without compromising system speed.</p>
+    </div>
+  </section>
+
+  <!-- Detailed Features Accordion Section -->
+  <section id="detailed-features" class="detailed-features">
+    <h2>Detailed Features</h2>
+    <div class="accordion">
+      <!-- AIMING -->
+      <div class="accordion-item">
+        <button class="accordion-header">AIMING</button>
+        <div class="accordion-content">
+          <ul>
+            <li>Enable Aimbot</li>
+            <li>Keybinds</li>
+            <li>Backup Keybind</li>
+            <li>FOV (Field of View)</li>
+            <li>Aim Speed</li>
+            <li>Aim Bone Selection</li>
+          </ul>
+        </div>
+      </div>
+      <!-- SLOTS -->
+      <div class="accordion-item">
+        <button class="accordion-header">SLOTS</button>
+        <div class="accordion-content">
+          <ul>
+            <li>Slot 1: FOV, Aim</li>
+            <li>Slot 2: FOV, Aim</li>
+            <li>Slot 3: FOV, Aim</li>
+            <li>Slot 4: FOV, Aim</li>
+            <li>Slot 5: FOV, Aim</li>
+            <li>Pickaxe Keybind</li>
+          </ul>
+        </div>
+      </div>
+      <!-- ADVANCED & HUMANIZATION -->
+      <div class="accordion-item">
+        <button class="accordion-header">ADVANCED & HUMANIZATION</button>
+        <div class="accordion-content">
+          <ul>
+            <li>ADS FOV (Aim Down Sight Field of View)</li>
+          </ul>
+        </div>
+      </div>
+      <!-- RECOIL AND BLOOM -->
+      <div class="accordion-item">
+        <button class="accordion-header">RECOIL & BLOOM</button>
+        <div class="accordion-content">
+          <ul>
+            <li>Enable Anti-Recoil</li>
+            <li>Reduce Bloom</li>
+            <li>Require ADS</li>
+            <li>Recoil Strength Adjustment</li>
+          </ul>
+        </div>
+      </div>
+      <!-- TRIGGERBOT -->
+      <div class="accordion-item">
+        <button class="accordion-header">TRIGGERBOT</button>
+        <div class="accordion-content">
+          <ul>
+            <li>Enable Triggerbot</li>
+            <li>Assign Keybind for Triggerbot</li>
+            <li>Keybind Selector</li>
+            <li>FOV Slider</li>
+            <li>Confidence Slider</li>
+          </ul>
+        </div>
+      </div>
+      <!-- VISUALS -->
+      <div class="accordion-item">
+        <button class="accordion-header">VISUALS</button>
+        <div class="accordion-content">
+          <ul>
+            <li>Enable Visual Overlay</li>
+            <li>Color Selector for Every Option</li>
+            <li>Draw FOV Circle</li>
+            <li>Customizable Crosshair</li>
+            <li>Draw Boxes Around Targets</li>
+            <li>Draw Aimline</li>
+            <li>Debug Window</li>
+            <li>Display AI FPS</li>
+            <li>Box Types: Corner, Filled, Normal</li>
+          </ul>
+        </div>
+      </div>
+      <!-- INFO -->
+      <div class="accordion-item">
+        <button class="accordion-header">INFO</button>
+        <div class="accordion-content">
+          <ul>
+            <li>User Information</li>
+            <li>License Key</li>
+            <li>Purchase Details</li>
+            <li>Last Login Timestamp</li>
+            <li>Expiry Date</li>
+          </ul>
+        </div>
+      </div>
+      <!-- SYSTEM INFORMATION -->
+      <div class="accordion-item">
+        <button class="accordion-header">SYSTEM INFORMATION</button>
+        <div class="accordion-content">
+          <ul>
+            <li>Operating System (OS)</li>
+            <li>CPU Details</li>
+            <li>Memory (RAM)</li>
+            <li>GPU Specifications</li>
+          </ul>
+        </div>
+      </div>
+      <!-- AI SETTINGS -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI</button>
+        <div class="accordion-content">
+          <ul>
+            <li>Blob Size</li>
+            <li>Model Selection</li>
+            <li>Confidence Level</li>
+            <li>Max Detections</li>
+            <li>Max FPS</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Preview Gallery Section -->
-  <section class="gallery">
+  <section id="gallery" class="gallery">
     <h2>Preview Gallery</h2>
     <div class="gallery-grid">
       <img src="assets/1.png" alt="Preview 1" />
@@ -206,7 +418,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Overaim Ai. All rights reserved.</p>
+    <p>&copy; 2025 Overaim AI. All rights reserved.</p>
   </footer>
 
   <!-- Particle Background Script -->
@@ -258,18 +470,29 @@
     function animateParticles() {
       requestAnimationFrame(animateParticles);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-      }
+      particlesArray.forEach(particle => particle.update());
     }
     initParticles();
     animateParticles();
-
-    // Resize canvas on window resize
     window.addEventListener('resize', function () {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initParticles();
+    });
+
+    // Accordion functionality
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function () {
+        const content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          // Close any open accordion items
+          document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
     });
   </script>
 </body>

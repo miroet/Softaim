@@ -4,34 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Overaim AI Free Version - 100% Free, Great Accuracy, Optimized</title>
-  <!-- Google Fonts for modern typography -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
-    /* Base Styles */
+    /* RESET & BASE */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background: #121212;
       color: #e0e0e0;
-      overflow-x: hidden;
-      position: relative;
       line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-    a { text-decoration: none; color: inherit; }
-    a:hover { opacity: 0.85; }
-
-    /* Navigation Bar */
+    a { color: inherit; text-decoration: none; }
+    /* NAVIGATION */
     .navbar {
-      width: 100%;
-      background: rgba(31, 31, 31, 0.95);
-      padding: 15px 30px;
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 100;
+      width: 100%;
+      background: rgba(31,31,31,0.95);
+      padding: 15px 30px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      z-index: 100;
       border-bottom: 1px solid #333;
     }
     .navbar .logo {
@@ -42,457 +40,315 @@
     .navbar nav ul {
       list-style: none;
       display: flex;
-      gap: 25px;
-    }
-    .navbar nav ul li {
-      font-size: 1rem;
+      gap: 20px;
     }
     .navbar nav ul li a {
       color: #bbb;
       transition: color 0.3s;
     }
-    .navbar nav ul li a:hover { color: #fff; }
-
-    /* Slideshow Section */
-    .slideshow {
-      width: 100%;
-      height: 400px;
-      position: relative;
-      overflow: hidden;
-      margin-top: 70px; /* to account for fixed nav */
+    .navbar nav ul li a:hover {
+      color: #fff;
     }
-    .slideshow img {
+    /* SLIDESHOW */
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 400px;
+      margin: 90px auto 40px; /* leave space for fixed navbar */
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .slider img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: opacity 1s ease;
+      transition: transform 0.5s ease;
     }
-
-    /* Hero Section */
-    .hero {
-      padding: 60px 20px 60px;
-      text-align: center;
-      animation: fadeIn 1.5s ease forwards;
-      opacity: 0;
-      position: relative;
+    .slider img:hover {
+      transform: scale(1.03);
+    }
+    /* "100% FREE" Badge */
+    .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #28a745;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 4px;
       z-index: 2;
     }
+    /* HERO TEXT (fades in on scroll) */
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .hero.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .hero h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
+      font-size: 2.8rem;
+      margin-bottom: 15px;
     }
     .hero p {
       font-size: 1.2rem;
-      margin-bottom: 40px;
       color: #ccc;
     }
-    .hero .btn-container {
-      display: inline-flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      border-radius: 5px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      transition: background 0.3s, transform 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-    .download-btn {
-      background: linear-gradient(45deg, #1e90ff, #0d74d1);
-      color: #fff;
-    }
-    .download-btn:hover { transform: scale(1.03); }
-    .discord-btn {
-      background: #7289DA;
-      color: #fff;
-    }
-    .discord-btn:hover { transform: scale(1.03); }
-
-    /* Overview Features Section */
-    .features {
-      padding: 60px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      position: relative;
-      z-index: 2;
-    }
-    .feature {
-      background: #1f1f1f;
-      padding: 25px 20px;
-      border-radius: 8px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      transition: transform 0.3s;
-    }
-    .feature:hover { transform: translateY(-5px); }
-    .feature h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-    .feature p { font-size: 1rem; color: #bbb; }
-
-    /* Detailed Features Accordion Section */
-    .detailed-features {
-      padding: 60px 20px;
-      position: relative;
-      z-index: 2;
-    }
-    .detailed-features h2 {
-      text-align: center;
-      font-size: 2.6rem;
-      margin-bottom: 40px;
-    }
-    .accordion {
+    /* INTERACTIVE ACCORDION FOR FEATURES */
+    .accordion-section {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    .accordion-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
     }
     .accordion-item {
       background: #1f1f1f;
-      border-radius: 8px;
+      border-radius: 5px;
       margin-bottom: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     .accordion-header {
       background: #272727;
-      color: #fff;
       padding: 15px 20px;
-      width: 100%;
-      text-align: left;
-      font-size: 1.2rem;
-      border: none;
-      outline: none;
       cursor: pointer;
+      font-size: 1.2rem;
       transition: background 0.3s;
     }
-    .accordion-header:hover { background: #333; }
+    .accordion-header:hover {
+      background: #333;
+    }
     .accordion-content {
-      background: #1f1f1f;
-      padding: 0 20px 20px;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s ease;
+      padding: 0 20px;
+    }
+    .accordion-content.open {
+      padding: 15px 20px 20px;
     }
     .accordion-content ul {
       list-style: disc inside;
-      margin-top: 15px;
+      margin-top: 10px;
     }
-    .accordion-content li { margin-bottom: 8px; }
-
-    /* Footer */
+    .accordion-content li {
+      margin-bottom: 8px;
+    }
+    /* PARALLAX SECTION */
+    .parallax-section {
+      height: 300px;
+      background-image: url('assets/1.png');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 60px 0;
+    }
+    .parallax-section h2 {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 2rem;
+    }
+    /* FOOTER */
     footer {
-      background: #1f1f1f;
       text-align: center;
       padding: 20px;
+      background: #1f1f1f;
       border-top: 1px solid #333;
-      position: relative;
-      z-index: 2;
+      color: #bbb;
     }
-    footer p { color: #bbb; font-size: 0.9rem; }
-
-    /* Particle Background Canvas */
-    #background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: #121212;
-    }
-
-    /* Fade-in Animation */
-    @keyframes fadeIn { to { opacity: 1; } }
-    
-    /* Responsive Adjustments */
+    /* MEDIA QUERIES */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.6rem; }
-      .navbar nav ul { gap: 15px; }
+      .slider { height: 250px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+      .accordion-header { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Particle Background -->
-  <canvas id="background"></canvas>
-  
-  <!-- Navigation Bar -->
+  <!-- Navigation -->
   <header class="navbar">
     <div class="logo">Overaim AI</div>
     <nav>
       <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#features">Overview</a></li>
-        <li><a href="#detailed-features">Features</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#slider">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#parallax">About</a></li>
+        <li><a href="#footer">Contact</a></li>
         <li><a href="https://overaim.cc/discord" target="_blank">Discord</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Slideshow Section (Preview Images) -->
-  <section id="slideshow" class="slideshow">
-    <img id="slider-image" src="assets/1.png" alt="Slideshow Image" />
+  <!-- Slider Section -->
+  <section id="slider" class="slider">
+    <div class="badge">100% FREE</div>
+    <img id="slide-img" src="assets/1.png" alt="Slide Image" />
   </section>
 
   <!-- Hero Section -->
-  <section id="hero" class="hero">
-    <h1>The Future of Aiming is Here</h1>
-    <p>Experience Overaim AI – 100% Free, Unmatched Accuracy, and Optimized Performance for every game.</p>
-    <div class="btn-container">
-      <a href="freeai.zip" download class="btn download-btn">Download FreeAI</a>
-      <a href="https://overaim.cc/discord" target="_blank" class="btn discord-btn">Join Discord</a>
-    </div>
+  <section class="hero" id="hero">
+    <h1>Revolutionize Your Aim with Overaim AI</h1>
+    <p>Experience precision and performance that’s engineered for gamers.</p>
   </section>
 
-  <!-- Overview Features Section -->
-  <section id="features" class="features">
-    <div class="feature">
-      <h3>100% Free</h3>
-      <p>Unlock full potential with Overaim AI at zero cost.</p>
-    </div>
-    <div class="feature">
-      <h3>Great Accuracy</h3>
-      <p>State-of-the-art AI ensures you hit every target.</p>
-    </div>
-    <div class="feature">
-      <h3>Optimized Performance</h3>
-      <p>Seamless integration without compromising system speed.</p>
-    </div>
-  </section>
-
-  <!-- Detailed Features Accordion Section -->
-  <section id="detailed-features" class="detailed-features">
+  <!-- Accordion: Detailed Features -->
+  <section id="features" class="accordion-section">
     <h2>Detailed Features</h2>
-    <div class="accordion">
-      <!-- AIMING -->
-      <div class="accordion-item">
-        <button class="accordion-header">AIMING</button>
-        <div class="accordion-content">
-          <ul>
-            <li>Enable Aimbot</li>
-            <li>Keybinds</li>
-            <li>Backup Keybind</li>
-            <li>FOV (Field of View)</li>
-            <li>Aim Speed</li>
-            <li>Aim Bone Selection</li>
-          </ul>
-        </div>
-      </div>
-      <!-- SLOTS -->
-      <div class="accordion-item">
-        <button class="accordion-header">SLOTS</button>
-        <div class="accordion-content">
-          <ul>
-            <li>Slot 1: FOV, Aim</li>
-            <li>Slot 2: FOV, Aim</li>
-            <li>Slot 3: FOV, Aim</li>
-            <li>Slot 4: FOV, Aim</li>
-            <li>Slot 5: FOV, Aim</li>
-            <li>Pickaxe Keybind</li>
-          </ul>
-        </div>
-      </div>
-      <!-- ADVANCED & HUMANIZATION -->
-      <div class="accordion-item">
-        <button class="accordion-header">ADVANCED & HUMANIZATION</button>
-        <div class="accordion-content">
-          <ul>
-            <li>ADS FOV (Aim Down Sight Field of View)</li>
-          </ul>
-        </div>
-      </div>
-      <!-- RECOIL & BLOOM -->
-      <div class="accordion-item">
-        <button class="accordion-header">RECOIL & BLOOM</button>
-        <div class="accordion-content">
-          <ul>
-            <li>Enable Anti-Recoil</li>
-            <li>Reduce Bloom</li>
-            <li>Require ADS</li>
-            <li>Recoil Strength Adjustment</li>
-          </ul>
-        </div>
-      </div>
-      <!-- TRIGGERBOT -->
-      <div class="accordion-item">
-        <button class="accordion-header">TRIGGERBOT</button>
-        <div class="accordion-content">
-          <ul>
-            <li>Enable Triggerbot</li>
-            <li>Assign Keybind for Triggerbot</li>
-            <li>Keybind Selector</li>
-            <li>FOV Slider</li>
-            <li>Confidence Slider</li>
-          </ul>
-        </div>
-      </div>
-      <!-- VISUALS -->
-      <div class="accordion-item">
-        <button class="accordion-header">VISUALS</button>
-        <div class="accordion-content">
-          <ul>
-            <li>Enable Visual Overlay</li>
-            <li>Color Selector for Every Option</li>
-            <li>Draw FOV Circle</li>
-            <li>Customizable Crosshair</li>
-            <li>Draw Boxes Around Targets</li>
-            <li>Draw Aimline</li>
-            <li>Debug Window</li>
-            <li>Display AI FPS</li>
-            <li>Box Types: Corner, Filled, Normal</li>
-          </ul>
-        </div>
-      </div>
-      <!-- INFO -->
-      <div class="accordion-item">
-        <button class="accordion-header">INFO</button>
-        <div class="accordion-content">
-          <ul>
-            <li>User Information</li>
-            <li>License Key</li>
-            <li>Purchase Details</li>
-            <li>Last Login Timestamp</li>
-            <li>Expiry Date</li>
-          </ul>
-        </div>
-      </div>
-      <!-- SYSTEM INFORMATION -->
-      <div class="accordion-item">
-        <button class="accordion-header">SYSTEM INFORMATION</button>
-        <div class="accordion-content">
-          <ul>
-            <li>Operating System (OS)</li>
-            <li>CPU Details</li>
-            <li>Memory (RAM)</li>
-            <li>GPU Specifications</li>
-          </ul>
-        </div>
-      </div>
-      <!-- AI SETTINGS -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI</button>
-        <div class="accordion-content">
-          <ul>
-            <li>Blob Size</li>
-            <li>Model Selection</li>
-            <li>Confidence Level</li>
-            <li>Max Detections</li>
-            <li>Max FPS</li>
-          </ul>
-        </div>
+    <div class="accordion-item">
+      <div class="accordion-header">AIMING</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Enable Aimbot</li>
+          <li>Keybinds & Backup Keybind</li>
+          <li>FOV & Aim Speed</li>
+          <li>Aim Bone Selection</li>
+        </ul>
       </div>
     </div>
+    <div class="accordion-item">
+      <div class="accordion-header">SLOTS</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Slot 1: FOV, Aim</li>
+          <li>Slot 2: FOV, Aim</li>
+          <li>Slot 3: FOV, Aim</li>
+          <li>Slot 4: FOV, Aim</li>
+          <li>Slot 5: FOV, Aim</li>
+          <li>Pickaxe Keybind</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">ADVANCED & HUMANIZATION</div>
+      <div class="accordion-content">
+        <ul>
+          <li>ADS FOV</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">RECOIL & BLOOM</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Enable Anti-Recoil</li>
+          <li>Reduce Bloom</li>
+          <li>Require ADS</li>
+          <li>Recoil Strength Adjustment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">TRIGGERBOT</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Enable Triggerbot</li>
+          <li>Assign Keybind & Selector</li>
+          <li>FOV & Confidence Sliders</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">VISUALS</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Enable Visual Overlay</li>
+          <li>Color Selectors</li>
+          <li>Draw FOV, Crosshair, Boxes, Aimline</li>
+          <li>Debug Window & AI FPS Display</li>
+          <li>Box Types: Corner, Filled, Normal</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">INFO & SYSTEM</div>
+      <div class="accordion-content">
+        <ul>
+          <li>User Info, License, Purchase Details, Last Login, Expiry</li>
+          <li>OS, CPU, Memory, GPU</li>
+          <li>AI Settings: Blob Size, Model, Confidence, Max Detections & FPS</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax Section -->
+  <section id="parallax" class="parallax-section">
+    <h2>Immersive Interactive Experience</h2>
   </section>
 
   <!-- Footer -->
-  <footer id="faq">
+  <footer id="footer">
     <p>&copy; 2025 Overaim AI. All rights reserved.</p>
   </footer>
 
-  <!-- Particle Background Script -->
+  <!-- JavaScript -->
   <script>
-    // Particle Background
-    const canvas = document.getElementById('background');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let particlesArray = [];
-    const numberOfParticles = (canvas.width * canvas.height) / 9000;
+    /* SLIDER AUTO-CYCLE */
+    const sliderImages = [
+      'assets/1.png',
+      'assets/2.png',
+      'assets/3.png',
+      'assets/4.png',
+      'assets/5.png',
+      'assets/6.png',
+      'assets/7.png',
+      'assets/8.png',
+      'assets/9.png'
+    ];
+    let currentSlide = 0;
+    const slideImg = document.getElementById('slide-img');
 
-    class Particle {
-      constructor(x, y, size, color, weight) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.color = color;
-        this.weight = weight;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-      update() {
-        if (this.y > canvas.height) {
-          this.y = 0 - this.size;
-          this.x = Math.random() * canvas.width;
-          this.weight = Math.random() * 2 + 1;
-        }
-        this.y += this.weight;
-        this.draw();
-      }
+    function showNextSlide() {
+      currentSlide = (currentSlide + 1) % sliderImages.length;
+      slideImg.src = sliderImages[currentSlide];
     }
+    setInterval(showNextSlide, 3000);
 
-    function initParticles() {
-      particlesArray = [];
-      for (let i = 0; i < numberOfParticles; i++) {
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        let size = Math.random() * 2;
-        let color = "#ffffff";
-        let weight = Math.random() * 2 + 1;
-        particlesArray.push(new Particle(x, y, size, color, weight));
+    /* HERO FADE-IN ON SCROLL */
+    const heroSection = document.getElementById('hero');
+    window.addEventListener('scroll', () => {
+      const heroPosition = heroSection.getBoundingClientRect().top;
+      if(heroPosition < window.innerHeight - 100) {
+        heroSection.classList.add('visible');
       }
-    }
-
-    function animateParticles() {
-      requestAnimationFrame(animateParticles);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(particle => particle.update());
-    }
-    initParticles();
-    animateParticles();
-
-    window.addEventListener('resize', function () {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
     });
 
-    // Accordion functionality for detailed features
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', function () {
+    /* ACCORDION FUNCTIONALITY */
+    const accHeaders = document.querySelectorAll('.accordion-header');
+    accHeaders.forEach(header => {
+      header.addEventListener('click', function() {
         const content = this.nextElementSibling;
-        if (content.style.maxHeight) {
+        if(content.style.maxHeight) {
           content.style.maxHeight = null;
+          content.classList.remove('open');
         } else {
-          document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+          // Close all open accordions
+          document.querySelectorAll('.accordion-content').forEach(c => {
+            c.style.maxHeight = null;
+            c.classList.remove('open');
+          });
           content.style.maxHeight = content.scrollHeight + "px";
+          content.classList.add('open');
         }
       });
     });
-
-    // Slideshow functionality
-    const sliderImages = [
-      "assets/1.png", 
-      "assets/2.png", 
-      "assets/3.png", 
-      "assets/4.png", 
-      "assets/5.png", 
-      "assets/6.png", 
-      "assets/7.png", 
-      "assets/8.png", 
-      "assets/9.png"
-    ];
-    let sliderIndex = 0;
-    const sliderImageElement = document.getElementById('slider-image');
-    function changeSlide() {
-      sliderIndex = (sliderIndex + 1) % sliderImages.length;
-      sliderImageElement.src = sliderImages[sliderIndex];
-    }
-    setInterval(changeSlide, 3000);
   </script>
 </body>
 </html>

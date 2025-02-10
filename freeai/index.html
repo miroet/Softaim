@@ -17,8 +17,8 @@
       overflow-x: hidden;
       position: relative;
     }
-    a { color: #1e90ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: 0.9; }
 
     /* Header */
     header {
@@ -27,6 +27,7 @@
       text-align: center;
       position: relative;
       z-index: 2;
+      border-bottom: 1px solid #333;
     }
     header h1 { font-size: 3rem; margin-bottom: 10px; }
     header p { font-size: 1.2rem; color: #bbb; }
@@ -41,21 +42,38 @@
       z-index: 2;
     }
     .hero h2 { font-size: 2.5rem; margin-bottom: 20px; }
-    .hero p { font-size: 1.2rem; margin-bottom: 40px; }
-    .download-btn {
+    .hero p { font-size: 1.2rem; margin-bottom: 40px; color: #ccc; }
+    .btn-container {
+      display: inline-flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
       display: inline-block;
       padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .download-btn {
       background: #1e90ff;
       color: #fff;
       border: none;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
     }
     .download-btn:hover {
       background: #0d74d1;
-      transform: scale(1.05);
+      transform: scale(1.03);
+    }
+    .discord-btn {
+      background: #7289DA;
+      color: #fff;
+      border: none;
+    }
+    .discord-btn:hover {
+      background: #5b6eae;
+      transform: scale(1.03);
     }
 
     /* Features Section */
@@ -66,10 +84,10 @@
       padding: 40px 20px;
       position: relative;
       z-index: 2;
+      gap: 20px;
     }
     .feature {
       background: #1f1f1f;
-      margin: 10px;
       padding: 20px;
       border-radius: 8px;
       width: 280px;
@@ -79,6 +97,32 @@
     .feature h3 { font-size: 1.5rem; margin-bottom: 10px; }
     .feature p { font-size: 1rem; color: #bbb; }
 
+    /* Preview Gallery Section */
+    .gallery {
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .gallery h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
     /* Footer */
     footer {
       background: #1f1f1f;
@@ -87,8 +131,9 @@
       margin-top: 40px;
       position: relative;
       z-index: 2;
+      border-top: 1px solid #333;
     }
-    footer p { color: #bbb; }
+    footer p { color: #bbb; font-size: 0.9rem; }
 
     /* Particle Background Canvas */
     #background {
@@ -121,7 +166,10 @@
   <section class="hero">
     <h2>Revolutionize Your Aim with Overaim Ai!</h2>
     <p>Experience the ultimate free AI-driven aiming solution. Designed for precision, speed, and efficiency.</p>
-    <a href="https://example.com/download" class="download-btn">Download Now</a>
+    <div class="btn-container">
+      <a href="freeai.zip" download class="btn download-btn">Download FreeAI</a>
+      <a href="https://overaim.cc/discord" target="_blank" class="btn discord-btn">Join Discord</a>
+    </div>
   </section>
 
   <!-- Features Section -->
@@ -137,6 +185,22 @@
     <div class="feature">
       <h3>Optimized Performance</h3>
       <p>Lightweight and efficient—overclock your gameplay without slowing down your system.</p>
+    </div>
+  </section>
+
+  <!-- Preview Gallery Section -->
+  <section class="gallery">
+    <h2>Preview Gallery</h2>
+    <div class="gallery-grid">
+      <img src="assets/1.png" alt="Preview 1" />
+      <img src="assets/2.png" alt="Preview 2" />
+      <img src="assets/3.png" alt="Preview 3" />
+      <img src="assets/4.png" alt="Preview 4" />
+      <img src="assets/5.png" alt="Preview 5" />
+      <img src="assets/6.png" alt="Preview 6" />
+      <img src="assets/7.png" alt="Preview 7" />
+      <img src="assets/8.png" alt="Preview 8" />
+      <img src="assets/9.png" alt="Preview 9" />
     </div>
   </section>
 

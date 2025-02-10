@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overaim AI Free Version - 100% Free, Optimized, Interactive</title>
+  <title>Overaim AI Free Version - 100% Free, Great Accuracy, Optimized</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
@@ -23,10 +23,8 @@
     /* =========== INTERACTIVE PARTICLE WALLPAPER =========== */
     #wallpaper {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%; 
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -2;
       background: #121212;
     }
@@ -34,10 +32,9 @@
     /* =========== NAVIGATION BAR =========== */
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
-      background: rgba(31, 31, 31, 0.95);
+      background: rgba(31,31,31,0.95);
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
@@ -54,56 +51,85 @@
       list-style: none;
       display: flex;
       gap: 20px;
+      align-items: center;
     }
     .navbar nav ul li a {
       color: #bbb;
       transition: color 0.3s;
     }
     .navbar nav ul li a:hover { color: #fff; }
-    
-    /* =========== IMAGE SLIDER =========== */
-    .slider {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      height: 300px;
-      margin: 90px auto 40px; /* Leave room for fixed navbar */
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
-      background: #000;
+    .navbar .cta-buttons {
+      display: flex;
+      gap: 10px;
     }
-    .slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Prevent stretching, always covers container */
-      transition: transform 0.5s ease;
-    }
-    .slider img:hover { transform: scale(1.03); }
-    .badge {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: #28a745;
-      color: #fff;
-      padding: 5px 10px;
-      font-size: 1rem;
-      font-weight: 700;
+    .cta-buttons a {
+      padding: 8px 15px;
       border-radius: 4px;
-      z-index: 2;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.3s;
     }
+    .download-btn {
+      background: linear-gradient(45deg, #1e90ff, #0d74d1);
+      color: #fff;
+    }
+    .download-btn:hover { background: #0d74d1; }
+    .discord-btn {
+      background: #7289da;
+      color: #fff;
+    }
+    .discord-btn:hover { background: #5b6ea8; }
     
     /* =========== HERO SECTION =========== */
     .hero {
+      margin-top: 90px; /* Space for navbar */
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .hero.visible { opacity: 1; transform: translateY(0); }
     .hero h1 { font-size: 2.8rem; margin-bottom: 15px; }
-    .hero p { font-size: 1.2rem; color: #ccc; }
+    .hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; }
+    .hero .hero-ctas {
+      display: inline-flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero .hero-ctas a {
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .hero .hero-ctas a:hover { transform: scale(1.05); }
+    /* Reuse the same classes for download and discord buttons here */
+    .hero .download-btn { background: linear-gradient(45deg, #1e90ff, #0d74d1); color: #fff; }
+    .hero .discord-btn { background: #7289da; color: #fff; }
+    
+    /* =========== FEATURES SECTION =========== */
+    .features {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: #1f1f1f;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-5px); }
+    .feature-card h3 { margin-bottom: 10px; font-size: 1.4rem; }
+    .feature-card p { font-size: 0.95rem; color: #bbb; }
     
     /* =========== ACCORDION SECTION (DETAILED FEATURES) =========== */
     .accordion-section {
@@ -138,10 +164,7 @@
       padding: 0 20px;
     }
     .accordion-content.open { padding: 15px 20px 20px; }
-    .accordion-content ul {
-      list-style: disc inside;
-      margin-top: 10px;
-    }
+    .accordion-content ul { list-style: disc inside; margin-top: 10px; }
     .accordion-content li { margin-bottom: 8px; }
     
     /* =========== PARALLAX SECTION =========== */
@@ -158,7 +181,7 @@
       margin: 60px 0;
     }
     .parallax-section h2 {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.5);
       padding: 10px 20px;
       border-radius: 4px;
       font-size: 2rem;
@@ -173,7 +196,7 @@
       color: #bbb;
     }
     
-    /* =========== RESPONSIVE ADJUSTMENTS =========== */
+    /* =========== RESPONSIVE MEDIA QUERIES =========== */
     @media (max-width: 768px) {
       .slider { height: 250px; }
       .hero h1 { font-size: 2.2rem; }
@@ -195,9 +218,12 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#parallax">About</a></li>
         <li><a href="#footer">Contact</a></li>
-        <li><a href="https://overaim.cc/discord" target="_blank">Discord</a></li>
       </ul>
     </nav>
+    <div class="cta-buttons">
+      <a class="download-btn" href="freeai.zip" download>Download FreeAI</a>
+      <a class="discord-btn" href="https://overaim.cc/discord" target="_blank">Join Discord</a>
+    </div>
   </header>
   
   <!-- Image Slider -->
@@ -209,7 +235,27 @@
   <!-- Hero Section -->
   <section id="hero" class="hero">
     <h1>Revolutionize Your Aim with Overaim AI</h1>
-    <p>Experience precision, performance, and interactive design engineered for gamers.</p>
+    <p>Experience precision, optimized performance, and interactive design engineered for gamers.</p>
+    <div class="hero-ctas">
+      <a class="download-btn" href="freeai.zip" download>Download FreeAI</a>
+      <a class="discord-btn" href="https://overaim.cc/discord" target="_blank">Join Discord</a>
+    </div>
+  </section>
+  
+  <!-- Features Section (Simple Cards) -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>100% Free</h3>
+      <p>No hidden fees. Enjoy full functionality at zero cost.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Great Accuracy</h3>
+      <p>Engineered AI algorithms ensure you hit every target.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Optimized Performance</h3>
+      <p>Lightweight design without compromising on speed.</p>
+    </div>
   </section>
   
   <!-- Accordion: Detailed Features -->
@@ -342,7 +388,6 @@
           content.style.maxHeight = null;
           content.classList.remove('open');
         } else {
-          // Close any open accordion items
           document.querySelectorAll('.accordion-content').forEach(c => {
             c.style.maxHeight = null;
             c.classList.remove('open');
@@ -392,13 +437,11 @@
       particles.forEach(p => {
         p.x += p.vx;
         p.y += p.vy;
-        // Bounce off canvas edges
         if (p.x < 0 || p.x > canvas.width) p.vx = -p.vx;
         if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
-        // Interactive: repel particles near mouse
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
-        const distance = Math.sqrt(dx*dx + dy*dy);
+        const distance = Math.sqrt(dx * dx + dy * dy);
         if (distance < mouse.radius) {
           const angle = Math.atan2(dy, dx);
           p.vx = -Math.cos(angle) * 2;

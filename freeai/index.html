@@ -19,16 +19,16 @@
       position: relative;
     }
     a { text-decoration: none; color: inherit; }
-
+    
     /* =========== INTERACTIVE PARTICLE WALLPAPER =========== */
     #wallpaper {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: -2;
+      z-index: -3;
       background: #121212;
     }
-
+    
     /* =========== NAVIGATION BAR =========== */
     .navbar {
       position: fixed;
@@ -41,6 +41,11 @@
       align-items: center;
       z-index: 100;
       border-bottom: 1px solid #333;
+      animation: slideDown 0.5s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
     .navbar .logo {
       font-size: 1.8rem;
@@ -55,9 +60,12 @@
     }
     .navbar nav ul li a {
       color: #bbb;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.3s;
     }
-    .navbar nav ul li a:hover { color: #fff; }
+    .navbar nav ul li a:hover {
+      color: #fff;
+      transform: scale(1.05);
+    }
     .cta-buttons {
       display: flex;
       gap: 10px;
@@ -67,19 +75,19 @@
       border-radius: 4px;
       font-weight: 700;
       font-size: 0.9rem;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
     .download-btn {
       background: linear-gradient(45deg, #1e90ff, #0d74d1);
       color: #fff;
     }
-    .download-btn:hover { background: #0d74d1; }
+    .download-btn:hover { background: #0d74d1; transform: scale(1.05); }
     .discord-btn {
       background: #7289da;
       color: #fff;
     }
-    .discord-btn:hover { background: #5b6ea8; }
-
+    .discord-btn:hover { background: #5b6ea8; transform: scale(1.05); }
+    
     /* =========== IMAGE SLIDER (Top Section) =========== */
     .slider {
       position: relative;
@@ -96,8 +104,14 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* Crop uniformly */
       object-position: center;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     .slider .badge {
       position: absolute;
@@ -110,6 +124,12 @@
       font-weight: 700;
       border-radius: 4px;
       z-index: 2;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     .slider .arrow {
       position: absolute;
@@ -122,11 +142,12 @@
       z-index: 2;
       user-select: none;
       font-size: 1.5rem;
+      transition: background 0.3s;
     }
     .slider .arrow:hover { background: rgba(0,0,0,0.8); }
     .slider .arrow.left { left: 15px; }
     .slider .arrow.right { right: 15px; }
-
+    
     /* =========== HERO SECTION =========== */
     .hero {
       text-align: center;
@@ -152,7 +173,7 @@
       transition: transform 0.3s, background 0.3s;
     }
     .hero .hero-ctas a:hover { transform: scale(1.05); }
-
+    
     /* =========== FEATURES SECTION (Cards) =========== */
     .features {
       max-width: 900px;
@@ -168,12 +189,17 @@
       border-radius: 8px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      transition: transform 0.3s;
+      transition: transform 0.3s, opacity 0.3s;
+      opacity: 0;
+    }
+    .feature-card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .feature-card:hover { transform: translateY(-5px); }
     .feature-card h3 { margin-bottom: 10px; font-size: 1.4rem; }
     .feature-card p { font-size: 0.95rem; color: #bbb; }
-
+    
     /* =========== ACCORDION SECTION (Detailed Features) =========== */
     .accordion-section {
       max-width: 900px;
@@ -197,19 +223,29 @@
       padding: 15px 20px;
       cursor: pointer;
       font-size: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       transition: background 0.3s;
     }
     .accordion-header:hover { background: #333; }
+    .accordion-header .icon {
+      transition: transform 0.3s;
+    }
     .accordion-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
       padding: 0 20px;
+      opacity: 0;
     }
-    .accordion-content.open { padding: 15px 20px 20px; }
+    .accordion-content.open {
+      padding: 15px 20px 20px;
+      opacity: 1;
+    }
     .accordion-content ul { list-style: disc inside; margin-top: 10px; }
     .accordion-content li { margin-bottom: 8px; }
-
+    
     /* =========== PARALLAX SECTION =========== */
     .parallax-section {
       height: 300px;
@@ -222,9 +258,15 @@
       align-items: center;
       justify-content: center;
       margin: 60px 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
     }
     .parallax-section h2 {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.5);
       padding: 10px 20px;
       border-radius: 4px;
       font-size: 2rem;
@@ -287,7 +329,7 @@
     </div>
   </section>
   
-  <!-- Features Cards -->
+  <!-- Features Section (Cards) -->
   <section class="features">
     <div class="feature-card">
       <h3>100% Free</h3>
@@ -299,15 +341,19 @@
     </div>
     <div class="feature-card">
       <h3>Optimized Performance</h3>
-      <p>Lightweight design without compromising on speed.</p>
+      <p>Lightweight design without compromising speed.</p>
     </div>
   </section>
   
   <!-- Accordion: Detailed Features -->
   <section id="features" class="accordion-section">
     <h2>Detailed Features</h2>
+    <!-- AIMING -->
     <div class="accordion-item">
-      <div class="accordion-header">AIMING</div>
+      <div class="accordion-header">
+        AIMING
+        <span class="icon">&#9660;</span>
+      </div>
       <div class="accordion-content">
         <ul>
           <li>Enable Aimbot</li>
@@ -317,8 +363,12 @@
         </ul>
       </div>
     </div>
+    <!-- SLOTS -->
     <div class="accordion-item">
-      <div class="accordion-header">SLOTS</div>
+      <div class="accordion-header">
+        SLOTS
+        <span class="icon">&#9660;</span>
+      </div>
       <div class="accordion-content">
         <ul>
           <li>Slot 1: FOV, Aim</li>
@@ -330,16 +380,24 @@
         </ul>
       </div>
     </div>
+    <!-- ADVANCED & HUMANIZATION -->
     <div class="accordion-item">
-      <div class="accordion-header">ADVANCED &amp; HUMANIZATION</div>
+      <div class="accordion-header">
+        ADVANCED &amp; HUMANIZATION
+        <span class="icon">&#9660;</span>
+      </div>
       <div class="accordion-content">
         <ul>
           <li>ADS FOV</li>
         </ul>
       </div>
     </div>
+    <!-- RECOIL & BLOOM -->
     <div class="accordion-item">
-      <div class="accordion-header">RECOIL &amp; BLOOM</div>
+      <div class="accordion-header">
+        RECOIL &amp; BLOOM
+        <span class="icon">&#9660;</span>
+      </div>
       <div class="accordion-content">
         <ul>
           <li>Enable Anti-Recoil</li>
@@ -349,8 +407,12 @@
         </ul>
       </div>
     </div>
+    <!-- TRIGGERBOT -->
     <div class="accordion-item">
-      <div class="accordion-header">TRIGGERBOT</div>
+      <div class="accordion-header">
+        TRIGGERBOT
+        <span class="icon">&#9660;</span>
+      </div>
       <div class="accordion-content">
         <ul>
           <li>Enable Triggerbot</li>
@@ -359,8 +421,12 @@
         </ul>
       </div>
     </div>
+    <!-- VISUALS -->
     <div class="accordion-item">
-      <div class="accordion-header">VISUALS</div>
+      <div class="accordion-header">
+        VISUALS
+        <span class="icon">&#9660;</span>
+      </div>
       <div class="accordion-content">
         <ul>
           <li>Enable Visual Overlay</li>
@@ -371,8 +437,12 @@
         </ul>
       </div>
     </div>
+    <!-- INFO & SYSTEM -->
     <div class="accordion-item">
-      <div class="accordion-header">INFO &amp; SYSTEM</div>
+      <div class="accordion-header">
+        INFO &amp; SYSTEM
+        <span class="icon">&#9660;</span>
+      </div>
       <div class="accordion-content">
         <ul>
           <li>User Info, License, Purchase Details, Last Login, Expiry</li>
@@ -395,7 +465,7 @@
   
   <!-- =========== JAVASCRIPT =========== -->
   <script>
-    /* SLIDER AUTO-CYCLE & ARROW NAVIGATION */
+    /* ----- SLIDER AUTO-CYCLE & ARROW NAVIGATION ----- */
     const sliderImages = [
       'assets/1.png',
       'assets/2.png',
@@ -416,7 +486,12 @@
       currentSlide = index;
       if (currentSlide < 0) currentSlide = sliderImages.length - 1;
       if (currentSlide >= sliderImages.length) currentSlide = 0;
-      slideImg.src = sliderImages[currentSlide];
+      // Trigger fade-out then fade-in
+      slideImg.style.opacity = 0;
+      setTimeout(() => {
+        slideImg.src = sliderImages[currentSlide];
+        slideImg.style.opacity = 1;
+      }, 300);
     }
     function nextSlide() { showSlide(currentSlide + 1); }
     function prevSlide() { showSlide(currentSlide - 1); }
@@ -425,35 +500,55 @@
     prevArrow.addEventListener('click', prevSlide);
     setInterval(nextSlide, 4000);
     
-    /* HERO FADE-IN ON SCROLL */
+    /* ----- HERO FADE-IN ON SCROLL USING INTERSECTION OBSERVER ----- */
     const heroSection = document.getElementById('hero');
-    window.addEventListener('scroll', () => {
-      const heroPos = heroSection.getBoundingClientRect().top;
-      if (heroPos < window.innerHeight - 100) {
-        heroSection.classList.add('visible');
-      }
-    });
+    const observerOptions = { threshold: 0.5 };
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          heroSection.classList.add('visible');
+          heroObserver.unobserve(heroSection);
+        }
+      });
+    }, observerOptions);
+    heroObserver.observe(heroSection);
     
-    /* ACCORDION FUNCTIONALITY */
+    /* ----- FEATURE CARDS FADE-IN ----- */
+    const featureCards = document.querySelectorAll('.feature-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    featureCards.forEach(card => { cardObserver.observe(card); });
+    
+    /* ----- ACCORDION FUNCTIONALITY ----- */
     const accHeaders = document.querySelectorAll('.accordion-header');
     accHeaders.forEach(header => {
       header.addEventListener('click', function() {
         const content = this.nextElementSibling;
+        const icon = this.querySelector('.icon');
         if (content.style.maxHeight) {
           content.style.maxHeight = null;
           content.classList.remove('open');
+          icon.style.transform = 'rotate(0deg)';
         } else {
           document.querySelectorAll('.accordion-content').forEach(c => {
             c.style.maxHeight = null;
             c.classList.remove('open');
+            c.previousElementSibling.querySelector('.icon').style.transform = 'rotate(0deg)';
           });
           content.style.maxHeight = content.scrollHeight + "px";
           content.classList.add('open');
+          icon.style.transform = 'rotate(180deg)';
         }
       });
     });
     
-    /* INTERACTIVE PARTICLE WALLPAPER */
+    /* ----- INTERACTIVE PARTICLE WALLPAPER ----- */
     const canvas = document.getElementById('wallpaper');
     const ctx = canvas.getContext('2d');
     let particles = [];

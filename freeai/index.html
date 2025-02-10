@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overaim AI Free Version - 100% Free, Great Accuracy, Optimized</title>
+  <title>Overaim AI Free Version - 100% Free, Optimized & Interactive</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
@@ -19,7 +19,7 @@
       position: relative;
     }
     a { text-decoration: none; color: inherit; }
-    
+
     /* =========== INTERACTIVE PARTICLE WALLPAPER =========== */
     #wallpaper {
       position: fixed;
@@ -28,13 +28,13 @@
       z-index: -2;
       background: #121212;
     }
-    
+
     /* =========== NAVIGATION BAR =========== */
     .navbar {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      background: rgba(31,31,31,0.95);
+      background: rgba(31, 31, 31, 0.95);
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
@@ -58,7 +58,7 @@
       transition: color 0.3s;
     }
     .navbar nav ul li a:hover { color: #fff; }
-    .navbar .cta-buttons {
+    .cta-buttons {
       display: flex;
       gap: 10px;
     }
@@ -79,12 +79,58 @@
       color: #fff;
     }
     .discord-btn:hover { background: #5b6ea8; }
-    
+
+    /* =========== IMAGE SLIDER (Top Section) =========== */
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 300px;
+      margin: 90px auto 40px; /* Fixed space for navbar */
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+      background: #000;
+    }
+    .slider img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .slider .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #28a745;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 4px;
+      z-index: 2;
+    }
+    .slider .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      user-select: none;
+      font-size: 1.5rem;
+    }
+    .slider .arrow:hover { background: rgba(0,0,0,0.8); }
+    .slider .arrow.left { left: 15px; }
+    .slider .arrow.right { right: 15px; }
+
     /* =========== HERO SECTION =========== */
     .hero {
-      margin-top: 90px; /* Space for navbar */
       text-align: center;
-      padding: 60px 20px;
+      padding: 40px 20px;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -106,11 +152,8 @@
       transition: transform 0.3s, background 0.3s;
     }
     .hero .hero-ctas a:hover { transform: scale(1.05); }
-    /* Reuse the same classes for download and discord buttons here */
-    .hero .download-btn { background: linear-gradient(45deg, #1e90ff, #0d74d1); color: #fff; }
-    .hero .discord-btn { background: #7289da; color: #fff; }
-    
-    /* =========== FEATURES SECTION =========== */
+
+    /* =========== FEATURES SECTION (Cards) =========== */
     .features {
       max-width: 900px;
       margin: 60px auto;
@@ -130,8 +173,8 @@
     .feature-card:hover { transform: translateY(-5px); }
     .feature-card h3 { margin-bottom: 10px; font-size: 1.4rem; }
     .feature-card p { font-size: 0.95rem; color: #bbb; }
-    
-    /* =========== ACCORDION SECTION (DETAILED FEATURES) =========== */
+
+    /* =========== ACCORDION SECTION (Detailed Features) =========== */
     .accordion-section {
       max-width: 900px;
       margin: 60px auto;
@@ -166,7 +209,7 @@
     .accordion-content.open { padding: 15px 20px 20px; }
     .accordion-content ul { list-style: disc inside; margin-top: 10px; }
     .accordion-content li { margin-bottom: 8px; }
-    
+
     /* =========== PARALLAX SECTION =========== */
     .parallax-section {
       height: 300px;
@@ -181,7 +224,7 @@
       margin: 60px 0;
     }
     .parallax-section h2 {
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       padding: 10px 20px;
       border-radius: 4px;
       font-size: 2rem;
@@ -229,7 +272,9 @@
   <!-- Image Slider -->
   <section id="slider" class="slider">
     <div class="badge">100% FREE</div>
-    <img id="slide-img" src="assets/1.png" alt="Slide Image" />
+    <img id="slide-img" src="assets/1.png" alt="Slide Image">
+    <div class="arrow left" id="prev">&#10094;</div>
+    <div class="arrow right" id="next">&#10095;</div>
   </section>
   
   <!-- Hero Section -->
@@ -242,7 +287,7 @@
     </div>
   </section>
   
-  <!-- Features Section (Simple Cards) -->
+  <!-- Features Cards -->
   <section class="features">
     <div class="feature-card">
       <h3>100% Free</h3>
@@ -350,7 +395,7 @@
   
   <!-- =========== JAVASCRIPT =========== -->
   <script>
-    /***** SLIDER AUTO-CYCLE *****/
+    /* SLIDER AUTO-CYCLE & ARROW NAVIGATION */
     const sliderImages = [
       'assets/1.png',
       'assets/2.png',
@@ -364,13 +409,23 @@
     ];
     let currentSlide = 0;
     const slideImg = document.getElementById('slide-img');
-    function showNextSlide() {
-      currentSlide = (currentSlide + 1) % sliderImages.length;
+    const prevArrow = document.getElementById('prev');
+    const nextArrow = document.getElementById('next');
+    
+    function showSlide(index) {
+      currentSlide = index;
+      if (currentSlide < 0) currentSlide = sliderImages.length - 1;
+      if (currentSlide >= sliderImages.length) currentSlide = 0;
       slideImg.src = sliderImages[currentSlide];
     }
-    setInterval(showNextSlide, 3000);
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
     
-    /***** HERO FADE-IN ON SCROLL *****/
+    nextArrow.addEventListener('click', nextSlide);
+    prevArrow.addEventListener('click', prevSlide);
+    setInterval(nextSlide, 4000);
+    
+    /* HERO FADE-IN ON SCROLL */
     const heroSection = document.getElementById('hero');
     window.addEventListener('scroll', () => {
       const heroPos = heroSection.getBoundingClientRect().top;
@@ -379,7 +434,7 @@
       }
     });
     
-    /***** ACCORDION FUNCTIONALITY *****/
+    /* ACCORDION FUNCTIONALITY */
     const accHeaders = document.querySelectorAll('.accordion-header');
     accHeaders.forEach(header => {
       header.addEventListener('click', function() {
@@ -398,7 +453,7 @@
       });
     });
     
-    /***** INTERACTIVE PARTICLE WALLPAPER *****/
+    /* INTERACTIVE PARTICLE WALLPAPER */
     const canvas = document.getElementById('wallpaper');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -412,7 +467,6 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Particle constructor
     function Particle() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
@@ -420,18 +474,13 @@
       this.vy = (Math.random() - 0.5) * 1.2;
       this.size = Math.random() * 2 + 1;
     }
-    // Create particles
     for (let i = 0; i < numParticles; i++) {
       particles.push(new Particle());
     }
-    
-    // Update mouse position on move
     window.addEventListener('mousemove', e => {
       mouse.x = e.x;
       mouse.y = e.y;
     });
-    
-    // Animate particles
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {

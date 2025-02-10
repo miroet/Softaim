@@ -63,7 +63,7 @@
       background-color: #555555;
     }
   </style>
-  <!-- External script -->
+  <!-- External ad script -->
   <script src="https://kulroakonsu.net/88/tag.min.js" data-zone="130658" async data-cfasync="false"></script>
 </head>
 <body>
@@ -74,6 +74,12 @@
     <div id="key-display" class="key-display"></div>
     <button id="copy-button" class="copy-button" style="display:none;">Copy Key</button>
     <div id="error" class="error" style="display:none;"></div>
+    
+    <!-- Banner -->
+    <div style="position: relative; margin-top: 20px;">
+      <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" frameborder="0" height="90" width="728"></iframe>
+      <a href="https://publisher.linkvertise.com/ac/1290865" target="_blank" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></a>
+    </div>
   </div>
 
   <script>
@@ -97,12 +103,11 @@
             if (keys.length > 0) {
               var randomKey = keys[Math.floor(Math.random() * keys.length)];
               document.getElementById("key-display").innerText = randomKey;
-              // Make the "Copy Key" button visible.
+              // Show the "Copy Key" button.
               var copyButton = document.getElementById("copy-button");
               copyButton.style.display = "inline-block";
-              // Attach a click event to copy the key to clipboard.
+              // Attach click event to copy the key to clipboard.
               copyButton.addEventListener("click", function() {
-                // Use the Clipboard API if available.
                 if (navigator.clipboard && window.isSecureContext) {
                   navigator.clipboard.writeText(randomKey).then(function() {
                     copyButton.innerText = "Copied!";
@@ -113,10 +118,9 @@
                     console.error("Could not copy text: ", err);
                   });
                 } else {
-                  // Fallback method using a temporary textarea.
                   var textarea = document.createElement("textarea");
                   textarea.value = randomKey;
-                  textarea.style.position = "fixed";  // avoid scrolling to bottom
+                  textarea.style.position = "fixed"; // Avoid scrolling
                   document.body.appendChild(textarea);
                   textarea.focus();
                   textarea.select();
@@ -127,7 +131,7 @@
                       copyButton.innerText = "Copy Key";
                     }, 2000);
                   } catch (err) {
-                    console.error("Fallback: Oops, unable to copy", err);
+                    console.error("Fallback: Unable to copy", err);
                   }
                   document.body.removeChild(textarea);
                 }

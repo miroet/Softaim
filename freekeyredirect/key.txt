@@ -1,5 +1,4 @@
-make me a site that will show one of these keys as free key make sure to check if the user is redirected from linkvertise if not then do not let the user pass and not show the key show a random key one of these and say there if there key is invalid try again 
- FREEAI-wavXUtiOHeX9
+FREEAI-wavXUtiOHeX9
 FREEAI-RqPcCwW8uhur
 FREEAI-ndK89gaEhLyG
 FREEAI-Y2MEaTO375yU

@@ -53,9 +53,24 @@
     }
     .navbar nav ul li a:hover { color: #fff; }
 
+    /* Slideshow Section */
+    .slideshow {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 70px; /* to account for fixed nav */
+    }
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 1s ease;
+    }
+
     /* Hero Section */
     .hero {
-      padding: 140px 20px 60px; /* extra top padding to account for fixed nav */
+      padding: 60px 20px 60px;
       text-align: center;
       animation: fadeIn 1.5s ease forwards;
       opacity: 0;
@@ -100,7 +115,7 @@
     }
     .discord-btn:hover { transform: scale(1.03); }
 
-    /* Basic Features Section */
+    /* Overview Features Section */
     .features {
       padding: 60px 20px;
       display: flex;
@@ -174,31 +189,6 @@
     }
     .accordion-content li { margin-bottom: 8px; }
 
-    /* Preview Gallery Section */
-    .gallery {
-      padding: 60px 20px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    .gallery h2 {
-      font-size: 2.4rem;
-      margin-bottom: 30px;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 0 20px;
-    }
-    .gallery-grid img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease;
-    }
-    .gallery-grid img:hover { transform: scale(1.05); }
-
     /* Footer */
     footer {
       background: #1f1f1f;
@@ -243,12 +233,16 @@
         <li><a href="#hero">Home</a></li>
         <li><a href="#features">Overview</a></li>
         <li><a href="#detailed-features">Features</a></li>
-        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="https://overaim.cc/discord" target="_blank">Discord</a></li>
       </ul>
     </nav>
   </header>
+
+  <!-- Slideshow Section (Preview Images) -->
+  <section id="slideshow" class="slideshow">
+    <img id="slider-image" src="assets/1.png" alt="Slideshow Image" />
+  </section>
 
   <!-- Hero Section -->
   <section id="hero" class="hero">
@@ -317,7 +311,7 @@
           </ul>
         </div>
       </div>
-      <!-- RECOIL AND BLOOM -->
+      <!-- RECOIL & BLOOM -->
       <div class="accordion-item">
         <button class="accordion-header">RECOIL & BLOOM</button>
         <div class="accordion-content">
@@ -400,29 +394,14 @@
     </div>
   </section>
 
-  <!-- Preview Gallery Section -->
-  <section id="gallery" class="gallery">
-    <h2>Preview Gallery</h2>
-    <div class="gallery-grid">
-      <img src="assets/1.png" alt="Preview 1" />
-      <img src="assets/2.png" alt="Preview 2" />
-      <img src="assets/3.png" alt="Preview 3" />
-      <img src="assets/4.png" alt="Preview 4" />
-      <img src="assets/5.png" alt="Preview 5" />
-      <img src="assets/6.png" alt="Preview 6" />
-      <img src="assets/7.png" alt="Preview 7" />
-      <img src="assets/8.png" alt="Preview 8" />
-      <img src="assets/9.png" alt="Preview 9" />
-    </div>
-  </section>
-
   <!-- Footer -->
-  <footer>
+  <footer id="faq">
     <p>&copy; 2025 Overaim AI. All rights reserved.</p>
   </footer>
 
   <!-- Particle Background Script -->
   <script>
+    // Particle Background
     const canvas = document.getElementById('background');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -474,13 +453,14 @@
     }
     initParticles();
     animateParticles();
+
     window.addEventListener('resize', function () {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initParticles();
     });
 
-    // Accordion functionality
+    // Accordion functionality for detailed features
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     accordionHeaders.forEach(header => {
       header.addEventListener('click', function () {
@@ -488,12 +468,31 @@
         if (content.style.maxHeight) {
           content.style.maxHeight = null;
         } else {
-          // Close any open accordion items
           document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
           content.style.maxHeight = content.scrollHeight + "px";
         }
       });
     });
+
+    // Slideshow functionality
+    const sliderImages = [
+      "assets/1.png", 
+      "assets/2.png", 
+      "assets/3.png", 
+      "assets/4.png", 
+      "assets/5.png", 
+      "assets/6.png", 
+      "assets/7.png", 
+      "assets/8.png", 
+      "assets/9.png"
+    ];
+    let sliderIndex = 0;
+    const sliderImageElement = document.getElementById('slider-image');
+    function changeSlide() {
+      sliderIndex = (sliderIndex + 1) % sliderImages.length;
+      sliderImageElement.src = sliderImages[sliderIndex];
+    }
+    setInterval(changeSlide, 3000);
   </script>
 </body>
 </html>

@@ -31,7 +31,7 @@
     a { text-decoration: none; color: var(--primary); }
     ul { list-style: none; }
 
-    /* ===== Preloader ===== */
+    /* ===== Preloader & Redirect Loader ===== */
     #preloader {
       position: fixed;
       top: 0;
@@ -40,33 +40,40 @@
       height: 100%;
       background: var(--background);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 2000;
+      z-index: 3000;
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
-    .loader {
+    .loader-spinner {
       border: 8px solid #333;
       border-top: 8px solid var(--primary);
       border-radius: 50%;
       width: 80px;
       height: 80px;
       animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    .loader-text {
+      font-size: 1.2rem;
+      color: var(--muted);
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== Maintenance Mode Message ===== */
+    /* ===== Maintenance Mode ===== */
     #maintenanceMessage {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: var(--background);
-      z-index: 1500;
-      display: flex;
+      background: linear-gradient(135deg, #111, #222);
+      z-index: 2500;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -77,11 +84,13 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       color: var(--primary);
+      animation: fadeIn 1s ease-out;
     }
     #maintenanceMessage p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
       color: var(--muted);
+      max-width: 600px;
     }
     #maintenanceMessage .btn {
       background: var(--primary);
@@ -96,6 +105,10 @@
     #maintenanceMessage .btn:hover {
       background: #0088cc;
     }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* ===== Header & Navigation ===== */
     header {
@@ -104,7 +117,7 @@
       width: 100%;
       background: linear-gradient(135deg, #111, #222);
       border-bottom: 1px solid #222;
-      z-index: 1000;
+      z-index: 2000;
       animation: slideDown 0.5s ease-out;
     }
     @keyframes slideDown {
@@ -284,7 +297,7 @@
       background: #e62e5c;
     }
 
-    /* ===== New "What is OverAim?" Section ===== */
+    /* ===== "What is OverAim?" Section ===== */
     #intro {
       padding: 4rem 2rem;
       text-align: center;
@@ -457,7 +470,7 @@
       color: var(--muted);
     }
     
-    /* ===== How to Buy / Payment Methods Section ===== */
+    /* ===== How to Get the AI / Payment Methods Section ===== */
     .steps {
       display: flex;
       flex-wrap: wrap;
@@ -523,7 +536,7 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.5s ease, visibility 0.5s ease;
-      z-index: 1001;
+      z-index: 2100;
     }
     #scrollTopBtn.show {
       opacity: 1;
@@ -554,13 +567,14 @@
 <body>
   <!-- Preloader -->
   <div id="preloader">
-    <div class="loader"></div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading...</div>
   </div>
 
-  <!-- Maintenance Message (initially hidden) -->
+  <!-- Maintenance Message (improved design) -->
   <div id="maintenanceMessage">
-    <h1>Maintenance Mode</h1>
-    <p>Our site is currently under maintenance. For the latest updates, please join our Discord.</p>
+    <h1>We're Under Maintenance</h1>
+    <p>Our site is currently being updated. For the latest news and updates, please join our Discord community.</p>
     <button class="btn" onclick="window.open('https://overaim.cc/discord','_blank')">
       <i class="fab fa-discord"></i> Join Discord
     </button>
@@ -602,17 +616,17 @@
         <p>
           Enjoy our advanced AI aimbot absolutely free (ad‑supported). Support ongoing development and get lifetime ad‑free access for just 10€!
         </p>
-        <button class="btn download-btn" onclick="location.href='https://overaim.cc/freedownload'">
+        <button class="btn download-btn" onclick="navigateTo('https://overaim.cc/freedownload')">
           <i class="fas fa-download"></i> Download Now
         </button>
       </div>
     </section>
     
-    <!-- What is OverAim? Section -->
+    <!-- "What is OverAim?" Section -->
     <section id="intro">
       <h2 class="section-title reveal">What is OverAim?</h2>
       <p class="reveal">
-        OverAim is an AI‑powered aimbot assistant designed to operate externally without modifying game files. It offers human‑like mouse movements, precise enemy detection using GPU‐powered scanning, and a simple, intuitive interface. Get started for free (with ads) or upgrade to lifetime ad‑free access for only 10€ to support ongoing updates and top‑notch support.
+        OverAim is an AI‑powered aimbot assistant that operates externally without modifying game files. It offers human‑like mouse movements, precise enemy detection via GPU‑powered scanning, and an intuitive interface. Try it free (with ads) or upgrade to lifetime ad‑free access for only 10€ to support updates and top‑notch support.
       </p>
     </section>
     
@@ -900,18 +914,18 @@
     <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
   </div> <!-- End Main Content -->
 
-  <!-- ===== JavaScript for Animations, Preloader, Maintenance Check & Interactivity ===== -->
+  <!-- ===== JavaScript for Preloader, Maintenance, Redirect Animation & Interactivity ===== -->
   <script>
-    // Preloader fade out on window load
+    // Preloader: Fade out when window loads
     window.addEventListener("load", function() {
       const preloader = document.getElementById("preloader");
       preloader.style.opacity = "0";
       setTimeout(() => { preloader.style.display = "none"; }, 500);
-      // After preloader, check maintenance status
+      // After preloader, check if site is in maintenance mode
       checkMaintenance();
     });
 
-    // Maintenance Mode Check (fetch status.txt)
+    // Function to check maintenance status (assumes a status.txt file)
     async function checkMaintenance() {
       try {
         const response = await fetch('status.txt');
@@ -925,7 +939,25 @@
         console.error("Maintenance check failed:", error);
       }
     }
-    
+
+    // Intercept link clicks to show preloader on navigation (for internal links)
+    function navigateTo(url) {
+      document.getElementById("preloader").style.display = "flex";
+      setTimeout(() => {
+        window.location.href = url;
+      }, 300); // slight delay to let preloader show
+    }
+
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function(e) {
+        // Only intercept internal links (not those opening in new tabs)
+        if (!this.target && this.href && this.href.indexOf(window.location.host) !== -1) {
+          e.preventDefault();
+          navigateTo(this.href);
+        }
+      });
+    });
+
     // Tabs for Advanced Settings
     function openTab(tabId) {
       const tabs = document.querySelectorAll('.tab');

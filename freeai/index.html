@@ -40,19 +40,10 @@
     ul { list-style: none; }
 
     /* ===== Custom Scrollbar ===== */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #222;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #0088cc;
-    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #222; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0088cc; }
 
     /* ===== Preloader & Redirect Loader ===== */
     #preloader {
@@ -77,14 +68,8 @@
       animation: spin 1s linear infinite;
       margin-bottom: 1rem;
     }
-    .loader-text {
-      font-size: 1.2rem;
-      color: var(--muted);
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    .loader-text { font-size: 1.2rem; color: var(--muted); }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     
     /* ===== Maintenance Mode ===== */
     #maintenanceMessage {
@@ -123,10 +108,7 @@
       transition: background var(--transition);
     }
     #maintenanceMessage .btn:hover { background: #0088cc; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     
     /* ===== Header & Navigation ===== */
     header {
@@ -137,28 +119,25 @@
       z-index: 2000;
       animation: slideDown 0.5s ease-out;
     }
-    @keyframes slideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+    @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .header-container {
       max-width: 1200px;
       margin: auto;
-      padding: 0.5rem 1rem; /* Reduced padding */
+      padding: 0.5rem 1rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
     }
     .logo {
-      font-size: 1.8rem; /* Reduced logo size */
+      font-size: 1.8rem;
       font-weight: bold;
       letter-spacing: 2px;
       position: relative;
       overflow: hidden;
     }
     .logo .highlight { color: var(--primary); }
-    /* Glitch Effect on Logo (timing adjusted) */
+    /* Glitch Effect on Logo */
     .logo::before,
     .logo::after {
       content: attr(data-text);
@@ -186,26 +165,14 @@
       80% { clip: rect(0, 9999px, 0, 0); }
       100% { clip: rect(0, 9999px, 0, 0); }
     }
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
+    nav ul { display: flex; gap: 1.5rem; align-items: center; }
     nav ul li a {
       font-weight: 600;
       transition: color var(--transition), transform 0.3s;
       position: relative;
     }
-    nav ul li a:hover { 
-      color: var(--primary); 
-      transform: scale(1.05);
-    }
-    /* Social Links in Header with Icons */
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
+    nav ul li a:hover { color: var(--primary); transform: scale(1.05); }
+    .social-links { display: flex; gap: 1rem; margin-top: 0.5rem; }
     .social-links a {
       font-size: 1.1rem;
       font-weight: bold;
@@ -217,24 +184,41 @@
     }
     .social-links a:hover { background: var(--primary); color: #fff; }
 
-    /* ===== Hero Section with Particle Background & Download Button ===== */
+    /* ===== Hero Section with Enhanced Top ===== */
     .hero {
       position: relative;
       height: 100vh;
       overflow: hidden;
       background: #000;
     }
-    /* Particle Canvas */
+    /* Particle Canvas Background */
     #particle-canvas {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       z-index: 1;
       background: linear-gradient(135deg, #000, #222);
     }
+    /* Animated Gradient Overlay to Enrich the Top */
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(45deg, rgba(0,170,255,0.3), rgba(255,0,102,0.3));
+      background-size: 200% 200%;
+      opacity: 0.6;
+      animation: moveGradient 10s linear infinite;
+      z-index: 2;
+    }
+    @keyframes moveGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
       padding: 0 1rem;
       animation: fadeInUp 1s ease-out;
@@ -283,17 +267,21 @@
       position: relative;
       overflow: hidden;
     }
-    .btn:hover {
-      transform: scale(1.05);
-      background: #0088cc;
-    }
-    /* Download Button */
+    .btn:hover { transform: scale(1.05); background: #0088cc; }
     .download-btn {
       margin-top: 1rem;
       background: var(--download-color);
       border: 1px solid var(--download-color);
     }
     .download-btn:hover { background: #e62e5c; }
+    /* Extra "Learn More" Button */
+    .learn-more {
+      margin-top: 1rem;
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .learn-more:hover { background: var(--primary); color: #fff; }
 
     /* ===== Ripple Effect on Buttons ===== */
     .btn .ripple {
@@ -303,14 +291,9 @@
       background: rgba(255, 255, 255, 0.7);
       animation: ripple-effect 0.6s linear;
     }
-    @keyframes ripple-effect {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
+    @keyframes ripple-effect { to { transform: scale(4); opacity: 0; } }
 
-    /* ===== Scroll Down Arrow in Hero Section ===== */
+    /* ===== Scroll Down Arrow ===== */
     .scroll-down {
       position: absolute;
       bottom: 20px;
@@ -320,29 +303,12 @@
       color: var(--primary);
       animation: bounce 2s infinite;
       cursor: pointer;
-      z-index: 2;
+      z-index: 3;
     }
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
       40% { transform: translate(-50%, -10px); }
       60% { transform: translate(-50%, -5px); }
-    }
-    
-    /* ===== "What is OverAim?" Section ===== */
-    #intro {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    #intro h2 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-    #intro p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.2rem;
-      color: var(--muted);
     }
 
     /* ===== System Requirements Section ===== */
@@ -351,26 +317,15 @@
       text-align: center;
       background: var(--secondary-bg);
     }
-    #system h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-    #system p {
-      font-size: 1.1rem;
-      color: var(--muted);
-    }
+    #system h2 { font-size: 2.8rem; margin-bottom: 1rem; color: var(--primary); }
+    #system p { font-size: 1.1rem; color: var(--muted); }
 
     /* ===== Free Tools Section ===== */
     #tools {
       padding: 4rem 2rem;
       text-align: center;
     }
-    #tools h2 {
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      color: var(--primary);
-    }
+    #tools h2 { font-size: 2.8rem; margin-bottom: 2rem; color: var(--primary); }
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -388,19 +343,9 @@
       transform: translateY(-10px) scale(1.03);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.95);
     }
-    .card i {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
+    .card i { font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary); }
+    .card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.95rem; color: var(--muted); }
 
     /* ===== Earn Money & Rewards Section ===== */
     #earn-rewards {
@@ -408,12 +353,7 @@
       background: var(--background);
       color: var(--text);
     }
-    #earn-rewards h2 {
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--primary);
-    }
+    #earn-rewards h2 { font-size: 2.8rem; margin-bottom: 2rem; text-align: center; color: var(--primary); }
     .earn-rewards-content {
       display: flex;
       flex-wrap: wrap;
@@ -436,7 +376,6 @@
       transition: transform 0.3s;
     }
     .honeygain img:hover, .pawn-ad img:hover { transform: scale(1.05); }
-    /* Pawn Ad Styling */
     .pawn-ad {
       background: linear-gradient(135deg, #ff3366, #ff6699);
       color: #fff;
@@ -456,33 +395,23 @@
       font-weight: bold;
       border: none;
     }
-    .pawn-ad a.btn:hover {
-      background: #ffe6e6;
-    }
+    .pawn-ad a.btn:hover { background: #ffe6e6; }
 
-    /* ===== Adsense Ad Container Styling ===== */
+    /* ===== Adsense Ad Container ===== */
     #adsense {
       padding: 2rem 0;
       text-align: center;
       background: var(--secondary-bg);
     }
-    
+
     /* ===== Advanced Settings Section ===== */
     #advanced {
       padding: 4rem 2rem;
       background: var(--background);
       color: var(--text);
     }
-    #advanced h2 {
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--primary);
-    }
-    #advancedSettings {
-      max-width: 1000px;
-      margin: auto;
-    }
+    #advanced h2 { font-size: 2.8rem; margin-bottom: 2rem; text-align: center; color: var(--primary); }
+    #advancedSettings { max-width: 1000px; margin: auto; }
     .advanced-tabs {
       display: flex;
       justify-content: center;
@@ -508,9 +437,7 @@
       border-radius: 10px;
       border: 1px solid #222;
     }
-    .advanced-content ul {
-      margin-left: 1.5rem;
-    }
+    .advanced-content ul { margin-left: 1.5rem; }
     .advanced-content li {
       margin-bottom: 0.8rem;
       font-size: 1rem;
@@ -522,15 +449,8 @@
       padding: 4rem 2rem;
       text-align: center;
     }
-    #contact h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-    #contact p {
-      font-size: 1rem;
-      color: var(--muted);
-    }
+    #contact h2 { font-size: 2.8rem; margin-bottom: 1rem; color: var(--primary); }
+    #contact p { font-size: 1rem; color: var(--muted); }
 
     /* ===== Footer & Legal Disclaimer ===== */
     footer {
@@ -546,9 +466,7 @@
       color: var(--muted);
       margin-top: 1rem;
     }
-    footer .legal a {
-      text-decoration: underline;
-    }
+    footer .legal a { text-decoration: underline; }
 
     /* ===== Responsive Breakpoints ===== */
     @media (max-width: 768px) {
@@ -581,6 +499,8 @@
   <div id="mainContent">
     <!-- Particle Canvas Background -->
     <canvas id="particle-canvas"></canvas>
+    <!-- Animated Gradient Overlay -->
+    <div class="hero-overlay"></div>
     
     <!-- Header & Navigation -->
     <header>
@@ -611,11 +531,12 @@
       <div class="hero-content">
         <h1>OverAim AI Aimbot Assistant</h1>
         <div class="badge-free">100% FREE WITH ADS</div>
-        <p>
-          Enjoy our advanced AI aimbot absolutely free (ad‑supported). Support development and get lifetime ad‑free access for just 10€!
-        </p>
+        <p>Experience the future of AI technology and dominate your game with precision.</p>
         <button class="btn download-btn" onclick="navigateTo('https://overaim.cc/freedownload')">
           <i class="fas fa-download"></i> Download Now
+        </button>
+        <button class="btn learn-more" onclick="document.getElementById('intro').scrollIntoView({ behavior: 'smooth' });">
+          Learn More
         </button>
       </div>
       <!-- Scroll Down Arrow -->
@@ -770,7 +691,7 @@
           <div class="reviewer">✞</div>
           <div class="date">16.1.2025</div>
         </div>
-        <!-- Additional testimonials... -->
+        <!-- Additional testimonials can be added here -->
       </div>
     </section>
     
@@ -904,7 +825,7 @@
     <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
   </div> <!-- End Main Content -->
 
-  <!-- ===== JavaScript for Preloader, Maintenance, Redirect Animation & Interactivity ===== -->
+  <!-- ===== JavaScript for Preloader, Interactivity & Animations ===== -->
   <script>
     // Preloader: Fade out when window loads
     window.addEventListener("load", function() {
@@ -928,7 +849,7 @@
       }
     }
     
-    // Intercept internal link clicks to show preloader before redirecting
+    // Navigation: Preloader before redirecting
     function navigateTo(url) {
       document.getElementById("preloader").style.display = "flex";
       setTimeout(() => { window.location.href = url; }, 300);
@@ -948,9 +869,7 @@
     advTabs.forEach(tab => {
       tab.addEventListener("click", function() {
         advTabs.forEach(t => t.classList.remove("active"));
-        for (const key in advContents) {
-          advContents[key].style.display = "none";
-        }
+        for (const key in advContents) { advContents[key].style.display = "none"; }
         tab.classList.add("active");
         const selected = tab.getAttribute("data-tab");
         advContents[selected].style.display = "block";
@@ -978,9 +897,7 @@
         scrollTopBtn.classList.remove("show");
       }
     };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     
     // Particle Animation on Canvas
     const canvas = document.getElementById("particle-canvas");
@@ -989,12 +906,10 @@
     const numberOfParticles = 150;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
     window.addEventListener("resize", function() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
-    
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -1017,27 +932,23 @@
         ctx.fill();
       }
     }
-    
     function initParticles() {
       particlesArray = [];
       for (let i = 0; i < numberOfParticles; i++) {
         particlesArray.push(new Particle());
       }
     }
-    
     function handleParticles() {
       for (let particle of particlesArray) {
         particle.update();
         particle.draw();
       }
     }
-    
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       handleParticles();
       requestAnimationFrame(animateParticles);
     }
-    
     initParticles();
     animateParticles();
 

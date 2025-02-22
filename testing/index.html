@@ -10,6 +10,7 @@
     /* ===== CSS Variables & Global Styles ===== */
     :root {
       --primary: #00aaff;
+      --download-color: #ff3366;
       --background: #000;
       --secondary-bg: #111;
       --accent: #00aaff;
@@ -137,14 +138,14 @@
       color: #fff;
     }
     
-    /* ===== Hero Section with Download Button & Particle Background ===== */
+    /* ===== Hero Section with Particle Background & Download Button ===== */
     .hero {
       position: relative;
       height: 100vh;
       overflow: hidden;
       background: #000;
     }
-    /* Canvas for Particle Animation */
+    /* Particle Canvas */
     #particle-canvas {
       position: absolute;
       top: 0;
@@ -199,21 +200,23 @@
       font-size: 1rem;
       cursor: pointer;
       transition: transform var(--transition), background var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     .btn:hover {
       transform: scale(1.05);
       background: #0088cc;
     }
-    /* New Download Button (leads to /freedownload) */
+    /* Download Button */
     .download-btn {
       margin-top: 1rem;
-      background: #ff3366;
-      border: 1px solid #ff3366;
+      background: var(--download-color);
+      border: 1px solid var(--download-color);
     }
     .download-btn:hover {
       background: #e62e5c;
     }
-    
     /* ===== Section Titles & Layout ===== */
     section {
       padding: 4rem 2rem;
@@ -292,7 +295,6 @@
     }
     
     /* ===== Improved TikTok Section ===== */
-    /* Instead of bulky iframes, show clean clickable cards */
     .tiktok-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -328,13 +330,8 @@
       opacity: 0;
       transition: opacity var(--transition);
     }
-    .tiktok-card:hover .tiktok-overlay {
-      opacity: 1;
-    }
-    .tiktok-overlay i {
-      color: #fff;
-      font-size: 3rem;
-    }
+    .tiktok-card:hover .tiktok-overlay { opacity: 1; }
+    .tiktok-overlay i { color: #fff; font-size: 3rem; }
     
     /* ===== Testimonials Section ===== */
     .testimonials {
@@ -350,7 +347,9 @@
       padding: 1.5rem;
       font-size: 0.9rem;
       position: relative;
+      transition: transform var(--transition);
     }
+    .testimonial:hover { transform: scale(1.02); }
     .testimonial::before {
       content: "“";
       font-size: 3rem;
@@ -369,7 +368,7 @@
       color: var(--muted);
     }
     
-    /* ===== Steps / How to Buy ===== */
+    /* ===== How to Buy / Payment Methods Section ===== */
     .steps {
       display: flex;
       flex-wrap: wrap;
@@ -387,6 +386,12 @@
     }
     .step:hover { transform: translateY(-10px); }
     .step h4 { color: var(--primary); margin-bottom: 1rem; }
+    .pricing-note {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
     
     /* ===== Advanced Settings Tabs ===== */
     .tabs {
@@ -487,13 +492,12 @@
   <section class="hero" id="hero">
     <div class="hero-content">
       <h1>OverAim AI Aimbot Assistant</h1>
-      <div class="badge-free">100% FREE</div>
+      <div class="badge-free">100% FREE WITH ADS</div>
       <p>
-        100% External • Human-like Mouse Movements • Safe & Undetectable<br />
-        Powered by ads with an option to upgrade for lifetime ad-free access!
+        Enjoy our AI aimbot absolutely free (with ads). You can also support ongoing development and get lifetime ad‑free access for only 10€!
       </p>
-      <button class="btn" onclick="location.href='https://overaim.cc/freedownload'">
-        Download Now
+      <button class="btn download-btn" onclick="location.href='https://overaim.cc/freedownload'">
+        <i class="fas fa-download"></i> Download Now
       </button>
     </div>
   </section>
@@ -520,11 +524,11 @@
       </div>
       <div class="card reveal">
         <h3>Free with Ads</h3>
-        <p>Enjoy our software absolutely FREE – upgrade to ad-free with invite rewards.</p>
+        <p>Use the AI for free (ads supported) or upgrade to ad‑free access for 10€ lifetime.</p>
       </div>
       <div class="card reveal">
         <h3>Developer Support</h3>
-        <p>Maintained by Miro0x. Get help via Discord support tickets.</p>
+        <p>Maintained by Miro0x with fast support via Discord tickets.</p>
       </div>
     </div>
   </section>
@@ -535,7 +539,7 @@
     <div class="features">
       <div class="card reveal">
         <h3>Permanent HWID Changer</h3>
-        <p>Completely free – change your hardware ID permanently without hassle.</p>
+        <p>Change your hardware ID permanently without hassle – completely free.</p>
       </div>
       <div class="card reveal">
         <h3>OverAim Tweaker</h3>
@@ -543,7 +547,7 @@
       </div>
       <div class="card reveal">
         <h3>Free OverAim Tweaks</h3>
-        <p>Enjoy performance tweaks and custom configurations at no extra cost.</p>
+        <p>Enjoy extra performance tweaks and custom configurations at no extra cost.</p>
       </div>
     </div>
   </section>
@@ -552,17 +556,16 @@
   <section id="tiktoks">
     <h2 class="section-title reveal">OverAim on TikTok</h2>
     <div class="tiktok-grid reveal">
-      <!-- Each card represents one TikTok video; clicking it will open the video on TikTok -->
       <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7461045214631824662', '_blank')">
-        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=TikTok+Video+1" alt="TikTok Video 1" />
+        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+1" alt="TikTok Video 1" />
         <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
       </div>
       <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460626447191887126', '_blank')">
-        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=TikTok+Video+2" alt="TikTok Video 2" />
+        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+2" alt="TikTok Video 2" />
         <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
       </div>
       <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460294521188781334', '_blank')">
-        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=TikTok+Video+3" alt="TikTok Video 3" />
+        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+3" alt="TikTok Video 3" />
         <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
       </div>
     </div>
@@ -573,78 +576,78 @@
     <h2 class="section-title reveal">User Testimonials</h2>
     <div class="testimonials reveal">
       <div class="testimonial">
-        <p>Miro0x/Owner — 15.1.2025 0.09<br />Two of My friends have IT and they Are satisfied so far 1month++ got all unreal</p>
+        <p>Miro0x/Owner — 15.1.2025 0.09<br>Two of My friends have IT and they Are satisfied so far 1month++ got all unreal</p>
         <div class="reviewer">Miro0x/Owner</div>
         <div class="date">15.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>o... — 15.1.2025 20.00<br />+Rep its insane im dominating everyone on zero build loll</p>
-        <div class="reviewer">o...</div>
+        <p>oliverhvh — 15.1.2025 20.00<br>+Rep its insane im dominating everyone on zero build loll</p>
+        <div class="reviewer">oliverhvh</div>
         <div class="date">15.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>利格马ｂａｌｌｅｒ — 15.1.2025 20.38<br />+rep been using for a week, very well made and works almost perfectly</p>
+        <p>利格马ｂａｌｌｅｒ — 15.1.2025 20.38<br>+rep been using for a week, very well made and works almost perfectly</p>
         <div class="reviewer">利格马ｂａｌｌｅｒ</div>
         <div class="date">15.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>✞ — 16.1.2025 10.06<br />+rep works very well fast delivery, very good for price. amazing support ❤️</p>
+        <p>✞ — 16.1.2025 10.06<br>+rep works very well fast delivery, very good for price. amazing support ❤️</p>
         <div class="reviewer">✞</div>
         <div class="date">16.1.2025</div>
       </div>
       <div class="testimonial">
-        <p># END WEBPASOFFWHITE — 18.1.2025 2.11<br />+rep good best ai</p>
+        <p># END WEBPASOFFWHITE — 18.1.2025 2.11<br>+rep good best ai</p>
         <div class="reviewer"># END WEBPASOFFWHITE</div>
         <div class="date">18.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>S... — 18.1.2025 3.04<br />+rep fast support, best ai</p>
-        <div class="reviewer">S...</div>
+        <p>Sxtpa — 18.1.2025 3.04<br>+rep fast support, best ai</p>
+        <div class="reviewer">Sxtpa</div>
         <div class="date">18.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>LaDos. — 19.1.2025 17.09<br />+rep W ai cheats its crazy asf and ud<br />best support here</p>
+        <p>LaDos. — 19.1.2025 17.09<br>+rep W ai cheats its crazy asf and ud<br>best support here</p>
         <div class="reviewer">LaDos.</div>
         <div class="date">19.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>d... — 19.1.2025 22.49<br />+rep ai aimbot holy shit this is so op and ud (support is really fast)</p>
-        <div class="reviewer">d...</div>
+        <p>detour316 — 19.1.2025 22.49<br>+rep ai aimbot holy shit this is so op and ud (support is really fast)</p>
+        <div class="reviewer">detour316</div>
         <div class="date">19.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>LaDos. — 20.1.2025 21.04<br />+rep i am gonna say smth about this ai cheats, this is the only cheats that is rly 100% ud and u cant get banned thats what insane about them.</p>
+        <p>LaDos. — 20.1.2025 21.04<br>+rep i am gonna say smth about this ai cheats, this is the only cheats that is rly 100% ud and u cant get banned thats what insane about them.</p>
         <div class="reviewer">LaDos.</div>
         <div class="date">20.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>Drux — 20.1.2025 22.09<br />+Rep its insane im dominating everyone on zero build loll</p>
+        <p>Drux — 20.1.2025 22.09<br>+Rep its insane im dominating everyone on zero build loll</p>
         <div class="reviewer">Drux</div>
         <div class="date">20.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>Kubazap. (aka. Magik) — 25.1.2025 12.54<br />+Rep the only real ud cheat</p>
+        <p>Kubazap. (aka. Magik) — 25.1.2025 12.54<br>+Rep the only real ud cheat</p>
         <div class="reviewer">Kubazap. (aka. Magik)</div>
         <div class="date">25.1.2025</div>
       </div>
       <div class="testimonial">
-        <p>d... — 11.2.2025 0.22<br />+rep Free ai aimbot it works yall</p>
-        <div class="reviewer">d...</div>
+        <p>detour316 — 11.2.2025 0.22<br>+rep Free ai aimbot it works yall</p>
+        <div class="reviewer">detour316</div>
         <div class="date">11.2.2025</div>
       </div>
       <div class="testimonial">
-        <p>d... — 11.2.2025 3.46</p>
-        <div class="reviewer">d...</div>
+        <p>detour316 — 11.2.2025 3.46</p>
+        <div class="reviewer">detour316</div>
         <div class="date">11.2.2025</div>
       </div>
       <div class="testimonial">
-        <p>S... — 12.2.2025 1.49<br />settings?</p>
-        <div class="reviewer">S...</div>
+        <p>Sxtpa — 12.2.2025 1.49<br>settings?</p>
+        <div class="reviewer">Sxtpa</div>
         <div class="date">12.2.2025</div>
       </div>
       <div class="testimonial">
-        <p>S... — 12.2.2025 16.36<br />+rep paid and free ai is good and the v3 has good ui</p>
-        <div class="reviewer">S...</div>
+        <p>Sxtpa — 12.2.2025 16.36<br>+rep paid and free ai is good and the v3 has good ui</p>
+        <div class="reviewer">Sxtpa</div>
         <div class="date">12.2.2025</div>
       </div>
     </div>
@@ -652,27 +655,27 @@
   
   <!-- How to Buy / Payment Methods Section -->
   <section id="buy">
-    <h2 class="section-title reveal">How to Buy</h2>
+    <h2 class="section-title reveal">How to Get the AI</h2>
     <div class="steps">
       <div class="step reveal">
         <h4>1. Open a Ticket</h4>
-        <p>Visit our Discord and open a ticket in the "Open a Ticket" channel.</p>
+        <p>Visit our Discord and open a ticket in the "Open a Ticket" channel for support.</p>
       </div>
       <div class="step reveal">
         <h4>2. Consult Our Staff</h4>
-        <p>Our team will help you choose the best plan and answer any questions.</p>
+        <p>Our team will guide you on using the free version (ads supported) or upgrading to ad‑free access.</p>
       </div>
       <div class="step reveal">
         <h4>3. Make Payment</h4>
-        <p>Select from secure options: PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, or Gift Cards.</p>
+        <p>Choose from secure options: PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, or Gift Cards.</p>
       </div>
       <div class="step reveal">
         <h4>4. Receive Your Key</h4>
         <p>After payment, get your license key and detailed setup instructions.</p>
       </div>
     </div>
-    <div style="text-align: center; margin-top: 2rem;">
-      <h3>LIFETIME AD-FREE – Only 10€</h3>
+    <div class="pricing-note">
+      <p><strong>Note:</strong> Our AI is available free with ads. Upgrade to lifetime ad‑free access for only 10€ to support development, new updates, and maintenance.</p>
     </div>
   </section>
   
@@ -775,7 +778,7 @@
   
   <!-- ===== JavaScript for Animations & Interactivity ===== -->
   <script>
-    // Toggle FAQ Accordion
+    // Toggle FAQ Accordion (if any FAQs are added)
     function toggleFAQ(element) {
       const faqItem = element.parentElement;
       faqItem.classList.toggle('active');

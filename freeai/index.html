@@ -1,614 +1,1064 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7031718442999321"
-     crossorigin="anonymous"></script>
-  <!-- Basic Description -->
-  <meta name="description" content="Experience Overaim AI – a 100% free, interactive, and optimized tool designed for gamers. Revolutionize your aim with advanced features like aimbot, anti-recoil, visual overlays, and a dynamic particle wallpaper for an immersive gaming experience.">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Overaim AI Free Version - 100% Free, Optimized & Interactive">
-  <meta property="og:description" content="Experience Overaim AI – a 100% free, interactive, and optimized tool designed for gamers. Revolutionize your aim with advanced features like aimbot, anti-recoil, visual overlays, and a dynamic particle wallpaper for an immersive gaming experience.">
-  <meta property="og:image" content="assets/1.png"> <!-- Replace with your banner image URL -->
-  <meta property="og:url" content="https://yourwebsite.com"> <!-- Replace with your actual URL -->
-  <meta property="og:type" content="website">
-  
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Overaim AI Free Version - 100% Free, Optimized & Interactive">
-  <meta name="twitter:description" content="Experience Overaim AI – a 100% free, interactive, and optimized tool designed for gamers. Revolutionize your aim with advanced features like aimbot, anti-recoil, visual overlays, and a dynamic particle wallpaper for an immersive gaming experience.">
-  <meta name="twitter:image" content="assets/1.png"> <!-- Replace with your banner image URL -->
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overaim AI Free Version - 100% Free, Optimized & Interactive</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OverAim.cc - Advanced AI Aimbot Assistant | 100% FREE</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="OverAim is an advanced AI aimbot assistant for Fortnite and other games. Enjoy free tools and performance tweaks to enhance your gaming experience. Use responsibly." />
+  <meta name="keywords" content="#fortnite, #fortnitehack, #freehack, #fortniteaimbot, #fortniteai, #freeaimbot, #overaim, #overaimcc, #advancedaimbot, #freecheats, #freepermspoofer, #permspoofer, #hackfortnite, #aimassistant, #aihack, #gamehack, #gaming, #gamer, #fortnitegaming, #fortniteupdate, #aimbotassistant, #freehackfortnite, #hackathon, #gamingtools, #hacktools, #hackassist, #aiassist, #ai, #techhack, #cheatsoftware, #cheats, #aimbotcheat, #gamingcheats, #freeaim, #gameaimbot, #aiaim, #aiming, #advancedcheats, #freecheatsoftware, #aimbottech, #fortnitecheat, #hackfortniteai, #fortniteupdate2025, #aimtech, #gamehacktech, #hacktools2025, #aimbottools, #fortniteassistant, #fortnitetools, #gameassistant, #hackassistant, #techassistant, #gamingassistant, #aiassistant, #freeaimassistant, #hackcommunity, #gamingcommunity, #fortnitecommunity, #overaimtools, #overaimhack, #hackinnovation, #gamecheat, #hacklife, #gametech, #techgaming, #hackdevelopment, #aimdevelopment, #aiinnovation, #gaminginnovation, #freegamehack, #freegamecheat, #fortnitefreehack, #overaimfree, #hackers, #gamersunite, #gamerlife, #aimtechnology, #gamingtech, #cheatdevelopment, #freecheatcode, #hackcode, #fortnitecode, #aimcode, #techcode, #advancedtech, #aiadvanced, #aimbotadvanced, #overaimgame, #fortnitecheatsoftware, #freefortnitecheat, #cheatassist, #aimassistsoftware, #fortniteassist, #aimhack, #aiaimbot, #aimbotfree, #hackfortnitecheat, #cheatfortnite, #overaimhacktools, #gaminghacks" />
+
+  <!-- AdSense Script (ensure you use your own publisher ID) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    /* =========== RESET & BASE STYLES =========== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: #121212;
-      color: #e0e0e0;
-      line-height: 1.6;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      position: relative;
+    /* ===== CSS Variables & Global Styles ===== */
+    :root {
+      --primary: #00aaff;
+      --download-color: #ff3366;
+      --background: #000;
+      --secondary-bg: #111;
+      --accent: #00aaff;
+      --text: #eee;
+      --muted: #999;
+      --transition: 0.3s;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    a { text-decoration: none; color: inherit; }
-    
-    /* =========== INTERACTIVE PARTICLE WALLPAPER =========== */
-    #wallpaper {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-family);
+      background: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: var(--primary); }
+    ul { list-style: none; }
+
+    /* ===== Custom Scrollbar ===== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #222;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0088cc;
+    }
+
+    /* ===== Preloader & Redirect Loader ===== */
+    #preloader {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: -3;
-      background: #121212;
+      background: var(--background);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .loader-spinner {
+      border: 8px solid #333;
+      border-top: 8px solid var(--primary);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    .loader-text {
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     
-    /* =========== NAVIGATION BAR =========== */
-    .navbar {
+    /* ===== Maintenance Mode ===== */
+    #maintenanceMessage {
+      display: none;
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      background: rgba(31,31,31,0.95);
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #111, #222);
+      z-index: 2500;
+      flex-direction: column;
       align-items: center;
-      z-index: 100;
-      border-bottom: 1px solid #333;
-      animation: slideDown 0.5s ease;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    #maintenanceMessage h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      animation: fadeIn 1s ease-out;
+    }
+    #maintenanceMessage p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
+    #maintenanceMessage .btn {
+      background: var(--primary);
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    #maintenanceMessage .btn:hover { background: #0088cc; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* ===== Header & Navigation ===== */
+    header {
+      position: fixed;
+      top: 0; width: 100%;
+      background: linear-gradient(135deg, #111, #222);
+      border-bottom: 1px solid #222;
+      z-index: 2000;
+      animation: slideDown 0.5s ease-out;
     }
     @keyframes slideDown {
       from { transform: translateY(-100%); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-    .navbar .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .navbar nav ul {
-      list-style: none;
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.5rem 1rem; /* Reduced padding */
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.8rem; /* Reduced logo size */
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo .highlight { color: var(--primary); }
+    /* Glitch Effect on Logo (timing adjusted) */
+    .logo::before,
+    .logo::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%;
+      overflow: hidden;
+      clip: rect(0,900px,0,0);
+    }
+    .logo::before { animation: glitchTop 1.5s infinite linear; color: var(--primary); }
+    .logo::after { animation: glitchBottom 1.5s infinite linear; color: #fff; }
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      20% { clip: rect(0, 9999px, 8px, 0); }
+      40% { clip: rect(0, 9999px, 0, 0); }
+      60% { clip: rect(0, 9999px, 10px, 0); }
+      80% { clip: rect(0, 9999px, 0, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      20% { clip: rect(5px, 9999px, 20px, 0); }
+      40% { clip: rect(0, 9999px, 0, 0); }
+      60% { clip: rect(8px, 9999px, 18px, 0); }
+      80% { clip: rect(0, 9999px, 0, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
       align-items: center;
     }
-    .navbar nav ul li a {
-      color: #bbb;
-      transition: color 0.3s, transform 0.3s;
+    nav ul li a {
+      font-weight: 600;
+      transition: color var(--transition), transform 0.3s;
+      position: relative;
     }
-    .navbar nav ul li a:hover {
-      color: #fff;
+    nav ul li a:hover { 
+      color: var(--primary); 
       transform: scale(1.05);
     }
-    .cta-buttons {
+    /* Social Links in Header with Icons */
+    .social-links {
       display: flex;
-      gap: 10px;
+      gap: 1rem;
+      margin-top: 0.5rem;
     }
-    .cta-buttons a {
-      padding: 8px 15px;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      transition: background 0.3s, transform 0.3s;
+    .social-links a {
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid var(--primary);
+      border-radius: 5px;
+      background: var(--secondary-bg);
+      transition: background var(--transition), color var(--transition);
     }
-    .download-btn {
-      background: linear-gradient(45deg, #1e90ff, #0d74d1);
-      color: #fff;
-    }
-    .download-btn:hover { background: #0d74d1; transform: scale(1.05); }
-    .discord-btn {
-      background: #7289da;
-      color: #fff;
-    }
-    .discord-btn:hover { background: #5b6ea8; transform: scale(1.05); }
-    
-    /* =========== IMAGE SLIDER =========== */
-    .slider {
+    .social-links a:hover { background: var(--primary); color: #fff; }
+
+    /* ===== Hero Section with Particle Background & Download Button ===== */
+    .hero {
       position: relative;
-      width: 100%;
-      max-width: 700px;
-      height: 500px;
-      margin: 100px auto 40px; /* ensure enough top margin for navbar */
+      height: 100vh;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
       background: #000;
     }
-    .slider img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* crop uniformly */
-      object-position: center;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .slider img.show { opacity: 1; }
-    .slider .badge {
+    /* Particle Canvas */
+    #particle-canvas {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      background: #28a745;
-      color: #fff;
-      padding: 5px 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 4px;
-      z-index: 2;
-      animation: pulse 2s infinite;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      background: linear-gradient(135deg, #000, #222);
     }
-    @keyframes pulse {
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1rem;
+      animation: fadeInUp 1s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 8px #000;
+    }
+    .badge-free {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      animation: pulseBadge 2s infinite;
+    }
+    @keyframes pulseBadge {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
-    .slider .arrow {
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px #000;
+    }
+    .btn {
+      padding: 0.8rem 2rem;
+      background: var(--primary);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform var(--transition), background var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background: #0088cc;
+    }
+    /* Download Button */
+    .download-btn {
+      margin-top: 1rem;
+      background: var(--download-color);
+      border: 1px solid var(--download-color);
+    }
+    .download-btn:hover { background: #e62e5c; }
+
+    /* ===== Ripple Effect on Buttons ===== */
+    .btn .ripple {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      padding: 10px;
       border-radius: 50%;
+      transform: scale(0);
+      background: rgba(255, 255, 255, 0.7);
+      animation: ripple-effect 0.6s linear;
+    }
+    @keyframes ripple-effect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ===== Scroll Down Arrow in Hero Section ===== */
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: var(--primary);
+      animation: bounce 2s infinite;
       cursor: pointer;
       z-index: 2;
-      user-select: none;
-      font-size: 1.5rem;
-      transition: background 0.3s;
     }
-    .slider .arrow:hover { background: rgba(0,0,0,0.8); }
-    .slider .arrow.left { left: 15px; }
-    .slider .arrow.right { right: 15px; }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+      40% { transform: translate(-50%, -10px); }
+      60% { transform: translate(-50%, -5px); }
+    }
     
-    /* =========== HERO SECTION =========== */
-    .hero {
+    /* ===== "What is OverAim?" Section ===== */
+    #intro {
+      padding: 4rem 2rem;
       text-align: center;
-      padding: 40px 20px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .hero.visible { opacity: 1; transform: translateY(0); }
-    .hero h1 { font-size: 2.8rem; margin-bottom: 15px; }
-    .hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; }
-    .hero .hero-ctas {
-      display: inline-flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+    #intro h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
     }
-    .hero .hero-ctas a {
-      padding: 12px 25px;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-weight: 700;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .hero .hero-ctas a:hover { transform: scale(1.05); }
-    
-    /* =========== FEATURES CARDS =========== */
-    .features {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .feature-card {
-      background: #1f1f1f;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      transition: transform 0.3s, opacity 0.3s;
-      opacity: 0;
-    }
-    .feature-card.visible { opacity: 1; transform: translateY(0); }
-    .feature-card:hover { transform: translateY(-5px); }
-    .feature-card h3 { margin-bottom: 10px; font-size: 1.4rem; }
-    .feature-card p { font-size: 0.95rem; color: #bbb; }
-    
-    /* =========== ACCORDION SECTION =========== */
-    .accordion-section {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-    .accordion-section h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 2.2rem;
-    }
-    .accordion-item {
-      background: #1f1f1f;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
-    .accordion-header {
-      background: #272727;
-      padding: 15px 20px;
-      cursor: pointer;
+    #intro p {
+      max-width: 800px;
+      margin: auto;
       font-size: 1.2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.3s;
+      color: var(--muted);
     }
-    .accordion-header:hover { background: #333; }
-    .accordion-header .icon { transition: transform 0.3s; }
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.4s ease;
-      padding: 0 20px;
-      opacity: 0;
-    }
-    .accordion-content.open {
-      padding: 15px 20px 20px;
-      opacity: 1;
-    }
-    .accordion-content ul { list-style: disc inside; margin-top: 10px; }
-    .accordion-content li { margin-bottom: 8px; }
-    
-    /* =========== PARALLAX SECTION =========== */
-    .parallax-section {
-      height: 300px;
-      background-image: url('assets/1.png');
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 60px 0;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-    .parallax-section h2 {
-      background: rgba(0,0,0,0.5);
-      padding: 10px 20px;
-      border-radius: 4px;
-      font-size: 2rem;
-    }
-    
-    /* =========== FOOTER =========== */
-    footer {
+
+    /* ===== System Requirements Section ===== */
+    #system {
+      padding: 4rem 2rem;
       text-align: center;
-      padding: 20px;
-      background: #1f1f1f;
-      border-top: 1px solid #333;
-      color: #bbb;
+      background: var(--secondary-bg);
+    }
+    #system h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    #system p {
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    /* ===== Free Tools Section ===== */
+    #tools {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #tools h2 {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--secondary-bg);
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.95);
+    }
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* ===== Earn Money & Rewards Section ===== */
+    #earn-rewards {
+      padding: 4rem 2rem;
+      background: var(--background);
+      color: var(--text);
+    }
+    #earn-rewards h2 {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--primary);
+    }
+    .earn-rewards-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .earn-rewards-content .honeygain, 
+    .earn-rewards-content .rewards-channel,
+    .earn-rewards-content .pawn-ad {
+      flex: 1;
+      min-width: 300px;
+      text-align: left;
+    }
+    .honeygain a, .pawn-ad a { display: block; }
+    .honeygain img, .pawn-ad img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+    .honeygain img:hover, .pawn-ad img:hover { transform: scale(1.05); }
+    /* Pawn Ad Styling */
+    .pawn-ad {
+      background: linear-gradient(135deg, #ff3366, #ff6699);
+      color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 0, 102, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .pawn-ad:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(255, 0, 102, 0.7);
+    }
+    .pawn-ad h3, .pawn-ad p { color: #fff; }
+    .pawn-ad a.btn {
+      background: #fff;
+      color: #ff3366;
+      font-weight: bold;
+      border: none;
+    }
+    .pawn-ad a.btn:hover {
+      background: #ffe6e6;
+    }
+
+    /* ===== Adsense Ad Container Styling ===== */
+    #adsense {
+      padding: 2rem 0;
+      text-align: center;
+      background: var(--secondary-bg);
     }
     
-    /* =========== RESPONSIVE MEDIA QUERIES =========== */
+    /* ===== Advanced Settings Section ===== */
+    #advanced {
+      padding: 4rem 2rem;
+      background: var(--background);
+      color: var(--text);
+    }
+    #advanced h2 {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--primary);
+    }
+    #advancedSettings {
+      max-width: 1000px;
+      margin: auto;
+    }
+    .advanced-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .advanced-tabs .tab {
+      padding: 0.8rem 1.5rem;
+      background: #222;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background var(--transition);
+      font-weight: bold;
+    }
+    .advanced-tabs .tab.active, .advanced-tabs .tab:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .advanced-content {
+      background: var(--secondary-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid #222;
+    }
+    .advanced-content ul {
+      margin-left: 1.5rem;
+    }
+    .advanced-content li {
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    /* ===== Contact Section ===== */
+    #contact {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #contact h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    #contact p {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    /* ===== Footer & Legal Disclaimer ===== */
+    footer {
+      background: #111;
+      border-top: 1px solid #222;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--primary); }
+    footer .legal {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+    footer .legal a {
+      text-decoration: underline;
+    }
+
+    /* ===== Responsive Breakpoints ===== */
     @media (max-width: 768px) {
-      .slider { height: 400px; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1rem; }
-      .accordion-header { font-size: 1rem; }
+      .hero h1 { font-size: 2.8rem; }
+      nav ul { flex-direction: column; }
+      nav ul li { margin: 0.5rem 0; }
+      .earn-rewards-content, .advanced-tabs, .features, .steps { flex-direction: column; }
+      .header-container { flex-direction: column; align-items: flex-start; }
+      .social-links { margin-top: 1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Interactive Particle Wallpaper -->
-  <canvas id="wallpaper"></canvas>
-  
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="logo">Overaim AI</div>
-    <nav>
-      <ul>
-        <li><a href="#slider">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#parallax">About</a></li>
-        <li><a href="#footer">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="cta-buttons">
-      <a class="download-btn" href="freeai.zip" download>Download FreeAI</a>
-      <a class="discord-btn" href="https://overaim.cc/discord" target="_blank">Join Discord</a>
-    </div>
-  </header>
-  
-  <!-- Image Slider -->
-  <section id="slider" class="slider">
-    <div class="badge">100% FREE</div>
-    <img id="slide-img" src="assets/1.png" alt="Slide Image" class="show">
-    <div class="arrow left" id="prev">&#10094;</div>
-    <div class="arrow right" id="next">&#10095;</div>
-  </section>
-  
-  <!-- Hero Section -->
-  <section id="hero" class="hero">
-    <h1>Revolutionize Your Aim with Overaim AI</h1>
-    <p>Experience precision, optimized performance, and interactive design engineered for gamers.</p>
-    <div class="hero-ctas">
-      <a class="download-btn" href="freeai.zip" download>Download FreeAI</a>
-      <a class="discord-btn" href="https://overaim.cc/discord" target="_blank">Join Discord</a>
-    </div>
-  </section>
-  
-  <!-- Features Cards Section -->
-  <section class="features">
-    <div class="feature-card">
-      <h3>100% Free</h3>
-      <p>No hidden fees. Enjoy full functionality at zero cost.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Great Accuracy</h3>
-      <p>Engineered AI algorithms ensure you hit every target.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Optimized Performance</h3>
-      <p>Lightweight design without compromising speed.</p>
-    </div>
-  </section>
-  
-  <!-- Accordion: Detailed Features Section -->
-  <section id="features" class="accordion-section">
-    <h2>Detailed Features</h2>
-    <!-- AIMING -->
-    <div class="accordion-item">
-      <div class="accordion-header">
-        AIMING
-        <span class="icon">&#9660;</span>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading...</div>
+  </div>
+
+  <!-- Maintenance Message -->
+  <div id="maintenanceMessage">
+    <h1>We're Under Maintenance</h1>
+    <p>Our site is currently undergoing updates. For the latest news and support, please join our Discord community.</p>
+    <button class="btn" onclick="window.open('https://overaim.cc/discord','_blank')">
+      <i class="fab fa-discord"></i> Join Discord
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent">
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Header & Navigation -->
+    <header>
+      <div class="header-container">
+        <div class="logo" data-text="OverAim.cc">OverAim.<span class="highlight">cc</span></div>
+        <nav>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#intro">What is OverAim?</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#system">System</a></li>
+            <li><a href="#earn-rewards">Earn & Rewards</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#buy">Get the AI</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="social-links">
+          <a href="https://overaim.cc/discord" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+          <a href="https://www.tiktok.com/@overaim.cc" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+        </div>
       </div>
-      <div class="accordion-content">
-        <ul>
-          <li>Enable Aimbot</li>
-          <li>Keybinds &amp; Backup Keybind</li>
-          <li>FOV &amp; Aim Speed</li>
-          <li>Aim Bone Selection</li>
-        </ul>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1>OverAim AI Aimbot Assistant</h1>
+        <div class="badge-free">100% FREE WITH ADS</div>
+        <p>
+          Enjoy our advanced AI aimbot absolutely free (ad‑supported). Support development and get lifetime ad‑free access for just 10€!
+        </p>
+        <button class="btn download-btn" onclick="navigateTo('https://overaim.cc/freedownload')">
+          <i class="fas fa-download"></i> Download Now
+        </button>
       </div>
-    </div>
-    <!-- SLOTS -->
-    <div class="accordion-item">
-      <div class="accordion-header">
-        SLOTS
-        <span class="icon">&#9660;</span>
+      <!-- Scroll Down Arrow -->
+      <div class="scroll-down"><i class="fas fa-chevron-down"></i></div>
+    </section>
+    
+    <!-- "What is OverAim?" Section -->
+    <section id="intro">
+      <h2 class="section-title reveal">What is OverAim?</h2>
+      <p class="reveal">
+        OverAim is an AI‑powered aimbot assistant that operates externally without modifying game files. It offers human‑like mouse movements, precise enemy detection via GPU‑powered scanning, and an intuitive interface. Try it free (with ads) or upgrade to lifetime ad‑free access for just 10€ to support updates and top‑notch support.
+      </p>
+    </section>
+    
+    <!-- System Requirements Section -->
+    <section id="system">
+      <h2 class="section-title reveal">System Requirements</h2>
+      <div class="system-content reveal" style="text-align: center;">
+        <p>For optimal performance, we recommend using an NVIDIA GPU.</p>
+        <p><strong>Minimum Required: GTX1050ti / GTX960</strong></p>
+        <p>Using the latest NVIDIA drivers will ensure the best results for our AI.</p>
       </div>
-      <div class="accordion-content">
-        <ul>
-          <li>Slot 1: FOV, Aim</li>
-          <li>Slot 2: FOV, Aim</li>
-          <li>Slot 3: FOV, Aim</li>
-          <li>Slot 4: FOV, Aim</li>
-          <li>Slot 5: FOV, Aim</li>
-          <li>Pickaxe Keybind</li>
-        </ul>
+    </section>
+    
+    <!-- Free Tools Section -->
+    <section id="tools">
+      <h2 class="section-title reveal">Free Tools & Tweaks</h2>
+      <div class="features">
+        <div class="card reveal">
+          <i class="fas fa-sync-alt"></i>
+          <h3>Permanent HWID Changer</h3>
+          <p>Change your hardware ID permanently without hassle – completely free.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-sliders-h"></i>
+          <h3>OverAim Tweaker</h3>
+          <p>Unlock advanced tweaks to optimize performance and customize your experience.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-cogs"></i>
+          <h3>Free OverAim Tweaks</h3>
+          <p>Enjoy extra performance tweaks and custom configurations at no extra cost.</p>
+        </div>
       </div>
-    </div>
-    <!-- ADVANCED & HUMANIZATION -->
-    <div class="accordion-item">
-      <div class="accordion-header">
-        ADVANCED &amp; HUMANIZATION
-        <span class="icon">&#9660;</span>
+    </section>
+    
+    <!-- Earn Money & Rewards Section -->
+    <section id="earn-rewards">
+      <h2 class="section-title reveal">Earn Money & Get Rewards</h2>
+      <div class="earn-rewards-content reveal" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
+        <div class="honeygain" style="flex: 1; min-width: 300px; text-align: left;">
+          <a href="https://r.honeygain.me/GTAV528D1F" target="_blank">
+            <img src="honeygainad.png" alt="Honeygain Ad">
+          </a>
+          <h3>Earn Money with Honeygain</h3>
+          <p>💸 Earn Money for OverAim AI with Honeygain! 💸</p>
+          <p>Share your unused internet with Honeygain’s secure network and get paid—completely passively! Use your earnings to fund OverAim AI or anything else you like.</p>
+          <ul>
+            <li>✅ Works on Windows and phones.</li>
+            <li>✅ Safe and secure—your data is never accessed.</li>
+            <li>✅ Earn more by connecting multiple devices.</li>
+            <li>✅ No effort required—just set it and forget it!</li>
+          </ul>
+          <p><strong>Instant $5 Bonus!</strong> Sign up now and start earning cash right away.</p>
+          <a class="btn" href="https://r.honeygain.me/GTAV528D1F" target="_blank">
+            <i class="fas fa-dollar-sign"></i> Sign Up for Honeygain
+          </a>
+        </div>
+        <div class="pawn-ad" style="flex: 1; min-width: 300px; text-align: left;">
+          <a href="https://pawns.app/?r=12193357" target="_blank">
+            <img src="pawns.png" alt="Pawns Ad">
+          </a>
+          <h3>Earn Money with Pawns.app</h3>
+          <p>We only advertise the best ways for you to make lazy money – not rip off scams like some other YouTubers do!</p>
+          <p>Register at <a href="https://pawns.app/?r=12193357" target="_blank" style="color:#fff; text-decoration:underline;">Pawns.app</a> and get $1 to start off, plus an extra $1 when you withdraw for a total of $3! Plus, every 1GB shared earns you 0.20€!</p>
+          <a class="btn" href="https://pawns.app/?r=12193357" target="_blank">
+            <i class="fas fa-dollar-sign"></i> Register at Pawns.app
+          </a>
+        </div>
+        <div class="rewards-channel" style="flex: 1; min-width: 300px; text-align: left;">
+          <h3>Rewards Channel</h3>
+          <p>📢 | REWARDS CHANNEL 📢</p>
+          <p>🎁 Invite Rewards:<br>🔗 15 Invites = 🎮 LIFETIME Adless Access</p>
+          <p>🚀 Boost Rewards:<br>⭐ 1 Server Boost = 🎮 1 Week Adless Access</p>
+          <p>💡 How to Claim:</p>
+          <ol>
+            <li>Check your invite count using <code>/invites</code>.</li>
+            <li>Boost the server and share proof with the team.</li>
+            <li>DM a moderator or open a ticket to redeem your reward!</li>
+          </ol>
+          <p>🎉 Start inviting or boosting now to unlock your exclusive access!</p>
+        </div>
       </div>
-      <div class="accordion-content">
-        <ul>
-          <li>ADS FOV</li>
-        </ul>
+    </section>
+    
+    <!-- Adsense Ad Section (Example Placement) -->
+    <section id="adsense">
+      <div class="adsense-container">
+        <!-- Replace the data-ad-client and data-ad-slot with your own AdSense values -->
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-client="ca-pub-XXXXXXXXXXXX"
+             data-ad-slot="YYYYYYYYYY"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
-    </div>
-    <!-- RECOIL & BLOOM -->
-    <div class="accordion-item">
-      <div class="accordion-header">
-        RECOIL &amp; BLOOM
-        <span class="icon">&#9660;</span>
+    </section>
+    
+    <!-- Improved TikTok Section -->
+    <section id="tiktoks">
+      <h2 class="section-title reveal">OverAim on TikTok</h2>
+      <div class="tiktok-grid reveal">
+        <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7461045214631824662', '_blank')">
+          <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+1" alt="TikTok Video 1" />
+          <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+        </div>
+        <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460626447191887126', '_blank')">
+          <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+2" alt="TikTok Video 2" />
+          <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+        </div>
+        <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460294521188781334', '_blank')">
+          <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+3" alt="TikTok Video 3" />
+          <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+        </div>
       </div>
-      <div class="accordion-content">
-        <ul>
-          <li>Enable Anti-Recoil</li>
-          <li>Reduce Bloom</li>
-          <li>Require ADS</li>
-          <li>Recoil Strength Adjustment</li>
-        </ul>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+      <h2 class="section-title reveal">User Testimonials</h2>
+      <div class="testimonials reveal">
+        <div class="testimonial">
+          <p>Miro0x/Owner — 15.1.2025 0.09<br>Two of my friends have tried it and they’re satisfied—1 month+ and it's unreal!</p>
+          <div class="reviewer">Miro0x/Owner</div>
+          <div class="date">15.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>oliverhvh — 15.1.2025 20.00<br>+Rep, it's insane—I'm dominating everyone on Zero Build!</p>
+          <div class="reviewer">oliverhvh</div>
+          <div class="date">15.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>利格马ｂａｌｌｅｒ — 15.1.2025 20.38<br>+Rep, been using it for a week; very well made and works almost perfectly.</p>
+          <div class="reviewer">利格马ｂａｌｌｅｒ</div>
+          <div class="date">15.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>✞ — 16.1.2025 10.06<br>+Rep, works very well with fast delivery and amazing support ❤️</p>
+          <div class="reviewer">✞</div>
+          <div class="date">16.1.2025</div>
+        </div>
+        <!-- Additional testimonials... -->
       </div>
-    </div>
-    <!-- TRIGGERBOT -->
-    <div class="accordion-item">
-      <div class="accordion-header">
-        TRIGGERBOT
-        <span class="icon">&#9660;</span>
+    </section>
+    
+    <!-- How to Get the AI / Payment Methods Section -->
+    <section id="buy">
+      <h2 class="section-title reveal">How to Get the AI</h2>
+      <div class="steps">
+        <div class="step reveal">
+          <h4>1. Open a Ticket</h4>
+          <p>Visit our Discord and open a ticket in the "Open a Ticket" channel for support.</p>
+        </div>
+        <div class="step reveal">
+          <h4>2. Consult Our Staff</h4>
+          <p>Our team will guide you on using the free version (ads supported) or upgrading to ad‑free access.</p>
+        </div>
+        <div class="step reveal">
+          <h4>3. Make Payment</h4>
+          <p>Choose from secure options: PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, or Gift Cards.</p>
+        </div>
+        <div class="step reveal">
+          <h4>4. Receive Your Key</h4>
+          <p>After payment, get your license key and detailed setup instructions.</p>
+        </div>
       </div>
-      <div class="accordion-content">
-        <ul>
-          <li>Enable Triggerbot</li>
-          <li>Assign Keybind &amp; Selector</li>
-          <li>FOV &amp; Confidence Sliders</li>
-        </ul>
+      <div class="pricing-note">
+        <p><strong>Note:</strong> OverAim is available free with ads. Upgrade to lifetime ad‑free access for only 10€ to support development, updates, and maintenance.</p>
       </div>
-    </div>
-    <!-- VISUALS -->
-    <div class="accordion-item">
-      <div class="accordion-header">
-        VISUALS
-        <span class="icon">&#9660;</span>
+    </section>
+    
+    <!-- Advanced Settings Section -->
+    <section id="advanced">
+      <h2 class="section-title reveal">OverAim Advanced Settings</h2>
+      <div id="advancedSettings">
+        <div class="advanced-tabs">
+          <div class="tab active" data-tab="aiming">Aiming</div>
+          <div class="tab" data-tab="slots">Slots</div>
+          <div class="tab" data-tab="humanization">Advanced &amp; Humanization</div>
+          <div class="tab" data-tab="recoil">Recoil &amp; Bloom</div>
+          <div class="tab" data-tab="triggerbot">Triggerbot</div>
+          <div class="tab" data-tab="visuals">Visuals</div>
+          <div class="tab" data-tab="info">Info &amp; System</div>
+        </div>
+        <div class="advanced-content" id="aimingContent">
+          <h3>AIMING</h3>
+          <ul>
+            <li>Enable Aimbot</li>
+            <li>Keybinds &amp; Backup Keybind</li>
+            <li>FOV &amp; Aim Speed</li>
+            <li>Aim Bone Selection</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="slotsContent" style="display:none;">
+          <h3>SLOTS</h3>
+          <ul>
+            <li>Slot 1: FOV, Aim</li>
+            <li>Slot 2: FOV, Aim</li>
+            <li>Slot 3: FOV, Aim</li>
+            <li>Slot 4: FOV, Aim</li>
+            <li>Slot 5: FOV, Aim</li>
+            <li>Pickaxe Keybind</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="humanizationContent" style="display:none;">
+          <h3>ADVANCED &amp; HUMANIZATION</h3>
+          <ul>
+            <li>ADS FOV</li>
+            <li>Humanizations – Look More Human</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="recoilContent" style="display:none;">
+          <h3>RECOIL &amp; BLOOM</h3>
+          <ul>
+            <li>Enable Anti-Recoil</li>
+            <li>Reduce Bloom</li>
+            <li>Require ADS</li>
+            <li>Recoil Strength Adjustment</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="triggerbotContent" style="display:none;">
+          <h3>TRIGGERBOT</h3>
+          <ul>
+            <li>Enable Triggerbot</li>
+            <li>Assign Keybind &amp; Selector</li>
+            <li>FOV &amp; Confidence Sliders</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="visualsContent" style="display:none;">
+          <h3>VISUALS</h3>
+          <ul>
+            <li>Enable Visual Overlay</li>
+            <li>Color Selectors</li>
+            <li>Draw FOV, Crosshair, Boxes, Aimline</li>
+            <li>Debug Window &amp; AI FPS Display</li>
+            <li>Box Types: Corner, Filled, Normal</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="infoContent" style="display:none;">
+          <h3>INFO &amp; SYSTEM</h3>
+          <ul>
+            <li>User Info, License, Purchase Details, Last Login, Expiry</li>
+            <li>OS, CPU, Memory, GPU</li>
+            <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
+          </ul>
+        </div>
       </div>
-      <div class="accordion-content">
-        <ul>
-          <li>Enable Visual Overlay</li>
-          <li>Color Selectors</li>
-          <li>Draw FOV, Crosshair, Boxes, Aimline</li>
-          <li>Debug Window &amp; AI FPS Display</li>
-          <li>Box Types: Corner, Filled, Normal</li>
-        </ul>
-      </div>
-    </div>
-    <!-- INFO & SYSTEM -->
-    <div class="accordion-item">
-      <div class="accordion-header">
-        INFO &amp; SYSTEM
-        <span class="icon">&#9660;</span>
-      </div>
-      <div class="accordion-content">
-        <ul>
-          <li>User Info, License, Purchase Details, Last Login, Expiry</li>
-          <li>OS, CPU, Memory, GPU</li>
-          <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Parallax Section -->
-  <section id="parallax" class="parallax-section">
-    <h2>Immersive Interactive Experience</h2>
-  </section>
-  
-  <!-- Footer -->
-  <footer id="footer">
-    <p>&copy; 2025 Overaim AI. All rights reserved.</p>
-  </footer>
-  
-  <!-- =========== JAVASCRIPT =========== -->
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title reveal">Contact &amp; Support</h2>
+      <p style="text-align: center;">
+        For support or inquiries, please open a ticket on our Discord: 
+        <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>
+      </p>
+    </section>
+    
+    <!-- Footer with Legal Disclaimer -->
+    <footer>
+      <p>&copy; 2025 OverAim.cc. All rights reserved.</p>
+      <p>
+        Follow us on <a href="https://www.tiktok.com/@overaim.cc" target="_blank">TikTok</a> and join our <a href="https://overaim.cc/discord" target="_blank">Discord</a>.
+      </p>
+      <p class="legal">
+        Disclaimer: OverAim is an independent tool not affiliated with any game developers or publishers. Use of this tool may violate game terms of service. All content is provided for informational and entertainment purposes only.
+        <br>
+        <a href="/privacy.html" target="_blank">Privacy Policy</a> | <a href="/terms.html" target="_blank">Terms of Service</a>
+      </p>
+    </footer>
+    
+    <!-- Scroll To Top Button -->
+    <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+  </div> <!-- End Main Content -->
+
+  <!-- ===== JavaScript for Preloader, Maintenance, Redirect Animation & Interactivity ===== -->
   <script>
-    /* SLIDER AUTO-CYCLE & ARROW NAVIGATION */
-    const sliderImages = [
-      'assets/1.png',
-      'assets/2.png',
-      'assets/3.png',
-      'assets/4.png',
-      'assets/5.png',
-      'assets/6.png',
-      'assets/7.png',
-      'assets/8.png',
-      'assets/9.png'
-    ];
-    let currentSlide = 0;
-    const slideImg = document.getElementById('slide-img');
-    const prevArrow = document.getElementById('prev');
-    const nextArrow = document.getElementById('next');
-    
-    function showSlide(index) {
-      currentSlide = index;
-      if (currentSlide < 0) currentSlide = sliderImages.length - 1;
-      if (currentSlide >= sliderImages.length) currentSlide = 0;
-      // Fade-out then fade-in transition
-      slideImg.classList.remove('show');
-      setTimeout(() => {
-        slideImg.src = sliderImages[currentSlide];
-        slideImg.classList.add('show');
-      }, 300);
+    // Preloader: Fade out when window loads
+    window.addEventListener("load", function() {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      setTimeout(() => { preloader.style.display = "none"; }, 500);
+      checkMaintenance();
+    });
+
+    // Maintenance Mode Check
+    async function checkMaintenance() {
+      try {
+        const response = await fetch('status.txt');
+        const status = (await response.text()).trim().toLowerCase();
+        if(status === "maintenance") {
+          document.getElementById("mainContent").style.display = "none";
+          document.getElementById("maintenanceMessage").style.display = "flex";
+        }
+      } catch (error) {
+        console.error("Maintenance check failed:", error);
+      }
     }
-    function nextSlide() { showSlide(currentSlide + 1); }
-    function prevSlide() { showSlide(currentSlide - 1); }
     
-    nextArrow.addEventListener('click', nextSlide);
-    prevArrow.addEventListener('click', prevSlide);
-    setInterval(nextSlide, 5000);
+    // Intercept internal link clicks to show preloader before redirecting
+    function navigateTo(url) {
+      document.getElementById("preloader").style.display = "flex";
+      setTimeout(() => { window.location.href = url; }, 300);
+    }
     
-    /* HERO FADE-IN USING INTERSECTION OBSERVER */
-    const heroSection = document.getElementById('hero');
-    const heroObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          heroSection.classList.add('visible');
-          heroObserver.unobserve(heroSection);
+    // Advanced Settings Tabs Logic
+    const advTabs = document.querySelectorAll(".advanced-tabs .tab");
+    const advContents = {
+      aiming: document.getElementById("aimingContent"),
+      slots: document.getElementById("slotsContent"),
+      humanization: document.getElementById("humanizationContent"),
+      recoil: document.getElementById("recoilContent"),
+      triggerbot: document.getElementById("triggerbotContent"),
+      visuals: document.getElementById("visualsContent"),
+      info: document.getElementById("infoContent")
+    };
+    advTabs.forEach(tab => {
+      tab.addEventListener("click", function() {
+        advTabs.forEach(t => t.classList.remove("active"));
+        for (const key in advContents) {
+          advContents[key].style.display = "none";
         }
-      });
-    }, { threshold: 0.5 });
-    heroObserver.observe(heroSection);
-    
-    /* FEATURE CARDS FADE-IN USING INTERSECTION OBSERVER */
-    const featureCards = document.querySelectorAll('.feature-card');
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          cardObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    featureCards.forEach(card => cardObserver.observe(card));
-    
-    /* ACCORDION FUNCTIONALITY */
-    const accHeaders = document.querySelectorAll('.accordion-header');
-    accHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const content = this.nextElementSibling;
-        const icon = this.querySelector('.icon');
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          content.classList.remove('open');
-          icon.style.transform = 'rotate(0deg)';
-        } else {
-          document.querySelectorAll('.accordion-content').forEach(c => {
-            c.style.maxHeight = null;
-            c.classList.remove('open');
-            c.previousElementSibling.querySelector('.icon').style.transform = 'rotate(0deg)';
-          });
-          // Add extra 20px to ensure all content is visible.
-          content.style.maxHeight = (content.scrollHeight + 20) + "px";
-          content.classList.add('open');
-          icon.style.transform = 'rotate(180deg)';
-        }
+        tab.classList.add("active");
+        const selected = tab.getAttribute("data-tab");
+        advContents[selected].style.display = "block";
       });
     });
     
-    /* INTERACTIVE PARTICLE WALLPAPER */
-    const canvas = document.getElementById('wallpaper');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const numParticles = 80;
-    const mouse = { x: null, y: null, radius: 120 };
+    // Scroll Reveal using IntersectionObserver
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(reveal => observer.observe(reveal));
     
-    function resizeCanvas() {
+    // Scroll To Top Button Logic
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Particle Animation on Canvas
+    const canvas = document.getElementById("particle-canvas");
+    const ctx = canvas.getContext("2d");
+    let particlesArray = [];
+    const numberOfParticles = 150;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    window.addEventListener("resize", function() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    function Particle() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 1.2;
-      this.vy = (Math.random() - 0.5) * 1.2;
-      this.size = Math.random() * 2 + 1;
-    }
-    for (let i = 0; i < numParticles; i++) {
-      particles.push(new Particle());
-    }
-    window.addEventListener('mousemove', e => {
-      mouse.x = e.x;
-      mouse.y = e.y;
     });
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.color = "rgba(0,170,255,0.8)";
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+    
+    function handleParticles() {
+      for (let particle of particlesArray) {
+        particle.update();
+        particle.draw();
+      }
+    }
+    
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx = -p.vx;
-        if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < mouse.radius) {
-          const angle = Math.atan2(dy, dx);
-          p.vx = -Math.cos(angle) * 2;
-          p.vy = -Math.sin(angle) * 2;
-        }
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.8)";
-        ctx.fill();
-      });
+      handleParticles();
       requestAnimationFrame(animateParticles);
     }
+    
+    initParticles();
     animateParticles();
+
+    // Ripple Effect on Button Clicks
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        const rect = btn.getBoundingClientRect();
+        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+        ripple.style.left = e.clientX - rect.left - rect.width / 2 + 'px';
+        ripple.style.top = e.clientY - rect.top - rect.height / 2 + 'px';
+        btn.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Scroll Down Arrow Click Event
+    document.querySelector('.scroll-down').addEventListener('click', function() {
+      document.getElementById('intro').scrollIntoView({ behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>

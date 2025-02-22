@@ -99,9 +99,7 @@
       cursor: pointer;
       transition: background var(--transition);
     }
-    #maintenanceMessage .btn:hover {
-      background: #0088cc;
-    }
+    #maintenanceMessage .btn:hover { background: #0088cc; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -147,14 +145,8 @@
       overflow: hidden;
       clip: rect(0,900px,0,0);
     }
-    .logo::before {
-      animation: glitchTop 2s infinite linear;
-      color: var(--primary);
-    }
-    .logo::after {
-      animation: glitchBottom 2s infinite linear;
-      color: #fff;
-    }
+    .logo::before { animation: glitchTop 2s infinite linear; color: var(--primary); }
+    .logo::after { animation: glitchBottom 2s infinite linear; color: #fff; }
     @keyframes glitchTop {
       0% { clip: rect(0, 9999px, 0, 0); }
       10% { clip: rect(0, 9999px, 10px, 0); }
@@ -207,10 +199,7 @@
       background: var(--secondary-bg);
       transition: background var(--transition), color var(--transition);
     }
-    .social-links a:hover {
-      background: var(--primary);
-      color: #fff;
-    }
+    .social-links a:hover { background: var(--primary); color: #fff; }
 
     /* ===== Hero Section with Particle Background & Download Button ===== */
     .hero {
@@ -286,9 +275,7 @@
       background: var(--download-color);
       border: 1px solid var(--download-color);
     }
-    .download-btn:hover {
-      background: #e62e5c;
-    }
+    .download-btn:hover { background: #e62e5c; }
 
     /* ===== "What is OverAim?" Section ===== */
     #intro {
@@ -304,6 +291,67 @@
       max-width: 800px;
       margin: auto;
       font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    /* ===== System Requirements Section ===== */
+    #system {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--secondary-bg);
+    }
+    #system h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    #system p {
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    /* ===== Earn Money & Rewards Section ===== */
+    #earn-rewards {
+      padding: 4rem 2rem;
+      background: var(--background);
+      color: var(--text);
+    }
+    #earn-rewards h2 {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--primary);
+    }
+    .earn-rewards-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .earn-rewards-content .honeygain, 
+    .earn-rewards-content .rewards-channel {
+      flex: 1;
+      min-width: 300px;
+      text-align: left;
+    }
+    .earn-rewards-content .honeygain img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .earn-rewards-content h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .earn-rewards-content ul {
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+      color: var(--muted);
+    }
+    .earn-rewards-content ol {
+      margin-left: 1rem;
       color: var(--muted);
     }
 
@@ -606,6 +654,8 @@
             <li><a href="#intro">What is OverAim?</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#tools">Free Tools</a></li>
+            <li><a href="#system">System</a></li>
+            <li><a href="#earn-rewards">Earn & Rewards</a></li>
             <li><a href="#community">Community</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#buy">Get the AI</a></li>
@@ -641,40 +691,13 @@
       </p>
     </section>
     
-    <!-- Features Section -->
-    <section id="features">
-      <h2 class="section-title reveal">Key Features</h2>
-      <div class="features">
-        <div class="card reveal">
-          <i class="fas fa-shield-alt"></i>
-          <h3>External Operation</h3>
-          <p>No injection or game file modification – completely external and safe.</p>
-        </div>
-        <div class="card reveal">
-          <i class="fas fa-eye"></i>
-          <h3>Screen Scanning</h3>
-          <p>GPU‑powered scanning for enemy‑like targets with laser accuracy.</p>
-        </div>
-        <div class="card reveal">
-          <i class="fas fa-desktop"></i>
-          <h3>Easy-to-Use UI</h3>
-          <p>Intuitive interface with quick configuration and setup.</p>
-        </div>
-        <div class="card reveal">
-          <i class="fas fa-user-secret"></i>
-          <h3>Undetectable</h3>
-          <p>State‑of‑the‑art protection against anti‑cheat systems.</p>
-        </div>
-        <div class="card reveal">
-          <i class="fas fa-ad"></i>
-          <h3>Free with Ads</h3>
-          <p>Use OverAim free with ads or upgrade for 10€ lifetime ad‑free access.</p>
-        </div>
-        <div class="card reveal">
-          <i class="fas fa-headset"></i>
-          <h3>Developer Support</h3>
-          <p>Maintained by Miro0x with fast support via Discord tickets.</p>
-        </div>
+    <!-- System Requirements Section -->
+    <section id="system">
+      <h2 class="section-title reveal">System Requirements</h2>
+      <div class="system-content reveal" style="text-align: center;">
+        <p>For optimal performance, we recommend using an NVIDIA GPU.</p>
+        <p><strong>Minimum Required: GTX1050ti / GTX960</strong></p>
+        <p>Using the latest NVIDIA drivers will ensure the best results for our AI.</p>
       </div>
     </section>
     
@@ -696,6 +719,42 @@
           <i class="fas fa-cogs"></i>
           <h3>Free OverAim Tweaks</h3>
           <p>Enjoy extra performance tweaks and custom configurations at no extra cost.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Earn Money & Rewards Section -->
+    <section id="earn-rewards">
+      <h2 class="section-title reveal">Earn Money & Get Rewards</h2>
+      <div class="earn-rewards-content reveal" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
+        <div class="honeygain" style="flex: 1; min-width: 300px; text-align: left;">
+          <img src="honeygainad.png" alt="Honeygain Ad" style="max-width: 100%; border-radius: 10px; margin-bottom: 1rem;">
+          <h3>Earn Money with Honeygain</h3>
+          <p>💸 Earn Money for OverAim AI with Honeygain! 💸</p>
+          <p>Share your unused internet with Honeygain’s secure network and get paid—completely passively! Use your earnings to fund OverAim AI or anything else you like.</p>
+          <ul>
+            <li>✅ Works on Windows and phones.</li>
+            <li>✅ Safe and secure—your data is never accessed.</li>
+            <li>✅ Earn more by connecting multiple devices.</li>
+            <li>✅ No effort required—just set it and forget it!</li>
+          </ul>
+          <p><strong>Instant $5 Bonus!</strong> Sign up now and start earning cash right away.</p>
+          <a class="btn" href="https://r.honeygain.me/GTAV528D1F" target="_blank">
+            <i class="fas fa-dollar-sign"></i> Sign Up for Honeygain
+          </a>
+        </div>
+        <div class="rewards-channel" style="flex: 1; min-width: 300px; text-align: left;">
+          <h3>Rewards Channel</h3>
+          <p>📢 | REWARDS CHANNEL 📢</p>
+          <p>🎁 Invite Rewards:<br>🔗 15 Invites = 🎮 LIFETIME Adless Access</p>
+          <p>🚀 Boost Rewards:<br>⭐ 1 Server Boost = 🎮 1 Week Adless Access</p>
+          <p>💡 How to Claim:</p>
+          <ol>
+            <li>Check your invite count using <code>/invites</code>.</li>
+            <li>Boost the server and share proof with the team.</li>
+            <li>DM a moderator or open a ticket to redeem your reward!</li>
+          </ol>
+          <p>🎉 Start inviting or boosting now to unlock your exclusive access!</p>
         </div>
       </div>
     </section>
@@ -937,7 +996,7 @@
       checkMaintenance();
     });
 
-    // Maintenance Mode Check (expects status.txt to contain either "maintenance" or "online")
+    // Maintenance Mode Check (expects status.txt to contain "maintenance" or "online")
     async function checkMaintenance() {
       try {
         const response = await fetch('status.txt');
@@ -956,7 +1015,6 @@
       document.getElementById("preloader").style.display = "flex";
       setTimeout(() => { window.location.href = url; }, 300);
     }
-    // (Optional: Attach to internal links if needed)
     
     // Advanced Settings Tabs Logic
     const advTabs = document.querySelectorAll(".advanced-tabs .tab");
@@ -971,12 +1029,10 @@
     };
     advTabs.forEach(tab => {
       tab.addEventListener("click", function() {
-        // Remove active class from all tabs and hide all content
         advTabs.forEach(t => t.classList.remove("active"));
         for (const key in advContents) {
           advContents[key].style.display = "none";
         }
-        // Set active tab and show corresponding content
         tab.classList.add("active");
         const selected = tab.getAttribute("data-tab");
         advContents[selected].style.display = "block";

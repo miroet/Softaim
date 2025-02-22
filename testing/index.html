@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OverAim.cc - Advanced AI Aimbot Assistant</title>
+  <title>OverAim.cc - Advanced AI Aimbot Assistant | 100% FREE</title>
   <style>
-    /* CSS Variables for Dark Theme */
+    /* ===== CSS Variables & Global Styles ===== */
     :root {
       --primary: #00aaff;
       --background: #000;
@@ -14,35 +14,26 @@
       --text: #eee;
       --muted: #999;
       --transition: 0.3s;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-    /* Global Reset & Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: var(--font-family);
       background: var(--background);
       color: var(--text);
-      line-height: 1.6;
       overflow-x: hidden;
+      line-height: 1.6;
     }
-    a { color: var(--primary); text-decoration: none; }
+    a { text-decoration: none; color: var(--primary); }
     ul { list-style: none; }
     
-    /* Smooth Scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Header & Navigation */
+    /* ===== Header & Navigation ===== */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: var(--secondary-bg);
+      background: linear-gradient(135deg, #111, #222);
       border-bottom: 1px solid #222;
       z-index: 1000;
       animation: slideDown 0.5s ease-out;
@@ -56,62 +47,141 @@
       margin: auto;
       padding: 1rem 2rem;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
     }
     .logo {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
     }
     .logo .highlight { color: var(--primary); }
+    /* Glitch Effect on Logo */
+    .logo::before,
+    .logo::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+      clip: rect(0,900px,0,0);
+    }
+    .logo::before {
+      animation: glitchTop 2s infinite linear;
+      color: var(--primary);
+    }
+    .logo::after {
+      animation: glitchBottom 2s infinite linear;
+      color: #fff;
+    }
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(0, 9999px, 10px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
+      30% { clip: rect(0, 9999px, 15px, 0); }
+      40% { clip: rect(0, 9999px, 0, 0); }
+      50% { clip: rect(0, 9999px, 20px, 0); }
+      60% { clip: rect(0, 9999px, 0, 0); }
+      70% { clip: rect(0, 9999px, 10px, 0); }
+      80% { clip: rect(0, 9999px, 0, 0); }
+      90% { clip: rect(0, 9999px, 5px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(5px, 9999px, 25px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
+      30% { clip: rect(10px, 9999px, 20px, 0); }
+      40% { clip: rect(0, 9999px, 0, 0); }
+      50% { clip: rect(5px, 9999px, 15px, 0); }
+      60% { clip: rect(0, 9999px, 0, 0); }
+      70% { clip: rect(10px, 9999px, 30px, 0); }
+      80% { clip: rect(0, 9999px, 0, 0); }
+      90% { clip: rect(5px, 9999px, 20px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
     nav ul {
       display: flex;
       gap: 1.5rem;
+      align-items: center;
     }
     nav ul li a {
       font-weight: 600;
       transition: color var(--transition);
+      position: relative;
     }
     nav ul li a:hover { color: var(--primary); }
-
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(135deg, #000, #222),
-                  url('https://via.placeholder.com/1600x900/000000/333333?text=OverAim+Background') no-repeat center center/cover;
+    /* Social Links in Header */
+    .social-links {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 1rem;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .social-links a {
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid var(--primary);
+      border-radius: 5px;
+      background: var(--secondary-bg);
+      transition: background var(--transition), color var(--transition);
+    }
+    .social-links a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    
+    /* ===== Hero Section with Particle Background ===== */
+    .hero {
       position: relative;
+      height: 100vh;
       overflow: hidden;
+      background: #000;
     }
-    .hero::after {
-      content: "";
+    /* Canvas for Particle Animation */
+    #particle-canvas {
       position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      animation: pulse 3s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 0.8; }
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: linear-gradient(135deg, #000, #222);
     }
     .hero-content {
       position: relative;
       z-index: 2;
+      text-align: center;
+      padding: 0 1rem;
       animation: fadeInUp 1s ease-out;
     }
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .hero h1 {
       font-size: 3.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       text-shadow: 2px 2px 8px #000;
+    }
+    .badge-free {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      animation: pulseBadge 2s infinite;
+    }
+    @keyframes pulseBadge {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     .hero p {
       font-size: 1.2rem;
@@ -126,14 +196,14 @@
       color: #fff;
       font-size: 1rem;
       cursor: pointer;
-      transition: background var(--transition), transform var(--transition);
+      transition: transform var(--transition), background var(--transition);
     }
     .btn:hover {
-      background: #0088cc;
       transform: scale(1.05);
+      background: #0088cc;
     }
-
-    /* Section Titles */
+    
+    /* ===== Section Titles & Layout ===== */
     section {
       padding: 4rem 2rem;
       position: relative;
@@ -156,8 +226,8 @@
       left: 50%;
       transform: translateX(-50%);
     }
-
-    /* Animated Reveal on Scroll */
+    
+    /* ===== Reveal Animations ===== */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -167,8 +237,8 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    /* Features & Cards */
+    
+    /* ===== Cards & Features ===== */
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -183,17 +253,17 @@
       transition: transform var(--transition), box-shadow var(--transition);
     }
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
     }
-    .card h3 { 
+    .card h3 {
       margin-bottom: 1rem;
       color: var(--primary);
       font-size: 1.5rem;
     }
     .card p { color: var(--muted); }
-
-    /* New Sections for Free Tools */
+    
+    /* ===== Free Tools Section ===== */
     .tool-section {
       background: var(--secondary-bg);
       padding: 3rem 2rem;
@@ -203,16 +273,14 @@
       text-align: center;
       transition: transform var(--transition);
     }
-    .tool-section:hover {
-      transform: scale(1.02);
-    }
+    .tool-section:hover { transform: scale(1.02); }
     .tool-section h3 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
       color: var(--primary);
     }
-
-    /* Video Gallery */
+    
+    /* ===== Video Gallery ===== */
     .video-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -226,11 +294,9 @@
       border-radius: 10px;
       transition: transform var(--transition);
     }
-    .video-gallery iframe:hover {
-      transform: scale(1.03);
-    }
-
-    /* FAQ Accordion */
+    .video-gallery iframe:hover { transform: scale(1.03); }
+    
+    /* ===== FAQ Accordion ===== */
     .faq-item {
       border-bottom: 1px solid #222;
       margin-bottom: 1rem;
@@ -261,8 +327,8 @@
       max-height: 200px;
       margin-top: 1rem;
     }
-
-    /* Steps / How to Buy */
+    
+    /* ===== Steps / How to Buy ===== */
     .steps {
       display: flex;
       flex-wrap: wrap;
@@ -279,12 +345,9 @@
       transition: transform var(--transition);
     }
     .step:hover { transform: translateY(-10px); }
-    .step h4 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    /* Tabs for Advanced Settings */
+    .step h4 { color: var(--primary); margin-bottom: 1rem; }
+    
+    /* ===== Advanced Settings Tabs ===== */
     .tabs {
       display: flex;
       flex-wrap: wrap;
@@ -302,8 +365,37 @@
     .tab.active, .tab:hover { background: var(--primary); color: #fff; }
     .tab-content { display: none; animation: fadeIn 0.5s ease; }
     .tab-content.active { display: block; }
-
-    /* Footer */
+    
+    /* ===== Community Section ===== */
+    #community {
+      background: var(--secondary-bg);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid #222;
+    }
+    
+    /* ===== Scroll To Top Button ===== */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 1001;
+    }
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* ===== Footer ===== */
     footer {
       background: #111;
       border-top: 1px solid #222;
@@ -313,48 +405,58 @@
     }
     footer a { color: var(--primary); }
     
-    /* Responsive */
+    /* ===== Responsive Breakpoints ===== */
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.8rem; }
       nav ul { flex-direction: column; }
       nav ul li { margin: 0.5rem 0; }
       .steps { flex-direction: column; }
+      .header-container { flex-direction: column; align-items: flex-start; }
+      .social-links { margin-top: 1rem; }
     }
   </style>
 </head>
 <body>
+  <!-- Particle Canvas Background -->
+  <canvas id="particle-canvas"></canvas>
+  
   <!-- Header & Navigation -->
   <header>
     <div class="header-container">
-      <div class="logo">OverAim.<span class="highlight">cc</span></div>
+      <div class="logo" data-text="OverAim.cc">OverAim.<span class="highlight">cc</span></div>
       <nav>
         <ul>
           <li><a href="#hero">Home</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#tools">Free Tools</a></li>
-          <li><a href="#advanced">Settings</a></li>
+          <li><a href="#community">Community</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#buy">Buy</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="social-links">
+        <a href="https://overaim.cc/discord" target="_blank">Discord</a>
+        <a href="https://www.tiktok.com/@overaim.cc" target="_blank">TikTok</a>
+      </div>
     </div>
   </header>
-
+  
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-content">
       <h1>OverAim AI Aimbot Assistant</h1>
+      <div class="badge-free">100% FREE</div>
       <p>
         100% External • Human-like Mouse Movements • Safe & Undetectable<br />
-        Optimized AI precision for Fortnite and more.
+        Powered by ads with an option to upgrade for lifetime ad-free access!
       </p>
       <button class="btn" onclick="document.getElementById('buy').scrollIntoView({ behavior: 'smooth' });">
         Get Started
       </button>
     </div>
   </section>
-
+  
   <!-- Features Section -->
   <section id="features">
     <h2 class="section-title reveal">Key Features</h2>
@@ -377,7 +479,7 @@
       </div>
       <div class="card reveal">
         <h3>Free with Ads</h3>
-        <p>Enjoy our software free – upgrade to ad-free with invite rewards.</p>
+        <p>Enjoy our software absolutely FREE – upgrade to ad-free with invite rewards.</p>
       </div>
       <div class="card reveal">
         <h3>Developer Support</h3>
@@ -385,29 +487,26 @@
       </div>
     </div>
   </section>
-
+  
   <!-- Free Tools Section -->
   <section id="tools">
     <h2 class="section-title reveal">Free Tools & Tweaks</h2>
     <div class="features">
-      <!-- Free Permanent Hardware ID Changer -->
       <div class="card reveal">
         <h3>Permanent HWID Changer</h3>
         <p>Completely free – change your hardware ID permanently without hassle.</p>
       </div>
-      <!-- Free Tweaker -->
       <div class="card reveal">
         <h3>OverAim Tweaker</h3>
         <p>Unlock advanced tweaks to optimize performance and customize your experience.</p>
       </div>
-      <!-- Additional free tweaks -->
       <div class="card reveal">
         <h3>Free OverAim Tweaks</h3>
         <p>Enjoy performance tweaks and custom configurations at no extra cost.</p>
       </div>
     </div>
   </section>
-
+  
   <!-- Video Gallery -->
   <section id="videos">
     <h2 class="section-title reveal">Watch OverAim in Action</h2>
@@ -417,7 +516,7 @@
       <iframe src="https://www.tiktok.com/embed/v2/7460294521188781334" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </section>
-
+  
   <!-- FAQ Section -->
   <section id="faq">
     <h2 class="section-title reveal">Frequently Asked Questions</h2>
@@ -452,7 +551,19 @@
       </div>
     </div>
   </section>
-
+  
+  <!-- Community Section -->
+  <section id="community">
+    <h2 class="section-title reveal">Join Our Community</h2>
+    <p style="text-align: center; max-width: 600px; margin: auto;">
+      Connect with us on Discord for support, updates, and exclusive tips! Follow our TikTok for live demos and more.
+    </p>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a class="btn" href="https://overaim.cc/discord" target="_blank" style="margin-right: 1rem;">Join Discord</a>
+      <a class="btn" href="https://www.tiktok.com/@overaim.cc" target="_blank">Follow on TikTok</a>
+    </div>
+  </section>
+  
   <!-- How to Buy / Payment Methods Section -->
   <section id="buy">
     <h2 class="section-title reveal">How to Buy</h2>
@@ -478,25 +589,25 @@
       <h3>LIFETIME AD-FREE – Only 10€</h3>
     </div>
   </section>
-
+  
   <!-- Advanced Settings Tabs -->
   <section id="advanced">
     <h2 class="section-title reveal">OverAim Advanced Settings</h2>
     <div class="tabs">
       <div class="tab active" onclick="openTab('aiming')">Aiming</div>
       <div class="tab" onclick="openTab('slots')">Slots</div>
-      <div class="tab" onclick="openTab('humanization')">Advanced & Humanization</div>
-      <div class="tab" onclick="openTab('recoil')">Recoil & Bloom</div>
+      <div class="tab" onclick="openTab('humanization')">Advanced &amp; Humanization</div>
+      <div class="tab" onclick="openTab('recoil')">Recoil &amp; Bloom</div>
       <div class="tab" onclick="openTab('triggerbot')">Triggerbot</div>
       <div class="tab" onclick="openTab('visuals')">Visuals</div>
-      <div class="tab" onclick="openTab('info')">Info & System</div>
+      <div class="tab" onclick="openTab('info')">Info &amp; System</div>
     </div>
     <div class="tab-content active" id="aiming">
       <h3>AIMING</h3>
       <ul>
         <li>Enable Aimbot</li>
-        <li>Keybinds & Backup Keybind</li>
-        <li>FOV & Aim Speed</li>
+        <li>Keybinds &amp; Backup Keybind</li>
+        <li>FOV &amp; Aim Speed</li>
         <li>Aim Bone Selection</li>
       </ul>
     </div>
@@ -512,14 +623,14 @@
       </ul>
     </div>
     <div class="tab-content" id="humanization">
-      <h3>ADVANCED & HUMANIZATION</h3>
+      <h3>ADVANCED &amp; HUMANIZATION</h3>
       <ul>
         <li>ADS FOV</li>
         <li>Humanizations – Look More Human</li>
       </ul>
     </div>
     <div class="tab-content" id="recoil">
-      <h3>RECOIL & BLOOM</h3>
+      <h3>RECOIL &amp; BLOOM</h3>
       <ul>
         <li>Enable Anti-Recoil</li>
         <li>Reduce Bloom</li>
@@ -531,8 +642,8 @@
       <h3>TRIGGERBOT</h3>
       <ul>
         <li>Enable Triggerbot</li>
-        <li>Assign Keybind & Selector</li>
-        <li>FOV & Confidence Sliders</li>
+        <li>Assign Keybind &amp; Selector</li>
+        <li>FOV &amp; Confidence Sliders</li>
       </ul>
     </div>
     <div class="tab-content" id="visuals">
@@ -541,29 +652,29 @@
         <li>Enable Visual Overlay</li>
         <li>Color Selectors</li>
         <li>Draw FOV, Crosshair, Boxes, Aimline</li>
-        <li>Debug Window & AI FPS Display</li>
+        <li>Debug Window &amp; AI FPS Display</li>
         <li>Box Types: Corner, Filled, Normal</li>
       </ul>
     </div>
     <div class="tab-content" id="info">
-      <h3>INFO & SYSTEM</h3>
+      <h3>INFO &amp; SYSTEM</h3>
       <ul>
         <li>User Info, License, Purchase Details, Last Login, Expiry</li>
         <li>OS, CPU, Memory, GPU</li>
-        <li>AI Settings: Blob Size, Model, Confidence, Max Detections & FPS</li>
+        <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
       </ul>
     </div>
   </section>
-
+  
   <!-- Contact Section -->
   <section id="contact">
-    <h2 class="section-title reveal">Contact & Support</h2>
+    <h2 class="section-title reveal">Contact &amp; Support</h2>
     <p style="text-align: center;">
       For support or inquiries, please open a ticket on our Discord: 
       <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>
     </p>
   </section>
-
+  
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 OverAim.cc. All rights reserved.</p>
@@ -572,15 +683,18 @@
       and join our <a href="https://overaim.cc/discord" target="_blank">Discord</a>.
     </p>
   </footer>
-
-  <!-- JavaScript for Interactivity & Scroll Reveal -->
+  
+  <!-- Scroll To Top Button -->
+  <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+  
+  <!-- ===== JavaScript for Animations & Interactivity ===== -->
   <script>
-    // FAQ accordion toggle
+    // Toggle FAQ Accordion
     function toggleFAQ(element) {
       const faqItem = element.parentElement;
       faqItem.classList.toggle('active');
     }
-
+    
     // Tabs for Advanced Settings
     function openTab(tabId) {
       const tabs = document.querySelectorAll('.tab');
@@ -594,7 +708,7 @@
         }
       });
     }
-
+    
     // Scroll Reveal using IntersectionObserver
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
@@ -606,6 +720,78 @@
       });
     }, { threshold: 0.2 });
     reveals.forEach(reveal => observer.observe(reveal));
+    
+    // Scroll To Top Button Logic
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // ===== Particle Animation on Canvas =====
+    const canvas = document.getElementById("particle-canvas");
+    const ctx = canvas.getContext("2d");
+    let particlesArray = [];
+    const numberOfParticles = 150;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    window.addEventListener("resize", function() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.color = "rgba(0,170,255,0.8)";
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+    
+    function handleParticles() {
+      for (let particle of particlesArray) {
+        particle.update();
+        particle.draw();
+      }
+    }
+    
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      handleParticles();
+      requestAnimationFrame(animateParticles);
+    }
+    
+    initParticles();
+    animateParticles();
   </script>
 </body>
 </html>

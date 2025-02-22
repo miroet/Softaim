@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OverAim.cc - AI Aimbot Assistant</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header & Navigation */
+    header {
+      background: linear-gradient(90deg, #0a0a0a, #1f1f1f);
+      color: #fff;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .logo .highlight {
+      color: #00aaff;
+    }
+    nav { float: right; }
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    nav ul li a {
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: #00aaff; }
+
+    /* Hero Section */
+    .hero {
+      background: url('https://via.placeholder.com/1600x900') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      margin-top: 80px; /* accommodate fixed header */
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 2px 2px 8px #000;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ddd;
+      text-shadow: 1px 1px 4px #000;
+    }
+    .btn {
+      padding: 0.8rem 2rem;
+      background: #00aaff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: #0088cc; }
+
+    /* Section Titles */
+    section { padding: 4rem 2rem; }
+    section:nth-child(even) { background: #fff; }
+    section:nth-child(odd) { background: #f9f9f9; }
+    h2.section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    /* Features Grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .feature {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .feature:hover { transform: translateY(-10px); }
+    .feature h3 { color: #00aaff; margin-bottom: 1rem; }
+
+    /* FAQ Styles */
+    .faq-item { margin-bottom: 1rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem; }
+    .faq-item h3 {
+      cursor: pointer;
+      position: relative;
+      padding-right: 30px;
+    }
+    .faq-item h3:after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.5rem;
+      transition: transform 0.3s;
+    }
+    .faq-item.active h3:after { transform: rotate(45deg); }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .faq-item.active .faq-content {
+      max-height: 200px;
+      margin-top: 1rem;
+    }
+
+    /* Steps / How to Buy */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .step {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      flex: 1;
+      min-width: 250px;
+      transition: transform 0.3s;
+    }
+    .step:hover { transform: translateY(-10px); }
+    .step h4 { color: #00aaff; margin-bottom: 1rem; }
+
+    /* Tabs for Advanced Settings */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+    .tab {
+      padding: 0.5rem 1rem;
+      background: #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tab.active { background: #00aaff; color: #fff; }
+    .tab-content { display: none; animation: fadeIn 0.5s ease; }
+    .tab-content.active { display: block; }
+
+    /* Video Gallery */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .video-gallery iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: #1f1f1f;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+    footer a { color: #00aaff; }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 1s ease forwards; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      nav ul { flex-direction: column; align-items: center; }
+      nav ul li { margin: 0.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container">
+      <div class="logo">OverAim.<span class="highlight">cc</span></div>
+      <nav>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#buy">Buy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h1>OverAim AI Aimbot Assistant</h1>
+    <p>
+      100% external | Human-like mouse movements | Safe & undetectable<br />
+      Optimized for precision using advanced AI.
+    </p>
+    <button class="btn" onclick="document.getElementById('buy').scrollIntoView({ behavior: 'smooth' });">
+      Get Started
+    </button>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <h2 class="section-title">Key Features</h2>
+    <div class="features">
+      <div class="feature fade-in">
+        <h3>100% External Operation</h3>
+        <p>No injection or game file modifications – works completely externally with natural inputs.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Screen Scanning</h3>
+        <p>Utilizes your GPU to scan for enemy-like targets with high precision.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Easy to Use UI</h3>
+        <p>Intuitive interface with quick setup and detailed configuration options.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Safe & Undetectable</h3>
+        <p>Operates with state-of-the-art protection against anti-cheat systems.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Free with Ads</h3>
+        <p>Provided free by ads – upgrade to lifetime ad-free access with invite rewards.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Developer Support</h3>
+        <p>Developed and supported by Miro0x. Open a ticket on Discord for support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Gallery -->
+  <section id="videos">
+    <h2 class="section-title">Watch OverAim in Action</h2>
+    <div class="video-gallery">
+      <iframe src="https://www.tiktok.com/embed/v2/7461045214631824662" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe src="https://www.tiktok.com/embed/v2/7460626447191887126" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe src="https://www.tiktok.com/embed/v2/7460294521188781334" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3 onclick="toggleFAQ(this)">Is the software undetectable?</h3>
+      <div class="faq-content">
+        <p>
+          Yes, it is 100% undetectable with state-of-the-art protection against anti-cheat systems.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 onclick="toggleFAQ(this)">What games are supported?</h3>
+      <div class="faq-content">
+        <p>
+          Our software is primarily optimized for Fortnite, though it can work with other games.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 onclick="toggleFAQ(this)">How do I install the software?</h3>
+      <div class="faq-content">
+        <p>
+          You’ll receive detailed setup instructions after purchase.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 onclick="toggleFAQ(this)">Can I get a refund?</h3>
+      <div class="faq-content">
+        <p>
+          Unfortunately, all sales are final. Please ensure compatibility before purchasing.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 onclick="toggleFAQ(this)">What if I need help?</h3>
+      <div class="faq-content">
+        <p>
+          Our support team is available in the "Open a Ticket" channel on our Discord.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Invite & Rewards -->
+  <section id="rewards">
+    <h2 class="section-title">Invite & Boost Rewards</h2>
+    <div class="features">
+      <div class="feature fade-in">
+        <h3>Invite Rewards</h3>
+        <p>15 Invites = LIFETIME Adless Access</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Boost Rewards</h3>
+        <p>1 Server Boost = 1 Week Adless Access</p>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 2rem;">
+      Check your invite count using <strong>/invites</strong> and contact a moderator or open a ticket to redeem your reward!
+    </p>
+  </section>
+
+  <!-- Payment Methods -->
+  <section id="payments">
+    <h2 class="section-title">Payment Methods</h2>
+    <div class="features">
+      <div class="feature fade-in">
+        <h3>PayPal</h3>
+        <p>Trusted worldwide for secure transactions.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Credit Cards</h3>
+        <p>Visa, Mastercard, and more are accepted.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Cryptocurrency</h3>
+        <p>Bitcoin, Ethereum, and other major cryptocurrencies.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Paysafe Cards</h3>
+        <p>Prepaid cards for secure and anonymous payments.</p>
+      </div>
+      <div class="feature fade-in">
+        <h3>Gift Cards</h3>
+        <p>Select popular gift cards are accepted.</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <h3>LIFETIME AD FREE 10€</h3>
+    </div>
+  </section>
+
+  <!-- How to Buy -->
+  <section id="buy">
+    <h2 class="section-title">How to Buy</h2>
+    <div class="steps">
+      <div class="step">
+        <h4>1. Open a Ticket</h4>
+        <p>Head over to the "Open a Ticket" channel on Discord.</p>
+      </div>
+      <div class="step">
+        <h4>2. Discuss with Staff</h4>
+        <p>Our team will help you choose the best plan and answer your questions.</p>
+      </div>
+      <div class="step">
+        <h4>3. Make a Payment</h4>
+        <p>
+          Choose from PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, or Gift Cards.
+        </p>
+      </div>
+      <div class="step">
+        <h4>4. Receive Your Key</h4>
+        <p>After payment, you’ll receive your license key and setup instructions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Honeygain Section -->
+  <section id="honeygain">
+    <h2 class="section-title">Earn Money with Honeygain</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      Share your unused internet with Honeygain’s secure network and get paid – I've cashed out $20 to my PayPal!
+    </p>
+    <div style="text-align: center; margin-top: 1rem;">
+      <a class="btn" href="https://r.honeygain.me/GTAV528D1F" target="_blank">Sign Up for Honeygain</a>
+    </div>
+  </section>
+
+  <!-- Advanced Settings Tabs -->
+  <section id="advanced">
+    <h2 class="section-title">OverAim Advanced Settings</h2>
+    <div class="tabs">
+      <div class="tab active" onclick="openTab('aiming')">Aiming</div>
+      <div class="tab" onclick="openTab('slots')">Slots</div>
+      <div class="tab" onclick="openTab('advancedSettings')">Advanced & Humanization</div>
+      <div class="tab" onclick="openTab('recoil')">Recoil & Bloom</div>
+      <div class="tab" onclick="openTab('triggerbot')">Triggerbot</div>
+      <div class="tab" onclick="openTab('visuals')">Visuals</div>
+      <div class="tab" onclick="openTab('info')">Info & System</div>
+    </div>
+    <div class="tab-content active" id="aiming">
+      <h3>AIMING</h3>
+      <ul>
+        <li>Enable Aimbot</li>
+        <li>Keybinds &amp; Backup Keybind</li>
+        <li>FOV &amp; Aim Speed</li>
+        <li>Aim Bone Selection</li>
+      </ul>
+    </div>
+    <div class="tab-content" id="slots">
+      <h3>SLOTS</h3>
+      <ul>
+        <li>Slot 1: FOV, Aim</li>
+        <li>Slot 2: FOV, Aim</li>
+        <li>Slot 3: FOV, Aim</li>
+        <li>Slot 4: FOV, Aim</li>
+        <li>Slot 5: FOV, Aim</li>
+        <li>Pickaxe Keybind</li>
+      </ul>
+    </div>
+    <div class="tab-content" id="advancedSettings">
+      <h3>ADVANCED & HUMANIZATION</h3>
+      <ul>
+        <li>ADS FOV</li>
+        <li>Humanizations – Look More Human</li>
+      </ul>
+    </div>
+    <div class="tab-content" id="recoil">
+      <h3>RECOIL & BLOOM</h3>
+      <ul>
+        <li>Enable Anti-Recoil</li>
+        <li>Reduce Bloom</li>
+        <li>Require ADS</li>
+        <li>Recoil Strength Adjustment</li>
+      </ul>
+    </div>
+    <div class="tab-content" id="triggerbot">
+      <h3>TRIGGERBOT</h3>
+      <ul>
+        <li>Enable Triggerbot</li>
+        <li>Assign Keybind &amp; Selector</li>
+        <li>FOV &amp; Confidence Sliders</li>
+      </ul>
+    </div>
+    <div class="tab-content" id="visuals">
+      <h3>VISUALS</h3>
+      <ul>
+        <li>Enable Visual Overlay</li>
+        <li>Color Selectors</li>
+        <li>Draw FOV, Crosshair, Boxes, Aimline</li>
+        <li>Debug Window &amp; AI FPS Display</li>
+        <li>Box Types: Corner, Filled, Normal</li>
+      </ul>
+    </div>
+    <div class="tab-content" id="info">
+      <h3>INFO & SYSTEM</h3>
+      <ul>
+        <li>User Info, License, Purchase Details, Last Login, Expiry</li>
+        <li>OS, CPU, Memory, GPU</li>
+        <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Contact &amp; Support</h2>
+    <p style="text-align: center;">
+      For support or inquiries, please open a ticket on our Discord: 
+      <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 OverAim.cc. All rights reserved.</p>
+    <p>
+      Follow us on <a href="https://www.tiktok.com/@overaim.cc" target="_blank">TikTok</a> 
+      and join our <a href="https://overaim.cc/discord" target="_blank">Discord</a>.
+    </p>
+  </footer>
+
+  <script>
+    // FAQ accordion toggle
+    function toggleFAQ(element) {
+      var faqItem = element.parentElement;
+      faqItem.classList.toggle('active');
+    }
+
+    // Advanced settings tabs
+    function openTab(tabId) {
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      contents.forEach(content => content.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      
+      // Set the corresponding tab button as active
+      document.querySelectorAll('.tabs .tab').forEach(tabButton => {
+        if(tabButton.textContent.trim().toLowerCase() === document.getElementById(tabId).querySelector('h3').textContent.trim().toLowerCase()){
+          tabButton.classList.add('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

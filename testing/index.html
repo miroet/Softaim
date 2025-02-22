@@ -30,7 +30,73 @@
     }
     a { text-decoration: none; color: var(--primary); }
     ul { list-style: none; }
-    
+
+    /* ===== Preloader ===== */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .loader {
+      border: 8px solid #333;
+      border-top: 8px solid var(--primary);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===== Maintenance Mode Message ===== */
+    #maintenanceMessage {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--background);
+      z-index: 1500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    #maintenanceMessage h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    #maintenanceMessage p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--muted);
+    }
+    #maintenanceMessage .btn {
+      background: var(--primary);
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    #maintenanceMessage .btn:hover {
+      background: #0088cc;
+    }
+
     /* ===== Header & Navigation ===== */
     header {
       position: fixed;
@@ -137,7 +203,7 @@
       background: var(--primary);
       color: #fff;
     }
-    
+
     /* ===== Hero Section with Particle Background & Download Button ===== */
     .hero {
       position: relative;
@@ -217,6 +283,24 @@
     .download-btn:hover {
       background: #e62e5c;
     }
+
+    /* ===== New "What is OverAim?" Section ===== */
+    #intro {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #intro h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    #intro p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
     /* ===== Section Titles & Layout ===== */
     section {
       padding: 4rem 2rem;
@@ -252,7 +336,7 @@
       transform: translateY(0);
     }
     
-    /* ===== Cards & Features ===== */
+    /* ===== Features Section with Icon Cards ===== */
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -276,7 +360,12 @@
       font-size: 1.5rem;
     }
     .card p { color: var(--muted); }
-    
+    .card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
     /* ===== Free Tools Section ===== */
     .tool-section {
       background: var(--secondary-bg);
@@ -463,325 +552,378 @@
   </style>
 </head>
 <body>
-  <!-- Particle Canvas Background -->
-  <canvas id="particle-canvas"></canvas>
-  
-  <!-- Header & Navigation -->
-  <header>
-    <div class="header-container">
-      <div class="logo" data-text="OverAim.cc">OverAim.<span class="highlight">cc</span></div>
-      <nav>
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#tools">Free Tools</a></li>
-          <li><a href="#community">Community</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#buy">Buy</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="social-links">
-        <a href="https://overaim.cc/discord" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-        <a href="https://www.tiktok.com/@overaim.cc" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Maintenance Message (initially hidden) -->
+  <div id="maintenanceMessage">
+    <h1>Maintenance Mode</h1>
+    <p>Our site is currently under maintenance. For the latest updates, please join our Discord.</p>
+    <button class="btn" onclick="window.open('https://overaim.cc/discord','_blank')">
+      <i class="fab fa-discord"></i> Join Discord
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent">
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Header & Navigation -->
+    <header>
+      <div class="header-container">
+        <div class="logo" data-text="OverAim.cc">OverAim.<span class="highlight">cc</span></div>
+        <nav>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#intro">What is OverAim?</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#tools">Free Tools</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#buy">Get the AI</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="social-links">
+          <a href="https://overaim.cc/discord" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+          <a href="https://www.tiktok.com/@overaim.cc" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+        </div>
       </div>
-    </div>
-  </header>
-  
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <h1>OverAim AI Aimbot Assistant</h1>
-      <div class="badge-free">100% FREE WITH ADS</div>
-      <p>
-        Enjoy our AI aimbot absolutely free (with ads). You can also support ongoing development and get lifetime ad‑free access for only 10€!
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1>OverAim AI Aimbot Assistant</h1>
+        <div class="badge-free">100% FREE WITH ADS</div>
+        <p>
+          Enjoy our advanced AI aimbot absolutely free (ad‑supported). Support ongoing development and get lifetime ad‑free access for just 10€!
+        </p>
+        <button class="btn download-btn" onclick="location.href='https://overaim.cc/freedownload'">
+          <i class="fas fa-download"></i> Download Now
+        </button>
+      </div>
+    </section>
+    
+    <!-- What is OverAim? Section -->
+    <section id="intro">
+      <h2 class="section-title reveal">What is OverAim?</h2>
+      <p class="reveal">
+        OverAim is an AI‑powered aimbot assistant designed to operate externally without modifying game files. It offers human‑like mouse movements, precise enemy detection using GPU‐powered scanning, and a simple, intuitive interface. Get started for free (with ads) or upgrade to lifetime ad‑free access for only 10€ to support ongoing updates and top‑notch support.
       </p>
-      <button class="btn download-btn" onclick="location.href='https://overaim.cc/freedownload'">
-        <i class="fas fa-download"></i> Download Now
-      </button>
-    </div>
-  </section>
-  
-  <!-- Features Section -->
-  <section id="features">
-    <h2 class="section-title reveal">Key Features</h2>
-    <div class="features">
-      <div class="card reveal">
-        <h3>External Operation</h3>
-        <p>No injection or game file modification – completely external and safe.</p>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features">
+      <h2 class="section-title reveal">Key Features</h2>
+      <div class="features">
+        <div class="card reveal">
+          <i class="fas fa-shield-alt"></i>
+          <h3>External Operation</h3>
+          <p>No injection or game file modification – completely external and safe.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-eye"></i>
+          <h3>Screen Scanning</h3>
+          <p>GPU‑powered scanning for enemy‑like targets with laser accuracy.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-desktop"></i>
+          <h3>Easy-to-Use UI</h3>
+          <p>Intuitive interface with quick configuration and setup.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-user-secret"></i>
+          <h3>Undetectable</h3>
+          <p>State‑of‑the‑art protection against anti‑cheat systems.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-ad"></i>
+          <h3>Free with Ads</h3>
+          <p>Use OverAim free with ads or upgrade for 10€ lifetime ad‑free access.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-headset"></i>
+          <h3>Developer Support</h3>
+          <p>Maintained by Miro0x with fast support via Discord tickets.</p>
+        </div>
       </div>
-      <div class="card reveal">
-        <h3>Screen Scanning</h3>
-        <p>GPU-powered scanning for enemy-like targets with laser accuracy.</p>
+    </section>
+    
+    <!-- Free Tools Section -->
+    <section id="tools">
+      <h2 class="section-title reveal">Free Tools & Tweaks</h2>
+      <div class="features">
+        <div class="card reveal">
+          <i class="fas fa-sync-alt"></i>
+          <h3>Permanent HWID Changer</h3>
+          <p>Change your hardware ID permanently without hassle – completely free.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-sliders-h"></i>
+          <h3>OverAim Tweaker</h3>
+          <p>Unlock advanced tweaks to optimize performance and customize your experience.</p>
+        </div>
+        <div class="card reveal">
+          <i class="fas fa-cogs"></i>
+          <h3>Free OverAim Tweaks</h3>
+          <p>Enjoy extra performance tweaks and custom configurations at no extra cost.</p>
+        </div>
       </div>
-      <div class="card reveal">
-        <h3>Easy-to-Use UI</h3>
-        <p>Intuitive interface with quick configuration and setup.</p>
+    </section>
+    
+    <!-- Improved TikTok Section -->
+    <section id="tiktoks">
+      <h2 class="section-title reveal">OverAim on TikTok</h2>
+      <div class="tiktok-grid reveal">
+        <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7461045214631824662', '_blank')">
+          <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+1" alt="TikTok Video 1" />
+          <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+        </div>
+        <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460626447191887126', '_blank')">
+          <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+2" alt="TikTok Video 2" />
+          <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+        </div>
+        <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460294521188781334', '_blank')">
+          <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+3" alt="TikTok Video 3" />
+          <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+        </div>
       </div>
-      <div class="card reveal">
-        <h3>Undetectable</h3>
-        <p>State-of-the-art protection against anti-cheat systems.</p>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+      <h2 class="section-title reveal">User Testimonials</h2>
+      <div class="testimonials reveal">
+        <div class="testimonial">
+          <p>Miro0x/Owner — 15.1.2025 0.09<br>Two of My friends have IT and they Are satisfied so far 1month++ got all unreal</p>
+          <div class="reviewer">Miro0x/Owner</div>
+          <div class="date">15.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>oliverhvh — 15.1.2025 20.00<br>+Rep its insane im dominating everyone on zero build loll</p>
+          <div class="reviewer">oliverhvh</div>
+          <div class="date">15.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>利格马ｂａｌｌｅｒ — 15.1.2025 20.38<br>+rep been using for a week, very well made and works almost perfectly</p>
+          <div class="reviewer">利格马ｂａｌｌｅｒ</div>
+          <div class="date">15.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>✞ — 16.1.2025 10.06<br>+rep works very well fast delivery, very good for price. amazing support ❤️</p>
+          <div class="reviewer">✞</div>
+          <div class="date">16.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p># END WEBPASOFFWHITE — 18.1.2025 2.11<br>+rep good best ai</p>
+          <div class="reviewer"># END WEBPASOFFWHITE</div>
+          <div class="date">18.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>Sxtpa — 18.1.2025 3.04<br>+rep fast support, best ai</p>
+          <div class="reviewer">Sxtpa</div>
+          <div class="date">18.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>LaDos. — 19.1.2025 17.09<br>+rep W ai cheats its crazy asf and ud<br>best support here</p>
+          <div class="reviewer">LaDos.</div>
+          <div class="date">19.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>detour316 — 19.1.2025 22.49<br>+rep ai aimbot holy shit this is so op and ud (support is really fast)</p>
+          <div class="reviewer">detour316</div>
+          <div class="date">19.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>LaDos. — 20.1.2025 21.04<br>+rep i am gonna say smth about this ai cheats, this is the only cheats that is rly 100% ud and u cant get banned thats what insane about them.</p>
+          <div class="reviewer">LaDos.</div>
+          <div class="date">20.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>Drux — 20.1.2025 22.09<br>+Rep its insane im dominating everyone on zero build loll</p>
+          <div class="reviewer">Drux</div>
+          <div class="date">20.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>Kubazap. (aka. Magik) — 25.1.2025 12.54<br>+Rep the only real ud cheat</p>
+          <div class="reviewer">Kubazap. (aka. Magik)</div>
+          <div class="date">25.1.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>detour316 — 11.2.2025 0.22<br>+rep Free ai aimbot it works yall</p>
+          <div class="reviewer">detour316</div>
+          <div class="date">11.2.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>detour316 — 11.2.2025 3.46</p>
+          <div class="reviewer">detour316</div>
+          <div class="date">11.2.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>Sxtpa — 12.2.2025 1.49<br>settings?</p>
+          <div class="reviewer">Sxtpa</div>
+          <div class="date">12.2.2025</div>
+        </div>
+        <div class="testimonial">
+          <p>Sxtpa — 12.2.2025 16.36<br>+rep paid and free ai is good and the v3 has good ui</p>
+          <div class="reviewer">Sxtpa</div>
+          <div class="date">12.2.2025</div>
+        </div>
       </div>
-      <div class="card reveal">
-        <h3>Free with Ads</h3>
-        <p>Use the AI for free (ads supported) or upgrade to ad‑free access for 10€ lifetime.</p>
+    </section>
+    
+    <!-- How to Get the AI / Payment Methods Section -->
+    <section id="buy">
+      <h2 class="section-title reveal">How to Get the AI</h2>
+      <div class="steps">
+        <div class="step reveal">
+          <h4>1. Open a Ticket</h4>
+          <p>Visit our Discord and open a ticket in the "Open a Ticket" channel for support.</p>
+        </div>
+        <div class="step reveal">
+          <h4>2. Consult Our Staff</h4>
+          <p>Our team will guide you on using the free version (ads supported) or upgrading to ad‑free access.</p>
+        </div>
+        <div class="step reveal">
+          <h4>3. Make Payment</h4>
+          <p>Choose from secure options: PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, or Gift Cards.</p>
+        </div>
+        <div class="step reveal">
+          <h4>4. Receive Your Key</h4>
+          <p>After payment, get your license key and detailed setup instructions.</p>
+        </div>
       </div>
-      <div class="card reveal">
-        <h3>Developer Support</h3>
-        <p>Maintained by Miro0x with fast support via Discord tickets.</p>
+      <div class="pricing-note">
+        <p><strong>Note:</strong> OverAim is available free with ads. Upgrade to lifetime ad‑free access for only 10€ to support development, updates, and maintenance.</p>
       </div>
-    </div>
-  </section>
-  
-  <!-- Free Tools Section -->
-  <section id="tools">
-    <h2 class="section-title reveal">Free Tools & Tweaks</h2>
-    <div class="features">
-      <div class="card reveal">
-        <h3>Permanent HWID Changer</h3>
-        <p>Change your hardware ID permanently without hassle – completely free.</p>
+    </section>
+    
+    <!-- Advanced Settings Tabs -->
+    <section id="advanced">
+      <h2 class="section-title reveal">OverAim Advanced Settings</h2>
+      <div class="tabs">
+        <div class="tab active" onclick="openTab('aiming')">Aiming</div>
+        <div class="tab" onclick="openTab('slots')">Slots</div>
+        <div class="tab" onclick="openTab('humanization')">Advanced &amp; Humanization</div>
+        <div class="tab" onclick="openTab('recoil')">Recoil &amp; Bloom</div>
+        <div class="tab" onclick="openTab('triggerbot')">Triggerbot</div>
+        <div class="tab" onclick="openTab('visuals')">Visuals</div>
+        <div class="tab" onclick="openTab('info')">Info &amp; System</div>
       </div>
-      <div class="card reveal">
-        <h3>OverAim Tweaker</h3>
-        <p>Unlock advanced tweaks to optimize performance and customize your experience.</p>
+      <div class="tab-content active" id="aiming">
+        <h3>AIMING</h3>
+        <ul>
+          <li>Enable Aimbot</li>
+          <li>Keybinds &amp; Backup Keybind</li>
+          <li>FOV &amp; Aim Speed</li>
+          <li>Aim Bone Selection</li>
+        </ul>
       </div>
-      <div class="card reveal">
-        <h3>Free OverAim Tweaks</h3>
-        <p>Enjoy extra performance tweaks and custom configurations at no extra cost.</p>
+      <div class="tab-content" id="slots">
+        <h3>SLOTS</h3>
+        <ul>
+          <li>Slot 1: FOV, Aim</li>
+          <li>Slot 2: FOV, Aim</li>
+          <li>Slot 3: FOV, Aim</li>
+          <li>Slot 4: FOV, Aim</li>
+          <li>Slot 5: FOV, Aim</li>
+          <li>Pickaxe Keybind</li>
+        </ul>
       </div>
-    </div>
-  </section>
-  
-  <!-- Improved TikTok Section -->
-  <section id="tiktoks">
-    <h2 class="section-title reveal">OverAim on TikTok</h2>
-    <div class="tiktok-grid reveal">
-      <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7461045214631824662', '_blank')">
-        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+1" alt="TikTok Video 1" />
-        <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+      <div class="tab-content" id="humanization">
+        <h3>ADVANCED &amp; HUMANIZATION</h3>
+        <ul>
+          <li>ADS FOV</li>
+          <li>Humanizations – Look More Human</li>
+        </ul>
       </div>
-      <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460626447191887126', '_blank')">
-        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+2" alt="TikTok Video 2" />
-        <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+      <div class="tab-content" id="recoil">
+        <h3>RECOIL &amp; BLOOM</h3>
+        <ul>
+          <li>Enable Anti-Recoil</li>
+          <li>Reduce Bloom</li>
+          <li>Require ADS</li>
+          <li>Recoil Strength Adjustment</li>
+        </ul>
       </div>
-      <div class="tiktok-card" onclick="window.open('https://www.tiktok.com/@overaim.cc/video/7460294521188781334', '_blank')">
-        <img class="tiktok-thumb" src="https://via.placeholder.com/300x180.png?text=Video+3" alt="TikTok Video 3" />
-        <div class="tiktok-overlay"><i class="fab fa-tiktok"></i></div>
+      <div class="tab-content" id="triggerbot">
+        <h3>TRIGGERBOT</h3>
+        <ul>
+          <li>Enable Triggerbot</li>
+          <li>Assign Keybind &amp; Selector</li>
+          <li>FOV &amp; Confidence Sliders</li>
+        </ul>
       </div>
-    </div>
-  </section>
-  
-  <!-- Testimonials Section -->
-  <section id="testimonials">
-    <h2 class="section-title reveal">User Testimonials</h2>
-    <div class="testimonials reveal">
-      <div class="testimonial">
-        <p>Miro0x/Owner — 15.1.2025 0.09<br>Two of My friends have IT and they Are satisfied so far 1month++ got all unreal</p>
-        <div class="reviewer">Miro0x/Owner</div>
-        <div class="date">15.1.2025</div>
+      <div class="tab-content" id="visuals">
+        <h3>VISUALS</h3>
+        <ul>
+          <li>Enable Visual Overlay</li>
+          <li>Color Selectors</li>
+          <li>Draw FOV, Crosshair, Boxes, Aimline</li>
+          <li>Debug Window &amp; AI FPS Display</li>
+          <li>Box Types: Corner, Filled, Normal</li>
+        </ul>
       </div>
-      <div class="testimonial">
-        <p>oliverhvh — 15.1.2025 20.00<br>+Rep its insane im dominating everyone on zero build loll</p>
-        <div class="reviewer">oliverhvh</div>
-        <div class="date">15.1.2025</div>
+      <div class="tab-content" id="info">
+        <h3>INFO &amp; SYSTEM</h3>
+        <ul>
+          <li>User Info, License, Purchase Details, Last Login, Expiry</li>
+          <li>OS, CPU, Memory, GPU</li>
+          <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
+        </ul>
       </div>
-      <div class="testimonial">
-        <p>利格马ｂａｌｌｅｒ — 15.1.2025 20.38<br>+rep been using for a week, very well made and works almost perfectly</p>
-        <div class="reviewer">利格马ｂａｌｌｅｒ</div>
-        <div class="date">15.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>✞ — 16.1.2025 10.06<br>+rep works very well fast delivery, very good for price. amazing support ❤️</p>
-        <div class="reviewer">✞</div>
-        <div class="date">16.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p># END WEBPASOFFWHITE — 18.1.2025 2.11<br>+rep good best ai</p>
-        <div class="reviewer"># END WEBPASOFFWHITE</div>
-        <div class="date">18.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>Sxtpa — 18.1.2025 3.04<br>+rep fast support, best ai</p>
-        <div class="reviewer">Sxtpa</div>
-        <div class="date">18.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>LaDos. — 19.1.2025 17.09<br>+rep W ai cheats its crazy asf and ud<br>best support here</p>
-        <div class="reviewer">LaDos.</div>
-        <div class="date">19.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>detour316 — 19.1.2025 22.49<br>+rep ai aimbot holy shit this is so op and ud (support is really fast)</p>
-        <div class="reviewer">detour316</div>
-        <div class="date">19.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>LaDos. — 20.1.2025 21.04<br>+rep i am gonna say smth about this ai cheats, this is the only cheats that is rly 100% ud and u cant get banned thats what insane about them.</p>
-        <div class="reviewer">LaDos.</div>
-        <div class="date">20.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>Drux — 20.1.2025 22.09<br>+Rep its insane im dominating everyone on zero build loll</p>
-        <div class="reviewer">Drux</div>
-        <div class="date">20.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>Kubazap. (aka. Magik) — 25.1.2025 12.54<br>+Rep the only real ud cheat</p>
-        <div class="reviewer">Kubazap. (aka. Magik)</div>
-        <div class="date">25.1.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>detour316 — 11.2.2025 0.22<br>+rep Free ai aimbot it works yall</p>
-        <div class="reviewer">detour316</div>
-        <div class="date">11.2.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>detour316 — 11.2.2025 3.46</p>
-        <div class="reviewer">detour316</div>
-        <div class="date">11.2.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>Sxtpa — 12.2.2025 1.49<br>settings?</p>
-        <div class="reviewer">Sxtpa</div>
-        <div class="date">12.2.2025</div>
-      </div>
-      <div class="testimonial">
-        <p>Sxtpa — 12.2.2025 16.36<br>+rep paid and free ai is good and the v3 has good ui</p>
-        <div class="reviewer">Sxtpa</div>
-        <div class="date">12.2.2025</div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- How to Buy / Payment Methods Section -->
-  <section id="buy">
-    <h2 class="section-title reveal">How to Get the AI</h2>
-    <div class="steps">
-      <div class="step reveal">
-        <h4>1. Open a Ticket</h4>
-        <p>Visit our Discord and open a ticket in the "Open a Ticket" channel for support.</p>
-      </div>
-      <div class="step reveal">
-        <h4>2. Consult Our Staff</h4>
-        <p>Our team will guide you on using the free version (ads supported) or upgrading to ad‑free access.</p>
-      </div>
-      <div class="step reveal">
-        <h4>3. Make Payment</h4>
-        <p>Choose from secure options: PayPal, Credit Cards, Cryptocurrency, Paysafe Cards, or Gift Cards.</p>
-      </div>
-      <div class="step reveal">
-        <h4>4. Receive Your Key</h4>
-        <p>After payment, get your license key and detailed setup instructions.</p>
-      </div>
-    </div>
-    <div class="pricing-note">
-      <p><strong>Note:</strong> Our AI is available free with ads. Upgrade to lifetime ad‑free access for only 10€ to support development, new updates, and maintenance.</p>
-    </div>
-  </section>
-  
-  <!-- Advanced Settings Tabs -->
-  <section id="advanced">
-    <h2 class="section-title reveal">OverAim Advanced Settings</h2>
-    <div class="tabs">
-      <div class="tab active" onclick="openTab('aiming')">Aiming</div>
-      <div class="tab" onclick="openTab('slots')">Slots</div>
-      <div class="tab" onclick="openTab('humanization')">Advanced &amp; Humanization</div>
-      <div class="tab" onclick="openTab('recoil')">Recoil &amp; Bloom</div>
-      <div class="tab" onclick="openTab('triggerbot')">Triggerbot</div>
-      <div class="tab" onclick="openTab('visuals')">Visuals</div>
-      <div class="tab" onclick="openTab('info')">Info &amp; System</div>
-    </div>
-    <div class="tab-content active" id="aiming">
-      <h3>AIMING</h3>
-      <ul>
-        <li>Enable Aimbot</li>
-        <li>Keybinds &amp; Backup Keybind</li>
-        <li>FOV &amp; Aim Speed</li>
-        <li>Aim Bone Selection</li>
-      </ul>
-    </div>
-    <div class="tab-content" id="slots">
-      <h3>SLOTS</h3>
-      <ul>
-        <li>Slot 1: FOV, Aim</li>
-        <li>Slot 2: FOV, Aim</li>
-        <li>Slot 3: FOV, Aim</li>
-        <li>Slot 4: FOV, Aim</li>
-        <li>Slot 5: FOV, Aim</li>
-        <li>Pickaxe Keybind</li>
-      </ul>
-    </div>
-    <div class="tab-content" id="humanization">
-      <h3>ADVANCED &amp; HUMANIZATION</h3>
-      <ul>
-        <li>ADS FOV</li>
-        <li>Humanizations – Look More Human</li>
-      </ul>
-    </div>
-    <div class="tab-content" id="recoil">
-      <h3>RECOIL &amp; BLOOM</h3>
-      <ul>
-        <li>Enable Anti-Recoil</li>
-        <li>Reduce Bloom</li>
-        <li>Require ADS</li>
-        <li>Recoil Strength Adjustment</li>
-      </ul>
-    </div>
-    <div class="tab-content" id="triggerbot">
-      <h3>TRIGGERBOT</h3>
-      <ul>
-        <li>Enable Triggerbot</li>
-        <li>Assign Keybind &amp; Selector</li>
-        <li>FOV &amp; Confidence Sliders</li>
-      </ul>
-    </div>
-    <div class="tab-content" id="visuals">
-      <h3>VISUALS</h3>
-      <ul>
-        <li>Enable Visual Overlay</li>
-        <li>Color Selectors</li>
-        <li>Draw FOV, Crosshair, Boxes, Aimline</li>
-        <li>Debug Window &amp; AI FPS Display</li>
-        <li>Box Types: Corner, Filled, Normal</li>
-      </ul>
-    </div>
-    <div class="tab-content" id="info">
-      <h3>INFO &amp; SYSTEM</h3>
-      <ul>
-        <li>User Info, License, Purchase Details, Last Login, Expiry</li>
-        <li>OS, CPU, Memory, GPU</li>
-        <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
-      </ul>
-    </div>
-  </section>
-  
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2 class="section-title reveal">Contact &amp; Support</h2>
-    <p style="text-align: center;">
-      For support or inquiries, please open a ticket on our Discord: 
-      <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>
-    </p>
-  </section>
-  
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 OverAim.cc. All rights reserved.</p>
-    <p>
-      Follow us on <a href="https://www.tiktok.com/@overaim.cc" target="_blank">TikTok</a> 
-      and join our <a href="https://overaim.cc/discord" target="_blank">Discord</a>.
-    </p>
-  </footer>
-  
-  <!-- Scroll To Top Button -->
-  <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
-  
-  <!-- ===== JavaScript for Animations & Interactivity ===== -->
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title reveal">Contact &amp; Support</h2>
+      <p style="text-align: center;">
+        For support or inquiries, please open a ticket on our Discord: 
+        <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>
+      </p>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 OverAim.cc. All rights reserved.</p>
+      <p>
+        Follow us on <a href="https://www.tiktok.com/@overaim.cc" target="_blank">TikTok</a> 
+        and join our <a href="https://overaim.cc/discord" target="_blank">Discord</a>.
+      </p>
+    </footer>
+    
+    <!-- Scroll To Top Button -->
+    <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+  </div> <!-- End Main Content -->
+
+  <!-- ===== JavaScript for Animations, Preloader, Maintenance Check & Interactivity ===== -->
   <script>
-    // Toggle FAQ Accordion (if any FAQs are added)
-    function toggleFAQ(element) {
-      const faqItem = element.parentElement;
-      faqItem.classList.toggle('active');
+    // Preloader fade out on window load
+    window.addEventListener("load", function() {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      setTimeout(() => { preloader.style.display = "none"; }, 500);
+      // After preloader, check maintenance status
+      checkMaintenance();
+    });
+
+    // Maintenance Mode Check (fetch status.txt)
+    async function checkMaintenance() {
+      try {
+        const response = await fetch('status.txt');
+        const status = (await response.text()).trim().toLowerCase();
+        if(status === "maintenance") {
+          // Hide main content and show maintenance message
+          document.getElementById("mainContent").style.display = "none";
+          document.getElementById("maintenanceMessage").style.display = "flex";
+        }
+      } catch (error) {
+        console.error("Maintenance check failed:", error);
+      }
     }
     
     // Tabs for Advanced Settings

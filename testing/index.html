@@ -372,20 +372,21 @@
       align-items: flex-start;
     }
     .earn-rewards-content .honeygain, 
-    .earn-rewards-content .rewards-channel {
+    .earn-rewards-content .rewards-channel,
+    .earn-rewards-content .pawn-ad {
       flex: 1;
       min-width: 300px;
       text-align: left;
     }
-    /* Make the Honeygain image clickable and add hover scaling */
-    .honeygain a { display: block; }
-    .honeygain img {
+    /* Make the Honeygain and Pawn images clickable and add hover scaling */
+    .honeygain a, .pawn-ad a { display: block; }
+    .honeygain img, .pawn-ad img {
       max-width: 100%;
       border-radius: 10px;
       margin-bottom: 1rem;
       transition: transform 0.3s;
     }
-    .honeygain img:hover { transform: scale(1.05); }
+    .honeygain img:hover, .pawn-ad img:hover { transform: scale(1.05); }
     
     /* ===== Section Titles & Layout ===== */
     section {
@@ -777,6 +778,17 @@
           <p><strong>Instant $5 Bonus!</strong> Sign up now and start earning cash right away.</p>
           <a class="btn" href="https://r.honeygain.me/GTAV528D1F" target="_blank">
             <i class="fas fa-dollar-sign"></i> Sign Up for Honeygain
+          </a>
+        </div>
+        <div class="pawn-ad" style="flex: 1; min-width: 300px; text-align: left;">
+          <a href="https://pawns.app/?r=12193357" target="_blank">
+            <img src="pawns.png" alt="Pawns Ad">
+          </a>
+          <h3>Earn Money with Pawns.app</h3>
+          <p>We only advertise the best ways for you to make lazy money and not some rip off scams like some other youtubers do...</p>
+          <p>Want to earn some $? Register at <a href="https://pawns.app/?r=12193357" target="_blank">Pawns.app</a> and you get $1 to start off, along with an additional $1 when you withdraw your earnings for a total of $3!</p>
+          <a class="btn" href="https://pawns.app/?r=12193357" target="_blank">
+            <i class="fas fa-dollar-sign"></i> Register at Pawns.app
           </a>
         </div>
         <div class="rewards-channel" style="flex: 1; min-width: 300px; text-align: left;">

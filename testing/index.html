@@ -30,14 +30,12 @@
     }
     a { text-decoration: none; color: var(--primary); }
     ul { list-style: none; }
-
+    
     /* ===== Preloader & Redirect Loader ===== */
     #preloader {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: var(--background);
       display: flex;
       flex-direction: column;
@@ -64,14 +62,13 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
+    
     /* ===== Maintenance Mode ===== */
     #maintenanceMessage {
       display: none;
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: linear-gradient(135deg, #111, #222);
       z-index: 2500;
       flex-direction: column;
@@ -109,12 +106,11 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
+    
     /* ===== Header & Navigation ===== */
     header {
       position: fixed;
-      top: 0;
-      width: 100%;
+      top: 0; width: 100%;
       background: linear-gradient(135deg, #111, #222);
       border-bottom: 1px solid #222;
       z-index: 2000;
@@ -146,8 +142,7 @@
     .logo::after {
       content: attr(data-text);
       position: absolute;
-      left: 0;
-      top: 0;
+      left: 0; top: 0;
       width: 100%;
       overflow: hidden;
       clip: rect(0,900px,0,0);
@@ -227,10 +222,8 @@
     /* Particle Canvas */
     #particle-canvas {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: 1;
       background: linear-gradient(135deg, #000, #222);
     }
@@ -421,10 +414,8 @@
     }
     .tiktok-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
@@ -496,23 +487,43 @@
     }
     
     /* ===== Advanced Settings Tabs ===== */
-    .tabs {
+    #advancedSettings {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .advanced-tabs {
       display: flex;
-      flex-wrap: wrap;
+      justify-content: center;
       gap: 1rem;
       margin-bottom: 2rem;
-      justify-content: center;
+      flex-wrap: wrap;
     }
-    .tab {
-      padding: 0.5rem 1rem;
+    .advanced-tabs .tab {
+      padding: 0.8rem 1.5rem;
       background: #222;
       border-radius: 5px;
       cursor: pointer;
       transition: background var(--transition);
+      font-weight: bold;
     }
-    .tab.active, .tab:hover { background: var(--primary); color: #fff; }
-    .tab-content { display: none; animation: fadeIn 0.5s ease; }
-    .tab-content.active { display: block; }
+    .advanced-tabs .tab.active, .advanced-tabs .tab:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .advanced-content {
+      background: var(--secondary-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid #222;
+    }
+    .advanced-content ul {
+      margin-left: 1.5rem;
+    }
+    .advanced-content li {
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      color: var(--muted);
+    }
     
     /* ===== Community Section ===== */
     #community {
@@ -571,10 +582,10 @@
     <div class="loader-text">Loading...</div>
   </div>
 
-  <!-- Maintenance Message (improved design) -->
+  <!-- Maintenance Message -->
   <div id="maintenanceMessage">
     <h1>We're Under Maintenance</h1>
-    <p>Our site is currently being updated. For the latest news and updates, please join our Discord community.</p>
+    <p>Our site is currently undergoing updates. For the latest news and support, please join our Discord community.</p>
     <button class="btn" onclick="window.open('https://overaim.cc/discord','_blank')">
       <i class="fab fa-discord"></i> Join Discord
     </button>
@@ -614,7 +625,7 @@
         <h1>OverAim AI Aimbot Assistant</h1>
         <div class="badge-free">100% FREE WITH ADS</div>
         <p>
-          Enjoy our advanced AI aimbot absolutely free (ad‑supported). Support ongoing development and get lifetime ad‑free access for just 10€!
+          Enjoy our advanced AI aimbot absolutely free (ad‑supported). Support development and get lifetime ad‑free access for just 10€!
         </p>
         <button class="btn download-btn" onclick="navigateTo('https://overaim.cc/freedownload')">
           <i class="fas fa-download"></i> Download Now
@@ -626,7 +637,7 @@
     <section id="intro">
       <h2 class="section-title reveal">What is OverAim?</h2>
       <p class="reveal">
-        OverAim is an AI‑powered aimbot assistant that operates externally without modifying game files. It offers human‑like mouse movements, precise enemy detection via GPU‑powered scanning, and an intuitive interface. Try it free (with ads) or upgrade to lifetime ad‑free access for only 10€ to support updates and top‑notch support.
+        OverAim is an AI‑powered aimbot assistant that operates externally without modifying game files. It offers human‑like mouse movements, precise enemy detection via GPU‑powered scanning, and an intuitive interface. Try it free (with ads) or upgrade to lifetime ad‑free access for just 10€ to support updates and top‑notch support.
       </p>
     </section>
     
@@ -816,79 +827,81 @@
       </div>
     </section>
     
-    <!-- Advanced Settings Tabs -->
+    <!-- Advanced Settings Section -->
     <section id="advanced">
       <h2 class="section-title reveal">OverAim Advanced Settings</h2>
-      <div class="tabs">
-        <div class="tab active" onclick="openTab('aiming')">Aiming</div>
-        <div class="tab" onclick="openTab('slots')">Slots</div>
-        <div class="tab" onclick="openTab('humanization')">Advanced &amp; Humanization</div>
-        <div class="tab" onclick="openTab('recoil')">Recoil &amp; Bloom</div>
-        <div class="tab" onclick="openTab('triggerbot')">Triggerbot</div>
-        <div class="tab" onclick="openTab('visuals')">Visuals</div>
-        <div class="tab" onclick="openTab('info')">Info &amp; System</div>
-      </div>
-      <div class="tab-content active" id="aiming">
-        <h3>AIMING</h3>
-        <ul>
-          <li>Enable Aimbot</li>
-          <li>Keybinds &amp; Backup Keybind</li>
-          <li>FOV &amp; Aim Speed</li>
-          <li>Aim Bone Selection</li>
-        </ul>
-      </div>
-      <div class="tab-content" id="slots">
-        <h3>SLOTS</h3>
-        <ul>
-          <li>Slot 1: FOV, Aim</li>
-          <li>Slot 2: FOV, Aim</li>
-          <li>Slot 3: FOV, Aim</li>
-          <li>Slot 4: FOV, Aim</li>
-          <li>Slot 5: FOV, Aim</li>
-          <li>Pickaxe Keybind</li>
-        </ul>
-      </div>
-      <div class="tab-content" id="humanization">
-        <h3>ADVANCED &amp; HUMANIZATION</h3>
-        <ul>
-          <li>ADS FOV</li>
-          <li>Humanizations – Look More Human</li>
-        </ul>
-      </div>
-      <div class="tab-content" id="recoil">
-        <h3>RECOIL &amp; BLOOM</h3>
-        <ul>
-          <li>Enable Anti-Recoil</li>
-          <li>Reduce Bloom</li>
-          <li>Require ADS</li>
-          <li>Recoil Strength Adjustment</li>
-        </ul>
-      </div>
-      <div class="tab-content" id="triggerbot">
-        <h3>TRIGGERBOT</h3>
-        <ul>
-          <li>Enable Triggerbot</li>
-          <li>Assign Keybind &amp; Selector</li>
-          <li>FOV &amp; Confidence Sliders</li>
-        </ul>
-      </div>
-      <div class="tab-content" id="visuals">
-        <h3>VISUALS</h3>
-        <ul>
-          <li>Enable Visual Overlay</li>
-          <li>Color Selectors</li>
-          <li>Draw FOV, Crosshair, Boxes, Aimline</li>
-          <li>Debug Window &amp; AI FPS Display</li>
-          <li>Box Types: Corner, Filled, Normal</li>
-        </ul>
-      </div>
-      <div class="tab-content" id="info">
-        <h3>INFO &amp; SYSTEM</h3>
-        <ul>
-          <li>User Info, License, Purchase Details, Last Login, Expiry</li>
-          <li>OS, CPU, Memory, GPU</li>
-          <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
-        </ul>
+      <div id="advancedSettings">
+        <div class="advanced-tabs">
+          <div class="tab active" data-tab="aiming">Aiming</div>
+          <div class="tab" data-tab="slots">Slots</div>
+          <div class="tab" data-tab="humanization">Advanced &amp; Humanization</div>
+          <div class="tab" data-tab="recoil">Recoil &amp; Bloom</div>
+          <div class="tab" data-tab="triggerbot">Triggerbot</div>
+          <div class="tab" data-tab="visuals">Visuals</div>
+          <div class="tab" data-tab="info">Info &amp; System</div>
+        </div>
+        <div class="advanced-content" id="aimingContent">
+          <h3>AIMING</h3>
+          <ul>
+            <li>Enable Aimbot</li>
+            <li>Keybinds &amp; Backup Keybind</li>
+            <li>FOV &amp; Aim Speed</li>
+            <li>Aim Bone Selection</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="slotsContent" style="display:none;">
+          <h3>SLOTS</h3>
+          <ul>
+            <li>Slot 1: FOV, Aim</li>
+            <li>Slot 2: FOV, Aim</li>
+            <li>Slot 3: FOV, Aim</li>
+            <li>Slot 4: FOV, Aim</li>
+            <li>Slot 5: FOV, Aim</li>
+            <li>Pickaxe Keybind</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="humanizationContent" style="display:none;">
+          <h3>ADVANCED &amp; HUMANIZATION</h3>
+          <ul>
+            <li>ADS FOV</li>
+            <li>Humanizations – Look More Human</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="recoilContent" style="display:none;">
+          <h3>RECOIL &amp; BLOOM</h3>
+          <ul>
+            <li>Enable Anti-Recoil</li>
+            <li>Reduce Bloom</li>
+            <li>Require ADS</li>
+            <li>Recoil Strength Adjustment</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="triggerbotContent" style="display:none;">
+          <h3>TRIGGERBOT</h3>
+          <ul>
+            <li>Enable Triggerbot</li>
+            <li>Assign Keybind &amp; Selector</li>
+            <li>FOV &amp; Confidence Sliders</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="visualsContent" style="display:none;">
+          <h3>VISUALS</h3>
+          <ul>
+            <li>Enable Visual Overlay</li>
+            <li>Color Selectors</li>
+            <li>Draw FOV, Crosshair, Boxes, Aimline</li>
+            <li>Debug Window &amp; AI FPS Display</li>
+            <li>Box Types: Corner, Filled, Normal</li>
+          </ul>
+        </div>
+        <div class="advanced-content" id="infoContent" style="display:none;">
+          <h3>INFO &amp; SYSTEM</h3>
+          <ul>
+            <li>User Info, License, Purchase Details, Last Login, Expiry</li>
+            <li>OS, CPU, Memory, GPU</li>
+            <li>AI Settings: Blob Size, Model, Confidence, Max Detections &amp; FPS</li>
+          </ul>
+        </div>
       </div>
     </section>
     
@@ -921,17 +934,15 @@
       const preloader = document.getElementById("preloader");
       preloader.style.opacity = "0";
       setTimeout(() => { preloader.style.display = "none"; }, 500);
-      // After preloader, check if site is in maintenance mode
       checkMaintenance();
     });
 
-    // Function to check maintenance status (assumes a status.txt file)
+    // Maintenance Mode Check (expects status.txt to contain either "maintenance" or "online")
     async function checkMaintenance() {
       try {
         const response = await fetch('status.txt');
         const status = (await response.text()).trim().toLowerCase();
         if(status === "maintenance") {
-          // Hide main content and show maintenance message
           document.getElementById("mainContent").style.display = "none";
           document.getElementById("maintenanceMessage").style.display = "flex";
         }
@@ -939,38 +950,38 @@
         console.error("Maintenance check failed:", error);
       }
     }
-
-    // Intercept link clicks to show preloader on navigation (for internal links)
+    
+    // Intercept internal link clicks to show preloader before redirecting
     function navigateTo(url) {
       document.getElementById("preloader").style.display = "flex";
-      setTimeout(() => {
-        window.location.href = url;
-      }, 300); // slight delay to let preloader show
+      setTimeout(() => { window.location.href = url; }, 300);
     }
-
-    document.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", function(e) {
-        // Only intercept internal links (not those opening in new tabs)
-        if (!this.target && this.href && this.href.indexOf(window.location.host) !== -1) {
-          e.preventDefault();
-          navigateTo(this.href);
+    // (Optional: Attach to internal links if needed)
+    
+    // Advanced Settings Tabs Logic
+    const advTabs = document.querySelectorAll(".advanced-tabs .tab");
+    const advContents = {
+      aiming: document.getElementById("aimingContent"),
+      slots: document.getElementById("slotsContent"),
+      humanization: document.getElementById("humanizationContent"),
+      recoil: document.getElementById("recoilContent"),
+      triggerbot: document.getElementById("triggerbotContent"),
+      visuals: document.getElementById("visualsContent"),
+      info: document.getElementById("infoContent")
+    };
+    advTabs.forEach(tab => {
+      tab.addEventListener("click", function() {
+        // Remove active class from all tabs and hide all content
+        advTabs.forEach(t => t.classList.remove("active"));
+        for (const key in advContents) {
+          advContents[key].style.display = "none";
         }
+        // Set active tab and show corresponding content
+        tab.classList.add("active");
+        const selected = tab.getAttribute("data-tab");
+        advContents[selected].style.display = "block";
       });
     });
-
-    // Tabs for Advanced Settings
-    function openTab(tabId) {
-      const tabs = document.querySelectorAll('.tab');
-      const contents = document.querySelectorAll('.tab-content');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      contents.forEach(content => content.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      document.querySelectorAll('.tab').forEach(tab => {
-        if (tab.textContent.trim().toLowerCase() === document.getElementById(tabId).querySelector('h3').textContent.trim().toLowerCase()) {
-          tab.classList.add('active');
-        }
-      });
-    }
     
     // Scroll Reveal using IntersectionObserver
     const reveals = document.querySelectorAll('.reveal');

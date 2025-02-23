@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>overaim.cc PERM WOOFER</title>
+  <link rel="icon" href="main.ico" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      color: #00bfff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #0099cc;
+    }
+    header {
+      background: linear-gradient(135deg, #00bfff, #0099cc);
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    nav {
+      margin: 20px 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: url('hero-bg.jpg') no-repeat center center/cover;
+      min-height: 400px;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+    .download-btn {
+      display: inline-block;
+      background-color: #00bfff;
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+      animation: fadeInUp 1.4s ease-out;
+    }
+    .download-btn:hover {
+      background-color: #0099cc;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00bfff;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .feature {
+      background-color: #1c1c1c;
+      border-radius: 10px;
+      padding: 20px;
+      flex: 1 1 300px;
+      max-width: 350px;
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-10px);
+    }
+    .feature h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .feature p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .download-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+    footer {
+      background-color: #1c1c1c;
+      padding: 20px;
+      text-align: center;
+      color: #00bfff;
+      font-size: 1rem;
+    }
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      nav ul li a {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>overaim.cc PERM WOOFER</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h2>Experience Ultimate Control</h2>
+      <p>
+        Our PERM Spoofer bypasses hardware bans by randomizing your system's volume IDs and serials—all while remaining undetected.
+      </p>
+      <a class="download-btn" href="download_link_here" download>Download Now</a>
+    </div>
+  </section>
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Advanced Spoofing</h3>
+        <p>
+          Randomizes your volume IDs and system serials to ensure complete anonymity and bypass hardware bans effortlessly.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Serial Checker</h3>
+        <p>
+          Quickly verifies your system's hardware serials, letting you confirm that your spoofing has taken effect correctly.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Trace Cleaner</h3>
+        <p>
+          Runs a dedicated cleaning process to remove traces from previous spoof attempts. (Make sure your antivirus is off!)
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Intuitive UI</h3>
+        <p>
+          Enjoy a sleek, dark-themed interface with smooth animations, responsive design, and always-on-top functionality.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="download" class="download-section">
+    <h2>Download</h2>
+    <p>Get the latest version of overaim.cc PERM WOOFER packed with all advanced features.</p>
+    <a class="download-btn" href="download_link_here" download>Download Now</a>
+  </section>
+  <section id="contact">
+    <h2>Contact & Support</h2>
+    <p>
+      Join our community for support, updates, and exclusive insights at 
+      <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>.
+    </p>
+  </section>
+  <footer>
+    <p>&copy; 2025 overaim.cc. All rights reserved.</p>
+  </footer>
+</body>
+</html>

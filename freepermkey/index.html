@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>overaim.cc Free Spoofer Download</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+    }
+    .download-btn, .disabled-btn {
+      background-color: #00bfff;
+      color: #fff;
+      padding: 20px 40px;
+      font-size: 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    .download-btn:hover {
+      background-color: #0099cc;
+      transform: scale(1.05);
+    }
+    .disabled-btn {
+      background-color: #444;
+      cursor: not-allowed;
+    }
+    .error-msg {
+      color: #ff3366;
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+    /* Ad Container */
+    .ad-container {
+      position: relative;
+      background: #000;
+      margin: 30px auto;
+      width: 728px;
+      height: 90px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    .ad-container iframe {
+      border: none;
+      width: 728px;
+      height: 90px;
+    }
+    .ad-container a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Download overaim.cc Free Spoofer</h1>
+  <div id="content">
+    <a id="downloadLink" class="download-btn" href="https://github.com/miroet/LUA/raw/refs/heads/main/spoofer.zip" download>
+      Download Spoofer Zip
+    </a>
+    <p id="errorMessage" class="error-msg" style="display: none;">
+      You must visit this page via a Linkvertise redirect to download the file.
+    </p>
+    <!-- Ad Banner -->
+    <div class="ad-container" id="adContainer">
+      <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" frameborder="0"></iframe>
+      <a href="https://publisher.linkvertise.com/ac/1290865" target="_blank"></a>
+    </div>
+  </div>
+  
+  <script>
+    // Check if the referrer contains "linkvertise"
+    var referrer = document.referrer.toLowerCase();
+    var allowed = referrer.includes("linkvertise");
+    
+    var downloadLink = document.getElementById("downloadLink");
+    var errorMessage = document.getElementById("errorMessage");
+    
+    if (!allowed) {
+      // Hide download button and show error message.
+      downloadLink.style.display = "none";
+      errorMessage.style.display = "block";
+    }
+  </script>
+</body>
+</html>

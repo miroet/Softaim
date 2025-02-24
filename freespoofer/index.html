@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>overaim.cc PERM WOOFER | Advanced Hardware Spoofing</title>
+  <title>overaim.cc PERM WOOFER | Free Hardware Spoofer</title>
   <!-- SEO Meta Tags -->
-  <meta name="description" content="overaim.cc PERM WOOFER is an advanced, free hardware spoofing tool designed to permanently change your system's IDs. Stay undetected with our innovative solution." />
-  <meta name="keywords" content="overaim, perm spoofer, hardware spoofing, free spoof, undetected, overaimcc, advanced spoofing" />
+  <meta name="description" content="overaim.cc PERM WOOFER is a free, advanced hardware spoofer designed to permanently change your system's IDs to bypass bans. Learn what a spoofer is and how our tool keeps you undetected." />
+  <meta name="keywords" content="overaim, free spoofer, hardware spoofing, perm spoofer, overaimcc, free hardware spoofer, undetected, bypass bans" />
 
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -68,7 +68,7 @@
       100% { transform: rotate(360deg); }
     }
     
-    /* Maintenance Message (hidden by default) */
+    /* Maintenance Message */
     #maintenanceMessage {
       display: none;
       position: fixed;
@@ -105,7 +105,6 @@
       transition: background var(--transition);
     }
     #maintenanceMessage .btn:hover { background: #0088cc; }
-    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -221,6 +220,27 @@
       color: var(--muted);
     }
     
+    /* About Spoofer Section */
+    .about-spoofer {
+      background: var(--secondary-bg);
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      margin: 2rem 0;
+      box-shadow: 0 0 15px rgba(0,170,255,0.5);
+    }
+    .about-spoofer h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .about-spoofer p {
+      font-size: 1.1rem;
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--text);
+    }
+    
     /* Features Section */
     .features {
       display: flex;
@@ -285,7 +305,7 @@
     <div class="loader-text">Loading...</div>
   </div>
 
-  <!-- Maintenance Message (hidden by default) -->
+  <!-- Maintenance Message -->
   <div id="maintenanceMessage">
     <h1>We're Under Maintenance</h1>
     <p>Our site is currently being updated. For the latest news and support, please join our Discord community.</p>
@@ -298,23 +318,33 @@
   <div id="mainContent">
     <!-- Particle Canvas Background -->
     <canvas id="particle-canvas"></canvas>
-
+    
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="hero-content">
         <h1>overaim.cc PERM WOOFER</h1>
         <p>
-          Advanced hardware spoofing that permanently changes your system's IDs. Stay undetected and bypass bans effortlessly.
+          Experience the ultimate free hardware spoofer that permanently changes your system's IDs – all while keeping you undetected.
         </p>
         <a class="btn download-btn" href="download_link_here" download>
-          <i class="fas fa-download"></i> Download Now
+          <i class="fas fa-download"></i> Download Now – It's 100% Free
         </a>
       </div>
       <div class="scroll-down" onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: var(--primary); cursor: pointer; z-index: 2;">
         <i class="fas fa-chevron-down"></i>
       </div>
     </section>
-
+    
+    <!-- About the Spoofer Section -->
+    <section id="about">
+      <div class="about-spoofer">
+        <h3>What is a Hardware Spoofer?</h3>
+        <p>
+          A hardware spoofer is a tool that temporarily or permanently changes your system's unique identifiers (such as volume IDs, serial numbers, and hardware IDs) to help you bypass bans or restrictions. <strong>overaim.cc Free Spoofer</strong> does this safely and effectively – completely free of charge. Our tool is designed to help gamers and users maintain access without altering your actual hardware.
+        </p>
+      </div>
+    </section>
+    
     <!-- Features Section -->
     <section id="features">
       <h2 class="section-title">Features</h2>
@@ -322,48 +352,48 @@
         <div class="feature">
           <h3>Permanent HWID Changer</h3>
           <p>
-            Instantly randomizes your volume IDs and hardware serials to bypass bans permanently.
+            Randomizes your volume IDs and hardware serials permanently to bypass bans.
           </p>
         </div>
         <div class="feature">
           <h3>Serial Checker</h3>
           <p>
-            Verify your system's hardware IDs and confirm that spoofing has taken effect.
+            Verify your system's hardware IDs and ensure that spoofing has taken effect.
           </p>
         </div>
         <div class="feature">
           <h3>Trace Cleaner</h3>
           <p>
-            Runs an automated cleaning process (via cleaner.bat) to remove traces. (Disable antivirus if errors occur.)
+            Automatically removes traces of previous spoofing sessions by running our integrated cleaner.bat.
           </p>
         </div>
         <div class="feature">
-          <h3>User-Friendly Interface</h3>
+          <h3>User-Friendly & Always On Top</h3>
           <p>
-            Enjoy a sleek, dark-themed UI with smooth animations and an always-on-top window.
+            Enjoy a sleek, dark-themed interface with smooth animations and an always-on-top window for maximum convenience.
           </p>
         </div>
       </div>
     </section>
-
+    
     <!-- Download Section -->
     <section id="download" class="download-section">
       <h2 class="section-title">Download</h2>
-      <p>Get the latest version of overaim.cc PERM WOOFER for free.</p>
+      <p>Get the latest version of overaim.cc PERM WOOFER – 100% free and ready to use.</p>
       <a class="btn download-btn" href="download_link_here" download>
         <i class="fas fa-download"></i> Download Now
       </a>
     </section>
-
+    
     <!-- Contact Section -->
     <section id="contact">
       <h2 class="section-title">Contact & Support</h2>
       <p>
-        For support and updates, join our community at 
+        For support, updates, or inquiries, join our community at 
         <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>.
       </p>
     </section>
-
+    
     <!-- Footer -->
     <footer>
       <p>&copy; 2025 overaim.cc. All rights reserved.</p>
@@ -371,7 +401,7 @@
         Follow us on <a href="https://www.tiktok.com/@overaim.cc" target="_blank">TikTok</a> and join our <a href="https://overaim.cc/discord" target="_blank">Discord</a>.
       </p>
     </footer>
-
+    
     <!-- Scroll To Top Button -->
     <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
   </div>
@@ -385,7 +415,7 @@
       checkMaintenance();
     });
 
-    // Maintenance mode check (if status.txt exists and equals "maintenance")
+    // Maintenance mode check
     async function checkMaintenance() {
       try {
         const response = await fetch('status.txt');
@@ -411,7 +441,7 @@
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+    
     // Particle Animation
     const canvas = document.getElementById("particle-canvas");
     const ctx = canvas.getContext("2d");

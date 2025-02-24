@@ -3,33 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>overaim.cc PERM WOOFER</title>
-  <link rel="icon" href="main.ico" />
+  <title>overaim.cc PERM WOOFER | Advanced Hardware Spoofing</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="overaim.cc PERM WOOFER is an advanced, free hardware spoofing tool designed to permanently change your system's IDs. Stay undetected with our innovative solution." />
+  <meta name="keywords" content="overaim, perm spoofer, hardware spoofing, free spoof, undetected, overaimcc, advanced spoofing" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --primary: #00aaff;
+      --accent: #00aaff;
+      --download-color: #ff3366;
+      --background: #000;
+      --secondary-bg: #111;
+      --text: #eee;
+      --muted: #999;
+      --transition: 0.3s;
+      --font-family: 'Montserrat', sans-serif;
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #000;
-      color: #fff;
-      line-height: 1.6;
+      font-family: var(--font-family);
+      background: var(--background);
+      color: var(--text);
       overflow-x: hidden;
+      line-height: 1.6;
     }
-    a {
-      color: #00bfff;
-      text-decoration: none;
-      transition: color 0.3s;
+    a { text-decoration: none; color: var(--primary); }
+    ul { list-style: none; }
+    
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--background);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
-    a:hover {
-      color: #0099cc;
+    .loader-spinner {
+      border: 8px solid #333;
+      border-top: 8px solid var(--primary);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
     }
+    .loader-text {
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Maintenance Message (hidden by default) */
+    #maintenanceMessage {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #111, #222);
+      z-index: 2500;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    #maintenanceMessage h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      animation: fadeIn 1s ease-out;
+    }
+    #maintenanceMessage p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
+    #maintenanceMessage .btn {
+      background: var(--primary);
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    #maintenanceMessage .btn:hover { background: #0088cc; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Header & Navigation */
     header {
-      background: linear-gradient(135deg, #00bfff, #0099cc);
+      background: linear-gradient(135deg, var(--primary), #0099cc);
       padding: 20px;
       text-align: center;
       position: relative;
@@ -43,190 +127,357 @@
       margin: 20px 0;
     }
     nav ul {
-      list-style: none;
       display: flex;
       justify-content: center;
-    }
-    nav ul li {
-      margin: 0 15px;
+      gap: 20px;
     }
     nav ul li a {
       font-size: 1.2rem;
       font-weight: 700;
+      transition: color 0.3s;
     }
+    nav ul li a:hover {
+      color: #0088cc;
+    }
+    
+    /* Hero Section with Particle Background */
     .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background: url('hero-bg.jpg') no-repeat center center/cover;
-      min-height: 400px;
       position: relative;
+      height: 100vh;
+      background: var(--background);
+      overflow: hidden;
     }
-    .hero::after {
-      content: "";
+    #particle-canvas {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      background: linear-gradient(135deg, #000, #222);
     }
     .hero-content {
       position: relative;
-      z-index: 1;
-    }
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
       animation: fadeInUp 1s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 8px #000;
     }
     .hero p {
       font-size: 1.2rem;
-      margin-bottom: 30px;
-      animation: fadeInUp 1.2s ease-out;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px #000;
+    }
+    .btn {
+      padding: 0.8rem 2rem;
+      background: var(--primary);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform var(--transition), background var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background: #0088cc;
     }
     .download-btn {
-      display: inline-block;
-      background-color: #00bfff;
-      color: #fff;
-      padding: 15px 30px;
-      font-size: 1.5rem;
-      border-radius: 10px;
-      transition: background-color 0.3s;
-      animation: fadeInUp 1.4s ease-out;
+      background: var(--download-color);
+      border: 1px solid var(--download-color);
     }
-    .download-btn:hover {
-      background-color: #0099cc;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .download-btn:hover { background: #e62e5c; }
+    
+    /* Sections */
     section {
-      padding: 40px 20px;
+      padding: 4rem 2rem;
+      text-align: center;
       max-width: 1200px;
       margin: 0 auto;
     }
-    section h2 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #00bfff;
+    h2.section-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
       display: inline-block;
       padding-bottom: 10px;
     }
+    p { 
+      max-width: 800px; 
+      margin: 1rem auto; 
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+    
+    /* Features Section */
     .features {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 20px;
+      justify-content: center;
     }
     .feature {
-      background-color: #1c1c1c;
+      background: var(--secondary-bg);
       border-radius: 10px;
       padding: 20px;
       flex: 1 1 300px;
       max-width: 350px;
-      box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+      box-shadow: 0 0 15px rgba(0,170,255,0.5);
       transition: transform 0.3s;
     }
-    .feature:hover {
-      transform: translateY(-10px);
-    }
-    .feature h3 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-    .feature p {
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-    .download-section {
-      text-align: center;
-      margin-top: 40px;
-    }
+    .feature:hover { transform: translateY(-10px); }
+    .feature h3 { font-size: 1.8rem; margin-bottom: 10px; }
+    .feature p { font-size: 1rem; line-height: 1.5; }
+    
+    /* Download Section */
+    .download-section { margin-top: 40px; }
+    
+    /* Footer */
     footer {
-      background-color: #1c1c1c;
-      padding: 20px;
+      background: #111;
+      border-top: 1px solid #222;
       text-align: center;
-      color: #00bfff;
+      padding: 2rem;
       font-size: 1rem;
     }
+    footer a { color: var(--primary); }
+    
+    /* Scroll To Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 2100;
+    }
+    #scrollTopBtn.show { opacity: 1; visibility: visible; }
+    
     @media (max-width: 768px) {
-      .features {
-        flex-direction: column;
-        align-items: center;
-      }
-      header h1 {
-        font-size: 2.5rem;
-      }
-      nav ul li a {
-        font-size: 1rem;
-      }
+      header h1 { font-size: 2.5rem; }
+      nav ul li a { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>overaim.cc PERM WOOFER</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#download">Download</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h2>Experience Ultimate Control</h2>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading...</div>
+  </div>
+
+  <!-- Maintenance Message (hidden by default) -->
+  <div id="maintenanceMessage">
+    <h1>We're Under Maintenance</h1>
+    <p>Our site is currently being updated. For the latest news and support, please join our Discord community.</p>
+    <button class="btn" onclick="window.open('https://overaim.cc/discord','_blank')">
+      <i class="fab fa-discord"></i> Join Discord
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent">
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1>overaim.cc PERM WOOFER</h1>
+        <p>
+          Advanced hardware spoofing that permanently changes your system's IDs. Stay undetected and bypass bans effortlessly.
+        </p>
+        <a class="btn download-btn" href="download_link_here" download>
+          <i class="fas fa-download"></i> Download Now
+        </a>
+      </div>
+      <div class="scroll-down" onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: var(--primary); cursor: pointer; z-index: 2;">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+      <h2 class="section-title">Features</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>Permanent HWID Changer</h3>
+          <p>
+            Instantly randomizes your volume IDs and hardware serials to bypass bans permanently.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Serial Checker</h3>
+          <p>
+            Verify your system's hardware IDs and confirm that spoofing has taken effect.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Trace Cleaner</h3>
+          <p>
+            Runs an automated cleaning process (via cleaner.bat) to remove traces. (Disable antivirus if errors occur.)
+          </p>
+        </div>
+        <div class="feature">
+          <h3>User-Friendly Interface</h3>
+          <p>
+            Enjoy a sleek, dark-themed UI with smooth animations and an always-on-top window.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+      <h2 class="section-title">Download</h2>
+      <p>Get the latest version of overaim.cc PERM WOOFER for free.</p>
+      <a class="btn download-btn" href="download_link_here" download>
+        <i class="fas fa-download"></i> Download Now
+      </a>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">Contact & Support</h2>
       <p>
-        Our PERM Spoofer bypasses hardware bans by randomizing your system's volume IDs and serials—all while remaining undetected.
+        For support and updates, join our community at 
+        <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>.
       </p>
-      <a class="download-btn" href="download_link_here" download>Download Now</a>
-    </div>
-  </section>
-  <section id="features">
-    <h2>Features</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Advanced Spoofing</h3>
-        <p>
-          Randomizes your volume IDs and system serials to ensure complete anonymity and bypass hardware bans effortlessly.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Serial Checker</h3>
-        <p>
-          Quickly verifies your system's hardware serials, letting you confirm that your spoofing has taken effect correctly.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Trace Cleaner</h3>
-        <p>
-          Runs a dedicated cleaning process to remove traces from previous spoof attempts. (Make sure your antivirus is off!)
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Intuitive UI</h3>
-        <p>
-          Enjoy a sleek, dark-themed interface with smooth animations, responsive design, and always-on-top functionality.
-        </p>
-      </div>
-    </div>
-  </section>
-  <section id="download" class="download-section">
-    <h2>Download</h2>
-    <p>Get the latest version of overaim.cc PERM WOOFER packed with all advanced features.</p>
-    <a class="download-btn" href="download_link_here" download>Download Now</a>
-  </section>
-  <section id="contact">
-    <h2>Contact & Support</h2>
-    <p>
-      Join our community for support, updates, and exclusive insights at 
-      <a href="https://overaim.cc/discord" target="_blank">overaim.cc/discord</a>.
-    </p>
-  </section>
-  <footer>
-    <p>&copy; 2025 overaim.cc. All rights reserved.</p>
-  </footer>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 overaim.cc. All rights reserved.</p>
+      <p>
+        Follow us on <a href="https://www.tiktok.com/@overaim.cc" target="_blank">TikTok</a> and join our <a href="https://overaim.cc/discord" target="_blank">Discord</a>.
+      </p>
+    </footer>
+
+    <!-- Scroll To Top Button -->
+    <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+  </div>
+
+  <script>
+    // Preloader fade out
+    window.addEventListener("load", function() {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      setTimeout(() => { preloader.style.display = "none"; }, 500);
+      checkMaintenance();
+    });
+
+    // Maintenance mode check (if status.txt exists and equals "maintenance")
+    async function checkMaintenance() {
+      try {
+        const response = await fetch('status.txt');
+        const status = (await response.text()).trim().toLowerCase();
+        if(status === "maintenance") {
+          document.getElementById("mainContent").style.display = "none";
+          document.getElementById("maintenanceMessage").style.display = "flex";
+        }
+      } catch (error) {
+        console.error("Maintenance check failed:", error);
+      }
+    }
+    
+    // Scroll To Top Button
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Particle Animation
+    const canvas = document.getElementById("particle-canvas");
+    const ctx = canvas.getContext("2d");
+    let particlesArray = [];
+    const numberOfParticles = 150;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.color = "rgba(0,170,255,0.8)";
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+    function handleParticles() {
+      for (let particle of particlesArray) {
+        particle.update();
+        particle.draw();
+      }
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      handleParticles();
+      requestAnimationFrame(animateParticles);
+    }
+    initParticles();
+    animateParticles();
+    
+    // Ripple effect for buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        const rect = btn.getBoundingClientRect();
+        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+        ripple.style.left = e.clientX - rect.left - rect.width / 2 + 'px';
+        ripple.style.top = e.clientY - rect.top - rect.height / 2 + 'px';
+        btn.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+  </script>
 </body>
 </html>

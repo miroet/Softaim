@@ -5,53 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>overaim.cc Free Spoofer Download</title>
   <style>
+    :root {
+      --primary: #00aaff;
+      --accent: #00aaff;
+      --background: #000;
+      --text: #eee;
+      --error: #ff3366;
+      --transition: 0.3s;
+      --font-family: 'Segoe UI', sans-serif;
+    }
+    /* Global Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-family);
+      background: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
+      height: 100vh;
+    }
+    a { text-decoration: none; color: var(--primary); }
+    /* Disable right-click (not foolproof) */
+    body { oncontextmenu: "return false;" }
+    
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--background);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      text-align: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
-    h1 {
+    .spinner {
+      border: 8px solid #333;
+      border-top: 8px solid var(--primary);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
       margin-bottom: 20px;
-      font-size: 2.5rem;
     }
-    .download-btn, .disabled-btn {
-      background-color: #00bfff;
+    .loading-text {
+      font-size: 1.2rem;
+      color: var(--text);
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Main Content */
+    #mainContent {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 20px; }
+    
+    .download-btn {
+      background-color: var(--primary);
       color: #fff;
       padding: 20px 40px;
-      font-size: 20px;
-      text-decoration: none;
+      font-size: 1.8rem;
       border-radius: 5px;
       transition: background-color 0.3s ease, transform 0.3s ease;
-      margin-top: 20px;
       display: inline-block;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
     }
     .download-btn:hover {
       background-color: #0099cc;
       transform: scale(1.05);
     }
-    .disabled-btn {
-      background-color: #444;
-      cursor: not-allowed;
-    }
+    
     .error-msg {
-      color: #ff3366;
-      font-size: 1.2rem;
+      color: var(--error);
+      font-size: 1.4rem;
       margin-top: 20px;
     }
-    /* Ad Container */
+    
+    /* Ripple Effect for Buttons */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      background: rgba(255, 255, 255, 0.7);
+      animation: ripple 0.6s linear;
+    }
+    @keyframes ripple {
+      to { transform: scale(4); opacity: 0; }
+    }
+    
+    /* Ad Banner (Optional) */
     .ad-container {
       position: relative;
-      background: #000;
-      margin: 30px auto;
       width: 728px;
       height: 90px;
+      margin: 40px auto;
       overflow: hidden;
       opacity: 0;
       animation: fadeIn 1s forwards;
@@ -63,46 +129,75 @@
     }
     .ad-container a {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      top: 0; left: 0; right: 0; bottom: 0;
     }
   </style>
 </head>
-<body>
-  <h1>Download overaim.cc Free Spoofer</h1>
-  <div id="content">
+<body oncontextmenu="return false;">
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading...</div>
+  </div>
+  
+  <!-- Main Content -->
+  <div id="mainContent">
+    <h1>overaim.cc Free Spoofer Download</h1>
     <a id="downloadLink" class="download-btn" href="https://github.com/miroet/LUA/raw/refs/heads/main/spoofer.zip" download>
-      Download Spoofer Zip
+      <i class="fas fa-download"></i> Download Now
     </a>
-    <p id="errorMessage" class="error-msg" style="display: none;">
-      You must visit this page via a Linkvertise redirect to download the file.
+    <p id="errorMessage" class="error-msg" style="display:none;">
+      You must access this file via Linkvertise.
     </p>
     <!-- Ad Banner -->
-    <div class="ad-container" id="adContainer">
+    <div class="ad-container">
       <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" frameborder="0"></iframe>
       <a href="https://publisher.linkvertise.com/ac/1290865" target="_blank"></a>
     </div>
   </div>
   
   <script>
-    // Check if the referrer contains "linkvertise"
-    var referrer = document.referrer.toLowerCase();
-    var allowed = referrer.includes("linkvertise");
+    // Wait for window to load, then fade out preloader and show main content
+    window.addEventListener("load", function() {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      setTimeout(() => { 
+        preloader.style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      }, 500);
+      
+      // Security Checks: Referrer must contain "linkvertise"
+      var referrer = document.referrer.toLowerCase();
+      var allowed = referrer.includes("linkvertise");
+      var downloadLink = document.getElementById("downloadLink");
+      var errorMessage = document.getElementById("errorMessage");
+      if (!allowed) {
+        downloadLink.style.display = "none";
+        errorMessage.style.display = "block";
+      }
+    });
     
-    var downloadLink = document.getElementById("downloadLink");
-    var errorMessage = document.getElementById("errorMessage");
+    // Ripple effect on buttons
+    document.querySelectorAll('.download-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        const rect = btn.getBoundingClientRect();
+        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+        ripple.style.left = e.clientX - rect.left - rect.width / 2 + 'px';
+        ripple.style.top = e.clientY - rect.top - rect.height / 2 + 'px';
+        btn.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
     
-    if (!allowed) {
-      // Hide download button and show error message.
-      downloadLink.style.display = "none";
-      errorMessage.style.display = "block";
-    }
+    // Additional security check: prevent key events that might reveal code
+    document.addEventListener("keydown", function(e) {
+      // Prevent F12, Ctrl+Shift+I, and right-click context menu
+      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73)) {
+        e.preventDefault();
+      }
+    });
   </script>
 </body>
 </html>

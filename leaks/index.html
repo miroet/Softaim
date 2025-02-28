@@ -1,155 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>OverAIM Source/Game Leaks</title>
-  <!-- Google Fonts for modern typography -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <style>
-    /* Base styles and resets */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* CSS Variables for easy theme management */
+    :root {
+      --primary-bg: #121212;
+      --secondary-bg: #1f1f1f;
+      --accent: #1e90ff;
+      --accent-dark: #0d74d1;
+      --text-color: #e0e0e0;
+      --subtext-color: #bbb;
+      --warning-bg: #ff9800;
+      --warning-text: #000;
+      --card-shadow: rgba(0, 0, 0, 0.5);
+    }
+    /* Global Resets */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #121212;
-      color: #e0e0e0;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
     }
-    a { color: #1e90ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Loader Styles */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+    /* Loader */
     #loader {
       position: fixed;
-      z-index: 9999;
-      background: #121212;
-      width: 100%;
-      height: 100%;
+      z-index: 10000;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-bg);
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: opacity 0.5s ease;
     }
     .spinner {
-      border: 16px solid #f3f3f3;
-      border-top: 16px solid #1e90ff;
+      width: 80px;
+      height: 80px;
+      border: 10px solid #f3f3f3;
+      border-top: 10px solid var(--accent);
       border-radius: 50%;
-      width: 120px;
-      height: 120px;
       animation: spin 1s linear infinite;
     }
-    @keyframes spin { 
-      0% { transform: rotate(0deg); } 
-      100% { transform: rotate(360deg); } 
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-
-    /* Header styling */
+    /* Header */
     header {
-      background: #1f1f1f;
-      padding: 20px 0;
+      background: var(--secondary-bg);
+      padding: 20px;
       text-align: center;
-      border-bottom: 1px solid #333;
-      margin-bottom: 0;
-      position: relative;
-      z-index: 3;
-      animation: fadeInDown 1s ease forwards;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 4px var(--card-shadow);
+      animation: fadeInDown 0.8s ease forwards;
     }
-    header h1 { font-size: 2.5rem; letter-spacing: 1px; }
-
-    /* Tabs Navigation */
-    .tabs {
-      background: #1f1f1f;
-      border-bottom: 1px solid #333;
-      z-index: 3;
-      position: relative;
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
     }
-    .tabs ul {
-      list-style: none;
+    /* Navigation Tabs */
+    nav.tabs {
+      background: var(--secondary-bg);
+      border-bottom: 1px solid #333;
+    }
+    nav.tabs ul {
       display: flex;
       justify-content: center;
+      list-style: none;
     }
-    .tabs ul li {
-      padding: 10px 20px;
+    nav.tabs li {
+      padding: 15px 30px;
       cursor: pointer;
-      color: #e0e0e0;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
     }
-    .tabs ul li.active {
-      background: #1e90ff;
+    nav.tabs li.active,
+    nav.tabs li:hover {
+      background: var(--accent);
       border-radius: 4px;
     }
-
-    /* Container styling for tab contents */
-    .container { 
+    /* Main Content */
+    main {
       width: 90%;
       max-width: 1200px;
-      margin: 20px auto;
-      position: relative;
-      z-index: 3;
+      margin: 30px auto;
+      animation: fadeInUp 0.8s ease forwards;
     }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* Warning message styling */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
     .warning {
-      background: orange;
-      color: #000;
-      padding: 10px 20px;
-      margin-bottom: 20px;
-      border-radius: 4px;
-      font-weight: bold;
+      background: var(--warning-bg);
+      color: var(--warning-text);
+      padding: 15px;
       text-align: center;
-      animation: fadeInUp 1s ease forwards;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      animation: fadeInUp 0.8s ease forwards;
     }
-
-    /* Section styling */
-    .section {
-      background: #1f1f1f;
-      margin-bottom: 40px;
+    .card {
+      background: var(--secondary-bg);
+      margin-bottom: 30px;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
+      box-shadow: 0 2px 8px var(--card-shadow);
+      transition: transform 0.3s ease;
+      animation: fadeInUp 0.8s ease forwards;
     }
-    /* Staggered delay for sections within a tab */
-    .section:nth-of-type(1) { animation-delay: 0.2s; }
-    .section:nth-of-type(2) { animation-delay: 0.4s; }
-    .section:nth-of-type(3) { animation-delay: 0.6s; }
-    .section:nth-of-type(4) { animation-delay: 0.8s; }
-    .section:nth-of-type(5) { animation-delay: 1s; }
-    .section:nth-of-type(6) { animation-delay: 1.2s; }
-
-    .section h2 {
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
       font-size: 2rem;
       margin-bottom: 10px;
-      padding-bottom: 10px;
       border-bottom: 2px solid #444;
+      padding-bottom: 10px;
     }
-    .meta { font-size: 0.9rem; color: #bbb; margin-bottom: 20px; }
-    .meta span { margin-right: 15px; }
-    .content p { margin-bottom: 15px; }
-
-    /* Form & Button styling */
-    input[type="text"],
-    input[type="url"],
-    textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #333;
-      border-radius: 4px;
-      background: #222;
-      color: #e0e0e0;
+    .meta {
+      font-size: 0.9rem;
+      color: var(--subtext-color);
+      margin-bottom: 15px;
     }
-    .download-btn, .action-btn {
+    .meta span {
+      margin-right: 20px;
+    }
+    .content p {
+      margin-bottom: 15px;
+    }
+    .btn {
       display: inline-block;
       padding: 10px 20px;
-      margin-top: 10px;
-      background: #1e90ff;
+      background: var(--accent);
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -159,24 +167,20 @@
       transition: background 0.3s, transform 0.3s;
       text-decoration: none;
     }
-    .download-btn:hover, .action-btn:hover {
-      background: #0d74d1;
+    .btn:hover {
+      background: var(--accent-dark);
       transform: scale(1.05);
     }
-
-    /* Footer styling */
+    /* Footer */
     footer {
+      background: var(--secondary-bg);
       text-align: center;
       padding: 20px;
-      background: #1f1f1f;
-      color: #bbb;
       border-top: 1px solid #333;
-      position: relative;
-      z-index: 3;
-      animation: fadeInUp 1s ease forwards;
+      color: var(--subtext-color);
+      animation: fadeInUp 0.8s ease forwards;
     }
-
-    /* Interactive Canvas Background styling */
+    /* Canvas Background */
     #background {
       position: fixed;
       top: 0;
@@ -184,213 +188,249 @@
       width: 100%;
       height: 100%;
       z-index: 1;
-      background: #121212;
+      background: var(--primary-bg);
     }
-
-    /* Keyframe Animations */
+    /* Animations */
     @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    /* REDIRECT OVERLAY ANIMATION */
+    /* Redirect Overlay */
     #redirect-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.7);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 10000;
+      z-index: 1000;
       opacity: 0;
       transition: opacity 0.5s ease;
     }
     .redirect-circle {
-      position: absolute;
       width: 50px;
       height: 50px;
-      background: #1e90ff;
+      background: var(--accent);
       border-radius: 50%;
       animation: circleExpand 1s forwards;
     }
     .redirect-text {
-      position: relative;
-      font-size: 24px;
+      margin-left: 20px;
+      font-size: 1.5rem;
       color: #fff;
       opacity: 0;
       animation: textFadeIn 1s forwards;
       animation-delay: 0.5s;
     }
     @keyframes circleExpand {
-      0% { transform: scale(0); opacity: 1; }
-      100% { transform: scale(50); opacity: 0; }
+      from { transform: scale(0); opacity: 1; }
+      to { transform: scale(50); opacity: 0; }
     }
     @keyframes textFadeIn {
       from { opacity: 0; transform: scale(0.5); }
       to { opacity: 1; transform: scale(1); }
     }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      nav.tabs ul {
+        flex-direction: column;
+      }
+      nav.tabs li {
+        text-align: center;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Loader Animation -->
+  <!-- Loader -->
   <div id="loader">
     <div class="spinner"></div>
   </div>
-
-  <!-- Interactive Canvas Background -->
+  <!-- Canvas Background -->
   <canvas id="background"></canvas>
-
+  
+  <!-- Header -->
   <header>
     <h1>OverAIM Source/Game Leaks</h1>
   </header>
-
-  <!-- Tabs Navigation -->
-  <nav class="tabs">
+  
+  <!-- Navigation Tabs -->
+  <nav class="tabs" aria-label="Main Navigation">
     <ul>
       <li data-tab="leaks-tab" class="active">Leaks</li>
       <li data-tab="public-leaks-tab">Public Leaks</li>
     </ul>
   </nav>
-
-  <!-- Tab Contents Container -->
-  <div class="container" id="tabs-content">
-    <!-- LEAKS TAB: Existing Leak Sections -->
-    <div id="leaks-tab" class="tab-content active">
-      <!-- Vanityspooferleaks Section -->
-      <section class="section" id="vanityspooferleaks">
+  
+  <!-- Main Content -->
+  <main id="tabs-content">
+    <!-- Leaks Tab -->
+    <section id="leaks-tab" class="tab-content active" aria-label="Leaks">
+      <article class="card" id="vanityspooferleaks">
         <h2>💻 Vanityspooferleaks</h2>
         <div class="meta">
           <span>📅 Date: 22.01 / 08/02/2025</span>
           <span>👤 Leaker: Miro0x</span>
         </div>
         <div class="content">
-          <p>💻 All vanitys spoofer drivers, and stuff – use at your own risk.</p>
-          <a href="https://example.com/vanityspooferspoof.zip" class="download-btn" download>⬇️ Download Vanity Spoofer Leaks</a>
+          <p>All vanity spoof drivers and related tools – use at your own risk.</p>
+          <a href="https://example.com/vanityspooferspoof.zip" class="btn" download>⬇️ Download</a>
         </div>
-      </section>
-
-      <!-- Clarity Src Leak Section -->
-      <section class="section" id="clarity-srcleak">
-        <h2>🤖 Clarity Src Leak!</h2>
+      </article>
+      
+      <article class="card" id="clarity-srcleak">
+        <h2>🤖 Clarity Src Leak</h2>
         <div class="meta">
           <span>📅 Date: 22.01 / 08/02/2025</span>
           <span>👤 Leaker: Miro0x</span>
         </div>
         <div class="content">
-          <p>🤖 Claritys ai aimbot source code – use at your own risk, may need some fixing.</p>
-          <a href="https://example.com/clarityaisrc.zip" class="download-btn" download>⬇️ Download Clarity Ai src</a>
+          <p>Clarity's AI aimbot source code – may need some tweaking. Use at your own risk.</p>
+          <a href="https://example.com/clarityaisrc.zip" class="btn" download>⬇️ Download</a>
         </div>
-      </section>
-
-      <!-- aqua_tweaks_paid leak Section -->
-      <section class="section" id="aqua-tweaks-paid">
+      </article>
+      
+      <article class="card" id="aqua-tweaks-paid">
         <h2>💧 aqua_tweaks_paid leak</h2>
         <div class="meta">
           <span>📅 Date: 22.01 / 08/02/2025</span>
           <span>👤 Leaker: Miro0x</span>
         </div>
         <div class="content">
-          <p>💧 Exclusive aqua_tweaks_paid leak – use at your own risk.</p>
-          <a href="https://example.com/aqua_tweaks_paid.zip" class="download-btn" download>⬇️ Download aqua_tweaks_paid leak</a>
+          <p>Exclusive leak of aqua_tweaks_paid – use responsibly.</p>
+          <a href="https://example.com/aqua_tweaks_paid.zip" class="btn" download>⬇️ Download</a>
         </div>
-      </section>
-
-      <!-- CARD CLONING SOFTWARE PACK Section -->
-      <section class="section" id="card-cloning">
-        <h2>💳 CARD CLONING SOFTWARE PACK</h2>
+      </article>
+      
+      <article class="card" id="card-cloning">
+        <h2>💳 Card Cloning Software Pack</h2>
         <div class="meta">
           <span>📅 Date: 22.01 / 08/02/2025</span>
           <span>👤 Leaker: Miro0x</span>
         </div>
         <div class="content">
-          <p>💳 Get the CARD CLONING SOFTWARE PACK – use at your own risk.</p>
-          <a href="https://example.com/cardcloning.zip" class="download-btn" download>⬇️ Download CARD CLONING SOFTWARE PACK</a>
+          <p>Get the Card Cloning Software Pack – use at your own risk.</p>
+          <a href="https://example.com/cardcloning.zip" class="btn" download>⬇️ Download</a>
         </div>
-      </section>
-
-      <!-- ProxyChecker Cracked & Filter_List Section -->
-      <section class="section" id="proxychecker">
+      </article>
+      
+      <article class="card" id="proxychecker">
         <h2>🌐 ProxyChecker Cracked &amp; Filter_List</h2>
         <div class="meta">
           <span>📅 Date: 22.01 / 08/02/2025</span>
           <span>👤 Leaker: Miro0x</span>
         </div>
         <div class="content">
-          <p>🌐 Exclusive leak of ProxyChecker Cracked &amp; Filter_List – use at your own risk.</p>
-          <a href="https://example.com/proxychecker.zip" class="download-btn" download>⬇️ Download ProxyChecker Cracked &amp; Filter_List</a>
+          <p>Exclusive leak of ProxyChecker Cracked &amp; Filter_List – use with caution.</p>
+          <a href="https://example.com/proxychecker.zip" class="btn" download>⬇️ Download</a>
         </div>
-      </section>
-
-      <!-- CHATGPT UNCENSORED FREE Section -->
-      <section class="section" id="chatgpt-uncensored">
+      </article>
+      
+      <article class="card" id="chatgpt-uncensored">
         <h2>💬 CHATGPT UNCENSORED FREE</h2>
         <div class="meta">
           <span>📅 Date: 22.01 / 08/02/2025</span>
           <span>👤 Leaker: Miro0x</span>
         </div>
         <div class="content">
-          <p>💬 Download CHATGPT UNCENSORED FREE – use at your own risk.</p>
-          <a href="https://example.com/chatgptuncensored.zip" class="download-btn" download>⬇️ Download CHATGPT UNCENSORED FREE</a>
+          <p>Download CHATGPT UNCENSORED FREE – use at your own risk.</p>
+          <a href="https://example.com/chatgptuncensored.zip" class="btn" download>⬇️ Download</a>
         </div>
-      </section>
-    </div> <!-- End of LEAKS TAB -->
-
-    <!-- PUBLIC LEAKS TAB -->
-    <div id="public-leaks-tab" class="tab-content">
-      <!-- Warning: Not Fully Implemented -->
+      </article>
+    </section>
+    
+    <!-- Public Leaks Tab -->
+    <section id="public-leaks-tab" class="tab-content" aria-label="Public Leaks">
       <div class="warning">
-        ⚠️ Note: The Public Leaks section is not fully implemented yet.
+        ⚠️ Note: The Public Leaks section is under development.
       </div>
-      <section class="section" id="public-leaks">
+      <article class="card" id="public-leaks">
         <h2>🗣 Public Leaks</h2>
         <div class="meta">
           <span>📅 Date: 22.01 / 08/02/2025</span>
           <span>👤 Leaker: Public</span>
         </div>
         <div class="content">
-          <p>🗣 This section is under development. In a future update, users will be able to submit their own leaks here.</p>
-          <a href="https://example.com/publicleaks" class="action-btn">➡️ Visit Public Leaks Page</a>
+          <p>This section is coming soon. In a future update, users will be able to submit their own leaks.</p>
+          <a href="https://example.com/publicleaks" class="btn">Visit Public Leaks Page</a>
         </div>
-      </section>
-    </div> <!-- End of PUBLIC LEAKS TAB -->
-  </div> <!-- End of Tabs Content Container -->
-
+      </article>
+    </section>
+  </main>
+  
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 OverAIM Source/Game Leaks. All rights reserved.</p>
   </footer>
-
-  <!-- REDIRECT ANIMATION OVERLAY -->
+  
+  <!-- Redirect Animation Overlay -->
   <div id="redirect-overlay">
     <div class="redirect-circle"></div>
     <div class="redirect-text">Redirecting...</div>
   </div>
-
-  <!-- Interactive Particle Background Script -->
+  
+  <!-- Scripts -->
   <script>
+    // Hide loader when page loads
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => { loader.style.display = 'none'; }, 500);
+    });
+    
+    // Tab Switching Logic
+    const tabs = document.querySelectorAll('nav.tabs li');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(tc => tc.classList.remove('active'));
+        this.classList.add('active');
+        const target = this.getAttribute('data-tab');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+    
+    // Redirect Animation on Button Clicks
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetUrl = this.getAttribute('href');
+        const overlay = document.getElementById('redirect-overlay');
+        overlay.style.display = 'flex';
+        setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+        setTimeout(() => { window.location.href = targetUrl; }, 1500);
+      });
+    });
+    
+    // Interactive Particle Background
     const canvas = document.getElementById('background');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
     const mouse = { x: null, y: null, radius: 100 };
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    window.addEventListener('resize', function () {
+    
+    function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      init();
-    });
-    window.addEventListener('mousemove', function (event) {
+      initParticles();
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', function(event) {
       mouse.x = event.x;
       mouse.y = event.y;
     });
-
+    
     class Particle {
       constructor(x, y, directionX, directionY, size, color) {
         this.x = x;
@@ -415,8 +455,7 @@
         }
         this.x += this.directionX;
         this.y += this.directionY;
-
-        // Mouse interactivity
+        // Mouse Interaction
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -437,8 +476,8 @@
         this.draw();
       }
     }
-
-    function init() {
+    
+    function initParticles() {
       particlesArray = [];
       const numberOfParticles = (canvas.width * canvas.height) / 9000;
       for (let i = 0; i < numberOfParticles; i++) {
@@ -451,12 +490,13 @@
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
     }
-
-    function connect() {
+    
+    function connectParticles() {
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
-          const distance = ((particlesArray[a].x - particlesArray[b].x) ** 2) +
-                           ((particlesArray[a].y - particlesArray[b].y) ** 2);
+          const dx = particlesArray[a].x - particlesArray[b].x;
+          const dy = particlesArray[a].y - particlesArray[b].y;
+          const distance = dx * dx + dy * dy;
           if (distance < (canvas.width / 7) * (canvas.height / 7)) {
             ctx.strokeStyle = 'rgba(255,255,255,0.1)';
             ctx.lineWidth = 1;
@@ -468,60 +508,16 @@
         }
       }
     }
-
-    function animate() {
-      requestAnimationFrame(animate);
+    
+    function animateParticles() {
+      requestAnimationFrame(animateParticles);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particlesArray.forEach(particle => particle.update());
-      connect();
+      connectParticles();
     }
-    init();
-    animate();
-  </script>
-  
-  <!-- Hide loader when page is loaded -->
-  <script>
-    window.addEventListener("load", function() {
-      document.getElementById("loader").style.display = "none";
-    });
-  </script>
-  
-  <!-- Simple Tab Switching Script -->
-  <script>
-    const tabs = document.querySelectorAll('.tabs ul li');
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        // Remove active class from all tabs and hide all contents
-        tabs.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-        // Add active class to the clicked tab and show its content
-        this.classList.add('active');
-        const target = this.getAttribute('data-tab');
-        document.getElementById(target).classList.add('active');
-      });
-    });
-  </script>
-  
-  <!-- Redirect Button Animation Script -->
-  <script>
-    // For every button that should animate on click before redirecting:
-    document.querySelectorAll('.download-btn, .action-btn').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetUrl = this.getAttribute('href');
-        const overlay = document.getElementById('redirect-overlay');
-        // Show the overlay with fade-in effect
-        overlay.style.display = 'flex';
-        setTimeout(() => {
-          overlay.style.opacity = '1';
-        }, 10);
-        // After the animation delay, redirect to the target URL
-        setTimeout(function() {
-          window.location.href = targetUrl;
-        }, 1500); // Adjust delay as desired (1.5 seconds here)
-      });
-    });
+    
+    resizeCanvas();
+    animateParticles();
   </script>
   
   <!-- Additional External Script -->

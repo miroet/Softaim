@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MemeSense Configs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Global styles & animated background */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(270deg, #1e1e1e, #000);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Container centering and layout */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    /* Animated header logo */
+    h1.logo {
+      font-size: 4em;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .logo .meme { color: red; }
+    .logo .sense { color: white; }
+    
+    /* Config code boxes */
+    .code-box {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      width: 90%;
+      max-width: 500px;
+      animation: slideIn 1s ease forwards;
+      position: relative;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .config-title {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      text-decoration: underline;
+    }
+    .config-code {
+      font-family: monospace;
+      word-break: break-all;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    
+    /* Copy button styling */
+    .copy-btn {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-size: 0.9em;
+    }
+    .copy-btn:hover {
+      background: #555;
+      transform: scale(1.05);
+    }
+    
+    /* Referral button styling */
+    .referral-btn {
+      display: inline-block;
+      background: #ff4500;
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 30px;
+      margin-top: 30px;
+      border-radius: 50px;
+      font-size: 1.2em;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .referral-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 15px rgba(255, 69, 0, 0.7);
+    }
+    
+    /* Referral info text */
+    .info-text {
+      font-size: 0.9em;
+      margin-top: 10px;
+      color: #ccc;
+      max-width: 500px;
+      line-height: 1.5;
+    }
+    
+    /* CS2 styling nod */
+    .cs2 {
+      font-size: 1.2em;
+      margin-top: 20px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo with red "Meme" and white "Sense" -->
+    <h1 class="logo"><span class="meme">Meme</span><span class="sense">Sense</span></h1>
+    
+    <!-- Rage/HvH Config Code Box -->
+    <div class="code-box">
+      <div class="config-title">Rage/HvH Config</div>
+      <div class="config-code" id="ragedcode">e53ca8f948961052067f174673b87e74</div>
+      <button class="copy-btn" onclick="copyToClipboard('ragedcode')">Copy Config Code</button>
+    </div>
+    
+    <!-- Legit Config Code Box -->
+    <div class="code-box">
+      <div class="config-title">Legit Config</div>
+      <div class="config-code" id="legitcode">6e3ab07b2fa71171dd85c832ac51cea6</div>
+      <button class="copy-btn" onclick="copyToClipboard('legitcode')">Copy Config Code</button>
+    </div>
+    
+    <!-- Referral Button -->
+    <a href="https://memesense.gg/r/92218" class="referral-btn" target="_blank">Referral</a>
+    
+    <!-- Referral Info Text -->
+    <div class="info-text">
+      Each user you refer will receive an additional 5 days on top of their purchased subscription.<br>
+      You will also get 5 days if you have an active subscription.
+    </div>
+    
+    <!-- CS2 related nod -->
+    <div class="cs2">CS2 Enhanced Experience</div>
+  </div>
+  
+  <!-- JavaScript for copy functionality -->
+  <script>
+    function copyToClipboard(elementId) {
+      var copyText = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(copyText).then(function() {
+        alert("Copied: " + copyText);
+      }, function(err) {
+        alert("Failed to copy text.");
+      });
+    }
+  </script>
+</body>
+</html>

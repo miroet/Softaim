@@ -95,7 +95,7 @@
   <script>
     (function(d, z, s) {
       s.src = 'https://' + d + '/400/' + z;
-      try { (document.body || document.documentElement).appendChild(s) } catch(e){}
+      try { (document.body || document.documentElement).appendChild(s); } catch(e){}
     })('vemtoutcheeg.com', 8924549, document.createElement('script'));
   </script>
 </head>
@@ -119,27 +119,11 @@
 
   <script>
     (function() {
-      // --- Active Tabs Counter ---
-      // Increment active tab counter on page load.
-      let activeTabs = parseInt(localStorage.getItem("activeTabs") || "0", 10);
-      activeTabs++;
-      localStorage.setItem("activeTabs", activeTabs.toString());
-
-      // On page unload, decrement the counter.
-      window.addEventListener("beforeunload", function(){
-          let activeTabs = parseInt(localStorage.getItem("activeTabs") || "0", 10);
-          activeTabs = Math.max(activeTabs - 1, 0);
-          localStorage.setItem("activeTabs", activeTabs.toString());
-          // If no active tabs remain, remove the stored key.
-          if(activeTabs === 0){
-              localStorage.removeItem("currentKey");
-          }
-      });
-
       // --- Referral Check ---
-      // Allow only if the referrer contains "linkvertise" or "lootlabs"
+      // Only allow access if the referrer includes "linkvertise" or "lootlabs"
       var ref = document.referrer || "";
-      if (ref.toLowerCase().indexOf("linkvertise") === -1 && ref.toLowerCase().indexOf("lootlabs") === -1) {
+      if (ref.toLowerCase().indexOf("linkvertise") === -1 &&
+          ref.toLowerCase().indexOf("lootlabs") === -1) {
         document.getElementById("key-display").style.display = "none";
         document.getElementById("copy-button").style.display = "none";
         document.getElementById("error").style.display = "block";
@@ -147,59 +131,75 @@
         return;
       }
       
-      var currentTime = Date.now();
-      // Check for an existing key stored across tabs.
-      var currentKeyData = localStorage.getItem("currentKey");
-      if (currentKeyData) {
-        try {
-          var keyData = JSON.parse(currentKeyData);
-          // Verify if the key is still valid (2 hours = 7200000 ms)
-          if (currentTime - keyData.timestamp < 7200000) {
-            displayKey(keyData.key);
-            return;
-          } else {
-            // Key expired; remove it so a new one can be generated.
+      // --- Session and Heartbeat Configuration ---
+      const HEARTBEAT_INTERVAL = 2000; // Update heartbeat every 2 seconds
+      const HEARTBEAT_TIMEOUT = 5000;  // Consider session ended if no update for 5 seconds
+      const KEY_VALIDITY = 7200000;    // Key valid for 2 hours
+
+      // Start a heartbeat that updates the last active time in localStorage
+      function startHeartbeat() {
+        localStorage.setItem("lastHeartbeat", Date.now().toString());
+        setInterval(() => {
+          localStorage.setItem("lastHeartbeat", Date.now().toString());
+        }, HEARTBEAT_INTERVAL);
+      }
+
+      const now = Date.now();
+      let lastHeartbeat = localStorage.getItem("lastHeartbeat");
+      let currentKeyData = localStorage.getItem("currentKey");
+      let useExistingKey = false;
+
+      // If there's a stored key and the last heartbeat is recent, reuse the key.
+      if (lastHeartbeat && currentKeyData) {
+        let heartbeatTime = parseInt(lastHeartbeat, 10);
+        if (now - heartbeatTime < HEARTBEAT_TIMEOUT) {
+          try {
+            let keyData = JSON.parse(currentKeyData);
+            if (now - keyData.timestamp < KEY_VALIDITY) {
+              useExistingKey = true;
+              displayKey(keyData.key);
+            } else {
+              localStorage.removeItem("currentKey");
+            }
+          } catch(e) {
             localStorage.removeItem("currentKey");
           }
-        } catch(e) {
-          localStorage.removeItem("currentKey");
         }
       }
-      
-      // Retrieve used keys from localStorage (if any)
-      var usedKeys = JSON.parse(localStorage.getItem("usedKeys") || "[]");
 
-      // Fetch keys from key.txt, filter out already used keys, and choose one randomly.
-      fetch("key.txt")
-        .then(function(response) {
-          if (!response.ok) { throw new Error("Network response was not ok"); }
-          return response.text();
-        })
-        .then(function(text) {
-          var keys = text.split("\n").map(function(k) { return k.trim(); }).filter(function(k) { return k.length > 0; });
-          // Remove keys that have already been used.
-          var availableKeys = keys.filter(function(key) {
-            return usedKeys.indexOf(key) === -1;
-          });
-          if (availableKeys.length > 0) {
-            var randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
-            usedKeys.push(randomKey);
-            localStorage.setItem("usedKeys", JSON.stringify(usedKeys));
-            // Save the current key with its timestamp.
-            var keyData = { key: randomKey, timestamp: currentTime };
-            localStorage.setItem("currentKey", JSON.stringify(keyData));
-            displayKey(randomKey);
-          } else {
+      // If no valid active key exists, generate a new one.
+      if (!useExistingKey) {
+        var usedKeys = JSON.parse(localStorage.getItem("usedKeys") || "[]");
+        fetch("key.txt")
+          .then(function(response) {
+            if (!response.ok) { throw new Error("Network response was not ok"); }
+            return response.text();
+          })
+          .then(function(text) {
+            var keys = text.split("\n").map(function(k) { return k.trim(); }).filter(function(k) { return k.length > 0; });
+            var availableKeys = keys.filter(function(key) {
+              return usedKeys.indexOf(key) === -1;
+            });
+            if (availableKeys.length > 0) {
+              var randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
+              usedKeys.push(randomKey);
+              localStorage.setItem("usedKeys", JSON.stringify(usedKeys));
+              let keyData = { key: randomKey, timestamp: now };
+              localStorage.setItem("currentKey", JSON.stringify(keyData));
+              displayKey(randomKey);
+            } else {
+              document.getElementById("error").style.display = "block";
+              document.getElementById("error").innerText = "No keys available. Please try again later.";
+            }
+          })
+          .catch(function(error) {
+            console.error("Error fetching keys:", error);
             document.getElementById("error").style.display = "block";
-            document.getElementById("error").innerText = "No keys available. Please try again later.";
-          }
-        })
-        .catch(function(error) {
-          console.error("Error fetching keys:", error);
-          document.getElementById("error").style.display = "block";
-          document.getElementById("error").innerText = "Error loading keys. Please try again.";
-        });
+            document.getElementById("error").innerText = "Error loading keys. Please try again.";
+          });
+      }
       
+      // Function to display the key and enable the copy button.
       function displayKey(key) {
         var keyDisplay = document.getElementById("key-display");
         keyDisplay.innerText = key;
@@ -212,11 +212,13 @@
             navigator.clipboard.writeText(key).then(function() {
               copyButton.innerText = "Copied!";
               setTimeout(function() { copyButton.innerText = "Copy Key"; }, 2000);
-            }).catch(function(err) { console.error("Could not copy text: ", err); });
+            }).catch(function(err) {
+              console.error("Could not copy text:", err);
+            });
           } else {
             var textarea = document.createElement("textarea");
             textarea.value = key;
-            textarea.style.position = "fixed"; // Prevent scrolling
+            textarea.style.position = "fixed";
             document.body.appendChild(textarea);
             textarea.focus();
             textarea.select();
@@ -231,6 +233,9 @@
           }
         });
       }
+      
+      // Start the heartbeat, which signals an active session.
+      startHeartbeat();
     })();
   </script>
 </body>

@@ -119,7 +119,25 @@
 
   <script>
     (function() {
-      // Validate referral: only allow if referrer contains "linkvertise" or "lootlabs"
+      // --- Active Tabs Counter ---
+      // Increment active tab counter on page load.
+      let activeTabs = parseInt(localStorage.getItem("activeTabs") || "0", 10);
+      activeTabs++;
+      localStorage.setItem("activeTabs", activeTabs.toString());
+
+      // On page unload, decrement the counter.
+      window.addEventListener("beforeunload", function(){
+          let activeTabs = parseInt(localStorage.getItem("activeTabs") || "0", 10);
+          activeTabs = Math.max(activeTabs - 1, 0);
+          localStorage.setItem("activeTabs", activeTabs.toString());
+          // If no active tabs remain, remove the stored key.
+          if(activeTabs === 0){
+              localStorage.removeItem("currentKey");
+          }
+      });
+
+      // --- Referral Check ---
+      // Allow only if the referrer contains "linkvertise" or "lootlabs"
       var ref = document.referrer || "";
       if (ref.toLowerCase().indexOf("linkvertise") === -1 && ref.toLowerCase().indexOf("lootlabs") === -1) {
         document.getElementById("key-display").style.display = "none";
@@ -130,17 +148,17 @@
       }
       
       var currentTime = Date.now();
-      // Check if a key has already been generated and stored (shared across tabs)
+      // Check for an existing key stored across tabs.
       var currentKeyData = localStorage.getItem("currentKey");
       if (currentKeyData) {
         try {
           var keyData = JSON.parse(currentKeyData);
-          // Check if the key is still valid (2 hours = 7200000 ms)
+          // Verify if the key is still valid (2 hours = 7200000 ms)
           if (currentTime - keyData.timestamp < 7200000) {
             displayKey(keyData.key);
             return;
           } else {
-            // Key expired: remove it so a new one can be generated
+            // Key expired; remove it so a new one can be generated.
             localStorage.removeItem("currentKey");
           }
         } catch(e) {
@@ -151,25 +169,23 @@
       // Retrieve used keys from localStorage (if any)
       var usedKeys = JSON.parse(localStorage.getItem("usedKeys") || "[]");
 
-      // Fetch keys from key.txt, filter out keys already used, and choose one randomly.
+      // Fetch keys from key.txt, filter out already used keys, and choose one randomly.
       fetch("key.txt")
         .then(function(response) {
           if (!response.ok) { throw new Error("Network response was not ok"); }
           return response.text();
         })
         .then(function(text) {
-          // Split text into lines (keys), trim, and filter out empty lines.
           var keys = text.split("\n").map(function(k) { return k.trim(); }).filter(function(k) { return k.length > 0; });
-          // Filter out keys that have already been used.
+          // Remove keys that have already been used.
           var availableKeys = keys.filter(function(key) {
             return usedKeys.indexOf(key) === -1;
           });
           if (availableKeys.length > 0) {
             var randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
-            // Add the new key to usedKeys and store it.
             usedKeys.push(randomKey);
             localStorage.setItem("usedKeys", JSON.stringify(usedKeys));
-            // Save the current key with a timestamp to prevent generating a new one in this session.
+            // Save the current key with its timestamp.
             var keyData = { key: randomKey, timestamp: currentTime };
             localStorage.setItem("currentKey", JSON.stringify(keyData));
             displayKey(randomKey);

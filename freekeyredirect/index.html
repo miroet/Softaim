@@ -56,6 +56,7 @@
       border-radius: 10px;
       background: rgba(0, 255, 0, 0.05);
       transition: background 0.3s;
+      display: none;
     }
     .key-display:hover {
       background: rgba(0, 255, 0, 0.1);
@@ -64,6 +65,7 @@
       font-size: 20px;
       color: #ff5555;
       margin-top: 20px;
+      display: none;
     }
     .copy-button {
       background-color: #444444;
@@ -74,6 +76,7 @@
       margin-top: 15px;
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
+      display: none;
     }
     .copy-button:hover {
       background-color: #555555;
@@ -102,8 +105,8 @@
     <div class="subtitle">YOUR KEY IS</div>
     <div class="note">Every key is valid for 2 hours only</div>
     <div id="key-display" class="key-display"></div>
-    <button id="copy-button" class="copy-button" style="display:none;">Copy Key</button>
-    <div id="error" class="error" style="display:none;"></div>
+    <button id="copy-button" class="copy-button">Copy Key</button>
+    <div id="error" class="error"></div>
     
     <!-- Banner with Advertisement -->
     <div class="banner">
@@ -116,9 +119,9 @@
 
   <script>
     (function() {
-      // Only proceed if referrer contains "linkvertise"
+      // Validate referral: only allow if referrer contains "linkvertise" or "lootlabs"
       var ref = document.referrer || "";
-      if (ref.toLowerCase().indexOf("linkvertise") === -1) {
+      if (ref.toLowerCase().indexOf("linkvertise") === -1 && ref.toLowerCase().indexOf("lootlabs") === -1) {
         document.getElementById("key-display").style.display = "none";
         document.getElementById("copy-button").style.display = "none";
         document.getElementById("error").style.display = "block";
@@ -126,11 +129,66 @@
         return;
       }
       
-      // Retrieve used keys from localStorage (as JSON array) or initialize empty array.
+      var currentTime = Date.now();
+      // Check if a key has already been generated and stored (shared across tabs)
+      var currentKeyData = localStorage.getItem("currentKey");
+      if (currentKeyData) {
+        try {
+          var keyData = JSON.parse(currentKeyData);
+          // Check if the key is still valid (2 hours = 7200000 ms)
+          if (currentTime - keyData.timestamp < 7200000) {
+            displayKey(keyData.key);
+            return;
+          } else {
+            // Key expired: remove it so a new one can be generated
+            localStorage.removeItem("currentKey");
+          }
+        } catch(e) {
+          localStorage.removeItem("currentKey");
+        }
+      }
+      
+      // Retrieve used keys from localStorage (if any)
       var usedKeys = JSON.parse(localStorage.getItem("usedKeys") || "[]");
 
+      // Fetch keys from key.txt, filter out keys already used, and choose one randomly.
+      fetch("key.txt")
+        .then(function(response) {
+          if (!response.ok) { throw new Error("Network response was not ok"); }
+          return response.text();
+        })
+        .then(function(text) {
+          // Split text into lines (keys), trim, and filter out empty lines.
+          var keys = text.split("\n").map(function(k) { return k.trim(); }).filter(function(k) { return k.length > 0; });
+          // Filter out keys that have already been used.
+          var availableKeys = keys.filter(function(key) {
+            return usedKeys.indexOf(key) === -1;
+          });
+          if (availableKeys.length > 0) {
+            var randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
+            // Add the new key to usedKeys and store it.
+            usedKeys.push(randomKey);
+            localStorage.setItem("usedKeys", JSON.stringify(usedKeys));
+            // Save the current key with a timestamp to prevent generating a new one in this session.
+            var keyData = { key: randomKey, timestamp: currentTime };
+            localStorage.setItem("currentKey", JSON.stringify(keyData));
+            displayKey(randomKey);
+          } else {
+            document.getElementById("error").style.display = "block";
+            document.getElementById("error").innerText = "No keys available. Please try again later.";
+          }
+        })
+        .catch(function(error) {
+          console.error("Error fetching keys:", error);
+          document.getElementById("error").style.display = "block";
+          document.getElementById("error").innerText = "Error loading keys. Please try again.";
+        });
+      
       function displayKey(key) {
-        document.getElementById("key-display").innerText = key;
+        var keyDisplay = document.getElementById("key-display");
+        keyDisplay.innerText = key;
+        keyDisplay.style.display = "block";
+        
         var copyButton = document.getElementById("copy-button");
         copyButton.style.display = "inline-block";
         copyButton.addEventListener("click", function() {
@@ -150,41 +208,13 @@
               document.execCommand("copy");
               copyButton.innerText = "Copied!";
               setTimeout(function() { copyButton.innerText = "Copy Key"; }, 2000);
-            } catch (err) { console.error("Fallback: Unable to copy", err); }
+            } catch (err) {
+              console.error("Fallback: Unable to copy", err);
+            }
             document.body.removeChild(textarea);
           }
         });
       }
-
-      // Fetch keys from key.txt, filter out keys already used, and choose one randomly.
-      fetch("key.txt")
-        .then(function(response) {
-          if (!response.ok) { throw new Error("Network response was not ok"); }
-          return response.text();
-        })
-        .then(function(text) {
-          // Split text into lines (keys), trim, and filter out empty lines.
-          var keys = text.split("\n").map(function(k) { return k.trim(); }).filter(function(k) { return k.length > 0; });
-          // Filter out keys already used.
-          var availableKeys = keys.filter(function(key) {
-            return usedKeys.indexOf(key) === -1;
-          });
-          if (availableKeys.length > 0) {
-            var randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
-            // Add the new key to usedKeys and store it.
-            usedKeys.push(randomKey);
-            localStorage.setItem("usedKeys", JSON.stringify(usedKeys));
-            displayKey(randomKey);
-          } else {
-            document.getElementById("error").style.display = "block";
-            document.getElementById("error").innerText = "No keys available. Please try again later.";
-          }
-        })
-        .catch(function(error) {
-          console.error("Error fetching keys:", error);
-          document.getElementById("error").style.display = "block";
-          document.getElementById("error").innerText = "Error loading keys. Please try again.";
-        });
     })();
   </script>
 </body>

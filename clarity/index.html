@@ -3,88 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify to Download</title>
+    <title>Download Clarity.zip</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background: #1e1e2f;
+            color: white;
             text-align: center;
-            background-color: #f4f4f4;
             padding: 20px;
         }
         .container {
-            background: white;
+            max-width: 600px;
+            margin: auto;
+            background: #2a2a3a;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         button {
             display: block;
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            background: #007BFF;
+            font-size: 18px;
             color: white;
+            background: #ff5c5c;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
         }
         button:disabled {
-            background: #ccc;
+            background: #444;
             cursor: not-allowed;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Complete Verification to Download</h2>
-        <p>Click all the links below and stay on each page for at least 5 seconds to unlock the download:</p>
-        <div id="links"></div>
-        <a href="clarity.zip">
-            <button id="downloadBtn" disabled>Download Clarity.zip</button>
-        </a>
-    </div>
-    <script>
-        const links = [
-            "https://giphootchebs.net/4/8132500",
-            "https://giphootchebs.net/4/8145257",
-            "https://giphootchebs.net/4/8923921",
-            "https://giphootchebs.net/4/9055791",
-            "https://giphootchebs.net/4/9055792",
-            "https://giphootchebs.net/4/9055793",
-            "https://giphootchebs.net/4/9055794",
-            "https://giphootchebs.net/4/9055795",
-            "https://giphootchebs.net/4/9055798",
-            "https://giphootchebs.net/4/9055799"
-        ];
-        
-        let clickedLinks = new Set();
-        
-        function markClicked(url, button) {
-            button.disabled = true;
-            setTimeout(() => {
-                clickedLinks.add(url);
-                if (clickedLinks.size === links.length) {
-                    document.getElementById("downloadBtn").disabled = false;
-                }
-            }, 5000); // 5 seconds delay before marking as clicked
+
+<div class="container">
+    <h2>Complete the Steps to Download</h2>
+    <p>Click each button and wait 5 seconds on the ad page before returning. You must do this **twice** for each link.</p>
+
+    <div id="linksContainer"></div>
+    <button id="downloadBtn" disabled>Download Clarity.zip</button>
+</div>
+
+<script>
+    const adLinks = [
+        "https://giphootchebs.net/4/8132500",
+        "https://giphootchebs.net/4/8145257",
+        "https://giphootchebs.net/4/8923921",
+        "https://giphootchebs.net/4/9055791",
+        "https://giphootchebs.net/4/9055792",
+        "https://giphootchebs.net/4/9055793",
+        "https://giphootchebs.net/4/9055794",
+        "https://giphootchebs.net/4/9055795",
+        "https://giphootchebs.net/4/9055798",
+        "https://giphootchebs.net/4/9055799"
+    ];
+
+    let clickStatus = {};
+    adLinks.forEach(link => clickStatus[link] = 0);
+
+    const linksContainer = document.getElementById("linksContainer");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    adLinks.forEach(link => {
+        const btn = document.createElement("button");
+        btn.textContent = `Visit Ad`;
+        btn.dataset.link = link;
+        btn.onclick = () => openAdLink(link, btn);
+        linksContainer.appendChild(btn);
+    });
+
+    function openAdLink(link, btn) {
+        let startTime = Date.now();
+        window.open(link, "_blank");
+
+        btn.disabled = true;
+        setTimeout(() => {
+            let elapsed = (Date.now() - startTime) / 1000;
+            if (elapsed >= 5) {
+                clickStatus[link]++;
+                btn.textContent = `Visited (${clickStatus[link]}/2)`;
+                btn.disabled = clickStatus[link] >= 2;
+                checkCompletion();
+            } else {
+                alert("You must stay on the ad page for at least 5 seconds!");
+                btn.disabled = false;
+            }
+        }, 5000);
+    }
+
+    function checkCompletion() {
+        const allDone = Object.values(clickStatus).every(count => count >= 2);
+        if (allDone) {
+            downloadBtn.disabled = false;
+            downloadBtn.onclick = () => window.location.href = "https://yourdownloadlink.com/clarity.zip";
         }
-        
-        links.forEach(link => {
-            let btn = document.createElement("button");
-            btn.innerText = "Visit Link";
-            btn.onclick = function() {
-                let win = window.open(link, "_blank");
-                if (win) {
-                    markClicked(link, btn);
-                } else {
-                    alert("Please allow popups for this site.");
-                }
-            };
-            document.getElementById("links").appendChild(btn);
-        });
-    </script>
+    }
+</script>
+
+<script src="https://aiharsoreersu.net/act/files/tag.min.js?z=8916132" data-cfasync="false" async></script>
+<script src="https://staupsoaksy.net/act/files/tag.min.js?z=8923954" data-cfasync="false" async></script>
+<script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',8923961,document.createElement('script'))</script>
+
 </body>
 </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify to Download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Complete Verification to Download</h2>
+        <p>Click all the links below and stay on each page for at least 5 seconds to unlock the download:</p>
+        <div id="links"></div>
+        <a href="clarity.zip">
+            <button id="downloadBtn" disabled>Download Clarity.zip</button>
+        </a>
+    </div>
+    <script>
+        const links = [
+            "https://giphootchebs.net/4/8132500",
+            "https://giphootchebs.net/4/8145257",
+            "https://giphootchebs.net/4/8923921",
+            "https://giphootchebs.net/4/9055791",
+            "https://giphootchebs.net/4/9055792",
+            "https://giphootchebs.net/4/9055793",
+            "https://giphootchebs.net/4/9055794",
+            "https://giphootchebs.net/4/9055795",
+            "https://giphootchebs.net/4/9055798",
+            "https://giphootchebs.net/4/9055799"
+        ];
+        
+        let clickedLinks = new Set();
+        
+        function markClicked(url, button) {
+            button.disabled = true;
+            setTimeout(() => {
+                clickedLinks.add(url);
+                if (clickedLinks.size === links.length) {
+                    document.getElementById("downloadBtn").disabled = false;
+                }
+            }, 5000); // 5 seconds delay before marking as clicked
+        }
+        
+        links.forEach(link => {
+            let btn = document.createElement("button");
+            btn.innerText = "Visit Link";
+            btn.onclick = function() {
+                let win = window.open(link, "_blank");
+                if (win) {
+                    markClicked(link, btn);
+                } else {
+                    alert("Please allow popups for this site.");
+                }
+            };
+            document.getElementById("links").appendChild(btn);
+        });
+    </script>
+</body>
+</html>

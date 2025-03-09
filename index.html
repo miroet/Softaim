@@ -1,148 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security and SEO Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OverAim - Your ultimate Fortnite destination for free gaming tools. Enjoy our free Fortnite AI Aimbot, permanent spoofer, and the latest Fortnite leaks &amp; cracks." />
-  <meta name="keywords" content="OverAim, Fortnite AI Aimbot, Fortnite Spoofer, Fortnite Leaks, Fortnite Cracks, Gaming Tools" />
+  <meta name="description" content="OverAim - Ultimate Fortnite tools with every animation you can imagine." />
+  <meta name="keywords" content="OverAim, Fortnite AI Aimbot, Fortnite Spoofer, Fortnite Leaks, Fortnite Cracks" />
   <meta name="author" content="OverAim" />
-  <title>OverAim - Free Fortnite AI Aimbot &amp; Permanent Spoofer</title>
-  <!-- Google Fonts -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+  <link rel="icon" href="https://overaim.cc/favicon.ico" type="image/x-icon" />
+  
+  <!-- Preconnect and Import Animate.css and Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" 
+    integrity="sha512-b4Iw+ja3Yf6H+I2M8gErvGkqk0PdMqBWv0J4jv/97EwCTH+XYQCtBdzL+j6wMkw2+w37HlNxf2i9+0B3C2F5nQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>OverAim - Ultimate Animations</title>
+  
   <style>
     :root {
-      --primary-color: #1e90ff;
-      --secondary-color: #0d74d1;
-      --background-color: #0d0d0d;
-      --text-color: #ffffff;
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      --font-family: 'Poppins', sans-serif;
+      --primary: #1e90ff;
+      --bg: #0d0d0d;
+      --text: #fff;
+      --card-bg: rgba(255,255,255,0.05);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    /* Minimal Reset and Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; line-height: 1.6; }
     body {
-      font-family: var(--font-family);
-      color: var(--text-color);
-      background: var(--background-color);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
       padding: 20px;
+      -webkit-font-smoothing: antialiased;
     }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    header h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    header p {
-      max-width: 800px;
-      margin: 0 auto 20px auto;
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
+    header, main, footer { text-align: center; margin-bottom: 20px; }
+    header h1 { font-size: 3rem; }
     main {
-      width: 100%;
-      max-width: 1200px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px 0;
     }
     section {
       background: var(--card-bg);
       padding: 20px;
       border-radius: 8px;
-      box-shadow: var(--card-shadow);
-      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-    section p {
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
+    section:hover { transform: translateY(-5px); box-shadow: 0 0 12px var(--primary); }
     .btn {
       display: inline-block;
-      padding: 12px 25px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: var(--text-color);
-      border: none;
-      border-radius: 6px;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: var(--text);
       text-decoration: none;
-      font-size: 1rem;
-      transition: transform 0.2s ease;
+      border-radius: 4px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-    footer a {
-      color: var(--primary-color);
-      text-decoration: none;
-      margin: 0 10px;
-      transition: color 0.2s ease;
-    }
-    footer a:hover {
-      color: var(--secondary-color);
+    .btn:hover { transform: scale(1.05); box-shadow: 0 0 12px var(--primary); }
+    footer { font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+    footer a { color: var(--primary); text-decoration: none; margin: 0 10px; }
+    footer a:hover { color: var(--text); }
+    /* Demo Element for Cycling Animations */
+    #animation-demo {
+      margin: 20px auto;
+      padding: 20px;
+      border: 2px dashed var(--primary);
+      width: 80%;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <!-- Header Section -->
-  <header>
-    <h1>OverAim<span style="color: var(--primary-color);">.cc</span></h1>
-    <p>Your ultimate Fortnite destination for free gaming tools—experience our advanced Fortnite AI Aimbot, permanent spoofer, and curated leaks &amp; cracks.</p>
+  <!-- Header with Entrance Animations -->
+  <header class="animate__animated animate__fadeInDown">
+    <h1>OverAim<span style="color: var(--primary);">.cc</span></h1>
+    <p class="animate__animated animate__fadeInUp">Ultimate Fortnite tools with every animation you can imagine!</p>
   </header>
   
-  <!-- Tools Section -->
+  <!-- Main Section: Tools with Various Animations -->
   <main>
-    <section id="free-ai-aimbot">
-      <h2>Free Fortnite AI Aimbot</h2>
-      <p>Boost your gameplay with precise, real-time targeting adjustments for both casual and competitive matches.</p>
-      <a class="btn" href="https://overaim.cc/freeai" role="button" aria-label="Download Free Fortnite AI Aimbot">Get Aimbot</a>
+    <section id="ai-aimbot" class="animate__animated animate__bounceIn">
+      <h2>AI Aimbot</h2>
+      <p>Boost your gameplay with precise, real-time targeting.</p>
+      <a class="btn animate__animated animate__pulse" href="https://overaim.cc/freeai" target="_blank" rel="noopener noreferrer">Get Aimbot</a>
     </section>
     
-    <section id="leaks-cracks">
-      <h2>Fortnite Leaks &amp; Cracks</h2>
-      <p>Stay ahead with the latest curated leaks and cracked tools designed to give you a competitive edge.</p>
-      <a class="btn" href="https://overaim.cc/leaks" role="button" aria-label="Explore Fortnite Leaks and Cracks">View Leaks</a>
+    <section id="leaks-cracks" class="animate__animated animate__lightSpeedInLeft">
+      <h2>Leaks &amp; Cracks</h2>
+      <p>Stay ahead with the latest curated leaks and cracked tools.</p>
+      <a class="btn animate__animated animate__heartBeat" href="https://overaim.cc/leaks" target="_blank" rel="noopener noreferrer">View Leaks</a>
     </section>
     
-    <section id="free-permanent-spoofer">
-      <h2>Free Permanent Spoofer</h2>
-      <p>Keep your Fortnite account secure with our free, lifetime spoofer. Enjoy privacy without recurring fees.</p>
-      <a class="btn" href="https://overaim.cc/freespoofer" role="button" aria-label="Download Free Permanent Fortnite Spoofer">Get Spoofer</a>
+    <section id="spoofer" class="animate__animated animate__flipInX">
+      <h2>Permanent Spoofer</h2>
+      <p>Secure your account with our free, lifetime spoofer.</p>
+      <a class="btn animate__animated animate__rubberBand" href="https://overaim.cc/freespoofer" target="_blank" rel="noopener noreferrer">Get Spoofer</a>
     </section>
   </main>
   
-  <!-- Footer Section -->
-  <footer>
+  <!-- Animation Demo: Click to Cycle Through Dozens of Animations -->
+  <div id="animation-demo" class="animate__animated animate__jackInTheBox">
+    <p>Click me to cycle through every animation!</p>
+  </div>
+  
+  <!-- Footer with Fade-In Animation -->
+  <footer class="animate__animated animate__fadeInUp">
     &copy; 2025 OverAim. All rights reserved.
     <br>
-    <a href="https://overaim.cc/privacy" target="_blank">Privacy Policy</a>
-    <a href="https://overaim.cc/terms" target="_blank">Terms of Service</a>
+    <a href="https://overaim.cc/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="https://overaim.cc/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
   </footer>
+  
+  <!-- JavaScript to Cycle Through a Plethora of Animate.css Classes -->
+  <script>
+    const demo = document.getElementById('animation-demo');
+    const animations = [
+      'animate__bounce', 'animate__flash', 'animate__pulse', 'animate__rubberBand',
+      'animate__shakeX', 'animate__shakeY', 'animate__headShake', 'animate__swing',
+      'animate__tada', 'animate__wobble', 'animate__jello', 'animate__heartBeat',
+      'animate__backInDown', 'animate__backInLeft', 'animate__backInRight', 'animate__backInUp',
+      'animate__bounceIn', 'animate__bounceInDown', 'animate__bounceInLeft', 'animate__bounceInRight',
+      'animate__bounceInUp', 'animate__fadeIn', 'animate__fadeInDown', 'animate__fadeInDownBig',
+      'animate__fadeInLeft', 'animate__fadeInLeftBig', 'animate__fadeInRight', 'animate__fadeInRightBig',
+      'animate__fadeInUp', 'animate__fadeInUpBig', 'animate__flipInX', 'animate__flipInY',
+      'animate__lightSpeedInRight', 'animate__lightSpeedInLeft', 'animate__rotateIn', 'animate__rotateInDownLeft',
+      'animate__rotateInDownRight', 'animate__rotateInUpLeft', 'animate__rotateInUpRight',
+      'animate__jackInTheBox', 'animate__rollIn', 'animate__zoomIn', 'animate__zoomInDown',
+      'animate__zoomInLeft', 'animate__zoomInRight', 'animate__zoomInUp', 'animate__slideInDown',
+      'animate__slideInLeft', 'animate__slideInRight', 'animate__slideInUp'
+    ];
+    let current = 0;
+    demo.addEventListener('click', () => {
+      demo.className = 'animate__animated';
+      void demo.offsetWidth; // reflow to reset animation
+      demo.classList.add(animations[current]);
+      current = (current + 1) % animations.length;
+    });
+  </script>
 </body>
 </html>

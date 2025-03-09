@@ -3,57 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Secure Ad Process for Download</title>
+  <title>Unlock Your Download</title>
+  <!-- Stylish Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Modern dark theme with anti-inspection measures */
+    /* Overall stylish page design */
     body {
-      background: #12121f;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
       color: #fff;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding: 20px;
-      user-select: none;
       margin: 0;
-      overflow-x: hidden;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
     }
     .container {
-      max-width: 600px;
-      margin: 20px auto;
-      background: #1e1e2f;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 700px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 2em;
+      font-weight: 600;
+    }
+    p {
+      margin: 10px 0;
+      line-height: 1.6;
     }
     button {
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       margin: 10px 0;
       font-size: 18px;
+      font-weight: 600;
       color: #fff;
-      background: #ff4d4d;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover:not(:disabled) {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
     button:disabled {
       background: #555;
       cursor: not-allowed;
     }
     .progress {
-      margin: 10px 0;
+      margin: 15px 0;
       font-size: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 8px;
     }
-    .referral {
+    .referral, .ad-banner {
       margin: 20px 0;
-      font-size: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
     }
-    .ad-banner {
-      margin: 20px 0;
+    .referral a {
+      color: #ff4b2b;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .ad-banner iframe {
+      border: none;
+      border-radius: 8px;
+    }
+    .ad-banner a {
+      display: block;
+      text-decoration: none;
     }
   </style>
   <script>
-    // Anti-adblock detection: alerts user if adblock is detected
+    // Anti-Adblock detection: alert user if adblock is detected
     function detectAdBlock() {
       var adBlockEnabled = false;
       var testAd = document.createElement('div');
@@ -72,16 +106,16 @@
         testAd.remove();
       }, 100);
     }
-
+    
     // Disable right-click to deter inspection
     document.addEventListener('contextmenu', event => event.preventDefault());
-
-    // Optionally, warn if the user navigates away (anti bypass)
+    
+    // Warn if the user navigates away (anti-bypass)
     window.onblur = function() {
       console.warn('Stay on the page to complete the process.');
     };
 
-    // Define ad links and shuffle them for each session
+    // Define ad links and shuffle them each session
     let adLinks = [
       "https://giphootchebs.net/4/8132500",
       "https://giphootchebs.net/4/8145257",
@@ -96,18 +130,16 @@
     ];
     adLinks.sort(() => Math.random() - 0.5);
 
-    // Two-round process, each round requiring 3 clicks per ad
+    // Two-round process, each round requires 3 clicks per ad
     let currentRound = 1;
     const totalRounds = 2;
-    const requiredClicksPerAd = 3; // clicks required per ad per round
-
-    // Track progress for each ad link (cumulative over rounds)
+    const requiredClicksPerAd = 3;
     let clickStatus = {};
     adLinks.forEach(link => {
       clickStatus[link] = 0;
     });
 
-    // Create buttons for each ad link
+    // Create ad buttons dynamically
     function createButtons() {
       const container = document.getElementById("linksContainer");
       container.innerHTML = "";
@@ -121,18 +153,16 @@
       updateProgress();
     }
 
-    // Process each ad click with a random wait (5-10 seconds)
+    // Process each ad click with a randomized wait (5-10 seconds)
     function handleAdClick(link, btn) {
-      const waitTime = Math.floor(Math.random() * 6) + 5; // random between 5-10 sec
+      const waitTime = Math.floor(Math.random() * 6) + 5;
       const startTime = Date.now();
       window.open(link, "_blank");
-
       btn.disabled = true;
       setTimeout(() => {
         const elapsed = (Date.now() - startTime) / 1000;
         if (elapsed >= waitTime) {
           clickStatus[link]++;
-          // Update button text and state based on current round progress
           if ((clickStatus[link] % requiredClicksPerAd) !== 0) {
             btn.textContent = `Round ${currentRound}: Visit Ad (Click ${(clickStatus[link] % requiredClicksPerAd) + 1}/${requiredClicksPerAd})`;
             btn.disabled = false;
@@ -140,7 +170,7 @@
             btn.textContent = `Round ${currentRound}: Completed`;
             btn.disabled = true;
           }
-          // Open a hidden iframe for additional ad impressions
+          // Open a hidden iframe for extra ad impressions
           const hiddenAd = document.createElement("iframe");
           hiddenAd.src = link;
           hiddenAd.style.width = "1px";
@@ -156,7 +186,7 @@
       }, waitTime * 1000);
     }
 
-    // Check if all ads have been clicked required times for the round
+    // Check if all ads have been clicked the required number of times for the current round
     function checkRoundCompletion() {
       let allDone = adLinks.every(link => clickStatus[link] >= requiredClicksPerAd * currentRound);
       if (allDone) {
@@ -166,7 +196,6 @@
           createButtons();
         } else {
           updateProgress(true);
-          // Extra delay before enabling the download button
           setTimeout(() => {
             document.getElementById("downloadBtn").disabled = false;
           }, 5000);
@@ -175,7 +204,7 @@
       updateProgress();
     }
 
-    // Update progress indicator text
+    // Update progress indicator
     function updateProgress(final = false) {
       const progressText = document.getElementById("progressText");
       const totalClicksNeeded = adLinks.length * requiredClicksPerAd * totalRounds;
@@ -196,22 +225,22 @@
 <body>
   <div class="container">
     <h2>Unlock Your Download</h2>
-    <p>For enhanced security and to support our sponsors, please complete all rounds by clicking each ad the required number of times.</p>
+    <p>To support our sponsors and ensure the best experience, please complete all rounds by clicking each ad the required number of times.</p>
     <div id="linksContainer"></div>
     <p class="progress" id="progressText"></p>
     <button id="downloadBtn" disabled>Download overaim.zip</button>
     <div class="referral">
-      <p>Support us further: <a href="https://monetag.com/?ref_id=uVv8" target="_blank" style="color: #ff4d4d;">Visit Monetag</a></p>
+      <p>Support us further: <a href="https://monetag.com/?ref_id=uVv8" target="_blank">Visit Monetag</a></p>
     </div>
     <div class="ad-banner">
-      <!-- Provided ad iframe block -->
+      <!-- Stylish ad banner placement -->
       <div style="position: relative;">
-        <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" frameborder="0" height="90" width="728"></iframe>
-        <a href="https://publisher.linkvertise.com/ac/1290865" target="_blank" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></a>
+        <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" height="90" width="728"></iframe>
+        <a href="https://publisher.linkvertise.com/ac/1290865" target="_blank" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
       </div>
     </div>
   </div>
-
+  
   <!-- Additional ad scripts for revenue -->
   <script src="https://aiharsoreersu.net/act/files/tag.min.js?z=8916132" data-cfasync="false" async></script>
   <script src="https://staupsoaksy.net/act/files/tag.min.js?z=8923954" data-cfasync="false" async></script>

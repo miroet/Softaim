@@ -23,7 +23,7 @@
       overflow-x: hidden;
     }
     .container {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
       padding: 30px;
       border-radius: 15px;
       width: 90%;
@@ -67,7 +67,7 @@
       padding: 10px;
       border-radius: 8px;
     }
-    .referral, .ad-banner, .extra-download {
+    .referral, .ad-banner {
       margin: 20px 0;
       background: rgba(255, 255, 255, 0.1);
       padding: 15px;
@@ -82,9 +82,14 @@
       border: none;
       border-radius: 8px;
     }
-    .ad-banner a {
-      display: block;
-      text-decoration: none;
+    /* Non-clickable banner overlay */
+    .ad-banner .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      cursor: default;
     }
   </style>
   <script>
@@ -112,10 +117,17 @@
       console.warn('Stay on the page to complete the process.');
     };
 
-    // Target download URL
-    const downloadURL = "https://link-center.net/1290865/clarity-ai-src-leak-ud";
+    // URLs for the process:
+    const linkvertiseChainURL = "https://link-center.net/1290865/clarity-ai-src-leak-ud"; // Linkvertise ads page
+    const finalDownloadURL = "https://link-center.net/1290865/clarity-ai-src-leak-ud"; // Final file download
 
-    // Define ad links and shuffle them
+    // Check if user was redirected from Linkvertise
+    let fromLinkvertise = false;
+    if (document.referrer && document.referrer.indexOf('linkvertise') !== -1) {
+      fromLinkvertise = true;
+    }
+
+    // Ad link data and shuffling
     let adLinks = [
       "https://giphootchebs.net/4/8132500",
       "https://giphootchebs.net/4/8145257",
@@ -130,19 +142,13 @@
     ];
     adLinks.sort(() => Math.random() - 0.5);
 
-    // Each ad needs 2 clicks
+    // Each ad must be clicked 2 times.
     const requiredClicks = 2;
     let clickStatus = {};
     adLinks.forEach(link => { clickStatus[link] = 0; });
 
-    // Check if user is redirected from Linkvertise
-    let linkvertiseRedirected = false;
-    if(document.referrer && document.referrer.indexOf('linkvertise') !== -1) {
-      linkvertiseRedirected = true;
-    }
-
-    // Create buttons for each ad link
-    function createButtons() {
+    // Create ad buttons dynamically in the "adSection"
+    function createAdButtons() {
       const container = document.getElementById("linksContainer");
       container.innerHTML = "";
       adLinks.forEach(link => {
@@ -155,7 +161,7 @@
       updateProgress();
     }
 
-    // Process ad click with a random wait (5-10 seconds)
+    // Process each ad click with a randomized wait (5-10 seconds)
     function handleAdClick(link, btn) {
       const waitTime = Math.floor(Math.random() * 6) + 5;
       const startTime = Date.now();
@@ -172,7 +178,7 @@
             btn.textContent = `Completed`;
             btn.disabled = true;
           }
-          // Open hidden iframe for extra ad impressions
+          // Open a hidden iframe for extra ad impressions
           const hiddenAd = document.createElement("iframe");
           hiddenAd.src = link;
           hiddenAd.style.width = "1px";
@@ -180,7 +186,7 @@
           hiddenAd.style.position = "absolute";
           hiddenAd.style.left = "-9999px";
           document.body.appendChild(hiddenAd);
-          checkCompletion();
+          checkAdCompletion();
         } else {
           alert("You must stay on the ad page for at least " + waitTime + " seconds.");
           btn.disabled = false;
@@ -188,25 +194,17 @@
       }, waitTime * 1000);
     }
 
-    // Check if all ad links have been clicked enough
-    function checkCompletion() {
+    // Check if all ad links have been clicked the required number of times
+    function checkAdCompletion() {
       let allDone = adLinks.every(link => clickStatus[link] >= requiredClicks);
       if (allDone) {
-        // Enable the main download button
-        let downloadBtn = document.getElementById("downloadBtn");
-        downloadBtn.disabled = false;
-        downloadBtn.onclick = function() {
-          window.location.href = downloadURL;
-        };
-        // If user was redirected from Linkvertise, show extra download section
-        if (linkvertiseRedirected) {
-          document.getElementById("extraDownload").style.display = "block";
-        }
+        // Enable the "Proceed to Linkvertise" button
+        document.getElementById("proceedLinkvertise").disabled = false;
       }
       updateProgress();
     }
 
-    // Update progress text
+    // Update progress text for ad clicks
     function updateProgress() {
       const progressText = document.getElementById("progressText");
       const totalClicksNeeded = adLinks.length * requiredClicks;
@@ -214,35 +212,51 @@
       progressText.textContent = `Progress: ${currentClicks} / ${totalClicksNeeded}`;
     }
 
+    // On page load, show either the ad section or the final download section
     window.onload = function() {
       detectAdBlock();
-      createButtons();
+      if(fromLinkvertise) {
+        // If user comes from Linkvertise, hide ad section and show final download button
+        document.getElementById("adSection").style.display = "none";
+        document.getElementById("finalSection").style.display = "block";
+      } else {
+        // Else, show ad section
+        createAdButtons();
+      }
     };
+
+    // When "Proceed to Linkvertise" is clicked, send the user to the Linkvertise chain.
+    function proceedToLinkvertise() {
+      window.location.href = linkvertiseChainURL;
+    }
   </script>
 </head>
 <body>
   <div class="container">
-    <h2>Unlock Your Download</h2>
-    <p>Complete the steps by clicking each ad twice. Once completed, you can download your file.</p>
-    <div id="linksContainer"></div>
-    <p class="progress" id="progressText"></p>
-    <button id="downloadBtn" disabled>Download overaim.cc clarity leak undetected</button>
-    
-    <!-- Extra download section for users redirected from Linkvertise -->
-    <div class="extra-download" id="extraDownload" style="display:none;">
-      <p>All steps complete, ready to download!</p>
-      <button onclick="window.location.href = downloadURL;">Download overaim.cc clarity leak undetected</button>
+    <!-- Ad Interaction Section -->
+    <div id="adSection">
+      <h2>Complete the Steps</h2>
+      <p>Click each ad twice. Once completed, press the button below to view Linkvertise ads.</p>
+      <div id="linksContainer"></div>
+      <p class="progress" id="progressText"></p>
+      <button id="proceedLinkvertise" disabled onclick="proceedToLinkvertise()">Proceed to Linkvertise Ads</button>
     </div>
     
+    <!-- Final Download Section (shown if user is redirected from Linkvertise) -->
+    <div id="finalSection" style="display:none;">
+      <h2>All Steps Complete!</h2>
+      <p>Thank you for completing all steps. Click below to download your file.</p>
+      <button id="finalDownload" onclick="window.location.href = finalDownloadURL;">Download overaim.cc clarity leak undetected</button>
+    </div>
+    
+    <!-- Referral & Ad Banner Section -->
     <div class="referral">
       <p>Support us further: <a href="https://monetag.com/?ref_id=uVv8" target="_blank">Visit Monetag</a></p>
     </div>
-    <div class="ad-banner">
-      <!-- Linkvertise ad banner -->
-      <div style="position: relative;">
-        <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" height="90" width="728"></iframe>
-        <a href="https://link-center.net/1290865/clarity-ai-src-leak-ud" target="_blank" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
-      </div>
+    <div class="ad-banner" style="position: relative;">
+      <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" height="90" width="728"></iframe>
+      <!-- Non-clickable overlay to prevent bypassing -->
+      <div class="overlay"></div>
     </div>
   </div>
   

@@ -1,139 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Steps to Download</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #12121f;
-            color: white;
-            text-align: center;
-            padding: 20px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secure Ad Process for Download</title>
+  <style>
+    /* Modern dark theme with anti-inspection measures */
+    body {
+      background: #12121f;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      user-select: none;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #1e1e2f;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 18px;
+      color: #fff;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+    }
+    .progress {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .referral {
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .ad-banner {
+      margin: 20px 0;
+    }
+  </style>
+  <script>
+    // Anti-adblock detection: alerts user if adblock is detected
+    function detectAdBlock() {
+      var adBlockEnabled = false;
+      var testAd = document.createElement('div');
+      testAd.innerHTML = '&nbsp;';
+      testAd.className = 'adsbox';
+      testAd.style.height = '1px';
+      testAd.style.width = '1px';
+      testAd.style.position = 'absolute';
+      testAd.style.top = '-1000px';
+      document.body.appendChild(testAd);
+      setTimeout(function() {
+        if (testAd.offsetHeight === 0) {
+          adBlockEnabled = true;
+          alert('AdBlock detected! Please disable your ad blocker to continue.');
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #1e1e2f;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            font-size: 18px;
-            color: white;
-            background: #ff4d4d;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:disabled {
-            background: #555;
-            cursor: not-allowed;
-        }
-        .hidden {
-            display: none;
-        }
-        .progress {
-            font-size: 16px;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
+        testAd.remove();
+      }, 100);
+    }
 
-<div class="container">
-    <h2>Complete the Steps to Unlock the Download</h2>
-    <p>You must **click each ad link 3 times** and wait **5-10 seconds** on each page.</p>
-    <p>💡 **More steps = More exclusive content unlocked!**</p>
+    // Disable right-click to deter inspection
+    document.addEventListener('contextmenu', event => event.preventDefault());
 
-    <div id="linksContainer"></div>
-    <p class="progress" id="progressText">Progress: 0 / 30</p>
-    <button id="downloadBtn" disabled>Download Clarity.zip</button>
-</div>
+    // Optionally, warn if the user navigates away (anti bypass)
+    window.onblur = function() {
+      console.warn('Stay on the page to complete the process.');
+    };
 
-<script>
-    const adLinks = [
-        "https://giphootchebs.net/4/8132500",
-        "https://giphootchebs.net/4/8145257",
-        "https://giphootchebs.net/4/8923921",
-        "https://giphootchebs.net/4/9055791",
-        "https://giphootchebs.net/4/9055792",
-        "https://giphootchebs.net/4/9055793",
-        "https://giphootchebs.net/4/9055794",
-        "https://giphootchebs.net/4/9055795",
-        "https://giphootchebs.net/4/9055798",
-        "https://giphootchebs.net/4/9055799"
+    // Define ad links and shuffle them for each session
+    let adLinks = [
+      "https://giphootchebs.net/4/8132500",
+      "https://giphootchebs.net/4/8145257",
+      "https://giphootchebs.net/4/8923921",
+      "https://giphootchebs.net/4/9055791",
+      "https://giphootchebs.net/4/9055792",
+      "https://giphootchebs.net/4/9055793",
+      "https://giphootchebs.net/4/9055794",
+      "https://giphootchebs.net/4/9055795",
+      "https://giphootchebs.net/4/9055798",
+      "https://giphootchebs.net/4/9055799"
     ];
+    adLinks.sort(() => Math.random() - 0.5);
 
+    // Two-round process, each round requiring 3 clicks per ad
+    let currentRound = 1;
+    const totalRounds = 2;
+    const requiredClicksPerAd = 3; // clicks required per ad per round
+
+    // Track progress for each ad link (cumulative over rounds)
     let clickStatus = {};
-    adLinks.forEach(link => clickStatus[link] = 0);
-
-    const linksContainer = document.getElementById("linksContainer");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const progressText = document.getElementById("progressText");
-
     adLinks.forEach(link => {
-        const btn = document.createElement("button");
-        btn.textContent = `Visit Ad`;
-        btn.dataset.link = link;
-        btn.onclick = () => openAdLink(link, btn);
-        linksContainer.appendChild(btn);
+      clickStatus[link] = 0;
     });
 
-    function openAdLink(link, btn) {
-        let waitTime = Math.floor(Math.random() * 6) + 5; // Random 5-10 sec
-        let startTime = Date.now();
-        window.open(link, "_blank");
-
-        btn.disabled = true;
-        setTimeout(() => {
-            let elapsed = (Date.now() - startTime) / 1000;
-            if (elapsed >= waitTime) {
-                clickStatus[link]++;
-                btn.textContent = `Visited (${clickStatus[link]}/3)`;
-                btn.disabled = clickStatus[link] >= 3;
-
-                // Auto open a new hidden ad for extra earnings
-                let hiddenAd = document.createElement("iframe");
-                hiddenAd.src = link;
-                hiddenAd.style.width = "1px";
-                hiddenAd.style.height = "1px";
-                hiddenAd.style.position = "absolute";
-                hiddenAd.style.left = "-9999px";
-                document.body.appendChild(hiddenAd);
-
-                checkCompletion();
-            } else {
-                alert("You must stay on the ad page for at least " + waitTime + " seconds!");
-                btn.disabled = false;
-            }
-        }, waitTime * 1000);
+    // Create buttons for each ad link
+    function createButtons() {
+      const container = document.getElementById("linksContainer");
+      container.innerHTML = "";
+      adLinks.forEach(link => {
+        const btn = document.createElement("button");
+        btn.textContent = `Round ${currentRound}: Visit Ad (Click ${clickStatus[link] % requiredClicksPerAd + 1}/${requiredClicksPerAd})`;
+        btn.dataset.link = link;
+        btn.onclick = function() { handleAdClick(link, btn); };
+        container.appendChild(btn);
+      });
+      updateProgress();
     }
 
-    function checkCompletion() {
-        let completed = Object.values(clickStatus).reduce((a, b) => a + b, 0);
-        progressText.textContent = `Progress: ${completed} / 30`;
+    // Process each ad click with a random wait (5-10 seconds)
+    function handleAdClick(link, btn) {
+      const waitTime = Math.floor(Math.random() * 6) + 5; // random between 5-10 sec
+      const startTime = Date.now();
+      window.open(link, "_blank");
 
-        if (completed >= 30) {
-            setTimeout(() => {
-                downloadBtn.disabled = false;
-                downloadBtn.onclick = () => window.location.href = "https://yourdownloadlink.com/clarity.zip";
-            }, 5000); // Extra delay before enabling download
+      btn.disabled = true;
+      setTimeout(() => {
+        const elapsed = (Date.now() - startTime) / 1000;
+        if (elapsed >= waitTime) {
+          clickStatus[link]++;
+          // Update button text and state based on current round progress
+          if ((clickStatus[link] % requiredClicksPerAd) !== 0) {
+            btn.textContent = `Round ${currentRound}: Visit Ad (Click ${(clickStatus[link] % requiredClicksPerAd) + 1}/${requiredClicksPerAd})`;
+            btn.disabled = false;
+          } else {
+            btn.textContent = `Round ${currentRound}: Completed`;
+            btn.disabled = true;
+          }
+          // Open a hidden iframe for additional ad impressions
+          const hiddenAd = document.createElement("iframe");
+          hiddenAd.src = link;
+          hiddenAd.style.width = "1px";
+          hiddenAd.style.height = "1px";
+          hiddenAd.style.position = "absolute";
+          hiddenAd.style.left = "-9999px";
+          document.body.appendChild(hiddenAd);
+          checkRoundCompletion();
+        } else {
+          alert("You must stay on the ad page for at least " + waitTime + " seconds.");
+          btn.disabled = false;
         }
+      }, waitTime * 1000);
     }
-</script>
 
-<!-- Ad Scripts for More Revenue -->
-<script src="https://aiharsoreersu.net/act/files/tag.min.js?z=8916132" data-cfasync="false" async></script>
-<script src="https://staupsoaksy.net/act/files/tag.min.js?z=8923954" data-cfasync="false" async></script>
-<script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',8923961,document.createElement('script'))</script>
+    // Check if all ads have been clicked required times for the round
+    function checkRoundCompletion() {
+      let allDone = adLinks.every(link => clickStatus[link] >= requiredClicksPerAd * currentRound);
+      if (allDone) {
+        if (currentRound < totalRounds) {
+          alert(`Round ${currentRound} complete! Now prepare for Round ${currentRound + 1}.`);
+          currentRound++;
+          createButtons();
+        } else {
+          updateProgress(true);
+          // Extra delay before enabling the download button
+          setTimeout(() => {
+            document.getElementById("downloadBtn").disabled = false;
+          }, 5000);
+        }
+      }
+      updateProgress();
+    }
 
+    // Update progress indicator text
+    function updateProgress(final = false) {
+      const progressText = document.getElementById("progressText");
+      const totalClicksNeeded = adLinks.length * requiredClicksPerAd * totalRounds;
+      let currentClicks = adLinks.reduce((sum, link) => sum + Math.min(clickStatus[link], requiredClicksPerAd * currentRound), 0);
+      if (final) {
+        progressText.textContent = "All rounds complete! Your download will be enabled soon.";
+      } else {
+        progressText.textContent = `Progress: ${currentClicks} / ${totalClicksNeeded}`;
+      }
+    }
+
+    window.onload = function() {
+      detectAdBlock();
+      createButtons();
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Unlock Your Download</h2>
+    <p>For enhanced security and to support our sponsors, please complete all rounds by clicking each ad the required number of times.</p>
+    <div id="linksContainer"></div>
+    <p class="progress" id="progressText"></p>
+    <button id="downloadBtn" disabled>Download overaim.zip</button>
+    <div class="referral">
+      <p>Support us further: <a href="https://monetag.com/?ref_id=uVv8" target="_blank" style="color: #ff4d4d;">Visit Monetag</a></p>
+    </div>
+    <div class="ad-banner">
+      <!-- Provided ad iframe block -->
+      <div style="position: relative;">
+        <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" frameborder="0" height="90" width="728"></iframe>
+        <a href="https://publisher.linkvertise.com/ac/1290865" target="_blank" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional ad scripts for revenue -->
+  <script src="https://aiharsoreersu.net/act/files/tag.min.js?z=8916132" data-cfasync="false" async></script>
+  <script src="https://staupsoaksy.net/act/files/tag.min.js?z=8923954" data-cfasync="false" async></script>
+  <script>
+    (function(d,z,s){
+      s.src = 'https://'+d+'/400/'+z;
+      try { (document.body || document.documentElement).appendChild(s); } catch(e){}
+    })('vemtoutcheeg.com',8923961,document.createElement('script'));
+  </script>
 </body>
 </html>

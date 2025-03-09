@@ -1,285 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OverAim - Undetectable Fortnite AI Aimbot & Lifetime Spoofer. Join 15,000+ satisfied users dominating Zero Build." />
-  <meta name="keywords" content="Undetectable Fortnite Cheats, AI Aimbot, Lifetime Spoofer, Fortnite Hacks, UD Cheats" />
-  <title>OverAim | #1 Undetectable Fortnite AI Aimbot</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --primary: #00ff88;
-      --secondary: #009966;
-      --accent: #ff6b6b;
-      --bg: #0a0f16;
-      --text: #ffffff;
-      --card-bg: rgba(15, 25, 32, 0.9);
-      --nav-height: 70px;
-      --font: 'Poppins', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OverAim - Undetectable AI Aimbot & Permanent Spoofer">
+    <title>OverAim - Ultimate Fortnite Toolkit</title>
+    <style>
+        :root {
+            --neon-green: #00ff88;
+            --cyber-blue: #00f7ff;
+            --matrix-bg: #0a0f16;
+            --hacker-red: #ff003c;
+        }
 
-    [data-theme="light"] {
-      --bg: #f8f9fa;
-      --text: #212529;
-      --card-bg: rgba(255, 255, 255, 0.9);
-    }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: var(--matrix-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--neon-green), var(--cyber-blue));
+            border-radius: 6px;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        .cyber-glitch {
+            animation: glitch 2s infinite;
+        }
 
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* Animated Gradient Text */
-    .gradient-text {
-      background: linear-gradient(45deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: gradient 5s ease infinite;
-    }
-
-    /* Particles Background */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Enhanced Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(10, 15, 22, 0.95);
-      backdrop-filter: blur(10px);
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(var(--primary), 0.1);
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      padding: calc(var(--nav-height) + 5rem) 5% 5rem;
-      text-align: center;
-      position: relative;
-    }
-
-    /* Review Cards */
-    .review-card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin: 1rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(var(--primary), 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    /* Download Section */
-    .download-box {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 15px;
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Animations */
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Full CSS available in final download */
-  </style>
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px var(--hacker-red); }
+            20% { transform: translate(2px); }
+            100% { transform: translate(0); }
+        }
+    </style>
 </head>
 <body>
-  <!-- Animated Background -->
-  <div class="particles" id="particles"></div>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo gradient-text">OverAim</div>
-    <div class="nav-links">
-      <a href="#reviews">Reviews</a>
-      <a href="#download">Download</a>
-      <a href="#features">Features</a>
-      <button id="theme-toggle">🌓</button>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="cyber-loader"></div>
     </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1 style="font-size: 3.5rem; margin-bottom: 2rem;">
-      Dominate <span class="gradient-text">Zero Build</span> Like A Pro
-    </h1>
-    <div class="stats-grid">
-      <div class="stat-box">
-        <div class="stat-number gradient-text">15,000+</div>
-        <div class="stat-label">Active Users</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number gradient-text">0</div>
-        <div class="stat-label">Bans Reported</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- User Reviews Section -->
-  <section id="reviews" style="padding: 5rem 5%">
-    <h2 style="text-align: center; margin-bottom: 3rem;">What Players Say</h2>
-    <div class="reviews-grid">
-      <!-- Top Reviews -->
-      <div class="review-card highlight">
-        <div class="user-meta">
-          <span class="user-tag developer">Developer</span>
-          <span class="review-date">23.2.2025</span>
+    <!-- Navigation -->
+    <nav class="cyber-nav">
+        <h1 class="cyber-glitch">OVER AIM</h1>
+        <div class="nav-links">
+            <a href="#reviews">Reviews</a>
+            <a href="#media">Media</a>
+            <a href="#products">Products</a>
         </div>
-        <div class="review-content">
-          "The only real cheat that's truly undetectable. We've spent 2000+ hours perfecting our bypass methods."
+    </nav>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <div class="review-card">
+            <div class="user-badge owner">Developer</div>
+            <p>"The only real cheat that's undetected"</p>
+            <div class="review-footer">
+                <span>Miro0x/Owner</span>
+                <span>2025-02-23</span>
+            </div>
         </div>
-        <div class="user-name">Miro0x/Owner</div>
-      </div>
 
-      <!-- User Reviews -->
-      <div class="review-card">
-        <div class="user-meta">
-          <span class="user-tag pro">Pro Player</span>
-          <span class="review-date">19.2.2025</span>
+        <!-- Add all other reviews following same structure -->
+    </section>
+
+    <!-- Media Section -->
+    <section id="media">
+        <div class="media-grid">
+            <div class="tiktok-embed">
+                <iframe src="https://www.tiktok.com/embed/7461045214631824662"></iframe>
+            </div>
+            <video controls>
+                <source src="https://cdn.discordapp.com/attachments/1328729196024955002/1338687698008805437/2025-02-10_19-59-03.mp4">
+            </video>
         </div>
-        <div class="review-content">
-          "Been using for 2 months straight - still undetected. The AI learning feature is game-changing."
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="faq-item">
+            <h3>❓ Is the software undetectable?</h3>
+            <p>Yes! We use advanced anti-detection technology updated every 6 hours.</p>
         </div>
-        <div class="user-name">LaDos.</div>
-      </div>
+        <!-- Add other FAQ items -->
+    </section>
 
-      <!-- More reviews integrated here -->
-    </div>
-  </section>
+    <!-- Product Section -->
+    <section id="products">
+        <div class="product-card">
+            <h3>AI Aimbot v3</h3>
+            <img src="https://cdn.discordapp.com/attachments/1328717100826624072/1332029868589715536/image.png">
+            <div class="setup-tips">
+                <p>Required settings for optimal performance:</p>
+                <img src="https://cdn.discordapp.com/attachments/1328717100826624072/1332030148425289812/image.png">
+            </div>
+            <button class="download-btn">Download Free</button>
+        </div>
+    </section>
 
-  <!-- Download Section -->
-  <section id="download" class="download-box">
-    <h2 style="color: #fff; margin-bottom: 1.5rem;">Get OverAim v4.2</h2>
-    <div class="version-info">
-      <span class="badge">UNDETECTED</span>
-      <span class="version">Updated: 28.2.2025</span>
-    </div>
-    
-    <div class="download-options">
-      <div class="option-card free">
-        <h3>Free Version</h3>
-        <ul class="feature-list">
-          <li>Basic AI Aimbot</li>
-          <li>Weekly Spoofer Refresh</li>
-          <li>Community Support</li>
-        </ul>
-        <button class="download-btn free">Download Free</button>
-      </div>
+    <!-- Security System -->
+    <script>
+        class AntiTamper {
+            constructor() {
+                this.initChecks();
+            }
 
-      <div class="option-card pro">
-        <h3>Pro Package</h3>
-        <ul class="feature-list">
-          <li>Advanced Neural AI</li>
-          <li>Permanent Spoofer</li>
-          <li>Priority Support</li>
-          <li>Custom Configurations</li>
-        </ul>
-        <button class="download-btn pro">Get Pro ($49.99/mo)</button>
-      </div>
-    </div>
-
-    <div class="security-check">
-      <label>
-        <input type="checkbox" id="agreement"> 
-        I understand this software is for educational purposes only
-      </label>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faq" style="padding: 5rem 5%">
-    <h2 style="text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h2>
-    <div class="faq-grid">
-      <div class="faq-card">
-        <h3>Is it really undetectable? 🤔</h3>
-        <p>We use military-grade spoofing techniques updated every 12 hours. 0 bans reported since launch.</p>
-      </div>
-      <div class="faq-card">
-        <h3>How to update? 🔄</h3>
-        <p>Our auto-updater handles everything. Just keep "Check Updates" enabled in settings.</p>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.documentElement.setAttribute('data-theme',
-        document.documentElement.getAttribute('data-theme') === 'dark' 
-          ? 'light' : 'dark'
-      );
-    });
-
-    // Particle System
-    function createParticles() {
-      const container = document.getElementById('particles');
-      for (let i = 0; i < 100; i++) {
-        const particle = document.createElement('div');
-        particle.style.cssText = `
-          position: absolute;
-          width: 2px;
-          height: 2px;
-          background: rgba(0, 255, 136, 0.5);
-          border-radius: 50%;
-          top: ${Math.random() * 100}%;
-          left: ${Math.random() * 100}%;
-          animation: float ${5 + Math.random() * 10}s infinite;
-        `;
-        container.appendChild(particle);
-      }
-    }
-    createParticles();
-
-    // Download Manager
-    document.querySelectorAll('.download-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (!document.getElementById('agreement').checked) {
-          alert('Please confirm the agreement!');
-          return;
+            initChecks() {
+                setInterval(() => {
+                    if(performance.memory.usedJSHeapSize > 500000000) {
+                        document.body.innerHTML = "<h1>SECURITY VIOLATION DETECTED</h1>";
+                        window.stop();
+                    }
+                }, 1000);
+            }
         }
-        // Start fake download animation
-        btn.innerHTML = 'Preparing Download <div class="loader"></div>';
-        setTimeout(() => {
-          window.location.href = btn.classList.contains('pro') 
-            ? 'https://overaim.cc/pro-download' 
-            : 'https://overaim.cc/free-download';
-        }, 2000);
-      });
-    });
-  </script>
+        new AntiTamper();
+    </script>
 </body>
 </html>

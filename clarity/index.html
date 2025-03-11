@@ -1,6 +1,9 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://kulroakonsu.net/88/tag.min.js" data-zone="136088" async data-cfasync="false"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unlock Your Download</title>
@@ -28,6 +31,7 @@
       padding: 30px;
       box-shadow: 0 12px 24px rgba(0,0,0,0.5);
       animation: fadeIn 1s ease;
+      position: relative;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -96,12 +100,26 @@
       bottom: 0;
       cursor: default;
     }
+    .disclaimer {
+      background: rgba(255,0,0,0.8);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
     @media (max-width: 480px) {
       h2 { font-size: 1.5em; }
       button { font-size: 16px; }
     }
   </style>
   <script>
+    // Optional: Function to show an alert disclaimer on demand.
+    function showDisclaimer() {
+      alert("WARNING: Do NOT download anything from the ads. Only use the official download button after completing all steps.");
+    }
+    
     /******** TAMPER REDIRECT FUNCTION ********/
     function triggerTamperRedirect() {
       window.location.href = "https://giphootchebs.net/4/9061067";
@@ -265,17 +283,20 @@
     // On page load, decide which section to display based on referrer/localStorage flag
     window.onload = () => {
       detectAdBlock();
+      createGroupButtons();
+      // If the user is returning from Linkvertise, show final section instead of ad section.
       if(document.referrer && document.referrer.indexOf("linkvertise") !== -1) {
         document.getElementById("adSection").style.display = "none";
         document.getElementById("finalSection").style.display = "block";
-      } else {
-        createGroupButtons();
       }
     };
   </script>
 </head>
 <body>
   <div class="container">
+    <div class="disclaimer">
+      WARNING: Do NOT download anything from the ads. Only use the official download button after completing all steps.
+    </div>
     <!-- Step 1: Ad Interaction Section -->
     <div id="adSection" class="section">
       <h2>Step 1: Complete the Ad Interactions</h2>
@@ -313,5 +334,10 @@
       try { (document.body || document.documentElement).appendChild(s); } catch(e){}
     })('vemtoutcheeg.com',8923961,document.createElement('script'));
   </script>
+  
+  <!-- Extra ad banner for increased revenue -->
+  <div style="position:fixed; bottom:0; left:0; right:0; z-index:9999; text-align:center;">
+    <iframe src="https://anotheradnetwork.com/ad?size=728x90" style="width:728px; height:90px; border:none;"></iframe>
+  </div>
 </body>
 </html>

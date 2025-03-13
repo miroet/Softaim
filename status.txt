@@ -1,38 +1,34 @@
 [UI]
 title = OverCheats
-top_nav = Mods,Overview,Games,Other
-search_placeholder = Search by modifications and their versions
+nav_items = Mods,Overview,Games,Other
 user_name = boest...
+search_placeholder = Search by modifications and their versions
 library_title = Library
-ad_text = Place for an ad...
-background_image_url = https://i.imgur.com/yourBackground.jpg
+background_image_url = https://i.imgur.com/your_background.jpg
 
-[CHEAT1]
+[CHEAT_1]
 name = Eknod
 version = 1.0
 rating = 78
-desc = This is a free cheat for XYZ.
+desc = A free cheat for XYZ.
 download_url = https://example.com/Eknod.zip
-image_url = https://i.imgur.com/someCheatImage.jpg
+image_url = https://i.imgur.com/Eknod.jpg
 author = EknodDev
-game = "CS:GO"
 
-[CHEAT2]
+[CHEAT_2]
 name = Ext./xONE Free
 version = 2.5
 rating = 95
-desc = Another great mod for CS2
+desc = Great mod for CS2
 download_url = https://example.com/ExtXone.zip
-image_url = https://i.imgur.com/anotherCheat.jpg
+image_url = https://i.imgur.com/xOne.jpg
 author = xONE
-game = "CS2"
 
-[CHEAT3]
+[CHEAT_3]
 name = NAIM Free
 version = 1.2
 rating = 80
-desc = Naim cheat for CS:GO
+desc = Another cheat for CS:GO
 download_url = https://example.com/NAIM.zip
-image_url = https://i.imgur.com/naimCheat.png
+image_url = https://i.imgur.com/naim.png
 author = NaimCreator
-game = "CS:GO"

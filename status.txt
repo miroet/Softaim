@@ -1,11 +1,38 @@
-[Overaim AI Aimbot]
+[OVERAIM AI AIMBOT]
 status = true
-download = https://your-download-link.com/aimbot.zip
+version = 1.2.3
+download_url = https://yourlink.com/aimbot
+last_updated = 2025-03-13
+min_version_required = 1.2.0
+message = Aimbot is online and working great!
+max_users = 500
+current_users = 320
+maintenance = false
+force_update = false
+hwid_lock = true
 
-[Overaim Permanent Spoofer]
+[OVERAIM PERMANENT SPOOFER]
 status = false
-download = https://your-download-link.com/spoofer.zip
+version = 1.1.0
+download_url = https://yourlink.com/spoofer
+last_updated = 2025-03-10
+min_version_required = 1.1.0
+message = Spoofer is under maintenance. Check back soon.
+max_users = 300
+current_users = 289
+maintenance = true
+force_update = true
+hwid_lock = false
 
-[Overaim Debloater/Tweaker]
+[OVERAIM DEBLOATER/TWEAKER]
 status = true
-download = https://your-download-link.com/debloater.zip
+version = 2.0.0
+download_url = https://yourlink.com/debloater
+last_updated = 2025-03-12
+min_version_required = 1.5.0
+message = Tweaker is fully optimized!
+max_users = 1000
+current_users = 854
+maintenance = false
+force_update = false
+hwid_lock = false

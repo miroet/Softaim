@@ -1,38 +1,38 @@
-[OVERAIM AI AIMBOT]
-status = true
-version = 1.2.3
-download_url = https://yourlink.com/aimbot
-last_updated = 2025-03-13
-min_version_required = 1.2.0
-message = Aimbot is online and working great!
-max_users = 500
-current_users = 320
-maintenance = false
-force_update = false
-hwid_lock = true
+[UI]
+title = OverCheats
+top_nav = Mods,Overview,Games,Other
+search_placeholder = Search by modifications and their versions
+user_name = boest...
+library_title = Library
+ad_text = Place for an ad...
+background_image_url = https://i.imgur.com/yourBackground.jpg
 
-[OVERAIM PERMANENT SPOOFER]
-status = false
-version = 1.1.0
-download_url = https://yourlink.com/spoofer
-last_updated = 2025-03-10
-min_version_required = 1.1.0
-message = Spoofer is under maintenance. Check back soon.
-max_users = 300
-current_users = 289
-maintenance = true
-force_update = true
-hwid_lock = false
+[CHEAT1]
+name = Eknod
+version = 1.0
+rating = 78
+desc = This is a free cheat for XYZ.
+download_url = https://example.com/Eknod.zip
+image_url = https://i.imgur.com/someCheatImage.jpg
+author = EknodDev
+game = "CS:GO"
 
-[OVERAIM DEBLOATER/TWEAKER]
-status = true
-version = 2.0.0
-download_url = https://yourlink.com/debloater
-last_updated = 2025-03-12
-min_version_required = 1.5.0
-message = Tweaker is fully optimized!
-max_users = 1000
-current_users = 854
-maintenance = false
-force_update = false
-hwid_lock = false
+[CHEAT2]
+name = Ext./xONE Free
+version = 2.5
+rating = 95
+desc = Another great mod for CS2
+download_url = https://example.com/ExtXone.zip
+image_url = https://i.imgur.com/anotherCheat.jpg
+author = xONE
+game = "CS2"
+
+[CHEAT3]
+name = NAIM Free
+version = 1.2
+rating = 80
+desc = Naim cheat for CS:GO
+download_url = https://example.com/NAIM.zip
+image_url = https://i.imgur.com/naimCheat.png
+author = NaimCreator
+game = "CS:GO"

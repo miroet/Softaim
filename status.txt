@@ -1,1 +1,11 @@
+[Overaim AI Aimbot]
+status = true
+download = https://your-download-link.com/aimbot.zip
 
+[Overaim Permanent Spoofer]
+status = false
+download = https://your-download-link.com/spoofer.zip
+
+[Overaim Debloater/Tweaker]
+status = true
+download = https://your-download-link.com/debloater.zip

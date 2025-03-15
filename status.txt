@@ -1,25 +1,3 @@
-[UI]
-app_title = ExLoader
-background_image_url = https://i.imgur.com/yourBackground.jpg
-
-[CHEAT_aurora]
-name = Aurora Free
-author = AuroraHack
-likes = 464
-downloads = 387
-whats_new = Global update! Notification menu rework, new features, optimization...
-image_url = https://i.imgur.com/Cs2Screenshot.jpg
-rating = 3.6
-rating_count = 1200
-desc = Marking can help other players to select the most relevant cheat on the modification selection screen.
-
-[CHEAT_other]
-name = Some Other Cheat
-author = SomeDev
-likes = 100
-downloads = 55
-whats_new = Minor patch, bug fixes, new UI
-image_url = https://i.imgur.com/AnotherScreenshot.jpg
-rating = 4.2
-rating_count = 650
-desc = Another cheat with different features.
+Ai aimbot|Stable|2025-03-15
+Perm spoofer|Stable|2025-03-14
+Tweaker|Stable|2025-03-10

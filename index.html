@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OverAim | Next-Level Fortnite Tools</title>
+  <title>OverAim | Premium Fortnite Tools</title>
   <style>
     :root {
       --neon-blue: #00f3ff;
@@ -11,259 +11,192 @@
       --dark-bg: #0a0a0f;
       --card-bg: rgba(15,15,25,0.95);
       --font-primary: 'Space Grotesk', sans-serif;
-      --font-secondary: 'Oxanium', cursive;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Modern Page Transition */
+    .page-wrapper {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
-    body {
-      background: var(--dark-bg);
-      color: white;
-      font-family: var(--font-primary);
-      overflow-x: hidden;
+    @keyframes pageEnter {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cyberpunk-style Header */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1.5rem 5%;
-      background: rgba(10,10,15,0.9);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
+    /* Unified Page Header */
+    .page-header {
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(45deg, var(--dark-bg) 60%, rgba(0,243,255,0.1));
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .logo {
-      font-family: var(--font-secondary);
-      font-size: 2rem;
-      background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Holographic Hero Section */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0,243,255,0.1) 0%, transparent 60%);
-      animation: hologram 20s linear infinite;
-    }
-
-    .hero-content {
-      position: relative;
-      text-align: center;
-      padding: 2rem;
-      max-width: 800px;
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 15px rgba(0,243,255,0.4);
-    }
-
-    /* Grid System with Hover Effects */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 4rem 5%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
+    /* Feature Cards with Hover */
+    .tool-card {
       background: var(--card-bg);
-      padding: 2rem;
       border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      transition: transform 0.3s ease;
       border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
 
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(0,243,255,0.2);
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,243,255,0.1);
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.1),
-        transparent
-      );
-      transition: 0.5s;
+    /* Discord Preview Section */
+    .discord-preview {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: center;
     }
 
-    .feature-card:hover::before {
-      left: 100%;
+    .discord-widget {
+      border: none;
+      width: 100%;
+      height: 500px;
+      border-radius: 12px;
+      margin-top: 1.5rem;
     }
 
-    /* Neon Button Style */
-    .cta-button {
-      display: inline-block;
+    /* Download Buttons */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
       padding: 1rem 2rem;
       background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
       color: white;
+      border-radius: 8px;
       text-decoration: none;
-      border-radius: 50px;
       font-weight: bold;
-      position: relative;
-      overflow: hidden;
-      transition: 0.3s;
+      transition: transform 0.3s ease;
     }
 
-    .cta-button::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: rgba(255,255,255,0.1);
-      transform: rotate(45deg) translate(-20%, -100%);
-      transition: 0.3s;
+    .download-btn:hover {
+      transform: scale(1.05);
     }
 
-    .cta-button:hover::after {
-      transform: rotate(45deg) translate(100%, 100%);
-    }
-
-    /* Animated Background Elements */
-    @keyframes hologram {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .floating-element {
-      position: absolute;
-      background: rgba(0,243,255,0.1);
-      border-radius: 50%;
-      filter: blur(50px);
-      z-index: -1;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Loading Animation */
-    .loader {
-      width: 48px;
-      height: 48px;
-      border: 3px solid var(--neon-blue);
-      border-radius: 50%;
+    /* Security Badges */
+    .security-badge {
       display: inline-block;
-      position: relative;
-      animation: rotation 1s linear infinite;
-    }
-    
-    .loader::after {
-      content: ''; 
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 3px solid;
-      border-color: var(--cyber-purple) transparent;
-    }
-
-    @keyframes rotation {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      padding: 0.5rem 1rem;
+      background: rgba(0,243,255,0.1);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin: 0.5rem;
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">OVER AIM</div>
-      <!-- Add navigation menu here -->
-    </div>
-  </nav>
 
-  <section class="hero">
-    <div class="floating-element" style="width: 300px; height: 300px; top: 20%; left: 10%;"></div>
-    <div class="floating-element" style="width: 200px; height: 200px; bottom: 30%; right: 15%;"></div>
+<!-- Free AI Page (/freeai) -->
+<div class="page-wrapper">
+  <header class="page-header">
+    <h1>Free AI Aimbot</h1>
+    <p>Next-generation aiming assistance powered by machine learning</p>
+  </header>
+
+  <div class="tool-card">
+    <div class="security-badge">Undetectable</div>
+    <div class="security-badge">Auto-Update</div>
     
-    <div class="hero-content">
-      <h1>Dominate the Battlefield</h1>
-      <p>Next-generation Fortnite tools powered by adaptive AI</p>
-      <a href="#products" class="cta-button">Launch Dashboard</a>
-    </div>
-  </section>
+    <h2>Features</h2>
+    <ul>
+      <li>Adaptive targeting system</li>
+      <li>Performance analytics</li>
+      <li>Cross-platform support</li>
+    </ul>
 
-  <section class="feature-grid">
-    <article class="feature-card">
-      <h3>Precision AI Aimbot</h3>
-      <p>Self-learning system that adapts to your playstyle</p>
-    </article>
-    <article class="feature-card">
-      <h3>Advanced Spoofer</h3>
-      <p>Hardware-level protection against detection</p>
-    </article>
-    <article class="feature-card">
-      <h3>Real-Time Analytics</h3>
-      <p>Detailed performance metrics and heatmaps</p>
-    </article>
-  </section>
+    <a href="#download" class="download-btn">
+      <svg><!-- Download icon --></svg>
+      Download Now
+    </a>
+  </div>
+</div>
 
-  <script>
-    // Add interactive elements here
-    document.querySelectorAll('.feature-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        card.style.setProperty('--mouse-x', `${x}px`)
-        card.style.setProperty('--mouse-y', `${y}px`)
-      })
-    })
-  </script>
+<!-- Free Spoofer Page (/freespoofer) -->
+<div class="page-wrapper">
+  <header class="page-header">
+    <h1>Hardware Spoofer</h1>
+    <p>Permanent protection against hardware bans</p>
+  </header>
+
+  <div class="tool-card">
+    <div class="security-badge">HWID Masking</div>
+    <div class="security-badge">Lifetime Access</div>
+
+    <h2>Installation Guide</h2>
+    <ol>
+      <li>Download package</li>
+      <li>Run automated setup</li>
+      <li>Verify protection</li>
+    </ol>
+
+    <a href="#download" class="download-btn">
+      <svg><!-- Download icon --></svg>
+      Get Spoofer
+    </a>
+  </div>
+</div>
+
+<!-- Discord Page (/discord) -->
+<div class="page-wrapper">
+  <header class="page-header">
+    <h1>Join Our Community</h1>
+    <p>50,000+ active members | Real-time support | Exclusive leaks</p>
+  </header>
+
+  <div class="discord-preview">
+    <h2>Why Join?</h2>
+    <ul>
+      <li>24/7 technical support</li>
+      <li>Early access to new tools</li>
+      <li>Community tournaments</li>
+    </ul>
+
+    <iframe class="discord-widget" 
+            src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark"
+            allowtransparency="true"
+            frameborder="0"></iframe>
+
+    <a href="https://discord.gg/your-invite" class="download-btn">
+      Join Discord
+    </a>
+  </div>
+</div>
+
+<script>
+  // Smooth page transitions
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get('page');
+    
+    document.querySelectorAll('.page-wrapper').forEach(wrapper => {
+      wrapper.style.display = 'none';
+    });
+
+    if(page) {
+      document.querySelector(`[data-page="${page}"]`).style.display = 'block';
+    }
+  });
+
+  // Dynamic security badges
+  const badges = document.querySelectorAll('.security-badge');
+  badges.forEach(badge => {
+    badge.addEventListener('mouseover', () => {
+      badge.style.background = 'rgba(0,243,255,0.2)';
+    });
+    badge.addEventListener('mouseout', () => {
+      badge.style.background = 'rgba(0,243,255,0.1)';
+    });
+  });
+</script>
 </body>
 </html>

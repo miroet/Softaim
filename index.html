@@ -1,202 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OverAim | Premium Fortnite Tools</title>
-  <style>
-    :root {
-      --neon-blue: #00f3ff;
-      --cyber-purple: #bc13fe;
-      --dark-bg: #0a0a0f;
-      --card-bg: rgba(15,15,25,0.95);
-      --font-primary: 'Space Grotesk', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overaim AI - Advanced AI-Powered Gaming Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7F5AF0;
+            --secondary: #16161A;
+            --accent: #2CB67D;
+        }
 
-    /* Modern Page Transition */
-    .page-wrapper {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    @keyframes pageEnter {
-      to { opacity: 1; transform: translateY(0); }
-    }
+        body {
+            background-color: var(--secondary);
+            color: #ffffff;
+        }
 
-    /* Unified Page Header */
-    .page-header {
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-      background: linear-gradient(45deg, var(--dark-bg) 60%, rgba(0,243,255,0.1));
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+        .jetbrains-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
 
-    /* Feature Cards with Hover */
-    .tool-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 2rem auto;
-      max-width: 800px;
-      transition: transform 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .tool-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,243,255,0.1);
-    }
-
-    /* Discord Preview Section */
-    .discord-preview {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 2rem auto;
-      max-width: 800px;
-      text-align: center;
-    }
-
-    .discord-widget {
-      border: none;
-      width: 100%;
-      height: 500px;
-      border-radius: 12px;
-      margin-top: 1.5rem;
-    }
-
-    /* Download Buttons */
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.3s ease;
-    }
-
-    .download-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* Security Badges */
-    .security-badge {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: rgba(0,243,255,0.1);
-      border-radius: 50px;
-      font-size: 0.9rem;
-      margin: 0.5rem;
-    }
-  </style>
+        /* Add more custom styles here */
+    </style>
 </head>
 <body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <img src="overaim-logo.svg" alt="Overaim AI Logo" class="logo">
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#compatibility">Compatibility</a>
+                <a href="#testimonials">Testimonials</a>
+                <button class="discord-login">Login with Discord</button>
+            </div>
+        </div>
+    </nav>
 
-<!-- Free AI Page (/freeai) -->
-<div class="page-wrapper">
-  <header class="page-header">
-    <h1>Free AI Aimbot</h1>
-    <p>Next-generation aiming assistance powered by machine learning</p>
-  </header>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Next-Gen AI Gaming Assistant</h1>
+            <p class="subtitle">Precision Engineered for Competitive Excellence</p>
+            <div class="cta-container">
+                <button class="primary-cta">Start Free Trial</button>
+                <button class="secondary-cta">Watch Demo</button>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>8+ Months</h3>
+                    <p>Undetected</p>
+                </div>
+                <div class="stat-card">
+                    <h3>1ms</h3>
+                    <p>Response Time</p>
+                </div>
+                <div class="stat-card">
+                    <h3>50k+</h3>
+                    <p>Training Samples</p>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <div class="tool-card">
-    <div class="security-badge">Undetectable</div>
-    <div class="security-badge">Auto-Update</div>
+    <section id="features" class="features-section">
+        <h2>Core Technologies</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>AI-Powered Aimbot</h3>
+                <ul>
+                    <li>Humanized smoothing</li>
+                    <li>Randomized curves</li>
+                    <li>Target lock system</li>
+                </ul>
+            </div>
+            <!-- Add more feature cards -->
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <h2>Subscription Plans</h2>
+        <div class="pricing-cards">
+            <div class="price-card">
+                <h3>Weekly</h3>
+                <div class="price">$9.99</div>
+                <ul class="features-list">
+                    <li>Basic AI Features</li>
+                    <li>Daily Updates</li>
+                    <li>Community Support</li>
+                </ul>
+                <button class="purchase-btn">Subscribe</button>
+            </div>
+            <!-- Add more pricing cards -->
+        </div>
+    </section>
+
+    <section class="compatibility-section">
+        <h2>Supported Anti-Cheats</h2>
+        <div class="anti-cheat-grid">
+            <div class="anti-cheat-card">
+                <img src="assets/eac-logo.svg" alt="Easy Anti-Cheat">
+                <p>Full Support</p>
+            </div>
+            <!-- Add more anti-cheat cards -->
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-columns">
+            <div class="legal-info">
+                <p>© 2024 Overaim AI. Educational use only.</p>
+                <div class="legal-links">
+                    <a href="privacy-policy.md">Privacy Policy</a>
+                    <a href="terms-of-service.md">Terms of Service</a>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://discord.gg/overaim" target="_blank">Discord</a>
+                <a href="https://twitter.com/overaimcc" target="_blank">Twitter</a>
+                <a href="https://tiktok.com/@overaim.cc" target="_blank">TikTok</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling
+            // Add accordion functionality for FAQ
+            // Add compatibility checker
+        });
+    </script>
+
+    <!-- Third-party integrations -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-OVERAIM01"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-OVERAIM01');
+    </script>
     
-    <h2>Features</h2>
-    <ul>
-      <li>Adaptive targeting system</li>
-      <li>Performance analytics</li>
-      <li>Cross-platform support</li>
-    </ul>
-
-    <a href="#download" class="download-btn">
-      <svg><!-- Download icon --></svg>
-      Download Now
-    </a>
-  </div>
-</div>
-
-<!-- Free Spoofer Page (/freespoofer) -->
-<div class="page-wrapper">
-  <header class="page-header">
-    <h1>Hardware Spoofer</h1>
-    <p>Permanent protection against hardware bans</p>
-  </header>
-
-  <div class="tool-card">
-    <div class="security-badge">HWID Masking</div>
-    <div class="security-badge">Lifetime Access</div>
-
-    <h2>Installation Guide</h2>
-    <ol>
-      <li>Download package</li>
-      <li>Run automated setup</li>
-      <li>Verify protection</li>
-    </ol>
-
-    <a href="#download" class="download-btn">
-      <svg><!-- Download icon --></svg>
-      Get Spoofer
-    </a>
-  </div>
-</div>
-
-<!-- Discord Page (/discord) -->
-<div class="page-wrapper">
-  <header class="page-header">
-    <h1>Join Our Community</h1>
-    <p>50,000+ active members | Real-time support | Exclusive leaks</p>
-  </header>
-
-  <div class="discord-preview">
-    <h2>Why Join?</h2>
-    <ul>
-      <li>24/7 technical support</li>
-      <li>Early access to new tools</li>
-      <li>Community tournaments</li>
-    </ul>
-
-    <iframe class="discord-widget" 
-            src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark"
-            allowtransparency="true"
-            frameborder="0"></iframe>
-
-    <a href="https://discord.gg/your-invite" class="download-btn">
-      Join Discord
-    </a>
-  </div>
-</div>
-
-<script>
-  // Smooth page transitions
-  document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const page = params.get('page');
-    
-    document.querySelectorAll('.page-wrapper').forEach(wrapper => {
-      wrapper.style.display = 'none';
-    });
-
-    if(page) {
-      document.querySelector(`[data-page="${page}"]`).style.display = 'block';
-    }
-  });
-
-  // Dynamic security badges
-  const badges = document.querySelectorAll('.security-badge');
-  badges.forEach(badge => {
-    badge.addEventListener('mouseover', () => {
-      badge.style.background = 'rgba(0,243,255,0.2)';
-    });
-    badge.addEventListener('mouseout', () => {
-      badge.style.background = 'rgba(0,243,255,0.1)';
-    });
-  });
-</script>
+    <!-- Tawk.to Live Chat -->
+    <script>
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/OVERAIMMAIN';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
 </body>
 </html>
